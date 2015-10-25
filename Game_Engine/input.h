@@ -9,8 +9,7 @@
 #ifndef __INPUT_H__
 #define __INPUT_H__
 
-#include <glm/glm.hpp>
-
+#include "math3d.h"
 #include "window.h"
 
 class Input {
@@ -18,10 +17,13 @@ class Input {
 private:
     Window *m_window;
     
-    glm::mat4 m_viewMatrix;
-    glm::mat4 m_projectionMatrix;
-    
-    glm::vec3 m_position;
+    // glm::mat4 m_viewMatrix;
+    // glm::mat4 m_projectionMatrix;
+    Matrix4<float> m_viewMatrix;
+    Matrix4<float> m_projectionMatrix;
+
+    // glm::vec3 m_position;
+    Vector3<float> m_position;
     float m_horAngle;
     float m_vertAngle;
     float m_initialFOV;
@@ -33,8 +35,8 @@ public:
     
     void ComputeMatricesFromInputs();
     
-    inline glm::mat4 GetViewMatrix() const { return m_viewMatrix; }
-    inline glm::mat4 GetProjectionMatrix() const { return m_projectionMatrix; }
+    inline Matrix4<float> GetViewMatrix() const { return m_viewMatrix; }
+    inline Matrix4<float> GetProjectionMatrix() const { return m_projectionMatrix; }
 };
 
 #endif /* input_h */

@@ -10,10 +10,6 @@
 #include <cstdio>
 #include <cstdlib>
 
-#include <GL/glew.h>
-#include <GLFW/glfw3.h>
-#include <glm/glm.hpp>
-
 #include "input.h"
 #include "math3d.h"
 #include "mesh.h"
@@ -40,7 +36,7 @@ int main(int argc, const char * argv[]) {
         
         renderingEngine->SetProjection( input->GetProjectionMatrix() );
         renderingEngine->SetView( input->GetViewMatrix() );
-        renderingEngine->SetModel( glm::mat4( 1.0 ) );
+        renderingEngine->SetModel( Matrix4<float>().InitIdentity() );
         
         renderingEngine->Render();
         mesh->Render();

@@ -9,6 +9,7 @@
 #ifndef math3d_hpp
 #define math3d_hpp
 
+#include <iostream>
 #include <cmath>
 
 template<class T, unsigned int D> class Vector {
@@ -25,6 +26,26 @@ public:
     Vector( const Vector<T, D> &vect ) {
         for ( unsigned int i = 0; i < D; i++ )
             m_values[ i ] = vect[ i ];
+    }
+    
+    inline T Dot( const Vector<T, D> &vect ) const {
+        T result = T( 0 );
+        for ( unsigned int i = 0; i < D; i++ ) {
+            result += ( *this )[ i ] * vect[ i ];
+        }
+        return result;
+    }
+    
+    inline T LengthSq() const {
+        return this->Dot( *this );
+    }
+    
+    inline T Length() const {
+        return sqrt( LengthSq() );
+    }
+    
+    inline Vector<T, D> Normalized() const {
+        return *this / Length();
     }
     
     inline Vector<T, D> operator+( const Vector<T, D> &vect ) const {
@@ -61,6 +82,14 @@ public:
         Vector<T, D> product;
         for ( unsigned int i = 0; i < D; i++ ) {
             product[ i ] = m_values[ i ] * scale;
+        }
+        return product;
+    }
+    
+    inline Vector<T, D> operator*( const Vector<T, D> &vect ) {
+        Vector<T, D> product;
+        for ( unsigned int i = 0; i < D; i++ ) {
+            product[ i ] = ( *this )[ i ] * vect[ i ];
         }
         return product;
     }
@@ -141,7 +170,7 @@ template<class T> class Vector3 : public Vector<T, 3> {
     
 public:
     Vector3() {
-        ( *this )[ 0 ] = ( *this )[ 1 ] = ( *this ) = T ( 0 );
+        ( *this )[ 0 ] = ( *this )[ 1 ] = ( *this ) [ 2 ] = T ( 0 );
     }
     
     Vector3( const Vector<T, 3> &vect ) {
@@ -162,6 +191,14 @@ public:
         ( *this )[ 2 ] = z;
     }
     
+    inline Vector3<T> Cross( const Vector3<T> &vect ) const {
+        T x = ( *this )[ 1 ] * vect[ 2 ] - ( *this )[ 2 ] * vect[ 1 ];
+        T y = ( *this )[ 2 ] * vect[ 0 ] - ( *this )[ 0 ] * vect[ 2 ];
+        T z = ( *this )[ 0 ] * vect[ 1 ] - ( *this )[ 1 ] * vect[ 2 ];
+        
+        return Vector3<T>( x, y, z );
+     }
+    
     inline T GetX() const { return ( *this )[ 0 ]; }
     inline T GetY() const { return ( *this )[ 1 ]; }
     inline T GetZ() const { return ( *this )[ 2 ]; }
@@ -171,13 +208,29 @@ public:
     inline void SetZ( T z ) { ( *this )[ 2 ] = z; }
 };
 
+template<class T>
+inline T Dot( Vector3<T> x, Vector3<T> y ) {
+    Vector3<T> tmp( x * y );
+    return tmp.GetX() + tmp.GetY() + tmp.GetZ();
+}
+
 template<class T, unsigned int D> class Matrix {
     
 private:
     T m_values[ D ][ D ];
     
 public:
-    Matrix();
+    Matrix() {
+        
+    }
+    
+    Matrix( T value ) {
+        for ( unsigned int i = 0; i < D; i++ ) {
+            for ( unsigned int j = 0; j < D; j++ ) {
+                m_values[ i ][ j ] = value;
+            }
+        }
+    }
     
     inline Matrix<T, D> InitIdentity() {
         for ( unsigned int i = 0; i < D; i++ ) {
@@ -275,6 +328,100 @@ public:
     
     inline T* operator[]( int index ) {
         return m_values[ index ];
+    }
+    
+    inline void Print() const {
+        for ( unsigned int i = 0; i < D; i++ ) {
+            for ( unsigned int j = 0; j < D; j++ ) {
+                std::cout << m_values[ i ][ j ] << " ";
+            }
+            std::cout << "\n";
+        }
+    }
+};
+
+template<class T> class Matrix4 : public Matrix<T, 4> {
+  
+public:
+    Matrix4() {
+        this->InitIdentity();
+    }
+    
+    Matrix4( T value ) {
+        for ( unsigned int i = 0; i < 4; i++ ) {
+            for ( unsigned int j = 0; j < 4; j++ ) {
+                ( *this )[ i ][ j ] = value;
+            }
+        }
+    }
+    
+    Matrix4( const Matrix<T, 4> &matrix ) {
+        for ( unsigned int i = 0; i < 4; i++ ) {
+            for ( unsigned int j = 0; j < 4; j++ ) {
+                ( *this )[ i ][ j ] = matrix[ i ][ j ];
+            }
+        }
+    }
+    
+    Matrix4( const Matrix4<T> &matrix ) {
+        for ( unsigned int i = 0; i < 4; i++ ) {
+            for ( unsigned int j = 0; j < 4; j++ ) {
+                ( *this )[ i ][ j ] = matrix[ i ][ j ];
+            }
+        }
+    }
+    
+    template<unsigned int D>
+    Matrix4( const Matrix<T, D> &matrix ) {
+        unsigned int size = ( D < 4 ) ? D : 4;
+        for ( unsigned int i = 0; i < size; i++ ) {
+            for ( unsigned int j = 0; j < size; j++ ) {
+                ( *this )[ i ][ j ] = matrix[ i ][ j ];
+            }
+        }
+    }
+    
+    inline Matrix4<T> Perspective( T fov, T aspectRatio, T zNear, T zFar ) {
+        Matrix4<T> ret( static_cast<T>( 0 ) );
+        T const tanHalfFOV = tan( fov / T( 2 ) );
+        
+        ret[ 0 ][ 0 ] = T( 1 ) / ( tanHalfFOV * aspectRatio );
+        ret[ 1 ][ 1 ] = T( 1 ) / tanHalfFOV;
+        ret[ 2 ][ 2 ] = -( zFar + zNear ) / ( zFar - zNear );
+        ret[ 3 ][ 2 ] = -( T( 2 ) * zFar * zNear ) / ( zFar - zNear );
+        ret[ 2 ][ 3 ] = -T( 1 );
+        
+        return ret;
+    }
+    
+    inline Matrix4<T> LookAt( const Vector3<T> &eye, const Vector3<T> &center, const Vector3<T> & up ) {
+        Vector3<T> const f( ( center - eye ).Normalized() );
+        Vector3<T> const s( f.Cross( up ).Normalized() );
+        Vector3<T> const u( s.Cross( f ) );
+        
+        Matrix4<T> ret( T( 1 ) );
+        
+        ret[ 0 ][ 0 ] = s.GetX();
+        ret[ 1 ][ 0 ] = s.GetY();
+        ret[ 2 ][ 0 ] = s.GetZ();
+        
+        ret[ 0 ][ 1 ] = u.GetX();
+        ret[ 1 ][ 1 ] = u.GetY();
+        ret[ 2 ][ 1 ] = u.GetZ();
+        
+        ret[ 0 ][ 2 ] = -f.GetX();
+        ret[ 1 ][ 2 ] = -f.GetY();
+        ret[ 2 ][ 2 ] = -f.GetZ();
+
+        ret[ 0 ][ 3 ] = T( 0 );
+        ret[ 1 ][ 3 ] = T( 0 );
+        ret[ 2 ][ 3 ] = T( 0 );
+        
+        ret[ 3 ][ 0 ] = -Dot( s, eye );
+        ret[ 3 ][ 1 ] = -Dot( u, eye );
+        ret[ 3 ][ 2 ] = Dot( f, eye );
+        
+        return ret;
     }
 };
 

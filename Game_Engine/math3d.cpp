@@ -8,7 +8,3 @@
 
 #include "math3d.h"
 
-template<class T, unsigned int D>
-Matrix<T, D>::Matrix() {
-    
-}

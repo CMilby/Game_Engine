@@ -8,8 +8,6 @@
 
 #include "renderingEngine.h"
 
-#include <glm/gtc/matrix_transform.hpp>
-
 RenderingEngine::RenderingEngine() {
     // m_projection = glm::perspective( 45.0f, 4.0f / 3.0f, 0.1f, 100.0f );
     // m_view = glm::lookAt( glm::vec3( 4, 3, 3 ), glm::vec3( 0, 0, 0 ), glm::vec3( 0, 1, 0 ) );
@@ -60,7 +58,7 @@ void RenderingEngine::Render() const {
 
     m_shader->Bind();
     
-    glm::mat4 MVP = m_projection * m_view * m_model;
+    Matrix4<float> MVP = m_projection * m_view * m_model;
     glUniformMatrix4fv( m_shader->GetUniform( "MVP" ), 1, GL_FALSE, &MVP[ 0 ][ 0 ] );
     glUniformMatrix4fv( m_shader->GetUniform( "M" ), 1, GL_FALSE, &m_model[ 0 ][ 0 ] );
     glUniformMatrix4fv( m_shader->GetUniform( "V" ), 1, GL_FALSE, &m_view[ 0 ][ 0 ] );
@@ -69,7 +67,6 @@ void RenderingEngine::Render() const {
     
     m_texture->Bind();
     glUniform1i( m_shader->GetUniform( "myTextureSampler" ), 0 );
-    
     
     /*glEnableVertexAttribArray( 1 );
     
