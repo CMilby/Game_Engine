@@ -47,25 +47,17 @@ Mesh::~Mesh() {
 }
 
 void Mesh::Render() const {
-    glEnableVertexAttribArray( 2 );
     glBindBuffer( GL_ARRAY_BUFFER, m_vertexBuffer );
     glVertexAttribPointer( 2, 3, GL_FLOAT, GL_FALSE, 0, ( void* ) 0 );
     
-    glEnableVertexAttribArray( 0 );
     glBindBuffer( GL_ARRAY_BUFFER, m_uvBuffer );
     glVertexAttribPointer( 0, 2, GL_FLOAT, GL_FALSE, 0, ( void* ) 0 );
     
-    
-    glEnableVertexAttribArray( 1 );
     glBindBuffer( GL_ARRAY_BUFFER, m_normalBuffer );
     glVertexAttribPointer( 1, 3, GL_FLOAT, GL_FALSE, 0, ( void* ) 0 );
     
     glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, m_elementBuffer );
     glDrawElements( GL_TRIANGLES, ( unsigned int ) m_indices.size(), GL_UNSIGNED_SHORT, ( void* ) 0 );
-    
-    glDisableVertexAttribArray( 2 );
-    glDisableVertexAttribArray( 0 );
-    glDisableVertexAttribArray( 1 );
 }
 
 void Mesh::LoadOBJ( const std::string &filename ) {

@@ -12,6 +12,7 @@ RenderingEngine::RenderingEngine() {
     // m_projection = glm::perspective( 45.0f, 4.0f / 3.0f, 0.1f, 100.0f );
     // m_view = glm::lookAt( glm::vec3( 4, 3, 3 ), glm::vec3( 0, 0, 0 ), glm::vec3( 0, 1, 0 ) );
     // m_model = glm::mat4( 1.0f );
+    m_projection = Matrix4<float>().Perspective( 45.0f, 4.0f / 3.0f, 0.1f, 100.0f );
     
     m_shader = new Shader();
     m_shader->AddVertexShader( "StandardShading.vertexshader" );
@@ -28,21 +29,25 @@ RenderingEngine::RenderingEngine() {
     m_shader->AddAttribute( "vertexUV" );
     m_shader->AddAttribute( "vertexNormal_modelspace" );
     
-    printf( "%i\n", ( unsigned int ) m_shader->GetAttribute( "vertexPosition_modelspace" ) );
+   /* printf( "%i\n", ( unsigned int ) m_shader->GetAttribute( "vertexPosition_modelspace" ) );
     printf( "%i\n", ( unsigned int ) m_shader->GetAttribute( "vertexUV" ) );
-    printf( "%i\n", ( unsigned int ) m_shader->GetAttribute( "vertexNormal_modelspace" ) );
+    printf( "%i\n", ( unsigned int ) m_shader->GetAttribute( "vertexNormal_modelspace" ) );*/
     
-    m_texture = new Texture( "uvmap.DDS" );
+    // m_texture = new Texture( "uvmap.DDS" );
+    
+    m_camera = new Camera( Vector3<float>( 0, 0, 5 ) );
+    
+    m_monkey = new RenderableEntity( "suzanne.obj", "suzanne.DDS" );
+    m_monkey->SetPosition( Vector3<float>( -3, 0, 0 ) );
+    
+    m_cube = new RenderableEntity( "cube.obj", "cube.DDS" );
+    m_cube->SetPosition( Vector3<float>( 3, 0, 0 ) );
 }
 
 RenderingEngine::~RenderingEngine() {
-    if ( m_shader ) {
-        delete m_shader;
-    }
-    
-    if ( m_texture ) {
-        delete m_texture;
-    }
+    if ( m_shader ) delete m_shader;
+    if ( m_camera ) delete m_camera;
+    if ( m_monkey ) delete m_monkey;
 }
 
 void RenderingEngine::Init() const {
@@ -57,24 +62,35 @@ void RenderingEngine::Render() const {
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 
     m_shader->Bind();
-    
-    Matrix4<float> MVP = m_projection * m_view * m_model;
-    glUniformMatrix4fv( m_shader->GetUniform( "MVP" ), 1, GL_FALSE, &MVP[ 0 ][ 0 ] );
-    glUniformMatrix4fv( m_shader->GetUniform( "M" ), 1, GL_FALSE, &m_model[ 0 ][ 0 ] );
-    glUniformMatrix4fv( m_shader->GetUniform( "V" ), 1, GL_FALSE, &m_view[ 0 ][ 0 ] );
-    
     glUniform3f( m_shader->GetUniform( "LightPosition_worldspace" ), 8.0f, 8.0f, 8.0f );
     
-    m_texture->Bind();
-    glUniform1i( m_shader->GetUniform( "myTextureSampler" ), 0 );
+    Matrix4<float> view = m_camera->GetView();
+    m_shader->UniformMatrix4f( "V", view);
     
-    /*glEnableVertexAttribArray( 1 );
+    glEnableVertexAttribArray( m_shader->GetAttribute( "vertexPosition_modelspace" ) );
+    glEnableVertexAttribArray( m_shader->GetAttribute( "vertexUV" ) );
+    glEnableVertexAttribArray( m_shader->GetAttribute( "vertexNormal_modelspace" ) );
     
-    --> Uniforms
-    --> Bind Texture
-    --> Render models
-     
-    glDisableVertexAttribArray( 1 );*/
+    Matrix4<float> MVP = m_projection * view * m_monkey->GetModelMatrix();
+    m_shader->UniformMatrix4f( "MVP", MVP );
+    m_shader->UniformMatrix4f( "M", m_monkey->GetModelMatrix() );
+    m_monkey->Render( *m_shader );
     
-    // Render text
+    MVP = m_projection * view * m_cube->GetModelMatrix();
+    m_shader->UniformMatrix4f( "MVP", MVP );
+    m_shader->UniformMatrix4f( "M", m_cube->GetModelMatrix() );
+    m_cube->Render( *m_shader );
+    
+    glDisableVertexAttribArray( m_shader->GetAttribute( "vertexPosition_modelspace" ) );
+    glDisableVertexAttribArray( m_shader->GetAttribute( "vertexUV" ) );
+    glDisableVertexAttribArray( m_shader->GetAttribute( "vertexNormal_modelspace" ) );
 }
+
+
+
+
+
+
+
+
+

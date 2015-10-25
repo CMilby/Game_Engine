@@ -11,6 +11,8 @@
 		4415CD841BDAB5DC00E91770 /* entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4415CD821BDAB5DC00E91770 /* entity.cpp */; };
 		4415CD871BDD6EE200E91770 /* utility.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4415CD851BDD6EE200E91770 /* utility.cpp */; };
 		4415CD891BDD70CC00E91770 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4415CD881BDD70CC00E91770 /* CoreFoundation.framework */; };
+		4415CD8C1BDD74D400E91770 /* transform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4415CD8A1BDD74D400E91770 /* transform.cpp */; };
+		4415CD8F1BDD8E0400E91770 /* camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4415CD8D1BDD8E0400E91770 /* camera.cpp */; };
 		447A39091BD6C57200190464 /* window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 447A39071BD6C57200190464 /* window.cpp */; };
 		447A390C1BD6DAC400190464 /* input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 447A390A1BD6DAC400190464 /* input.cpp */; };
 		447A390F1BD6DAF300190464 /* mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 447A390D1BD6DAF300190464 /* mesh.cpp */; };
@@ -44,6 +46,10 @@
 		4415CD851BDD6EE200E91770 /* utility.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = utility.cpp; sourceTree = "<group>"; };
 		4415CD861BDD6EE200E91770 /* utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utility.h; sourceTree = "<group>"; };
 		4415CD881BDD70CC00E91770 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		4415CD8A1BDD74D400E91770 /* transform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = transform.cpp; sourceTree = "<group>"; };
+		4415CD8B1BDD74D400E91770 /* transform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = transform.h; sourceTree = "<group>"; };
+		4415CD8D1BDD8E0400E91770 /* camera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = camera.cpp; sourceTree = "<group>"; };
+		4415CD8E1BDD8E0400E91770 /* camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = camera.h; sourceTree = "<group>"; };
 		447A39071BD6C57200190464 /* window.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = window.cpp; sourceTree = "<group>"; };
 		447A39081BD6C57200190464 /* window.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = window.h; sourceTree = "<group>"; };
 		447A390A1BD6DAC400190464 /* input.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = input.cpp; sourceTree = "<group>"; };
@@ -150,6 +156,10 @@
 				4415CD831BDAB5DC00E91770 /* entity.h */,
 				4415CD851BDD6EE200E91770 /* utility.cpp */,
 				4415CD861BDD6EE200E91770 /* utility.h */,
+				4415CD8A1BDD74D400E91770 /* transform.cpp */,
+				4415CD8B1BDD74D400E91770 /* transform.h */,
+				4415CD8D1BDD8E0400E91770 /* camera.cpp */,
+				4415CD8E1BDD8E0400E91770 /* camera.h */,
 			);
 			name = Core_Engine;
 			sourceTree = "<group>";
@@ -210,8 +220,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4415CD8F1BDD8E0400E91770 /* camera.cpp in Sources */,
 				447A39121BD6DCD900190464 /* shader.cpp in Sources */,
 				447A39091BD6C57200190464 /* window.cpp in Sources */,
+				4415CD8C1BDD74D400E91770 /* transform.cpp in Sources */,
 				44D3CD701BCBFAED0074E300 /* main.cpp in Sources */,
 				447A390C1BD6DAC400190464 /* input.cpp in Sources */,
 				447A390F1BD6DAF300190464 /* mesh.cpp in Sources */,

@@ -85,7 +85,13 @@ void Shader::AddAttribute( const std::string &name ) {
     s_attributeMap[ name ] = glGetAttribLocation( m_program, name.c_str() );
 }
 
+void Shader::Uniform1i( const std::string &name, int value ) const {
+    glUniform1i( s_uniformMap[ name ], value );
+}
 
+void Shader::UniformMatrix4f( const std::string &name, const Matrix4<float> &value ) const {
+    glUniformMatrix4fv( s_uniformMap[ name ], 1, GL_FALSE, &value[ 0 ][ 0 ] );
+}
 
 
 

@@ -423,10 +423,20 @@ public:
         
         return ret;
     }
-};
-
-class Transform {
     
+    inline Matrix4<T> Model( const Vector3<T> &position, const Vector3<T> &scale ) {
+        Matrix4<T> ret;
+        
+        ret[ 0 ][ 0 ] = scale.GetX();
+        ret[ 1 ][ 1 ] = scale.GetY();
+        ret[ 2 ][ 2 ] = scale.GetZ();
+        
+        ret[ 3 ][ 0 ] = position.GetX();
+        ret[ 3 ][ 1 ] = position.GetY();
+        ret[ 3 ][ 2 ] = position.GetZ();
+        
+        return ret;
+    }
 };
 
 class Color {

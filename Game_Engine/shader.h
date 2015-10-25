@@ -14,6 +14,8 @@
 
 #include <GL/glew.h>
 
+#include "math3d.h"
+
 class Shader {
     
 private:
@@ -40,6 +42,9 @@ public:
     inline GLuint GetUniform( const std::string &name ) const { return s_uniformMap[ name ]; }
     void AddAttribute( const std::string &name );
     inline GLuint GetAttribute( const std::string &name ) const { return s_attributeMap[ name ]; };
+
+    void Uniform1i( const std::string &name, int value ) const;
+    void UniformMatrix4f( const std::string &name, const Matrix4<float> &value ) const;
 };
 
 #endif /* shader_h */
