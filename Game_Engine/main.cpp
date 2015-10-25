@@ -20,16 +20,14 @@
 int main(int argc, const char * argv[]) {
     Window *window = new Window( 1024, 768, "Window Title" );
     
-    Mesh *mesh = new Mesh( "/Users/Craig/Xcode/Game_Engine/Game_Engine/resources/models/suzanne.obj" );
+    Mesh *mesh = new Mesh( "suzanne.obj" );
     RenderingEngine *renderingEngine = new RenderingEngine();
     
     Input *input = new Input( window );
-    Text2D *text = new Text2D( "/Users/Craig/Xcode/Game_Engine/Game_Engine/resources/textures/Holstein.DDS" );
+    Text2D *text = new Text2D( "Holstein.DDS" );
     
     renderingEngine->Init();
     text->InitText2D();
-    
-    Vector2<float> vect;
     
     do {
         // input->ComputeMatricesFromInputs();

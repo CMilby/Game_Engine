@@ -14,8 +14,8 @@ RenderingEngine::RenderingEngine() {
     // m_model = glm::mat4( 1.0f );
     
     m_shader = new Shader();
-    m_shader->AddVertexShader( "/Users/Craig/Xcode/Game_Engine/Game_Engine/resources/shaders/StandardShading.vertexshader" );
-    m_shader->AddFragmentShader( "/Users/Craig/Xcode/Game_Engine/Game_Engine/resources/shaders/StandardShading.fragmentshader" );
+    m_shader->AddVertexShader( "StandardShading.vertexshader" );
+    m_shader->AddFragmentShader( "StandardShading.fragmentshader" );
     m_shader->LinkProgram();
     
     m_shader->AddUniform( "MVP" );
@@ -32,7 +32,7 @@ RenderingEngine::RenderingEngine() {
     printf( "%i\n", ( unsigned int ) m_shader->GetAttribute( "vertexUV" ) );
     printf( "%i\n", ( unsigned int ) m_shader->GetAttribute( "vertexNormal_modelspace" ) );
     
-    m_texture = new Texture( "/Users/Craig/Xcode/Game_Engine/Game_Engine/resources/textures/uvmap.DDS" );
+    m_texture = new Texture( "uvmap.DDS" );
 }
 
 RenderingEngine::~RenderingEngine() {

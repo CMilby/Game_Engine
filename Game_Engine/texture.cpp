@@ -13,12 +13,14 @@
 
 #include <GLFW/glfw3.h>
 
+#include "utility.h"
+
 #define FOURCC_DXT1 0x31545844
 #define FOURCC_DXT3 0x33545844
 #define FOURCC_DXT5 0x35545844
 
 Texture::Texture( const std::string &filename ) {
-    m_texture = LoadDDS( filename );
+    m_texture = LoadDDS( Utility::DirectoryPath() + "textures/" + filename );
 }
 
 Texture::~Texture() {

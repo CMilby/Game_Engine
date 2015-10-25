@@ -11,6 +11,8 @@
 #include <fstream>
 #include <vector>
 
+#include "utility.h"
+
 std::map<std::string, GLuint> Shader::s_uniformMap = std::map<std::string, GLuint>();
 std::map<std::string, GLuint> Shader::s_attributeMap = std::map<std::string, GLuint>();
 
@@ -56,11 +58,11 @@ void Shader::LoadShader( const std::string &filename, int type ) {
 }
 
 void Shader::AddFragmentShader( const std::string &filename ) {
-    LoadShader( filename, GL_FRAGMENT_SHADER );
+    LoadShader( Utility::DirectoryPath() + "shaders/" + filename, GL_FRAGMENT_SHADER );
 }
 
 void Shader::AddVertexShader( const std::string &filename ) {
-    LoadShader( filename, GL_VERTEX_SHADER );
+    LoadShader( Utility::DirectoryPath() + "shaders/" + filename, GL_VERTEX_SHADER );
 }
 
 void Shader::AttachShader( int shaderID ) const {

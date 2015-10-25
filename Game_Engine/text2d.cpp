@@ -33,8 +33,8 @@ void Text2D::InitText2D() {
     glGenBuffers( 1, &m_uvBuffer );
     
     m_shader = new Shader();
-    m_shader->AddVertexShader( "/Users/Craig/Xcode/Game_Engine/Game_Engine/resources/shaders/TextVertexShader.vertexshader" );
-    m_shader->AddFragmentShader( "/Users/Craig/Xcode/Game_Engine/Game_Engine/resources/shaders/TextVertexShader.fragmentshader" );
+    m_shader->AddVertexShader( "TextVertexShader.vertexshader" );
+    m_shader->AddFragmentShader( "TextVertexShader.fragmentshader" );
     m_shader->LinkProgram();
     
     m_shader->AddAttribute( "vertexPosition_screenspace" );

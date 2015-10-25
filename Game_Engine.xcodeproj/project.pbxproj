@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		4415CD791BDA7C0100E91770 /* text2d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4415CD771BDA7C0100E91770 /* text2d.cpp */; };
 		4415CD841BDAB5DC00E91770 /* entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4415CD821BDAB5DC00E91770 /* entity.cpp */; };
+		4415CD871BDD6EE200E91770 /* utility.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4415CD851BDD6EE200E91770 /* utility.cpp */; };
+		4415CD891BDD70CC00E91770 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4415CD881BDD70CC00E91770 /* CoreFoundation.framework */; };
 		447A39091BD6C57200190464 /* window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 447A39071BD6C57200190464 /* window.cpp */; };
 		447A390C1BD6DAC400190464 /* input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 447A390A1BD6DAC400190464 /* input.cpp */; };
 		447A390F1BD6DAF300190464 /* mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 447A390D1BD6DAF300190464 /* mesh.cpp */; };
@@ -39,6 +41,9 @@
 		4415CD781BDA7C0100E91770 /* text2d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = text2d.h; sourceTree = "<group>"; };
 		4415CD821BDAB5DC00E91770 /* entity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = entity.cpp; sourceTree = "<group>"; };
 		4415CD831BDAB5DC00E91770 /* entity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = entity.h; sourceTree = "<group>"; };
+		4415CD851BDD6EE200E91770 /* utility.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = utility.cpp; sourceTree = "<group>"; };
+		4415CD861BDD6EE200E91770 /* utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utility.h; sourceTree = "<group>"; };
+		4415CD881BDD70CC00E91770 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		447A39071BD6C57200190464 /* window.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = window.cpp; sourceTree = "<group>"; };
 		447A39081BD6C57200190464 /* window.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = window.h; sourceTree = "<group>"; };
 		447A390A1BD6DAC400190464 /* input.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = input.cpp; sourceTree = "<group>"; };
@@ -66,6 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4415CD891BDD70CC00E91770 /* CoreFoundation.framework in Frameworks */,
 				449D85FC1BD6BEBD00B72584 /* libglfw.3.1.dylib in Frameworks */,
 				449D85F91BD6BB0900B72584 /* libGLEW.1.12.0.dylib in Frameworks */,
 				449D85F41BD6B6F300B72584 /* OpenGL.framework in Frameworks */,
@@ -85,6 +91,7 @@
 		449D85F51BD6B6F600B72584 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4415CD881BDD70CC00E91770 /* CoreFoundation.framework */,
 				449D85FB1BD6BEBD00B72584 /* libglfw.3.1.dylib */,
 				449D85F81BD6BB0900B72584 /* libGLEW.1.12.0.dylib */,
 				449D85F61BD6BACB00B72584 /* libglfw.3.1.dylib */,
@@ -141,6 +148,8 @@
 				4415CD781BDA7C0100E91770 /* text2d.h */,
 				4415CD821BDAB5DC00E91770 /* entity.cpp */,
 				4415CD831BDAB5DC00E91770 /* entity.h */,
+				4415CD851BDD6EE200E91770 /* utility.cpp */,
+				4415CD861BDD6EE200E91770 /* utility.h */,
 			);
 			name = Core_Engine;
 			sourceTree = "<group>";
@@ -208,6 +217,7 @@
 				447A390F1BD6DAF300190464 /* mesh.cpp in Sources */,
 				4415CD791BDA7C0100E91770 /* text2d.cpp in Sources */,
 				447A39181BD7CA4E00190464 /* texture.cpp in Sources */,
+				4415CD871BDD6EE200E91770 /* utility.cpp in Sources */,
 				44D3CD7F1BCC0AC30074E300 /* math3d.cpp in Sources */,
 				4415CD841BDAB5DC00E91770 /* entity.cpp in Sources */,
 				447A39151BD6F09300190464 /* renderingEngine.cpp in Sources */,

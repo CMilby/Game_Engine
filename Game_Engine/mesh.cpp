@@ -8,8 +8,10 @@
 
 #include "mesh.h"
 
+#include "utility.h"
+
 Mesh::Mesh( const std::string &filename ) {
-    LoadOBJ( filename );
+    LoadOBJ( Utility::DirectoryPath() + "models/" + filename );
     
     std::vector<glm::vec3> vertices;
     std::vector<glm::vec2> uvs;
