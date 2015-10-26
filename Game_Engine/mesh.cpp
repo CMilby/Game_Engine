@@ -13,9 +13,9 @@
 Mesh::Mesh( const std::string &filename ) {
     LoadOBJ( Utility::DirectoryPath() + "models/" + filename );
     
-    std::vector<glm::vec3> vertices;
-    std::vector<glm::vec2> uvs;
-    std::vector<glm::vec3> normals;
+    std::vector<Vector3<float>> vertices;
+    std::vector<Vector2<float>> uvs;
+    std::vector<Vector3<float>> normals;
     IndexVBO( m_indices, vertices, uvs, normals );
     
     m_vertices = vertices;
@@ -24,15 +24,15 @@ Mesh::Mesh( const std::string &filename ) {
     
     glGenBuffers( 1, &m_vertexBuffer );
     glBindBuffer( GL_ARRAY_BUFFER, m_vertexBuffer );
-    glBufferData( GL_ARRAY_BUFFER, m_vertices.size() * sizeof( glm::vec3 ), &m_vertices[ 0 ], GL_STATIC_DRAW );
+    glBufferData( GL_ARRAY_BUFFER, m_vertices.size() * sizeof( Vector3<float> ), &m_vertices[ 0 ], GL_STATIC_DRAW );
     
     glGenBuffers( 1, &m_uvBuffer );
     glBindBuffer( GL_ARRAY_BUFFER, m_uvBuffer );
-    glBufferData( GL_ARRAY_BUFFER, m_uvs.size() * sizeof( glm::vec2 ), &m_uvs[ 0 ], GL_STATIC_DRAW );
+    glBufferData( GL_ARRAY_BUFFER, m_uvs.size() * sizeof( Vector2<float> ), &m_uvs[ 0 ], GL_STATIC_DRAW );
     
     glGenBuffers( 1, &m_normalBuffer );
     glBindBuffer( GL_ARRAY_BUFFER, m_normalBuffer );
-    glBufferData( GL_ARRAY_BUFFER, m_normals.size() * sizeof( glm::vec3 ), &m_normals[ 0 ], GL_STATIC_DRAW );
+    glBufferData( GL_ARRAY_BUFFER, m_normals.size() * sizeof( Vector3<float> ), &m_normals[ 0 ], GL_STATIC_DRAW );
     
     glGenBuffers( 1, &m_elementBuffer );
     glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, m_elementBuffer );
@@ -62,9 +62,9 @@ void Mesh::Render() const {
 
 void Mesh::LoadOBJ( const std::string &filename ) {
     std::vector<unsigned int> vertexIndices, uvIndices, normalIndices;
-    std::vector<glm::vec3> vertices;
-    std::vector<glm::vec2> uvs;
-    std::vector<glm::vec3> normals;
+    std::vector<Vector3<float>> vertices;
+    std::vector<Vector2<float>> uvs;
+    std::vector<Vector3<float>> normals;
     
     FILE *file = fopen( filename.c_str(), "r" );
     if ( file == NULL ) {
@@ -81,18 +81,18 @@ void Mesh::LoadOBJ( const std::string &filename ) {
         }
         
         if ( strcmp( lineHeader, "v" ) == 0 ) {
-            glm::vec3 vertex;
-            fscanf( file, "%f %f %f\n", &vertex.x, &vertex.y, &vertex.z );
-            vertices.push_back( vertex );
+            float x, y, z;
+            fscanf( file, "%f %f %f\n", &x, &y, &z );
+            vertices.push_back( Vector3<float>( x, y, z ) );
         } else if ( strcmp( lineHeader, "vt" ) == 0 ) {
-            glm::vec2 uv;
-            fscanf( file, "%f %f\n", &uv.x, &uv.y );
-            uv.y = -uv.y;
-            uvs.push_back( uv );
+            float x, y;
+            fscanf( file, "%f %f\n", &x, &y );
+            y = -y;
+            uvs.push_back( Vector2<float>( x, y ) );
         } else if ( strcmp( lineHeader, "vn" ) == 0 ) {
-            glm::vec3 normal;
-            fscanf( file, "%f %f %f\n", &normal.x, &normal.y, &normal.z );
-            normals.push_back( normal );
+            float x, y, z;
+            fscanf( file, "%f %f %f\n", &x, &y, &z );
+            normals.push_back( Vector3<float>( x, y, z ) );
         } else if ( strcmp( lineHeader, "f" ) == 0 ) {
             std::string vertex1, vertex2, vertex3;
             unsigned int vertexIndex[ 3 ], uvIndex[ 3 ], normalIndex[ 3 ];
@@ -122,9 +122,9 @@ void Mesh::LoadOBJ( const std::string &filename ) {
         unsigned int uvIndex = uvIndices[ i ];
         unsigned int normalIndex = normalIndices[ i ];
         
-        glm::vec3 vertex = vertices[ vertexIndex - 1 ];
-        glm::vec2 uv = uvs[ uvIndex - 1 ];
-        glm::vec3 normal = normals[ normalIndex - 1 ];
+        Vector3<float> vertex = vertices[ vertexIndex - 1 ];
+        Vector2<float> uv = uvs[ uvIndex - 1 ];
+        Vector3<float> normal = normals[ normalIndex - 1 ];
         
         m_vertices.push_back( vertex );
         m_uvs.push_back( uv );
@@ -132,7 +132,7 @@ void Mesh::LoadOBJ( const std::string &filename ) {
     }
 }
 
-void Mesh::IndexVBO( std::vector<unsigned short> &outIndices, std::vector<glm::vec3> &outVertices, std::vector<glm::vec2> &outUVs, std::vector<glm::vec3> &outNormals ) {
+void Mesh::IndexVBO( std::vector<unsigned short> &outIndices, std::vector<Vector3<float>> &outVertices, std::vector<Vector2<float>> &outUVs, std::vector<Vector3<float>> &outNormals ) {
     std::map<Vertex, unsigned short> vertexToOut;
     
     for ( unsigned int i = 0; i < m_vertices.size(); i++ ) {

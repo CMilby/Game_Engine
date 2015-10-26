@@ -9,9 +9,6 @@
 #include "renderingEngine.h"
 
 RenderingEngine::RenderingEngine() {
-    // m_projection = glm::perspective( 45.0f, 4.0f / 3.0f, 0.1f, 100.0f );
-    // m_view = glm::lookAt( glm::vec3( 4, 3, 3 ), glm::vec3( 0, 0, 0 ), glm::vec3( 0, 1, 0 ) );
-    // m_model = glm::mat4( 1.0f );
     m_projection = Matrix4<float>().Perspective( 45.0f, 4.0f / 3.0f, 0.1f, 100.0f );
     
     m_shader = new Shader();
@@ -28,12 +25,6 @@ RenderingEngine::RenderingEngine() {
     m_shader->AddAttribute( "vertexPosition_modelspace" );
     m_shader->AddAttribute( "vertexUV" );
     m_shader->AddAttribute( "vertexNormal_modelspace" );
-    
-   /* printf( "%i\n", ( unsigned int ) m_shader->GetAttribute( "vertexPosition_modelspace" ) );
-    printf( "%i\n", ( unsigned int ) m_shader->GetAttribute( "vertexUV" ) );
-    printf( "%i\n", ( unsigned int ) m_shader->GetAttribute( "vertexNormal_modelspace" ) );*/
-    
-    // m_texture = new Texture( "uvmap.DDS" );
     
     m_camera = new Camera( Vector3<float>( 0, 0, 5 ) );
     

@@ -26,16 +26,16 @@ int main(int argc, const char * argv[]) {
     Text2D *text = new Text2D( "Holstein.DDS" );
     
     renderingEngine->Init();
-    text->InitText2D();
+    text->Init();
     
     do {
         renderingEngine->Render();
         
-        text->PrintText2D( "Hello World!" , 10, 500, 30 );
+        text->PrintText2D( "Fuck you, Cam!" , 100, 500, 30 );
         
         window->SwapBuffers();
         window->PollEvents();
-    } while ( window->GetKey( GLFW_KEY_ESCAPE ) != GLFW_PRESS &&
+    } while ( input->IsKeyUp( GLFW_KEY_ESCAPE ) &&
               window->ShouldClose() );
     
     delete text;

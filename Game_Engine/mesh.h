@@ -14,12 +14,17 @@
 #include <vector>
 
 #include <GL/glew.h>
-#include <glm/glm.hpp>
+// #include <glm/glm.hpp>
+
+#include "math3d.h"
 
 struct Vertex {
-    glm::vec3 m_position;
+    /*glm::vec3 m_position;
     glm::vec2 m_uv;
-    glm::vec3 m_normal;
+    glm::vec3 m_normal;*/
+    Vector3<float> m_position;
+    Vector2<float> m_uv;
+    Vector3<float> m_normal;
 
     inline bool operator<( const Vertex &vertex ) const {
         return memcmp( ( void* ) this, ( void* ) &vertex, sizeof( Vertex ) ) > 0;
@@ -34,13 +39,17 @@ private:
     GLuint m_normalBuffer;
     GLuint m_elementBuffer;
     
-    std::vector<glm::vec3> m_vertices;
+    /*std::vector<glm::vec3> m_vertices;
     std::vector<glm::vec2> m_uvs;
-    std::vector<glm::vec3> m_normals;
+    std::vector<glm::vec3> m_normals;*/
     std::vector<unsigned short> m_indices;
+    std::vector<Vector3<float>> m_vertices;
+    std::vector<Vector2<float>> m_uvs;
+    std::vector<Vector3<float>> m_normals;
     
     void LoadOBJ( const std::string &filename );
-    void IndexVBO( std::vector<unsigned short> &outIndices, std::vector<glm::vec3> &outVertices, std::vector<glm::vec2> &outUVs, std::vector<glm::vec3> &outNormals );
+    void IndexVBO( std::vector<unsigned short> &outIndices, std::vector<Vector3<float>> &outVertices, std::vector<Vector2<float>> &outUVs, std::vector<Vector3<float>> &outNormals );
+    
     bool GetSimilarVertexIndex( Vertex &vertex, std::map<Vertex, unsigned short> vertexToOut, unsigned short &result );
 public:
     Mesh( const std::string &filename );

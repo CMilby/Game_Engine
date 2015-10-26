@@ -10,8 +10,6 @@
 
 #include <vector>
 
-#include <glm/glm.hpp>
-
 #include "texture.h"
 
 Text2D::Text2D( const std::string &file ) {
@@ -26,7 +24,7 @@ Text2D::~Text2D() {
     if ( m_shader ) delete m_shader;
 }
 
-void Text2D::InitText2D() {
+void Text2D::Init() {
     m_texture = new Texture( m_file );
     
     glGenBuffers( 1, &m_vertexBuffer );
@@ -46,14 +44,14 @@ void Text2D::InitText2D() {
 void Text2D::PrintText2D( const char *text, int x, int y, int size ) {
     unsigned int length = ( unsigned int ) strlen( text );
     
-    std::vector<glm::vec2> vertices;
-    std::vector<glm::vec2> uvs;
+    std::vector<Vector2<float>> vertices;
+    std::vector<Vector2<float>> uvs;
     
     for ( unsigned int i = 0; i < length; i++ ) {
-        glm::vec2 vertex_up_left = glm::vec2( x + i * size, y + size );
-        glm::vec2 vertex_up_right = glm::vec2( x + i * size + size, y + size );
-        glm::vec2 vertex_down_right = glm::vec2( x + i * size + size, y );
-        glm::vec2 vertex_down_left = glm::vec2( x + i * size, y );
+        Vector2<float> vertex_up_left( x + i * size, y + size );
+        Vector2<float> vertex_up_right( x + i * size + size, y + size );
+        Vector2<float> vertex_down_right( x + i * size + size, y );
+        Vector2<float> vertex_down_left( x + i * size, y );
         
         vertices.push_back( vertex_up_left );
         vertices.push_back( vertex_down_left );
@@ -67,10 +65,10 @@ void Text2D::PrintText2D( const char *text, int x, int y, int size ) {
         float uv_x = ( character % 16 ) / 16.0f;
         float uv_y = ( character / 16 ) / 16.0f;
         
-        glm::vec2 uv_up_left = glm::vec2( uv_x, uv_y );
-        glm::vec2 uv_up_right = glm::vec2( uv_x + 1.0f / 16.0f, uv_y );
-        glm::vec2 uv_down_right = glm::vec2( uv_x + 1.0f / 16.0f, ( uv_y + 1.0f / 16.0f ) );
-        glm::vec2 uv_down_left = glm::vec2( uv_x, ( uv_y + 1.0f / 16.0f ) );
+        Vector2<float> uv_up_left( uv_x, uv_y );
+        Vector2<float> uv_up_right( uv_x + 1.0f / 16.0f, uv_y );
+        Vector2<float> uv_down_right( uv_x + 1.0f / 16.0f, ( uv_y + 1.0f / 16.0f ) );
+        Vector2<float> uv_down_left( uv_x, ( uv_y + 1.0f / 16.0f ) );
         
         uvs.push_back( uv_up_left );
         uvs.push_back( uv_down_left );
@@ -82,9 +80,9 @@ void Text2D::PrintText2D( const char *text, int x, int y, int size ) {
     }
     
     glBindBuffer( GL_ARRAY_BUFFER, m_vertexBuffer );
-    glBufferData( GL_ARRAY_BUFFER, vertices.size() * sizeof( glm::vec2 ), &vertices[ 0 ], GL_STATIC_DRAW );
+    glBufferData( GL_ARRAY_BUFFER, vertices.size() * sizeof( Vector2<float> ), &vertices[ 0 ], GL_STATIC_DRAW );
     glBindBuffer( GL_ARRAY_BUFFER, m_uvBuffer );
-    glBufferData( GL_ARRAY_BUFFER, uvs.size() * sizeof( glm::vec2 ), &uvs[ 0 ], GL_STATIC_DRAW );
+    glBufferData( GL_ARRAY_BUFFER, uvs.size() * sizeof( Vector2<float> ), &uvs[ 0 ], GL_STATIC_DRAW );
     
     m_shader->Bind();
     

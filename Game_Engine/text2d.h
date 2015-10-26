@@ -30,7 +30,7 @@ private:
 public:
     Text2D( const std::string &file );
     virtual ~Text2D();
-    void InitText2D();
+    void Init();
     
     void PrintText2D( const char *text, int x, int y, int size );
 };

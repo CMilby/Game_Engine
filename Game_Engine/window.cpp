@@ -38,6 +38,7 @@ Window::Window( unsigned int width, unsigned int height, const std::string &titl
     }
     
     glfwSetInputMode( m_window, GLFW_STICKY_KEYS, GL_TRUE );
+    glfwSetInputMode( m_window, GLFW_STICKY_MOUSE_BUTTONS, GL_TRUE );
     glfwSetCursorPos( m_window, 1024 / 2, 768 / 2 );
 }
 

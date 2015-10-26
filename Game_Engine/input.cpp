@@ -15,20 +15,35 @@
 
 Input::Input( Window *window ) {
     m_window = window;
-    m_position = Vector3<float>( 4, 4, 3 );
-    m_horAngle = 0.0f;
-    m_vertAngle = 0.0f;
-    m_initialFOV = 45.0f;
-    m_speed = 3.0f;
-    m_mouseSpeed = 0.005f;
-    
-    m_projectionMatrix = Matrix4<float>().Perspective( 45.0f, 4.0f / 3.0f, 0.1f, 100.0f );
-    m_viewMatrix = Matrix4<float>().LookAt( Vector3<float>( 0, 0, 5 ), Vector3<float>( 0, 0, 0 ), Vector3<float>( 0, 1, 0 ) );
 }
 
-void Input::ComputeMatricesFromInputs() {
-    
+bool Input::IsKeyDown( int key ) const {
+    return glfwGetKey( m_window->GetWindow(), key ) == GLFW_PRESS;
 }
+
+bool Input::IsKeyUp( int key ) const {
+    return glfwGetKey( m_window->GetWindow(), key ) != GLFW_PRESS;
+}
+
+bool Input::IsButtonDown( int button ) const {
+    return glfwGetMouseButton( m_window->GetWindow(), button ) == GLFW_PRESS;
+}
+
+bool Input::IsButtonUp( int button ) const {
+    return glfwGetMouseButton( m_window->GetWindow(), button ) != GLFW_PRESS;
+}
+
+Vector2<float> Input::GetCursorPosition() const {
+    double xPos, yPos;
+    glfwGetCursorPos( m_window->GetWindow(), &xPos, &yPos );
+    return Vector2<float>( ( float ) xPos, ( float ) yPos );
+}
+
+void Input::SetCursorPosition( const Vector2<float> &position ) {
+    glfwSetCursorPos( m_window->GetWindow(), ( double ) position.GetX(), ( double ) position.GetY() );
+}
+
+
 
 
 
