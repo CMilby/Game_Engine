@@ -14,6 +14,8 @@
 class Transform {
     
 private:
+    static Matrix4<float> s_projection;
+    
     Vector3<float> m_position;
     Vector3<float> m_scale;
     
@@ -28,6 +30,8 @@ public:
     
     inline Vector3<float> GetPosition() const { return m_position; }
     inline Vector3<float> GetScale() const { return m_scale; }
+    
+    inline static Matrix4<float> GetProjection() { return s_projection; }
 };
 
 #endif /* transform_h */

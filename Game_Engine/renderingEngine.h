@@ -18,8 +18,6 @@
 class RenderingEngine {
     
 private:
-    Matrix4<float> m_projection;
-    
     RenderableEntity *m_monkey;
     RenderableEntity *m_cube;
     
@@ -30,7 +28,7 @@ public:
     virtual ~RenderingEngine();
     
     void Init() const;
-    void Render() const;
+    void Render( const RenderableEntity &renderRoot ) const;
 };
 
 #endif /* renderingEngine_h */

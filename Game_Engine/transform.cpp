@@ -7,3 +7,5 @@
 //
 
 #include "transform.h"
+
+Matrix4<float> Transform::s_projection = Matrix4<float>().Perspective( 45.0f, 4.0f / 3.0f, 0.1f, 1024.0f );

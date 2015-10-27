@@ -26,6 +26,7 @@
 		449D85F91BD6BB0900B72584 /* libGLEW.1.12.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 449D85F81BD6BB0900B72584 /* libGLEW.1.12.0.dylib */; };
 		44D3CD701BCBFAED0074E300 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44D3CD6F1BCBFAED0074E300 /* main.cpp */; };
 		44D3CD7F1BCC0AC30074E300 /* math3d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44D3CD7D1BCC0AC30074E300 /* math3d.cpp */; };
+		44F722381BDFEB8A0022754F /* game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44F722361BDFEB8A0022754F /* game.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -75,6 +76,8 @@
 		44D3CD6F1BCBFAED0074E300 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		44D3CD7D1BCC0AC30074E300 /* math3d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = math3d.cpp; sourceTree = "<group>"; };
 		44D3CD7E1BCC0AC30074E300 /* math3d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = math3d.h; sourceTree = "<group>"; };
+		44F722361BDFEB8A0022754F /* game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = game.cpp; sourceTree = "<group>"; };
+		44F722371BDFEB8A0022754F /* game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = game.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +171,8 @@
 				4415CD911BDDC38700E91770 /* coreEngine.h */,
 				4415CD931BDDC3EE00E91770 /* time.cpp */,
 				4415CD941BDDC3EE00E91770 /* time.h */,
+				44F722361BDFEB8A0022754F /* game.cpp */,
+				44F722371BDFEB8A0022754F /* game.h */,
 			);
 			name = Core_Engine;
 			sourceTree = "<group>";
@@ -231,6 +236,7 @@
 				4415CD8F1BDD8E0400E91770 /* camera.cpp in Sources */,
 				447A39121BD6DCD900190464 /* shader.cpp in Sources */,
 				447A39091BD6C57200190464 /* window.cpp in Sources */,
+				44F722381BDFEB8A0022754F /* game.cpp in Sources */,
 				4415CD8C1BDD74D400E91770 /* transform.cpp in Sources */,
 				44D3CD701BCBFAED0074E300 /* main.cpp in Sources */,
 				447A390C1BD6DAC400190464 /* input.cpp in Sources */,

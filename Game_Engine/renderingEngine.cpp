@@ -9,8 +9,6 @@
 #include "renderingEngine.h"
 
 RenderingEngine::RenderingEngine() {
-    m_projection = Matrix4<float>().Perspective( 45.0f, 4.0f / 3.0f, 0.1f, 100.0f );
-    
     m_shader = new Shader();
     m_shader->AddVertexShader( "StandardShading.vertexshader" );
     m_shader->AddFragmentShader( "StandardShading.fragmentshader" );
@@ -49,7 +47,7 @@ void RenderingEngine::Init() const {
     glEnable( GL_CULL_FACE );
 }
 
-void RenderingEngine::Render() const {
+void RenderingEngine::Render( const RenderableEntity &renderRoot ) const {
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 
     m_shader->Bind();
@@ -62,15 +60,7 @@ void RenderingEngine::Render() const {
     glEnableVertexAttribArray( m_shader->GetAttribute( "vertexUV" ) );
     glEnableVertexAttribArray( m_shader->GetAttribute( "vertexNormal_modelspace" ) );
     
-    Matrix4<float> MVP = m_projection * view * m_monkey->GetModelMatrix();
-    m_shader->UniformMatrix4f( "MVP", MVP );
-    m_shader->UniformMatrix4f( "M", m_monkey->GetModelMatrix() );
-    m_monkey->Render( *m_shader );
-    
-    MVP = m_projection * view * m_cube->GetModelMatrix();
-    m_shader->UniformMatrix4f( "MVP", MVP );
-    m_shader->UniformMatrix4f( "M", m_cube->GetModelMatrix() );
-    m_cube->Render( *m_shader );
+    renderRoot.RenderAll( *m_shader, *m_camera );
     
     glDisableVertexAttribArray( m_shader->GetAttribute( "vertexPosition_modelspace" ) );
     glDisableVertexAttribArray( m_shader->GetAttribute( "vertexUV" ) );

@@ -9,6 +9,7 @@
 #ifndef __CORE_ENGINE_H__
 #define __CORE_ENGINE_H__
 
+#include "game.h"
 #include "input.h"
 #include "renderingEngine.h"
 #include "text2d.h"
@@ -21,10 +22,12 @@ private:
     
     RenderingEngine *m_renderingEngine;
     Text2D *m_text2d;
+    
+    Game *m_game;
     Window *m_window;
     
 public:
-    CoreEngine( Window *window );
+    CoreEngine( Window *window, Game *game );
     virtual ~CoreEngine();
     
     void Init();

@@ -10,8 +10,9 @@
 
 #include "time.h"
 
-CoreEngine::CoreEngine( Window *window ) {
+CoreEngine::CoreEngine( Window *window, Game *game ) {
     m_window = window;
+    m_game = game;
     
     m_renderingEngine = new RenderingEngine();
     m_text2d = new Text2D( "Holstein.DDS" );
@@ -20,13 +21,14 @@ CoreEngine::CoreEngine( Window *window ) {
 }
 
 CoreEngine::~CoreEngine() {
-    if ( m_window ) delete m_window;
     if ( m_renderingEngine ) delete m_renderingEngine;
+    if ( m_text2d ) delete m_text2d;
 }
 
 void CoreEngine::Init() {
     m_renderingEngine->Init();
     m_text2d->Init();
+    m_game->Init();
 }
 
 void CoreEngine::Start() {
@@ -58,7 +60,10 @@ void CoreEngine::Start() {
             Stop();
         }
         
-        m_renderingEngine->Render();
+        m_game->ProcessInput();
+        m_game->ProcessUpdate();
+        m_game->ProcessRender( m_renderingEngine );
+        
         m_text2d->PrintText2D( lastFPM, 5, 5, 20 );
         
         m_window->SwapBuffers();
