@@ -9,13 +9,28 @@
 #ifndef __CORE_ENGINE_H__
 #define __CORE_ENGINE_H__
 
+#include "input.h"
+#include "renderingEngine.h"
+#include "text2d.h"
+#include "window.h"
+
 class CoreEngine {
     
 private:
+    bool m_isRunning;
+    
+    Input *m_input;
+    RenderingEngine *m_renderingEngine;
+    Text2D *m_text2d;
+    Window *m_window;
     
 public:
-    CoreEngine();
+    CoreEngine( Window *window, Input *input );
     virtual ~CoreEngine();
+    
+    void Init();
+    void Start();
+    void Stop();
 };
 
 #endif /* coreEngine_h */
