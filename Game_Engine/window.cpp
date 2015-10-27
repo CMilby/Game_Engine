@@ -43,6 +43,7 @@ Window::Window( unsigned int width, unsigned int height, const std::string &titl
 }
 
 Window::~Window() {
+    glfwDestroyWindow( m_window );
     glfwTerminate();
 }
 
@@ -54,12 +55,8 @@ void Window::PollEvents() const {
     glfwPollEvents();
 }
 
-int Window::GetKey( int key ) const {
-    return glfwGetKey( m_window, key );
-}
-
 bool Window::ShouldClose() const {
-    return glfwWindowShouldClose( m_window ) == 0;
+    return glfwWindowShouldClose( m_window );
 }
 
 

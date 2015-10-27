@@ -19,13 +19,12 @@ class CoreEngine {
 private:
     bool m_isRunning;
     
-    Input *m_input;
     RenderingEngine *m_renderingEngine;
     Text2D *m_text2d;
     Window *m_window;
     
 public:
-    CoreEngine( Window *window, Input *input );
+    CoreEngine( Window *window );
     virtual ~CoreEngine();
     
     void Init();

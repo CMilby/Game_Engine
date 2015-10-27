@@ -14,9 +14,9 @@
 
 int main(int argc, const char * argv[]) {
     Window *window = new Window( 1024, 768, "Window Title" );
-    Input *input = new Input( window );
+    Input::SetWindow( *window );
     
-    CoreEngine coreEngine( window, input );
+    CoreEngine coreEngine( window );
     coreEngine.Init();
     coreEngine.Start();
 }

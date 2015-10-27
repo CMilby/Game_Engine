@@ -15,7 +15,10 @@
 class Input {
     
 private:
-    Window *m_window;
+    static Input s_instance;
+    static Window s_window;
+    
+    Input() {}
     
 public:
     enum {
@@ -162,17 +165,17 @@ public:
         
         KEY_MENU = 348
     };
-    
-    Input( Window *window );
 
-    bool IsKeyDown( int key ) const;
-    bool IsKeyUp( int key ) const;
+    static void SetWindow( const Window &window );
     
-    bool IsButtonDown( int button ) const;
-    bool IsButtonUp( int button ) const;
+    static bool IsKeyDown( int key );
+    static bool IsKeyUp( int key );
     
-    Vector2<float> GetCursorPosition() const;
-    void SetCursorPosition( const Vector2<float> &position );
+    static bool IsButtonDown( int button );
+    static bool IsButtonUp( int button );
+    
+    static Vector2<float> GetCursorPosition();
+    static void SetCursorPosition( const Vector2<float> &position );
 };
 
 #endif /* input_h */
