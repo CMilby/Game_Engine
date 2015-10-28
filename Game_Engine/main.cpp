@@ -8,6 +8,7 @@
 
 #include <cstdio>
 
+#include "camera.h"
 #include "coreEngine.h"
 #include "entity.h"
 #include "game.h"
@@ -23,6 +24,10 @@ public:
 };
 
 void TestGame::Init() {
+    Camera *camera = new Camera( Vector3<float>( 0, 0, 5 ) );
+    RenderingEngine::SetMainCamera( *camera );
+    AddToScene( camera );
+    
     RenderableEntity *monkey = new RenderableEntity( "suzanne.obj", "suzanne.DDS" );
     monkey->SetPosition( Vector3<float>( -2, 1, 1 ) );
     AddToScene( monkey );

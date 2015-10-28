@@ -7,3 +7,7 @@
 //
 
 #include "camera.h"
+
+void Camera::Input( float delta ) const {
+    
+}

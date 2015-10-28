@@ -8,6 +8,8 @@
 
 #include "entity.h"
 
+#include "camera.h"
+
 Entity::Entity() {
     
 }

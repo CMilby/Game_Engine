@@ -8,6 +8,8 @@
 
 #include "renderingEngine.h"
 
+Camera RenderingEngine::s_mainCamera = Camera();
+
 RenderingEngine::RenderingEngine() {
     m_shader = new Shader();
     m_shader->AddVertexShader( "StandardShading.vertexshader" );
@@ -23,20 +25,10 @@ RenderingEngine::RenderingEngine() {
     m_shader->AddAttribute( "vertexPosition_modelspace" );
     m_shader->AddAttribute( "vertexUV" );
     m_shader->AddAttribute( "vertexNormal_modelspace" );
-    
-    m_camera = new Camera( Vector3<float>( 0, 0, 5 ) );
-    
-    m_monkey = new RenderableEntity( "suzanne.obj", "suzanne.DDS" );
-    m_monkey->SetPosition( Vector3<float>( -3, 0, 0 ) );
-    
-    m_cube = new RenderableEntity( "cube.obj", "cube.DDS" );
-    m_cube->SetPosition( Vector3<float>( 3, 0, 0 ) );
 }
 
 RenderingEngine::~RenderingEngine() {
     if ( m_shader ) delete m_shader;
-    if ( m_camera ) delete m_camera;
-    if ( m_monkey ) delete m_monkey;
 }
 
 void RenderingEngine::Init() const {
@@ -53,14 +45,14 @@ void RenderingEngine::Render( const Entity &renderRoot ) const {
     m_shader->Bind();
     glUniform3f( m_shader->GetUniform( "LightPosition_worldspace" ), 8.0f, 8.0f, 8.0f );
     
-    Matrix4<float> view = m_camera->GetView();
+    Matrix4<float> view = s_mainCamera.GetView();
     m_shader->UniformMatrix4f( "V", view);
     
     glEnableVertexAttribArray( m_shader->GetAttribute( "vertexPosition_modelspace" ) );
     glEnableVertexAttribArray( m_shader->GetAttribute( "vertexUV" ) );
     glEnableVertexAttribArray( m_shader->GetAttribute( "vertexNormal_modelspace" ) );
     
-    renderRoot.RenderAll( *m_shader, *m_camera );
+    renderRoot.RenderAll( *m_shader, s_mainCamera );
     
     glDisableVertexAttribArray( m_shader->GetAttribute( "vertexPosition_modelspace" ) );
     glDisableVertexAttribArray( m_shader->GetAttribute( "vertexUV" ) );

@@ -18,14 +18,14 @@
 class RenderingEngine {
     
 private:
-    RenderableEntity *m_monkey;
-    RenderableEntity *m_cube;
+    static Camera s_mainCamera;
     
-    Camera *m_camera;
     Shader *m_shader;
 public:
     RenderingEngine();
     virtual ~RenderingEngine();
+    
+    inline static void SetMainCamera( const Camera &camera ) { s_mainCamera = camera; }
     
     void Init() const;
     void Render( const Entity &root ) const;

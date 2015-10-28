@@ -12,12 +12,13 @@
 #include <string>
 #include <vector>
 
-#include "camera.h"
 #include "math3d.h"
 #include "mesh.h"
 #include "shader.h"
 #include "texture.h"
 #include "transform.h"
+
+class Camera;
 
 class Entity {
     
