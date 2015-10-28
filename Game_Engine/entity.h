@@ -19,11 +19,30 @@
 #include "texture.h"
 #include "transform.h"
 
-class RenderableEntity {
+class Entity {
     
 private:
-    std::vector<RenderableEntity*> m_children;
+    std::vector<Entity*> m_children;
     
+protected:
+    virtual void Input( float delta ) const {}
+    virtual void Update( float delta ) const {}
+    virtual void Render( const Shader &shader, const Camera &camera ) const {}
+
+public:
+    Entity();
+    virtual ~Entity();
+    
+    void InputAll( float delta ) const;
+    void UpdateAll( float delta ) const;
+    void RenderAll( const Shader &shader, const Camera &camera ) const;
+    
+    Entity* AddChild( Entity *entity );
+};
+
+class RenderableEntity : public Entity {
+    
+private:
     Mesh *m_mesh;
     Transform *m_transform;
     Texture *m_texture;
@@ -31,26 +50,18 @@ private:
     bool m_visible;
     
 protected:
-    void Input() const;
-    void Update() const;
-    void Render( const Shader &shader, const Camera &camera ) const;
+    virtual void Input( float delta ) const;
+    virtual void Update( float delta ) const;
+    virtual void Render( const Shader &shader, const Camera &camera ) const;
     
 public:
     RenderableEntity();
     RenderableEntity( const std::string &meshFile, const std::string &textureFile );
     virtual ~RenderableEntity();
     
-    void InputAll() const;
-    void UpdateAll() const;
-    void RenderAll( const Shader &shader, const Camera &camera ) const;
-    
     Matrix4<float> GetModelMatrix() const;
     
-    RenderableEntity* AddEntity( RenderableEntity *entity );
-    
-    inline void SetPosition( const Vector3<float> &position ) {
-        m_transform->SetPosition( position );
-    }
+    inline void SetPosition( const Vector3<float> &position ) { m_transform->SetPosition( position ); }
     
     inline void SetVisible( bool visible ) { m_visible = visible; }
     inline bool IsVisible() const { return m_visible; }

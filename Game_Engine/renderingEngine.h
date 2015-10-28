@@ -28,7 +28,7 @@ public:
     virtual ~RenderingEngine();
     
     void Init() const;
-    void Render( const RenderableEntity &renderRoot ) const;
+    void Render( const Entity &root ) const;
 };
 
 #endif /* renderingEngine_h */

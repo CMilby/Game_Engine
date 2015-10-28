@@ -15,18 +15,18 @@
 class Game {
   
 private:
-    RenderableEntity m_renderRoot;
+    Entity m_root;
     
 protected:
-    inline void AddToScene( RenderableEntity* entity ) { m_renderRoot.AddEntity( entity ); }
+    inline void AddToScene( Entity* entity ) { m_root.AddChild( entity ); }
     
 public:
     Game() {}
     virtual ~Game() {}
     
     virtual void Init() {}
-    void ProcessInput() const;
-    void ProcessUpdate() const;
+    void ProcessInput( float delta ) const;
+    void ProcessUpdate( float delta ) const;
     void ProcessRender( RenderingEngine *renderingEngine ) const;
 };
 

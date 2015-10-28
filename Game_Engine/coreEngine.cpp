@@ -60,8 +60,8 @@ void CoreEngine::Start() {
             Stop();
         }
         
-        m_game->ProcessInput();
-        m_game->ProcessUpdate();
+        m_game->ProcessInput( currentTime - lastTime );
+        m_game->ProcessUpdate( currentTime - lastTime );
         m_game->ProcessRender( m_renderingEngine );
         
         m_text2d->PrintText2D( lastFPM, 5, 5, 20 );

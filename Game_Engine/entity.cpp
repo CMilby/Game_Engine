@@ -8,6 +8,42 @@
 
 #include "entity.h"
 
+Entity::Entity() {
+    
+}
+
+Entity::~Entity() {
+    for ( unsigned int i = 0; i < m_children.size(); i++ ) {
+        if ( m_children[ i ] ) delete m_children[ i ];
+    }
+}
+
+void Entity::InputAll( float delta ) const {
+    Input( delta );
+    for ( unsigned int i = 0; i < m_children.size(); i++ ) {
+        m_children[ i ]->InputAll( delta );
+    }
+}
+
+void Entity::UpdateAll( float delta ) const {
+    Update( delta );
+    for ( unsigned int i = 0; i < m_children.size(); i++ ) {
+        m_children[ i ]->UpdateAll( delta );
+    }
+}
+
+void Entity::RenderAll( const Shader &shader, const Camera &camera ) const {
+    Render( shader, camera );
+    for ( unsigned int i = 0; i < m_children.size(); i++ ) {
+        m_children[ i ]->RenderAll( shader, camera );
+    }
+}
+
+Entity* Entity::AddChild( Entity *entity ) {
+    m_children.push_back( entity );
+    return this;
+}
+
 RenderableEntity::RenderableEntity() {
     m_mesh = new Mesh( "cube.obj" );
     m_transform = new Transform();
@@ -23,53 +59,27 @@ RenderableEntity::RenderableEntity( const std::string &meshFile, const std::stri
 }
 
 RenderableEntity::~RenderableEntity() {
-    for ( unsigned int i = 0; i < m_children.size(); i++ ) {
-        if ( m_children[ i ] ) delete m_children[ i ];
-    }
-    
     if ( m_mesh ) delete m_mesh;
     if ( m_transform ) delete m_transform;
     if ( m_texture ) delete m_texture;
 }
 
-void RenderableEntity::Input() const {
+void RenderableEntity::Input( float delta ) const {
     
 }
 
-void RenderableEntity::InputAll() const {
-    Input();
-    for ( unsigned int i = 0; i < m_children.size(); i++ ) {
-        m_children[ i ]->InputAll();
-    }
-}
-
-void RenderableEntity::Update() const {
+void RenderableEntity::Update( float delta ) const {
     
-}
-
-void RenderableEntity::UpdateAll() const {
-    Update();
-    for ( unsigned int i = 0; i < m_children.size(); i++ ) {
-        m_children[ i ]->UpdateAll();
-    }
 }
 
 void RenderableEntity::Render( const Shader &shader, const Camera &camera ) const {
-    m_texture->Bind();
-    shader.Uniform1i( "myTextureSampler", 0 );
-    
-    shader.UniformMatrix4f( "MVP", Transform::GetProjection() * camera.GetView() * GetModelMatrix() );
-    shader.UniformMatrix4f( "M", GetModelMatrix() );
-    m_mesh->Render();
-}
-
-void RenderableEntity::RenderAll( const Shader &shader, const Camera &camera ) const {
     if ( m_visible ) {
-        Render( shader, camera );
-    }
+        m_texture->Bind();
+        shader.Uniform1i( "myTextureSampler", 0 );
     
-    for ( unsigned int i = 0; i < m_children.size(); i++ ) {
-        m_children[ i ]->RenderAll( shader, camera );
+        shader.UniformMatrix4f( "MVP", Transform::GetProjection() * camera.GetView() * GetModelMatrix() );
+        shader.UniformMatrix4f( "M", GetModelMatrix() );
+        m_mesh->Render();
     }
 }
 
@@ -77,10 +87,6 @@ Matrix4<float> RenderableEntity::GetModelMatrix() const {
     return Matrix4<float>().Model( m_transform->GetPosition(), m_transform->GetScale() );
 }
 
-RenderableEntity* RenderableEntity::AddEntity( RenderableEntity *entity ) {
-    m_children.emplace_back( entity );
-    return this;
-}
 
 
 

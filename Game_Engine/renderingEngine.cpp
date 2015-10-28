@@ -47,7 +47,7 @@ void RenderingEngine::Init() const {
     glEnable( GL_CULL_FACE );
 }
 
-void RenderingEngine::Render( const RenderableEntity &renderRoot ) const {
+void RenderingEngine::Render( const Entity &renderRoot ) const {
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 
     m_shader->Bind();
