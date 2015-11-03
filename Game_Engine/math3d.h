@@ -58,7 +58,7 @@ public:
     
     inline Vector<T, D>& operator+=( const Vector<T, D> &vect ) {
         for ( unsigned int i = 0; i < D; i++ ) {
-            m_values[ i ] += vect[ i ];
+            ( *this )[ i ] = m_values[ i ] + vect[ i ];
         }
         return *this;
     }
@@ -135,6 +135,13 @@ public:
     inline T operator[]( unsigned int index ) const {
         return m_values[ index ];
     }
+    
+    inline void Print() const {
+        for ( unsigned int i = 0; i < D; i++ ) {
+            std::cout << m_values[ i ] << " ";
+        }
+        std::cout << "\n";
+    }
 };
 
 template<class T> class Vector2 : public Vector<T, 2> {
@@ -197,7 +204,7 @@ public:
         T z = ( *this )[ 0 ] * vect[ 1 ] - ( *this )[ 1 ] * vect[ 2 ];
         
         return Vector3<T>( x, y, z );
-     }
+    }
     
     inline T GetX() const { return ( *this )[ 0 ]; }
     inline T GetY() const { return ( *this )[ 1 ]; }
@@ -340,6 +347,9 @@ public:
     }
 };
 
+class Quaternion;
+Vector3<float> Rotate( const Vector3<float> &vect, const Quaternion &quat );
+
 template<class T> class Matrix4 : public Matrix<T, 4> {
   
 public:
@@ -424,7 +434,27 @@ public:
         return ret;
     }
     
-    inline Matrix4<T> Model( const Vector3<T> &position, const Vector3<T> &scale ) {
+    inline Matrix4<T>Scale( const Vector3<T> &scale ) const {
+        Matrix4<T> ret;
+        
+        ret[ 0 ][ 0 ] = scale.GetX();
+        ret[ 1 ][ 1 ] = scale.GetY();
+        ret[ 2 ][ 2 ] = scale.GetZ();
+        
+        return ret;
+    }
+    
+    inline Matrix4<T> Transform( const Vector3<T> &position ) const {
+        Matrix4<T> ret;
+        
+        ret[ 3 ][ 0 ] = position.GetX();
+        ret[ 3 ][ 1 ] = position.GetY();
+        ret[ 3 ][ 2 ] = -position.GetZ();
+        
+        return ret;
+    }
+    
+    inline Matrix4<T> Model( const Vector3<T> &position, const Vector3<T> &scale ) const {
         Matrix4<T> ret;
         
         ret[ 0 ][ 0 ] = scale.GetX();
@@ -437,6 +467,133 @@ public:
         
         return ret;
     }
+    
+    inline Matrix4<T> InitRotatationFromVectors( const Vector3<T> &n, const Vector3<T> &v, const Vector3<T> &u ) {
+        Matrix4<T> ret = Matrix4<T>().InitIdentity();
+        
+        ret[ 0 ][ 0 ] = u.GetX();
+        ret[ 1 ][ 0 ] = v.GetX();
+        ret[ 2 ][ 0 ] = n.GetX();
+        
+        ret[ 0 ][ 1 ] = u.GetY();
+        ret[ 1 ][ 1 ] = v.GetY();
+        ret[ 2 ][ 1 ] = n.GetY();
+        
+        ret[ 0 ][ 2 ] = u.GetZ();
+        ret[ 1 ][ 2 ] = v.GetZ();
+        ret[ 2 ][ 2 ] = n.GetZ();
+        
+        return ret;
+    }
+};
+
+class Quaternion : public Vector<float, 4> {
+    
+public:
+    Quaternion( const Vector<float, 4> &quat ) {
+        ( *this )[ 0 ] = quat[ 0 ];
+        ( *this )[ 1 ] = quat[ 1 ];
+        ( *this )[ 2 ] = quat[ 2 ];
+        ( *this )[ 3 ] = quat[ 3 ];
+    }
+    
+    Quaternion( const Quaternion &quat ) {
+        ( *this )[ 0 ] = quat[ 0 ];
+        ( *this )[ 1 ] = quat[ 1 ];
+        ( *this )[ 2 ] = quat[ 2 ];
+        ( *this )[ 3 ] = quat[ 3 ];
+    }
+    
+    Quaternion( float x = 0.0f, float y = 0.0f, float z = 0.0f, float w = 1.0f ) {
+        ( *this )[ 0 ] = x;
+        ( *this )[ 1 ] = y;
+        ( *this )[ 2 ] = z;
+        ( *this )[ 3 ] = w;
+    }
+    
+    Quaternion( const Vector3<float> &vect, float angle ) {
+        const float sinAngle = sinf( angle / 2 );
+        const float cosAngle = cosf( angle / 2 );
+        
+        ( *this )[ 0 ] = vect[ 0 ] * sinAngle;
+        ( *this )[ 1 ] = vect[ 1 ] * sinAngle;
+        ( *this )[ 2 ] = vect[ 2 ] * sinAngle;
+        ( *this )[ 3 ] = cosAngle;
+    }
+    
+    inline Quaternion operator*( const Quaternion &quat ) const {
+        Quaternion ret;
+        
+        ret[ 3 ] = ( *this )[ 3 ] * quat[ 3 ] - ( *this )[ 0 ] * quat[ 0 ] - ( *this )[ 1 ] * quat[ 1 ] - ( *this )[ 2 ] * quat[ 2 ];
+        ret[ 0 ] = ( *this )[ 3 ] * quat[ 0 ] + ( *this )[ 0 ] * quat[ 3 ] + ( *this )[ 1 ] * quat[ 2 ] - ( *this )[ 2 ] * quat[ 1 ];
+        ret[ 1 ] = ( *this )[ 3 ] * quat[ 1 ] + ( *this )[ 1 ] * quat[ 3 ] + ( *this )[ 2 ] * quat[ 0 ] - ( *this )[ 0 ] * quat[ 2 ];
+        ret[ 2 ] = ( *this )[ 3 ] * quat[ 2 ] + ( *this )[ 2 ] * quat[ 3 ] + ( *this )[ 0 ] * quat[ 1 ] - ( *this )[ 1 ] * quat[ 0 ];
+        
+        return ret;
+    }
+    
+    inline Quaternion operator*( const Vector3<float> &vect ) const {
+        Quaternion ret;
+        
+        ret[ 0 ] = -( ( *this )[ 0 ] * vect[ 0 ] - ( *this )[ 1 ] * vect[ 1 ] - ( *this )[ 2 ] * vect[ 2 ] );
+        ret[ 1 ] =  ( ( *this )[ 3 ] * vect[ 0 ] + ( *this )[ 1 ] * vect[ 2 ] - ( *this )[ 2 ] * vect[ 1 ] );
+        ret[ 2 ] =  ( ( *this )[ 3 ] * vect[ 1 ] + ( *this )[ 2 ] * vect[ 0 ] - ( *this )[ 0 ] * vect[ 2 ] );
+        ret[ 3 ] =  ( ( *this )[ 3 ] * vect[ 2 ] + ( *this )[ 0 ] * vect[ 1 ] - ( *this )[ 1 ] * vect[ 0 ] );
+        
+        return ret;
+    }
+    
+    inline Quaternion Conjugate() const {
+        return Quaternion( -( *this )[ 0 ], -( *this )[ 1 ], -( *this )[ 2 ], ( *this )[ 3 ] );
+    }
+    
+    inline Vector3<float> GetForward() const {
+        // return Vector3<float>( 0, 0, -1 ).Rotate( *this );
+        return Rotate( Vector3<float>( 0, 0, -1 ), *this );
+    }
+    
+    inline Vector3<float> GetBack() const {
+        // return Vector3<float>( 0, 0, 1 ).Rotate( *this );
+        return Rotate( Vector3<float>( 0, 0, 1 ), *this );
+    }
+    
+    inline Vector3<float> GetLeft() const {
+        // return Vector3<float>( -1, 0, 0 ).Rotate( *this );
+        return Rotate( Vector3<float>( -1, 0, 0 ), *this );
+    }
+    
+    inline Vector3<float> GetRight() const {
+        // return Vector3<float>( 1, 0, 0 ).Rotate( *this );
+        return Rotate( Vector3<float>( 1, 0, 0 ), *this );
+    }
+    
+    inline Vector3<float> GetUp() const {
+        // return Vector3<float>( 0, 1, 0 ).Rotate( *this );
+        return Rotate( Vector3<float>( 0, 1, 0 ), *this );
+    }
+    
+    inline Vector3<float> GetDown() const {
+        // return Vector3<float>( 0, -1, 0 ).Rotate( *this );
+        return Rotate( Vector3<float>( 0, -1, 0 ), *this );
+    }
+    
+    inline Matrix4<float> ToRotationMatrix() {
+        Vector3<float> forward( 2.0f * ( GetX() * GetZ() - GetW() * GetY() ), 2.0f * ( GetY() * GetZ() + GetW() * GetX() ), 1.0f - 2.0f * ( GetX() * GetX() + GetY() * GetY() ) );
+        Vector3<float> up( 2.0f * ( GetX() * GetY() + GetW() * GetZ() ), 1.0f - 2.0f * ( GetX() * GetX() + GetZ() * GetZ() ), 2.0f * ( GetY() * GetZ() - GetW() * GetX() ) );
+        Vector3<float> right( 1.0f - 2.0f * ( GetY() * GetY() + GetZ() * GetZ() ), 2.0f * ( GetX() * GetY() - GetW() * GetZ() ), 2.0f * ( GetX() * GetZ() + GetW() * GetY() ) );
+        
+        return Matrix4<float>().InitRotatationFromVectors( forward, up, right );
+    }
+    
+    inline float GetX() const { return ( *this )[ 0 ]; }
+    inline float GetY() const { return ( *this )[ 1 ]; }
+    inline float GetZ() const { return ( *this )[ 2 ]; }
+    inline float GetW() const { return ( *this )[ 3 ]; }
+    
+    inline void SetX( float x ) { ( *this )[ 0 ] = x; }
+    inline void SetY( float y ) { ( *this )[ 1 ] = y; }
+    inline void SetZ( float z ) { ( *this )[ 2 ] = z; }
+    inline void SetW( float w ) { ( *this )[ 3 ] = w; }
 };
 
 class Color {

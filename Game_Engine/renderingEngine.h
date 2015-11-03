@@ -21,6 +21,8 @@ private:
     static Camera s_mainCamera;
     
     Shader *m_shader;
+    Text2D *m_text2d;
+    
 public:
     RenderingEngine();
     virtual ~RenderingEngine();
@@ -28,7 +30,7 @@ public:
     inline static void SetMainCamera( const Camera &camera ) { s_mainCamera = camera; }
     
     void Init() const;
-    void Render( const Entity &root ) const;
+    void Render( Entity &root );
 };
 
 #endif /* renderingEngine_h */

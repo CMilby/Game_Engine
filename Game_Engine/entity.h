@@ -26,17 +26,21 @@ private:
     std::vector<Entity*> m_children;
     
 protected:
-    virtual void Input( float delta ) const {}
-    virtual void Update( float delta ) const {}
-    virtual void Render( const Shader &shader, const Camera &camera ) const {}
+    virtual void Init() {}
+    
+    virtual void Input( float delta ) {}
+    virtual void Update( float delta ) {}
+    virtual void Render( const Shader &shader, const Camera &camera ) {}
 
 public:
     Entity();
     virtual ~Entity();
     
-    void InputAll( float delta ) const;
-    void UpdateAll( float delta ) const;
-    void RenderAll( const Shader &shader, const Camera &camera ) const;
+    void InitAll();
+    
+    void InputAll( float delta );
+    void UpdateAll( float delta );
+    void RenderAll( const Shader &shader, const Camera &camera );
     
     Entity* AddChild( Entity *entity );
 };
@@ -51,9 +55,9 @@ private:
     bool m_visible;
     
 protected:
-    virtual void Input( float delta ) const;
-    virtual void Update( float delta ) const;
-    virtual void Render( const Shader &shader, const Camera &camera ) const;
+    virtual void Input( float delta );
+    virtual void Update( float delta );
+    virtual void Render( const Shader &shader, const Camera &camera );
     
 public:
     RenderableEntity();

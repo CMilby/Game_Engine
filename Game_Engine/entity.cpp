@@ -20,21 +20,28 @@ Entity::~Entity() {
     }
 }
 
-void Entity::InputAll( float delta ) const {
+void Entity::InitAll() {
+    Init();
+    for ( unsigned int i = 0; i < m_children.size(); i++ ) {
+        m_children[ i ]->InitAll();
+    }
+}
+
+void Entity::InputAll( float delta ) {
     Input( delta );
     for ( unsigned int i = 0; i < m_children.size(); i++ ) {
         m_children[ i ]->InputAll( delta );
     }
 }
 
-void Entity::UpdateAll( float delta ) const {
+void Entity::UpdateAll( float delta ) {
     Update( delta );
     for ( unsigned int i = 0; i < m_children.size(); i++ ) {
         m_children[ i ]->UpdateAll( delta );
     }
 }
 
-void Entity::RenderAll( const Shader &shader, const Camera &camera ) const {
+void Entity::RenderAll( const Shader &shader, const Camera &camera ) {
     Render( shader, camera );
     for ( unsigned int i = 0; i < m_children.size(); i++ ) {
         m_children[ i ]->RenderAll( shader, camera );
@@ -66,15 +73,15 @@ RenderableEntity::~RenderableEntity() {
     if ( m_texture ) delete m_texture;
 }
 
-void RenderableEntity::Input( float delta ) const {
+void RenderableEntity::Input( float delta ) {
     
 }
 
-void RenderableEntity::Update( float delta ) const {
+void RenderableEntity::Update( float delta ) {
     
 }
 
-void RenderableEntity::Render( const Shader &shader, const Camera &camera ) const {
+void RenderableEntity::Render( const Shader &shader, const Camera &camera ) {
     if ( m_visible ) {
         m_texture->Bind();
         shader.Uniform1i( "myTextureSampler", 0 );

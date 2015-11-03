@@ -8,14 +8,18 @@
 
 #include "game.h"
 
-void Game::ProcessInput( float delta ) const {
+void Game::Init() {
+    m_root.InitAll();
+}
+
+void Game::ProcessInput( float delta ) {
     m_root.InputAll( delta );
 }
 
-void Game::ProcessUpdate( float delta ) const {
+void Game::ProcessUpdate( float delta ) {
     m_root.UpdateAll( delta );
 }
 
-void Game::ProcessRender( RenderingEngine *renderingEngine ) const {
+void Game::ProcessRender( RenderingEngine *renderingEngine ) {
     renderingEngine->Render( m_root );
 }

@@ -25,6 +25,8 @@ RenderingEngine::RenderingEngine() {
     m_shader->AddAttribute( "vertexPosition_modelspace" );
     m_shader->AddAttribute( "vertexUV" );
     m_shader->AddAttribute( "vertexNormal_modelspace" );
+    
+    m_text2d = new Text2D( "Holstein.DDS" );
 }
 
 RenderingEngine::~RenderingEngine() {
@@ -37,9 +39,11 @@ void RenderingEngine::Init() const {
     glEnable( GL_DEPTH_TEST );
     glDepthFunc( GL_LESS );
     glEnable( GL_CULL_FACE );
+    
+    m_text2d->Init();
 }
 
-void RenderingEngine::Render( const Entity &renderRoot ) const {
+void RenderingEngine::Render( Entity &root ) {
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 
     m_shader->Bind();
@@ -52,11 +56,16 @@ void RenderingEngine::Render( const Entity &renderRoot ) const {
     glEnableVertexAttribArray( m_shader->GetAttribute( "vertexUV" ) );
     glEnableVertexAttribArray( m_shader->GetAttribute( "vertexNormal_modelspace" ) );
     
-    renderRoot.RenderAll( *m_shader, s_mainCamera );
+    root.RenderAll( *m_shader, s_mainCamera );
     
     glDisableVertexAttribArray( m_shader->GetAttribute( "vertexPosition_modelspace" ) );
     glDisableVertexAttribArray( m_shader->GetAttribute( "vertexUV" ) );
     glDisableVertexAttribArray( m_shader->GetAttribute( "vertexNormal_modelspace" ) );
+    
+    char text[ 256 ];
+    Vector3<float> pos = s_mainCamera.GetPosition();
+    sprintf( text, "%.2f %.2f %.2f", pos.GetX(), pos.GetY(), pos.GetZ() );
+    m_text2d->PrintText2D( text, 5, 25, 20 );
 }
 
 

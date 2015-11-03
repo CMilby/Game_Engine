@@ -24,10 +24,10 @@ public:
     Game() {}
     virtual ~Game() {}
     
-    virtual void Init() {}
-    void ProcessInput( float delta ) const;
-    void ProcessUpdate( float delta ) const;
-    void ProcessRender( RenderingEngine *renderingEngine ) const;
+    virtual void Init();
+    void ProcessInput( float delta );
+    void ProcessUpdate( float delta );
+    void ProcessRender( RenderingEngine *renderingEngine );
 };
 
 #endif /* game_h */
