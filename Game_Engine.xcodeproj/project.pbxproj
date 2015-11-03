@@ -335,10 +335,7 @@
 		44D3CD741BCBFAED0074E300 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				HEADER_SEARCH_PATHS = (
-					/usr/local/include/,
-					/usr/local/Cellar/glm/0.9.7.1/include/,
-				);
+				HEADER_SEARCH_PATHS = /usr/local/include/;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/usr/local/Cellar/glew/1.12.0/lib,
@@ -351,10 +348,7 @@
 		44D3CD751BCBFAED0074E300 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				HEADER_SEARCH_PATHS = (
-					/usr/local/include/,
-					/usr/local/Cellar/glm/0.9.7.1/include/,
-				);
+				HEADER_SEARCH_PATHS = /usr/local/include/;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/usr/local/Cellar/glew/1.12.0/lib,
