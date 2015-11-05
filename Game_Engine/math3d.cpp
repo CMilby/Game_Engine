@@ -13,3 +13,8 @@ Vector3<float> Rotate( const Vector3<float> &vect, const Quaternion &quat ) {
     return Vector3<float>( w.GetX(), w.GetY(), w.GetZ() );
 }
 
+Vector3<float> Rotate( const Vector3<float> &vect, const Vector3<float> &axis, float angle ) {
+    Quaternion quat( axis, angle );
+    Quaternion w = quat * vect * quat.Conjugate();
+    return Vector3<float>( w.GetX(), w.GetY(), w.GetZ() );
+}

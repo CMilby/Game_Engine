@@ -20,33 +20,39 @@ void Camera::Init() {
 void Camera::Input( float delta ) {
     float moveSpeed = delta * m_speed;
     
-    Vector3<float> difference( 0, 0, 0 );
-    if ( Input::IsKeyDown( Input::KEY_A ) || Input::IsKeyDown( Input::KEY_LEFT_ARROW ) ) {
-        difference += Move( Vector3<float>( -1, 0, 0 ), moveSpeed );
+    if ( Input::IsKeyDown( Input::KEY_A ) ) {
+        Move( m_rotation.GetLeft(), moveSpeed );
     }
     
-    if ( Input::IsKeyDown( Input::KEY_D ) || Input::IsKeyDown( Input::KEY_RIGHT_ARROW ) ) {
-        difference += Move( Vector3<float>( 1, 0, 0 ), moveSpeed );
+    if ( Input::IsKeyDown( Input::KEY_D ) ) {
+        Move( m_rotation.GetRight(), moveSpeed );
     }
     
-    if ( Input::IsKeyDown( Input::KEY_S ) || Input::IsKeyDown( Input::KEY_DOWN_ARROW ) ) {
-        difference += Move( Vector3<float>( 0, 0, 1 ), moveSpeed );
+    if ( Input::IsKeyDown( Input::KEY_S ) ) {
+        Move( m_rotation.GetBack(), moveSpeed );
     }
     
-    if ( Input::IsKeyDown( Input::KEY_W ) || Input::IsKeyDown( Input::KEY_UP_ARROW ) ) {
-        difference += Move( Vector3<float>( 0, 0, -1 ), moveSpeed );
+    if ( Input::IsKeyDown( Input::KEY_W ) ) {
+        Move( m_rotation.GetForward(), moveSpeed );
     }
     
-    if ( Input::IsKeyDown( Input::KEY_Q ) ) {
-        difference += Move( Vector3<float>( 0, 1, 0 ), moveSpeed );
+    if ( Input::IsKeyDown( Input::KEY_SPACE ) ) {
+       
     }
     
-    if ( Input::IsKeyDown( Input::KEY_E ) ) {
-        difference += Move( Vector3<float>( 0, -1, 0 ), moveSpeed );
+    if ( Input::IsKeyDown( Input::KEY_LEFT_SHIFT ) ) {
+        
     }
     
-    m_lookAt += difference;
-    m_view = Matrix4<float>().LookAt( m_position, m_lookAt, Vector3<float>( 0, 1, 0 ) );
+    if ( Input::IsKeyDown( Input::KEY_LEFT_ARROW ) ) {
+        Rotate( Vector3<float>( 0, 1, 0 ), m_sensitivity );
+    }
+    
+    if ( Input::IsKeyDown( Input::KEY_RIGHT_ARROW ) ) {
+        Rotate( Vector3<float>( 0, 1, 0 ), -m_sensitivity );
+    }
+    
+    m_view = m_rotation.ToRotationMatrix() * Matrix4<float>().Transform( m_position * -1 );
     
     RenderingEngine::SetMainCamera( *this );
 }
@@ -59,7 +65,29 @@ Vector3<float> Camera::GetPosition() const {
     return m_position;
 }
 
-Vector3<float> Camera::Move( const Vector3<float> &direction, float amount ) {
+void Camera::Move( const Vector3<float> &direction, float amount ) {
     m_position += ( direction * amount );
-    return direction * amount;
 }
+
+void Camera::Rotate( const Vector3<float> &axis, float angle ) {
+    Rotate( Quaternion( axis, angle ) );
+}
+
+void Camera::Rotate( const Quaternion &quaternion ) {
+    m_rotation = Quaternion( ( quaternion * m_rotation ).Normalized() );
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

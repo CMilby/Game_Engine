@@ -17,7 +17,8 @@ class Camera : public Entity {
     
 private:
     Vector3<float> m_position;
-    Vector3<float> m_lookAt;
+    Quaternion m_rotation;
+    
     Matrix4<float> m_view;
     
     float m_speed;
@@ -28,21 +29,22 @@ protected:
     virtual void Input( float delta );
     
 public:
-    Camera( const Vector3<float> &position = Vector3<float>( 0.0f, 0.0f, 0.0f ) ) {
+    Camera( const Vector3<float> &position = Vector3<float>( 0.0f, 0.0f, 0.0f ), const Quaternion &rotation = Quaternion( 0, 0, 0, 1 ) ) {
         m_position = position;
-        m_lookAt = Vector3<float>( 0, 0, 0 );
+        m_rotation = rotation;
+        
+        m_view = m_rotation.ToRotationMatrix() * Matrix4<float>().Transform( m_position * -1 );
         
         m_speed = 0.3f;
-        m_sensitivity = 0.005f;
-        
-        m_view = Matrix4<float>().LookAt( m_position, m_lookAt, Vector3<float>( 0, 1, 0 ) );
+        m_sensitivity = 0.05f;
     }
     
-    Vector3<float> Move( const Vector3<float> &direction, float amount );
-    Matrix4<float> GetView() const;
+    void Move( const Vector3<float> &direction, float amount );
+    void Rotate( const Vector3<float> &axis, float angle );
+    void Rotate( const Quaternion &quaternion );
     
+    Matrix4<float> GetView() const;
     Vector3<float> GetPosition() const;
-    // inline Vector3<float> GetLeft() const { return m_up.Cross( m_forward ); }*/
 };
 
 #endif /* camera_h */

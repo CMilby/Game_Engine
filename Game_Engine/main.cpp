@@ -36,6 +36,10 @@ void TestGame::Init() {
     cube->SetPosition( Vector3<float>( 2, -1, -2 ) );
     AddToScene( cube );
     
+    /*RenderableEntity *jeep = new RenderableEntity( "jeep.obj", "jeep_army.DDS" );
+    jeep->SetPosition( Vector3<float>( 0, -1, -100 ) );
+    AddToScene( jeep );*/
+    
     Game::Init();
 }
 
