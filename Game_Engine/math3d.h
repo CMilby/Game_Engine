@@ -572,12 +572,7 @@ public:
         ret[ 2 ] =  ( ( *this )[ 3 ] * vect[ 2 ] + ( *this )[ 0 ] * vect[ 1 ] - ( *this )[ 1 ] * vect[ 0 ] );
         
         return ret;
-    }
-    
-    inline Vector3<float> mul( const Vector3<float> &vect ) const {
-        Quaternion ret = *this * vect;
-        return Vector3<float>( ret.GetX(), ret.GetY(), ret.GetZ() );
-    }
+    } 
     
     inline Quaternion Conjugate() const {
         return Quaternion( -( *this )[ 0 ], -( *this )[ 1 ], -( *this )[ 2 ], ( *this )[ 3 ] );

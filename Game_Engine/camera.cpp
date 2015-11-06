@@ -37,20 +37,28 @@ void Camera::Input( float delta ) {
     }
     
     if ( Input::IsKeyDown( Input::KEY_SPACE ) ) {
-       
+        Move( m_rotation.GetUp(), moveSpeed );
     }
     
     if ( Input::IsKeyDown( Input::KEY_LEFT_SHIFT ) ) {
-        
+        Move( m_rotation.GetDown(), moveSpeed );
     }
     
-    if ( Input::IsKeyDown( Input::KEY_LEFT_ARROW ) ) {
+    /*if ( Input::IsKeyDown( Input::KEY_LEFT_ARROW ) ) {
         Rotate( Vector3<float>( 0, 1, 0 ), m_sensitivity );
     }
     
     if ( Input::IsKeyDown( Input::KEY_RIGHT_ARROW ) ) {
         Rotate( Vector3<float>( 0, 1, 0 ), -m_sensitivity );
     }
+    
+    if ( Input::IsKeyDown( Input::KEY_UP_ARROW ) ) {
+        Rotate( m_rotation.GetLeft(), m_sensitivity );
+    }
+    
+    if ( Input::IsKeyDown( Input::KEY_DOWN_ARROW ) ) {
+        Rotate( m_rotation.GetRight(), m_sensitivity );
+    }*/
     
     m_view = m_rotation.ToRotationMatrix() * Matrix4<float>().Transform( m_position * -1 );
     
