@@ -566,10 +566,10 @@ public:
     inline Quaternion operator*( const Vector3<float> &vect ) const {
         Quaternion ret;
         
-        ret[ 0 ] = -( ( *this )[ 0 ] * vect[ 0 ] - ( *this )[ 1 ] * vect[ 1 ] - ( *this )[ 2 ] * vect[ 2 ] );
-        ret[ 1 ] =  ( ( *this )[ 3 ] * vect[ 0 ] + ( *this )[ 1 ] * vect[ 2 ] - ( *this )[ 2 ] * vect[ 1 ] );
-        ret[ 2 ] =  ( ( *this )[ 3 ] * vect[ 1 ] + ( *this )[ 2 ] * vect[ 0 ] - ( *this )[ 0 ] * vect[ 2 ] );
-        ret[ 3 ] =  ( ( *this )[ 3 ] * vect[ 2 ] + ( *this )[ 0 ] * vect[ 1 ] - ( *this )[ 1 ] * vect[ 0 ] );
+        ret[ 3 ] = -( ( *this )[ 0 ] * vect[ 0 ] - ( *this )[ 1 ] * vect[ 1 ] - ( *this )[ 2 ] * vect[ 2 ] );
+        ret[ 0 ] =  ( ( *this )[ 3 ] * vect[ 0 ] + ( *this )[ 1 ] * vect[ 2 ] - ( *this )[ 2 ] * vect[ 1 ] );
+        ret[ 1 ] =  ( ( *this )[ 3 ] * vect[ 1 ] + ( *this )[ 2 ] * vect[ 0 ] - ( *this )[ 0 ] * vect[ 2 ] );
+        ret[ 2 ] =  ( ( *this )[ 3 ] * vect[ 2 ] + ( *this )[ 0 ] * vect[ 1 ] - ( *this )[ 1 ] * vect[ 0 ] );
         
         return ret;
     }
@@ -584,11 +584,11 @@ public:
     }
     
     inline Vector3<float> GetForward() const {
-        return Rotate( Vector3<float>( 0, 0, 1 ), *this );
+        return Rotate( Vector3<float>( 0, 0, -1 ), *this );
     }
     
     inline Vector3<float> GetBack() const {
-        return Rotate( Vector3<float>( 0, 0, -1 ), *this );
+        return Rotate( Vector3<float>( 0, 0, 1 ), *this );
     }
     
     inline Vector3<float> GetLeft() const {
