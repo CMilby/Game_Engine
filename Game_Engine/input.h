@@ -14,12 +14,6 @@
 
 class Input {
     
-private:
-    static Input s_instance;
-    static Window s_window;
-    
-    Input() {}
-    
 public:
     enum {
         MOUSE_BUTTON_LEFT = 0,
@@ -167,15 +161,39 @@ public:
     };
 
     static void SetWindow( const Window &window );
+    static void Init( const Window &window );
     
     static bool IsKeyDown( int key );
     static bool IsKeyUp( int key );
     
+    static void SetKey( int key, bool value );
+    
     static bool IsButtonDown( int button );
     static bool IsButtonUp( int button );
     
-    static Vector2<float> GetCursorPosition();
-    static void SetCursorPosition( const Vector2<float> &position );
+    static void SetButton( int button, bool value );
+    
+    static void SetCursor( bool visible );
+    static Vector2<int> GetCursorPosition();
+    static void SetCursorPosition( const Vector2<int> &position );
+    
+    static const int NUM_KEYS = 512;
+    static const int NUM_MOUSE_BUTTONS = 64;
+    
+    static void KeyCallback( GLFWwindow* handle, int key, int scancode, int action, int mods );
+    static void ButtonCallback( GLFWwindow *handle, int button, int action, int mods );
+    static void CursorPositionCallback( GLFWwindow *handle, double xpos, double ypos );
+private:
+    static Input s_instance;
+    static Window s_window;
+    
+    static bool s_inputs[ NUM_KEYS ];
+    static bool s_mouse[ NUM_MOUSE_BUTTONS ];
+    
+    static int s_mouseX;
+    static int s_mouseY;
+    
+    Input();
 };
 
 #endif /* input_h */

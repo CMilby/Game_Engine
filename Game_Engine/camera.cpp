@@ -14,11 +14,11 @@
 #include "renderingEngine.h"
 
 void Camera::Init() {
-    Input::SetCursorPosition( Vector2<float>( 1024 / 2, 768 / 2 ) );
+    Input::SetCursorPosition( Vector2<int>( 1024 / 2, 768 / 2 ) );
 }
 
 void Camera::Input( float delta ) {
-    float moveSpeed = delta * m_speed;
+    float moveSpeed = 0.5 * m_speed;
     
     if ( Input::IsKeyDown( Input::KEY_A ) ) {
         Move( m_rotation.GetLeft(), moveSpeed );

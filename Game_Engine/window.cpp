@@ -47,11 +47,11 @@ Window::~Window() {
     glfwTerminate();
 }
 
-void Window::SwapBuffers() const {
+void Window::SwapBuffers() {
     glfwSwapBuffers( m_window );
 }
 
-void Window::PollEvents() const {
+void Window::PollEvents() {
     glfwPollEvents();
 }
 

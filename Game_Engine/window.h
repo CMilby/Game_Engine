@@ -28,9 +28,9 @@ public:
     Window( unsigned int width, unsigned int height, const std::string &title );
     virtual ~Window();
     
-    void SwapBuffers() const;
-    void PollEvents() const;
-    
+    void SwapBuffers();
+    void PollEvents();
+
     bool ShouldClose() const;
     
     inline GLFWwindow* GetWindow() const { return m_window; }

@@ -45,7 +45,7 @@ void TestGame::Init() {
 
 int main(int argc, const char * argv[]) {
     Window window( 1024, 768, "Window Title" );
-    Input::SetWindow( window );
+    Input::Init( window );
     TestGame game;
     
     CoreEngine coreEngine( &window, &game );
