@@ -51,16 +51,16 @@ void Camera::Input( float delta ) {
     }
     
     if ( Input::IsKeyDown( Input::KEY_RIGHT_ARROW ) ) {
-        Rotate( m_rotation.GetUp( rotation ), m_sensitivity );
+        Rotate( Vector3<float>( 0, 1, 0 ), m_sensitivity );
     }
     
-    /*if ( Input::IsKeyDown( Input::KEY_UP_ARROW ) ) {
+    if ( Input::IsKeyDown( Input::KEY_UP_ARROW ) ) {
         Rotate( m_rotation.GetLeft( rotation ), m_sensitivity );
     }
     
     if ( Input::IsKeyDown( Input::KEY_DOWN_ARROW ) ) {
         Rotate( m_rotation.GetRight( rotation ), m_sensitivity );
-    }*/
+    }
     
     if ( Input::IsKeyDown( Input::KEY_0 ) ) {
         Input::SetDrawMode( 0 );
@@ -69,6 +69,8 @@ void Camera::Input( float delta ) {
     if ( Input::IsKeyDown( Input::KEY_1 ) ) {
         Input::SetDrawMode( 1 );
     }
+    
+    m_rotation.GetRight( rotation ).Print();
     
     m_view = m_rotation.ToRotationMatrix() * Matrix4<float>().Transform( m_position * -1 );
     
@@ -92,7 +94,7 @@ void Camera::Rotate( const Vector3<float> &axis, float angle ) {
 }
 
 void Camera::Rotate( const Quaternion &quaternion ) {
-    m_rotation = Quaternion( ( quaternion * m_rotation ).Normalized() );
+    m_rotation = Quaternion( ( m_rotation * quaternion ).Normalized() ) ;
 }
 
 

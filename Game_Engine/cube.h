@@ -20,3 +20,4 @@ public:
 };
 
 #endif /* cube_h */
+

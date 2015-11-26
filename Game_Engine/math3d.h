@@ -218,11 +218,9 @@ public:
     inline void SetZ( T z ) { ( *this )[ 2 ] = z; }
 };
 
-template<class T>
-inline T Dot( Vector3<T> x, Vector3<T> y ) {
-    Vector3<T> tmp( x * y );
-    return tmp.GetX() + tmp.GetY() + tmp.GetZ();
-}
+class Quaternion;
+Vector3<float> Rotate( const Vector3<float> &vect, const Quaternion &quat );
+Vector3<float> Rotate( const Vector3<float> &vect, float angle, const Vector3<float> &axis );
 
 template<class T, unsigned int D> class Matrix {
     
@@ -548,27 +546,23 @@ public:
         ( *this )[ 3 ] = cosAngle;
     }
     
-    inline Quaternion operator*( const Quaternion &quat ) const {
-        Quaternion ret;
+    inline Quaternion operator*( const Quaternion &r ) const {
+        const float w = ( GetW() * r.GetW() ) - ( GetX() * r.GetX() ) - ( GetY() * r.GetY() ) - ( GetZ() * r.GetZ() );
+        const float x = ( GetX() * r.GetW() ) + ( GetW() * r.GetX() ) + ( GetY() * r.GetZ() ) - ( GetZ() * r.GetY() );
+        const float y = ( GetY() * r.GetW() ) + ( GetW() * r.GetY() ) + ( GetZ() * r.GetX() ) - ( GetX() * r.GetZ() );
+        const float z = ( GetZ() * r.GetW() ) + ( GetW() * r.GetZ() ) + ( GetX() * r.GetY() ) - ( GetY() * r.GetX() );
         
-        ret[ 3 ] = ( ( *this )[ 3 ] * quat[ 3 ] ) - ( ( *this )[ 0 ] * quat[ 0 ] ) - ( ( *this )[ 1 ] * quat[ 1 ] ) - ( ( *this )[ 2 ] * quat[ 2 ] );
-        ret[ 0 ] = ( ( *this )[ 3 ] * quat[ 0 ] ) + ( ( *this )[ 0 ] * quat[ 3 ] ) + ( ( *this )[ 1 ] * quat[ 2 ] ) - ( ( *this )[ 2 ] * quat[ 1 ] );
-        ret[ 1 ] = ( ( *this )[ 3 ] * quat[ 1 ] ) + ( ( *this )[ 1 ] * quat[ 3 ] ) + ( ( *this )[ 2 ] * quat[ 0 ] ) - ( ( *this )[ 0 ] * quat[ 2 ] );
-        ret[ 2 ] = ( ( *this )[ 3 ] * quat[ 2 ] ) + ( ( *this )[ 2 ] * quat[ 3 ] ) + ( ( *this )[ 0 ] * quat[ 1 ] ) - ( ( *this )[ 1 ] * quat[ 0 ] );
-        
-        return ret;
+        return Quaternion( x, y, z, w );
     }
     
-    inline Quaternion operator*( const Vector3<float> &vect ) const {
-        Quaternion ret;
+    inline Quaternion operator*( const Vector3<float> &v ) const {
+        const float w = -( GetX() * v.GetX() ) - ( GetY() * v.GetY() ) - ( GetZ() * v.GetZ() );
+        const float x =  ( GetW() * v.GetX() ) + ( GetY() * v.GetZ() ) - ( GetZ() * v.GetY() );
+        const float y =  ( GetW() * v.GetY() ) + ( GetZ() * v.GetX() ) - ( GetX() * v.GetZ() );
+        const float z =  ( GetW() * v.GetZ() ) + ( GetX() * v.GetY() ) - ( GetY() * v.GetX() );
         
-        ret[ 3 ] = -( ( *this )[ 0 ] * vect[ 0 ] ) - ( ( *this )[ 1 ] * vect[ 1 ] ) - ( ( *this )[ 2 ] * vect[ 2 ] );
-        ret[ 0 ] =  ( ( *this )[ 3 ] * vect[ 0 ] ) + ( ( *this )[ 1 ] * vect[ 2 ] ) - ( ( *this )[ 2 ] * vect[ 1 ] );
-        ret[ 1 ] =  ( ( *this )[ 3 ] * vect[ 1 ] ) + ( ( *this )[ 2 ] * vect[ 0 ] ) - ( ( *this )[ 0 ] * vect[ 2 ] );
-        ret[ 2 ] =  ( ( *this )[ 3 ] * vect[ 2 ] ) + ( ( *this )[ 0 ] * vect[ 1 ] ) - ( ( *this )[ 1 ] * vect[ 0 ] );
-        
-        return ret;
-    } 
+        return Quaternion( x, y, z, w );
+    }
     
     inline Quaternion Conjugate() const {
         return Quaternion( -( *this )[ 0 ], -( *this )[ 1 ], -( *this )[ 2 ], ( *this )[ 3 ] );

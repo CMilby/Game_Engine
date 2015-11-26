@@ -20,5 +20,6 @@ Cube::Cube( unsigned int segments, int size ) {
 }
 
 void Cube::GenerateCube( unsigned int segments, int size ) {
-    
+
 }
+
