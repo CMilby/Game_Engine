@@ -12,13 +12,13 @@
 #include <string>
 #include <vector>
 
+#include "material.h"
 #include "math3d.h"
 #include "mesh.h"
-#include "shader.h"
-#include "texture.h"
 #include "transform.h"
 
 class Camera;
+class Shader;
 
 class Entity {
     
@@ -50,7 +50,7 @@ class RenderableEntity : public Entity {
 private:
     Mesh *m_mesh;
     Transform *m_transform;
-    Texture *m_texture;
+    Material *m_material;
     
     bool m_visible;
     
@@ -61,7 +61,7 @@ protected:
     
 public:
     RenderableEntity();
-    RenderableEntity( const std::string &meshFile, const std::string &textureFile );
+    RenderableEntity( const std::string &meshFile, const std::string &textureFile, TextureType type );
     virtual ~RenderableEntity();
     
     Matrix4<float> GetModelMatrix() const;

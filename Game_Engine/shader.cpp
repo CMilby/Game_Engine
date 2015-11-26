@@ -77,6 +77,10 @@ void Shader::Bind() const {
     glUseProgram( m_program );
 }
 
+void Shader::UpdateUniforms( const Matrix4<float> &world, const Matrix4<float> &projected, const Camera &camera, const Material &material ) const {
+    
+}
+
 void Shader::AddUniform( const std::string &name ) {
     s_uniformMap[ name ] = glGetUniformLocation( m_program, name.c_str() );
 }
@@ -85,13 +89,36 @@ void Shader::AddAttribute( const std::string &name ) {
     s_attributeMap[ name ] = glGetAttribLocation( m_program, name.c_str() );
 }
 
+void Shader::SetAttribLocation( const std::string &name, int location ) const {
+    glBindAttribLocation( m_program, location, name.c_str() );
+}
+
 void Shader::Uniform1i( const std::string &name, int value ) const {
     glUniform1i( s_uniformMap[ name ], value );
+}
+
+void Shader::Uniform1f( const std::string &name, float value ) const {
+    glUniform1f( s_uniformMap[ name ], value );
 }
 
 void Shader::UniformMatrix4f( const std::string &name, const Matrix4<float> &value ) const {
     glUniformMatrix4fv( s_uniformMap[ name ], 1, GL_FALSE, &value[ 0 ][ 0 ] );
 }
+
+void Shader::UniformVector3f( const std::string &name, const Vector3<float> &value ) const {
+    glUniform3f( s_uniformMap[ name ], value.GetX(), value.GetY(), value.GetZ() );
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 

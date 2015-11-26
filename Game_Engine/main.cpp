@@ -29,11 +29,11 @@ void TestGame::Init() {
     RenderingEngine::SetMainCamera( *camera );
     AddToScene( camera );
     
-    RenderableEntity *monkey = new RenderableEntity( "suzanne.obj", "suzanne.DDS" );
+    RenderableEntity *monkey = new RenderableEntity( "suzanne.obj", "test.png", TextureType::TYPE_PNG );
     monkey->SetPosition( Vector3<float>( -2, 1, 1 ) );
     AddToScene( monkey );
     
-    RenderableEntity *cube = new RenderableEntity( "cube.obj", "cube.DDS" );
+    RenderableEntity *cube = new RenderableEntity( "cube.obj", "cube.DDS", TextureType::TYPE_DDS );
     cube->SetPosition( Vector3<float>( 2, -1, -2 ) );
     AddToScene( cube );
     

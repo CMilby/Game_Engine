@@ -25,7 +25,7 @@ Text2D::~Text2D() {
 }
 
 void Text2D::Init() {
-    m_texture = new Texture( m_file );
+    m_texture = new Texture( m_file, TextureType::TYPE_DDS );
     
     glGenBuffers( 1, &m_vertexBuffer );
     glGenBuffers( 1, &m_uvBuffer );

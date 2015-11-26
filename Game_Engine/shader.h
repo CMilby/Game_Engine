@@ -14,6 +14,8 @@
 
 #include <GL/glew.h>
 
+#include "camera.h"
+#include "material.h"
 #include "math3d.h"
 
 class Shader {
@@ -38,13 +40,19 @@ public:
     
     void Bind() const;
     
+    virtual void UpdateUniforms( const Matrix4<float> &world, const Matrix4<float> &projected,  const Camera &camera, const Material &material ) const;
+    
     void AddUniform( const std::string &name );
     inline GLuint GetUniform( const std::string &name ) const { return s_uniformMap[ name ]; }
     void AddAttribute( const std::string &name );
     inline GLuint GetAttribute( const std::string &name ) const { return s_attributeMap[ name ]; };
 
+    void SetAttribLocation( const std::string &name, int location ) const;
+    
     void Uniform1i( const std::string &name, int value ) const;
+    void Uniform1f( const std::string &name, float value ) const;
     void UniformMatrix4f( const std::string &name, const Matrix4<float> &value ) const;
+    void UniformVector3f( const std::string &name, const Vector3<float> &value ) const;
 };
 
 #endif /* shader_h */

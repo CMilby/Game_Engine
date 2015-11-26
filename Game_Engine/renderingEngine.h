@@ -9,6 +9,8 @@
 #ifndef __RENDERING_ENGINE_H__
 #define __RENDERING_ENGINE_H__
 
+#include <vector>
+
 #include "camera.h"
 #include "entity.h"
 #include "math3d.h"

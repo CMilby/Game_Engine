@@ -10,6 +10,7 @@
 
 #include <glm/glm.hpp>
 
+#include "entity.h"
 #include "input.h"
 #include "renderingEngine.h"
 
@@ -69,8 +70,6 @@ void Camera::Input( float delta ) {
     if ( Input::IsKeyDown( Input::KEY_1 ) ) {
         Input::SetDrawMode( 1 );
     }
-    
-    m_rotation.GetRight( rotation ).Print();
     
     m_view = m_rotation.ToRotationMatrix() * Matrix4<float>().Transform( m_position * -1 );
     

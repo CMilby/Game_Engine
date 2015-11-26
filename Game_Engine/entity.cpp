@@ -9,6 +9,8 @@
 #include "entity.h"
 
 #include "camera.h"
+#include "renderingEngine.h"
+#include "shader.h"
 
 Entity::Entity() {
     
@@ -56,21 +58,23 @@ Entity* Entity::AddChild( Entity *entity ) {
 RenderableEntity::RenderableEntity() {
     m_mesh = new Mesh( "cube.obj" );
     m_transform = new Transform();
-    m_texture = new Texture( "cube.DDS" );
+    // m_texture = new Texture( "cube.DDS", TextureType::TYPE_DDS );
+    m_material = new Material( new Texture( "cube.DDS", TextureType::TYPE_DDS ) );
     m_visible = false;
 }
 
-RenderableEntity::RenderableEntity( const std::string &meshFile, const std::string &textureFile ) {
+RenderableEntity::RenderableEntity( const std::string &meshFile, const std::string &textureFile, TextureType type ) {
     m_mesh = new Mesh( meshFile );
     m_transform = new Transform();
-    m_texture = new Texture( textureFile );
+    // m_texture = new Texture( textureFile, type );
+    m_material = new Material( new Texture( textureFile, type ) );
     m_visible = true;
 }
 
 RenderableEntity::~RenderableEntity() {
     if ( m_mesh ) delete m_mesh;
     if ( m_transform ) delete m_transform;
-    if ( m_texture ) delete m_texture;
+    if ( m_material ) delete m_material;
 }
 
 void RenderableEntity::Input( float delta ) {
@@ -83,11 +87,16 @@ void RenderableEntity::Update( float delta ) {
 
 void RenderableEntity::Render( const Shader &shader, const Camera &camera ) {
     if ( m_visible ) {
-        m_texture->Bind();
+        shader.Bind();
+        m_material->m_texture->Bind();
         shader.Uniform1i( "myTextureSampler", 0 );
     
         shader.UniformMatrix4f( "MVP", Transform::GetProjection() * camera.GetView() * GetModelMatrix() );
         shader.UniformMatrix4f( "M", GetModelMatrix() );
+        
+        
+        
+        // shader.UpdateUniforms( Transform::GetProjection() * camera.GetView() * GetModelMatrix(), GetModelMatrix(), camera, *m_material ) ;
         m_mesh->Render();
     }
 }

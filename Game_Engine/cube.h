@@ -12,7 +12,7 @@
 class Cube {
     
 private:
-    void GenerateCube( unsigned int segments, int size );
+    void GenerateCube( float width, float height, float depth );
     
 public:
     Cube( unsigned int segments, int size );
