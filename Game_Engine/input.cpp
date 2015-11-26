@@ -19,8 +19,10 @@ Window Input::s_window = Window();
 bool Input::s_inputs[] = { false };
 bool Input::s_mouse[] = { false };
 
-int Input::s_mouseX = 0;
-int Input::s_mouseY = 0;
+float Input::s_mouseX = 0;
+float Input::s_mouseY = 0;
+
+int Input::s_drawMode = 0;
 
 Input::Input() {
     memset( s_inputs, 0, NUM_KEYS * sizeof( bool ) );
@@ -63,14 +65,22 @@ void Input::SetButton( int button, bool value ) {
 }
 
 void Input::SetCursor( bool visible ) {
-    glfwSetInputMode( s_window.GetWindow(), GLFW_CURSOR, ( visible ) ? GLFW_CURSOR_HIDDEN : GLFW_CURSOR_NORMAL );
+    glfwSetInputMode( s_window.GetWindow(), GLFW_CURSOR, ( !visible ) ? GLFW_CURSOR_HIDDEN : GLFW_CURSOR_NORMAL );
 }
 
-Vector2<int> Input::GetCursorPosition() {
-    return Vector2<int>( s_mouseX, s_mouseY );
+Vector2<float> Input::GetCursorPosition() {
+    double xPos = 0.0, yPos = 0.0;
+    glfwGetCursorPos( s_window.GetWindow(), &xPos, &yPos );
+    
+    // printf( "%f, %f\n", xPos, yPos );
+    
+    s_mouseX = ( float ) xPos;
+    s_mouseY = ( float ) yPos;
+    
+    return Vector2<float>( s_mouseX, s_mouseY );
 }
 
-void Input::SetCursorPosition( const Vector2<int> &position ) {
+void Input::SetCursorPosition( const Vector2<float> &position ) {
     glfwSetCursorPos( s_window.GetWindow(), position.GetX(), position.GetY() );
 }
 
@@ -95,8 +105,16 @@ void Input::ButtonCallback( GLFWwindow *handle, int button, int action, int mods
 }
 
 void Input::CursorPositionCallback( GLFWwindow *handle, double xpos, double ypos ) {
-    s_mouseX = xpos;
-    s_mouseY = ypos;
+    // s_mouseX = xpos;
+    // s_mouseY = ypos;
+}
+
+void Input::SetDrawMode( int mode ) {
+    s_drawMode = mode;
+}
+
+int Input::GetDrawMode() {
+    return s_drawMode;
 }
 
 

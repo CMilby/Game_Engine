@@ -23,6 +23,7 @@ private:
     
     float m_speed;
     float m_sensitivity;
+    bool m_mouseLocked;
     
 protected:
     virtual void Init();
@@ -37,6 +38,8 @@ public:
         
         m_speed = 0.3f;
         m_sensitivity = 0.05f;
+        
+        m_mouseLocked = false;
     }
     
     void Move( const Vector3<float> &direction, float amount );

@@ -14,14 +14,10 @@
 #include <vector>
 
 #include <GL/glew.h>
-// #include <glm/glm.hpp>
 
 #include "math3d.h"
 
 struct Vertex {
-    /*glm::vec3 m_position;
-    glm::vec2 m_uv;
-    glm::vec3 m_normal;*/
     Vector3<float> m_position;
     Vector2<float> m_uv;
     Vector3<float> m_normal;
@@ -39,9 +35,6 @@ private:
     GLuint m_normalBuffer;
     GLuint m_elementBuffer;
     
-    /*std::vector<glm::vec3> m_vertices;
-    std::vector<glm::vec2> m_uvs;
-    std::vector<glm::vec3> m_normals;*/
     std::vector<unsigned short> m_indices;
     std::vector<Vector3<float>> m_vertices;
     std::vector<Vector2<float>> m_uvs;

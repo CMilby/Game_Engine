@@ -174,8 +174,8 @@ public:
     static void SetButton( int button, bool value );
     
     static void SetCursor( bool visible );
-    static Vector2<int> GetCursorPosition();
-    static void SetCursorPosition( const Vector2<int> &position );
+    static Vector2<float> GetCursorPosition();
+    static void SetCursorPosition( const Vector2<float> &position );
     
     static const int NUM_KEYS = 512;
     static const int NUM_MOUSE_BUTTONS = 64;
@@ -183,6 +183,9 @@ public:
     static void KeyCallback( GLFWwindow* handle, int key, int scancode, int action, int mods );
     static void ButtonCallback( GLFWwindow *handle, int button, int action, int mods );
     static void CursorPositionCallback( GLFWwindow *handle, double xpos, double ypos );
+    
+    static void SetDrawMode( int mode );
+    static int GetDrawMode();
 private:
     static Input s_instance;
     static Window s_window;
@@ -190,8 +193,10 @@ private:
     static bool s_inputs[ NUM_KEYS ];
     static bool s_mouse[ NUM_MOUSE_BUTTONS ];
     
-    static int s_mouseX;
-    static int s_mouseY;
+    static float s_mouseX;
+    static float s_mouseY;
+    
+    static int s_drawMode;
     
     Input();
 };

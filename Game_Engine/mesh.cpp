@@ -8,6 +8,7 @@
 
 #include "mesh.h"
 
+#include "input.h"
 #include "utility.h"
 
 Mesh::Mesh( const std::string &filename ) {
@@ -57,7 +58,16 @@ void Mesh::Render() const {
     glVertexAttribPointer( 1, 3, GL_FLOAT, GL_FALSE, 0, ( void* ) 0 );
     
     glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, m_elementBuffer );
-    glDrawElements( GL_TRIANGLES, ( unsigned int ) m_indices.size(), GL_UNSIGNED_SHORT, ( void* ) 0 );
+    
+    if ( Input::GetDrawMode() == 0 ) {
+        glDrawElements( GL_TRIANGLES, ( unsigned int ) m_indices.size(), GL_UNSIGNED_SHORT, ( void* ) 0 );
+        // glPolygonMode( GL_FRONT_AND_BACK, GL_FILL );
+    } else if ( Input::GetDrawMode() == 1 ) {
+        // glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
+        glDrawElements( GL_LINES, ( unsigned int ) m_indices.size(), GL_UNSIGNED_SHORT, ( void* ) 0 );
+    }
+    
+    // glDrawElements( GL_TRIANGLES, ( unsigned int ) m_indices.size(), GL_UNSIGNED_SHORT, ( void* ) 0 );
 }
 
 void Mesh::LoadOBJ( const std::string &filename ) {

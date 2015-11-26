@@ -14,51 +14,61 @@
 #include "renderingEngine.h"
 
 void Camera::Init() {
-    Input::SetCursorPosition( Vector2<int>( 1024 / 2, 768 / 2 ) );
+    Input::SetCursorPosition( Vector2<float>( 1024 / 2, 768 / 2 ) );
 }
 
 void Camera::Input( float delta ) {
     float moveSpeed = 0.5 * m_speed;
     
+    Matrix4<float> rotation = m_rotation.ToRotationMatrix();
+    
     if ( Input::IsKeyDown( Input::KEY_A ) ) {
-        Move( m_rotation.GetLeft(), moveSpeed );
+        Move( m_rotation.GetLeft( rotation ), moveSpeed );
     }
     
     if ( Input::IsKeyDown( Input::KEY_D ) ) {
-        Move( m_rotation.GetRight(), moveSpeed );
+        Move( m_rotation.GetRight( rotation ), moveSpeed );
     }
     
     if ( Input::IsKeyDown( Input::KEY_S ) ) {
-        Move( m_rotation.GetBack(), moveSpeed );
+        Move( m_rotation.GetBack( rotation ), moveSpeed );
     }
     
     if ( Input::IsKeyDown( Input::KEY_W ) ) {
-        Move( m_rotation.GetForward(), moveSpeed );
+        Move( m_rotation.GetForward( rotation ), moveSpeed );
     }
     
     if ( Input::IsKeyDown( Input::KEY_SPACE ) ) {
-        Move( m_rotation.GetUp(), moveSpeed );
+        Move( m_rotation.GetUp( rotation ), moveSpeed );
     }
     
     if ( Input::IsKeyDown( Input::KEY_LEFT_SHIFT ) ) {
-        Move( m_rotation.GetDown(), moveSpeed );
+        Move( m_rotation.GetDown( rotation ), moveSpeed );
     }
     
-    /*if ( Input::IsKeyDown( Input::KEY_LEFT_ARROW ) ) {
-        Rotate( Vector3<float>( 0, 1, 0 ), m_sensitivity );
+    if ( Input::IsKeyDown( Input::KEY_LEFT_ARROW ) ) {
+        Rotate( Vector3<float>( 0, -1, 0 ), m_sensitivity );
     }
     
     if ( Input::IsKeyDown( Input::KEY_RIGHT_ARROW ) ) {
-        Rotate( Vector3<float>( 0, 1, 0 ), -m_sensitivity );
+        Rotate( m_rotation.GetUp( rotation ), m_sensitivity );
     }
     
-    if ( Input::IsKeyDown( Input::KEY_UP_ARROW ) ) {
-        Rotate( m_rotation.GetLeft(), m_sensitivity );
+    /*if ( Input::IsKeyDown( Input::KEY_UP_ARROW ) ) {
+        Rotate( m_rotation.GetLeft( rotation ), m_sensitivity );
     }
     
     if ( Input::IsKeyDown( Input::KEY_DOWN_ARROW ) ) {
-        Rotate( m_rotation.GetRight(), m_sensitivity );
+        Rotate( m_rotation.GetRight( rotation ), m_sensitivity );
     }*/
+    
+    if ( Input::IsKeyDown( Input::KEY_0 ) ) {
+        Input::SetDrawMode( 0 );
+    }
+    
+    if ( Input::IsKeyDown( Input::KEY_1 ) ) {
+        Input::SetDrawMode( 1 );
+    }
     
     m_view = m_rotation.ToRotationMatrix() * Matrix4<float>().Transform( m_position * -1 );
     

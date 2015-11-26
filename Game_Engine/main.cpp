@@ -10,6 +10,7 @@
 
 #include "camera.h"
 #include "coreEngine.h"
+#include "cube.h"
 #include "entity.h"
 #include "game.h"
 #include "input.h"
@@ -51,4 +52,7 @@ int main(int argc, const char * argv[]) {
     CoreEngine coreEngine( &window, &game );
     coreEngine.Init();
     coreEngine.Start();
+    
+    Cube( 1, 1 );
+    
 }
