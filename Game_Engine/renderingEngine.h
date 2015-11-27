@@ -16,6 +16,7 @@
 #include "math3d.h"
 #include "shader.h"
 #include "texture.h"
+#include "text2d.h"
 
 class RenderingEngine {
     

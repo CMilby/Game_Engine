@@ -25,6 +25,8 @@ class Entity {
 private:
     std::vector<Entity*> m_children;
     
+    Transform *m_transform;
+    
 protected:
     virtual void Init() {}
     
@@ -43,13 +45,15 @@ public:
     void RenderAll( const Shader &shader, const Camera &camera );
     
     Entity* AddChild( Entity *entity );
+    
+    inline Transform* GetTransform() const { return m_transform; }
+    inline void SetTransform( Transform *transform ) { m_transform = transform; }
 };
 
 class RenderableEntity : public Entity {
     
 private:
     Mesh *m_mesh;
-    Transform *m_transform;
     Material *m_material;
     
     bool m_visible;
@@ -61,12 +65,12 @@ protected:
     
 public:
     RenderableEntity();
-    RenderableEntity( const std::string &meshFile, const std::string &textureFile, TextureType type );
+    RenderableEntity( Mesh *mesh, Material *material );
     virtual ~RenderableEntity();
     
     Matrix4<float> GetModelMatrix() const;
     
-    inline void SetPosition( const Vector3<float> &position ) { m_transform->SetPosition( position ); }
+    inline void SetPosition( const Vector3<float> &position ) { GetTransform()->SetPosition( position ); }
     
     inline void SetVisible( bool visible ) { m_visible = visible; }
     inline bool IsVisible() const { return m_visible; }

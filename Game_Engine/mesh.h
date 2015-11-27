@@ -41,9 +41,10 @@ private:
     std::vector<Vector3<float>> m_normals;
     
     void LoadOBJ( const std::string &filename );
+
     void IndexVBO( std::vector<unsigned short> &outIndices, std::vector<Vector3<float>> &outVertices, std::vector<Vector2<float>> &outUVs, std::vector<Vector3<float>> &outNormals );
-    
     bool GetSimilarVertexIndex( Vertex &vertex, std::map<Vertex, unsigned short> vertexToOut, unsigned short &result );
+    
 public:
     Mesh( const std::string &filename );
     virtual ~Mesh();

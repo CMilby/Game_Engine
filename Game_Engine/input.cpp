@@ -72,8 +72,6 @@ Vector2<float> Input::GetCursorPosition() {
     double xPos = 0.0, yPos = 0.0;
     glfwGetCursorPos( s_window.GetWindow(), &xPos, &yPos );
     
-    // printf( "%f, %f\n", xPos, yPos );
-    
     s_mouseX = ( float ) xPos;
     s_mouseY = ( float ) yPos;
     
