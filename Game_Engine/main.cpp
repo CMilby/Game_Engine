@@ -25,19 +25,22 @@ public:
 };
 
 void TestGame::Init() {
+    Game::Init();
+    
     Camera *camera = new Camera( Vector3<float>( 0, 0, 5 ) );
     RenderingEngine::SetMainCamera( *camera );
     AddToScene( camera );
     
-    RenderableEntity *monkey = new RenderableEntity( new Mesh( "suzanne.obj" ), new Material( new Texture( "test.png", TYPE_PNG ) ) );
+    /*RenderableEntity *monkey = new RenderableEntity( new Mesh( "suzanne.obj" ), new Material( new Texture( "test.png", TYPE_PNG ) ) );
     monkey->SetPosition( Vector3<float>( -2, 1, 1 ) );
     AddToScene( monkey );
     
-    RenderableEntity *cube = new RenderableEntity( new Mesh( "cube.obj" ), new Material( new Texture( "cube.DDS", TYPE_DDS )  ) );
+    RenderableEntity *cube = new RenderableEntity( new Mesh( "cube.obj" ), new Material( new Texture( "cube.DDS", TYPE_DDS ) ) );
     cube->SetPosition( Vector3<float>( 2, -1, -2 ) );
-    AddToScene( cube );
+    AddToScene( cube );*/
     
-    Game::Init();
+    RenderableEntity *sphere = new RenderableEntity( new Mesh( "sphere.obj" ), new Material( new Texture( "test.png", TYPE_PNG ) ) );
+    AddToScene( sphere );
 }
 
 int main(int argc, const char * argv[]) {

@@ -611,12 +611,9 @@ public:
     inline void SetW( float w ) { ( *this )[ 3 ] = w; }
 };
 
-class Color {
+namespace Random {
     
-private:
-    
-public:
-    
+    float InRangeF( float min, float max );
 };
 
 #endif /* math3d_hpp */

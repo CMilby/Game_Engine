@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		44040E461C18E3410058A84B /* libassimp.3.1.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 44040E451C18E3410058A84B /* libassimp.3.1.1.dylib */; };
 		4415CD791BDA7C0100E91770 /* text2d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4415CD771BDA7C0100E91770 /* text2d.cpp */; };
 		4415CD841BDAB5DC00E91770 /* entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4415CD821BDAB5DC00E91770 /* entity.cpp */; };
 		4415CD871BDD6EE200E91770 /* utility.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4415CD851BDD6EE200E91770 /* utility.cpp */; };
@@ -25,6 +26,8 @@
 		447B54151BF04A9600BB5977 /* libSDL2-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 447B54141BF04A9600BB5977 /* libSDL2-2.0.0.dylib */; };
 		449D85F41BD6B6F300B72584 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 449D85F31BD6B6F300B72584 /* OpenGL.framework */; };
 		449D85F91BD6BB0900B72584 /* libGLEW.1.12.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 449D85F81BD6BB0900B72584 /* libGLEW.1.12.0.dylib */; };
+		44B6933E1C077B3600743603 /* stb_image.c in Sources */ = {isa = PBXBuildFile; fileRef = 44B6933C1C077B3600743603 /* stb_image.c */; };
+		44B693431C07A45E00743603 /* phongShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44B693411C07A45E00743603 /* phongShader.cpp */; };
 		44D3CD701BCBFAED0074E300 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44D3CD6F1BCBFAED0074E300 /* main.cpp */; };
 		44D3CD7F1BCC0AC30074E300 /* math3d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44D3CD7D1BCC0AC30074E300 /* math3d.cpp */; };
 		44EF00821C00E51000B5AAFF /* cube.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44EF00801C00E51000B5AAFF /* cube.cpp */; };
@@ -44,6 +47,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		44040E451C18E3410058A84B /* libassimp.3.1.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libassimp.3.1.1.dylib; path = ../../../../usr/local/Cellar/assimp/3.1.1/lib/libassimp.3.1.1.dylib; sourceTree = "<group>"; };
 		4415CD771BDA7C0100E91770 /* text2d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = text2d.cpp; sourceTree = "<group>"; };
 		4415CD781BDA7C0100E91770 /* text2d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = text2d.h; sourceTree = "<group>"; };
 		4415CD821BDAB5DC00E91770 /* entity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = entity.cpp; sourceTree = "<group>"; };
@@ -75,6 +79,12 @@
 		449D85F31BD6B6F300B72584 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		449D85F61BD6BACB00B72584 /* libglfw.3.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw.3.1.dylib; path = ../../../../usr/local/lib/libglfw.3.1.dylib; sourceTree = "<group>"; };
 		449D85F81BD6BB0900B72584 /* libGLEW.1.12.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libGLEW.1.12.0.dylib; path = ../../../../usr/local/Cellar/glew/1.12.0/lib/libGLEW.1.12.0.dylib; sourceTree = "<group>"; };
+		44B6933C1C077B3600743603 /* stb_image.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = stb_image.c; sourceTree = "<group>"; };
+		44B6933D1C077B3600743603 /* stb_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_image.h; sourceTree = "<group>"; };
+		44B6933F1C0782AC00743603 /* material.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = material.h; sourceTree = "<group>"; };
+		44B693401C07837200743603 /* lighting.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lighting.h; sourceTree = "<group>"; };
+		44B693411C07A45E00743603 /* phongShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = phongShader.cpp; sourceTree = "<group>"; };
+		44B693421C07A45E00743603 /* phongShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = phongShader.h; sourceTree = "<group>"; };
 		44D3CD6C1BCBFAED0074E300 /* Game_Engine */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Game_Engine; sourceTree = BUILT_PRODUCTS_DIR; };
 		44D3CD6F1BCBFAED0074E300 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		44D3CD7D1BCC0AC30074E300 /* math3d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = math3d.cpp; sourceTree = "<group>"; };
@@ -90,6 +100,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44040E461C18E3410058A84B /* libassimp.3.1.1.dylib in Frameworks */,
 				447B54151BF04A9600BB5977 /* libSDL2-2.0.0.dylib in Frameworks */,
 				4415CD891BDD70CC00E91770 /* CoreFoundation.framework in Frameworks */,
 				449D85F91BD6BB0900B72584 /* libGLEW.1.12.0.dylib in Frameworks */,
@@ -101,16 +112,10 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		447A392F1BD9512F00190464 /* Tutorial */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Tutorial;
-			sourceTree = "<group>";
-		};
 		449D85F51BD6B6F600B72584 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				44040E451C18E3410058A84B /* libassimp.3.1.1.dylib */,
 				447B54141BF04A9600BB5977 /* libSDL2-2.0.0.dylib */,
 				4415CD881BDD70CC00E91770 /* CoreFoundation.framework */,
 				449D85F81BD6BB0900B72584 /* libGLEW.1.12.0.dylib */,
@@ -118,6 +123,29 @@
 				449D85F31BD6B6F300B72584 /* OpenGL.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		44B693441C07C6E600743603 /* Rendering */ = {
+			isa = PBXGroup;
+			children = (
+				447A39071BD6C57200190464 /* window.cpp */,
+				447A39081BD6C57200190464 /* window.h */,
+				447A39101BD6DCD900190464 /* shader.cpp */,
+				447A39111BD6DCD900190464 /* shader.h */,
+				44B6933F1C0782AC00743603 /* material.h */,
+				44B693401C07837200743603 /* lighting.h */,
+				44B693411C07A45E00743603 /* phongShader.cpp */,
+				44B693421C07A45E00743603 /* phongShader.h */,
+				447A39131BD6F09300190464 /* renderingEngine.cpp */,
+				447A39141BD6F09300190464 /* renderingEngine.h */,
+				447A39161BD7CA4E00190464 /* texture.cpp */,
+				447A39171BD7CA4E00190464 /* texture.h */,
+				4415CD771BDA7C0100E91770 /* text2d.cpp */,
+				4415CD781BDA7C0100E91770 /* text2d.h */,
+				44EF00801C00E51000B5AAFF /* cube.cpp */,
+				44EF00811C00E51000B5AAFF /* cube.h */,
+			);
+			name = Rendering;
 			sourceTree = "<group>";
 		};
 		44D3CD631BCBFAED0074E300 = {
@@ -140,8 +168,8 @@
 		44D3CD6E1BCBFAED0074E300 /* Game_Engine */ = {
 			isa = PBXGroup;
 			children = (
-				447A392F1BD9512F00190464 /* Tutorial */,
 				44D3CD761BCBFAF40074E300 /* Core_Engine */,
+				44B693441C07C6E600743603 /* Rendering */,
 				44D3CD6F1BCBFAED0074E300 /* main.cpp */,
 			);
 			path = Game_Engine;
@@ -152,20 +180,10 @@
 			children = (
 				44D3CD7D1BCC0AC30074E300 /* math3d.cpp */,
 				44D3CD7E1BCC0AC30074E300 /* math3d.h */,
-				447A39071BD6C57200190464 /* window.cpp */,
-				447A39081BD6C57200190464 /* window.h */,
 				447A390A1BD6DAC400190464 /* input.cpp */,
 				447A390B1BD6DAC400190464 /* input.h */,
 				447A390D1BD6DAF300190464 /* mesh.cpp */,
 				447A390E1BD6DAF300190464 /* mesh.h */,
-				447A39101BD6DCD900190464 /* shader.cpp */,
-				447A39111BD6DCD900190464 /* shader.h */,
-				447A39131BD6F09300190464 /* renderingEngine.cpp */,
-				447A39141BD6F09300190464 /* renderingEngine.h */,
-				447A39161BD7CA4E00190464 /* texture.cpp */,
-				447A39171BD7CA4E00190464 /* texture.h */,
-				4415CD771BDA7C0100E91770 /* text2d.cpp */,
-				4415CD781BDA7C0100E91770 /* text2d.h */,
 				4415CD821BDAB5DC00E91770 /* entity.cpp */,
 				4415CD831BDAB5DC00E91770 /* entity.h */,
 				4415CD851BDD6EE200E91770 /* utility.cpp */,
@@ -180,8 +198,8 @@
 				4415CD941BDDC3EE00E91770 /* time.h */,
 				44F722361BDFEB8A0022754F /* game.cpp */,
 				44F722371BDFEB8A0022754F /* game.h */,
-				44EF00801C00E51000B5AAFF /* cube.cpp */,
-				44EF00811C00E51000B5AAFF /* cube.h */,
+				44B6933C1C077B3600743603 /* stb_image.c */,
+				44B6933D1C077B3600743603 /* stb_image.h */,
 			);
 			name = Core_Engine;
 			sourceTree = "<group>";
@@ -245,6 +263,7 @@
 				4415CD8F1BDD8E0400E91770 /* camera.cpp in Sources */,
 				447A39121BD6DCD900190464 /* shader.cpp in Sources */,
 				447A39091BD6C57200190464 /* window.cpp in Sources */,
+				44B693431C07A45E00743603 /* phongShader.cpp in Sources */,
 				44F722381BDFEB8A0022754F /* game.cpp in Sources */,
 				4415CD8C1BDD74D400E91770 /* transform.cpp in Sources */,
 				44D3CD701BCBFAED0074E300 /* main.cpp in Sources */,
@@ -257,6 +276,7 @@
 				44EF00821C00E51000B5AAFF /* cube.cpp in Sources */,
 				44D3CD7F1BCC0AC30074E300 /* math3d.cpp in Sources */,
 				4415CD841BDAB5DC00E91770 /* entity.cpp in Sources */,
+				44B6933E1C077B3600743603 /* stb_image.c in Sources */,
 				4415CD921BDDC38700E91770 /* coreEngine.cpp in Sources */,
 				447A39151BD6F09300190464 /* renderingEngine.cpp in Sources */,
 			);
@@ -351,6 +371,7 @@
 					/usr/local/Cellar/glew/1.12.0/lib,
 					/usr/local/lib/,
 					/usr/local/Cellar/sdl2/2.0.3/lib,
+					/usr/local/Cellar/assimp/3.1.1/lib,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -365,6 +386,7 @@
 					/usr/local/Cellar/glew/1.12.0/lib,
 					/usr/local/lib/,
 					/usr/local/Cellar/sdl2/2.0.3/lib,
+					/usr/local/Cellar/assimp/3.1.1/lib,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

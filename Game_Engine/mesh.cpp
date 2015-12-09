@@ -8,20 +8,44 @@
 
 #include "mesh.h"
 
+#include <assimp/Importer.hpp>
+#include <assimp/scene.h>
+#include <assimp/postprocess.h>
+
 #include "input.h"
 #include "utility.h"
 
 Mesh::Mesh( const std::string &filename ) {
     LoadOBJ( Utility::DirectoryPath() + "models/" + filename );
     
-    std::vector<Vector3<float>> vertices;
+    /*std::vector<Vector3<float>> vertices;
     std::vector<Vector2<float>> uvs;
     std::vector<Vector3<float>> normals;
     IndexVBO( m_indices, vertices, uvs, normals );
     
     m_vertices = vertices;
     m_uvs = uvs;
-    m_normals = normals;
+    m_normals = normals;*/
+    
+    /*Vector3<float> planeNormal( Random::InRangeF( -1.0f, 1.0f ), Random::InRangeF( -1.0f, 1.0f ), Random::InRangeF( -1.0f, 1.0f ) );
+    float scale = 0.995f;
+    unsigned int iterations = 1000;
+    
+    for ( unsigned int j = 0; j < iterations; j++ ) {
+        
+        planeNormal = Vector3<float>( Random::InRangeF( -1.0f, 1.0f ), Random::InRangeF( -1.0f, 1.0f ), Random::InRangeF( -1.0f, 1.0f ) );
+        
+        for ( unsigned int i = 0; i < m_vertices.size(); i++ ) {
+            float dot = m_vertices[ i ].Dot( planeNormal );
+            
+            if ( dot > 0 ) {
+                m_vertices[ i ] /= scale;
+            }
+            if ( dot < 0 ) {
+                m_vertices[ i ] *= scale;
+            }
+        }
+    }*/
     
     glGenBuffers( 1, &m_vertexBuffer );
     glBindBuffer( GL_ARRAY_BUFFER, m_vertexBuffer );
@@ -67,7 +91,35 @@ void Mesh::Render() const {
 }
 
 void Mesh::LoadOBJ( const std::string &filename ) {
-    std::vector<unsigned int> vertexIndices, uvIndices, normalIndices;
+    
+    Assimp::Importer importer;
+    const aiScene *scene = importer.ReadFile( filename.c_str(), aiProcess_Triangulate | aiProcess_GenSmoothNormals | aiProcess_FlipUVs | aiProcess_CalcTangentSpace );
+    
+    if ( !scene ) {
+        fprintf( stderr, "Cannot find mesh" );
+        return;
+    }
+    
+    const aiMesh *model = scene->mMeshes[ 0 ];
+    for ( unsigned int i = 0; i < model->mNumVertices; i++ ) {
+        const aiVector3D pos = model->mVertices[ i ];
+        const aiVector3D normal = model->mNormals[ i ];
+        const aiVector3D texCoord = model->mTextureCoords[ 0 ][ i ];
+        
+        m_vertices.push_back( Vector3<float>( pos.x, pos.y, pos.z ) );
+        m_normals.push_back( Vector3<float>( normal.x, normal.y, normal.z ) );
+        m_uvs.push_back( Vector2<float>( texCoord.x, texCoord.y ) );
+    }
+    
+    for ( unsigned int i = 0; i < model->mNumFaces; i++ ) {
+        const aiFace &face = model->mFaces[ i ];
+        
+        m_indices.push_back( face.mIndices[ 0 ] );
+        m_indices.push_back( face.mIndices[ 1 ] );
+        m_indices.push_back( face.mIndices[ 2 ] );
+    }
+    
+    /*std::vector<unsigned int> vertexIndices, uvIndices, normalIndices;
     std::vector<Vector3<float>> vertices;
     std::vector<Vector2<float>> uvs;
     std::vector<Vector3<float>> normals;
@@ -135,7 +187,7 @@ void Mesh::LoadOBJ( const std::string &filename ) {
         m_vertices.push_back( vertex );
         m_uvs.push_back( uv );
         m_normals.push_back( normal );
-    }
+    }*/
 }
 
 void Mesh::IndexVBO( std::vector<unsigned short> &outIndices, std::vector<Vector3<float>> &outVertices, std::vector<Vector2<float>> &outUVs, std::vector<Vector3<float>> &outNormals ) {

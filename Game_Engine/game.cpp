@@ -9,6 +9,8 @@
 #include "game.h"
 
 void Game::Init() {
+    srand( ( unsigned int ) time( 0 ) );
+    
     m_root.InitAll();
 }
 
