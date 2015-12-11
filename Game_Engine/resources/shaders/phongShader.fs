@@ -31,6 +31,7 @@ struct PointLight
     BaseLight base;
     Attenuation atten;
     vec3 position;
+    float range;
 };
 
 struct SpotLight
@@ -65,9 +66,7 @@ vec4 calcLight(BaseLight base, vec3 direction, vec3 normal)
         
         vec3 directionToEye = normalize(eyePos - worldPos0);
         vec3 reflectDirection = normalize(reflect(direction, normal));
-        //vec3 halfDirection = normalize(directionToEye - direction);
         
-        //float specularFactor = dot(halfDirection, normal);
         float specularFactor = dot(directionToEye, reflectDirection);
         specularFactor = pow(specularFactor, specularPower);
         
@@ -90,8 +89,8 @@ vec4 calcPointLight(PointLight pointLight, vec3 normal)
     vec3 lightDirection = worldPos0 - pointLight.position;
     float distanceToPoint = length(lightDirection);
     
-    //if(distanceToPoint > pointLight.range)
-    //return vec4(0,0,0,0);
+    if(distanceToPoint > pointLight.range)
+        return vec4(0,0,0,0);
     
     lightDirection = normalize(lightDirection);
     

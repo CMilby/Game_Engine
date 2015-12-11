@@ -8,10 +8,13 @@
 
 #include "shader.h"
 
+#include <cassert>
 #include <fstream>
 #include <vector>
 
 #include "utility.h"
+
+static void checkShaderError(int shader, int flag, bool isProgram, const std::string& errorMessage);
 
 std::map<std::string, GLuint> Shader::s_uniformMap = std::map<std::string, GLuint>();
 std::map<std::string, GLuint> Shader::s_attributeMap = std::map<std::string, GLuint>();
@@ -48,11 +51,17 @@ void Shader::LoadShader( const std::string &filename, int type ) {
     glCompileShader( shaderID );
     
     glGetShaderiv( shaderID, GL_COMPILE_STATUS, &result );
+    if ( !result ) {
+        fprintf( stderr, "Failed to compile shader\n" );
+    }
+    
     glGetShaderiv( shaderID, GL_INFO_LOG_LENGTH, &infoLogLength );
     
     std::vector<char> shaderErrorMessage( infoLogLength );
     glGetShaderInfoLog( shaderID, infoLogLength, NULL, &shaderErrorMessage[ 0 ] );
-    // fprintf( stdout, "%s\n", &shaderErrorMessage[ 0 ] );
+    if ( shaderErrorMessage.size() > 0 ) {
+        fprintf( stdout, "%s\n", &shaderErrorMessage[ 0 ] );
+    }
     
     AttachShader( shaderID );
 }
@@ -70,23 +79,44 @@ void Shader::AttachShader( int shaderID ) const {
 }
 
 void Shader::LinkProgram() const {
-    glLinkProgram( m_program );
+    glLinkProgram(m_program);
+    checkShaderError(m_program, GL_LINK_STATUS, true, "Error linking shader program");
+
+    
+    glValidateProgram(m_program);
+    checkShaderError(m_program, GL_VALIDATE_STATUS, true, "Invalid shader program");
 }
 
 void Shader::Bind() const {
     glUseProgram( m_program );
 }
 
-void Shader::UpdateUniforms( const Matrix4<float> &world, const Matrix4<float> &projected, const Camera &camera, const Material &material ) const {
+void Shader::UpdateUniforms( const Matrix4<float> &world, const Matrix4<float> &projected, const Camera &camera, const Material &material ) {
     
 }
 
 void Shader::AddUniform( const std::string &name ) {
-    s_uniformMap[ name ] = glGetUniformLocation( m_program, name.c_str() );
+    int location = glGetUniformLocation( m_program, name.c_str() );
+    
+    if( location == INVALID_LOCATION ) {
+        fprintf( stderr, "Can't find uniform %s\n", name.c_str() );
+        return;
+    }
+    
+    s_uniformMap[ name ] = location;
 }
 
 void Shader::AddAttribute( const std::string &name ) {
-    s_attributeMap[ name ] = glGetAttribLocation( m_program, name.c_str() );
+    int location = glGetAttribLocation( m_program, name.c_str() );
+    
+    // printf( "%s %i\n", name.c_str(), location );
+    
+    if( location == INVALID_LOCATION ) {
+        fprintf( stderr, "Can't find attribute %s\n", name.c_str() );
+        return;
+    }
+    
+    s_attributeMap[ name ] = location;
 }
 
 void Shader::SetAttribLocation( const std::string &name, int location ) const {
@@ -109,8 +139,26 @@ void Shader::UniformVector3f( const std::string &name, const Vector3<float> &val
     glUniform3f( s_uniformMap[ name ], value.GetX(), value.GetY(), value.GetZ() );
 }
 
-
-
+static void checkShaderError(int shader, int flag, bool isProgram, const std::string& errorMessage) {
+    GLint success = 0;
+    GLchar error[1024] = { 0 };
+    
+    if(isProgram)
+        glGetProgramiv(shader, flag, &success);
+    else
+        glGetShaderiv(shader, flag, &success);
+    
+    if(!success)
+    {
+        if(isProgram)
+            glGetProgramInfoLog(shader, sizeof(error), NULL, error);
+        else
+            glGetShaderInfoLog(shader, sizeof(error), NULL, error);
+        
+        fprintf( stderr, "%s: '%s'\n", errorMessage.c_str(), error);
+        // printf( "%s: '%s'\n", errorMessage, error );
+    }
+}
 
 
 

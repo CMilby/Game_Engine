@@ -43,7 +43,7 @@ void Entity::UpdateAll( float delta ) {
     }
 }
 
-void Entity::RenderAll( const Shader &shader, const Camera &camera ) {
+void Entity::RenderAll( Shader &shader, const Camera &camera ) {
     Render( shader, camera );
     for ( unsigned int i = 0; i < m_children.size(); i++ ) {
         m_children[ i ]->RenderAll( shader, camera );
@@ -82,14 +82,16 @@ void RenderableEntity::Update( float delta ) {
     
 }
 
-void RenderableEntity::Render( const Shader &shader, const Camera &camera ) {
+void RenderableEntity::Render( Shader &shader, const Camera &camera ) {
     if ( m_visible ) {
         shader.Bind();
-        m_material->m_texture->Bind();
-        shader.Uniform1i( "myTextureSampler", 0 );
+    
+        shader.UpdateUniforms( GetModelMatrix(), Transform::GetProjection() * camera.GetView() * GetModelMatrix(), camera, *m_material );
+        
+        /*shader.Uniform1i( "myTextureSampler", 0 );
     
         shader.UniformMatrix4f( "MVP", Transform::GetProjection() * camera.GetView() * GetModelMatrix() );
-        shader.UniformMatrix4f( "M", GetModelMatrix() );
+        shader.UniformMatrix4f( "M", GetModelMatrix() );*/
         
         m_mesh->Render();
     }

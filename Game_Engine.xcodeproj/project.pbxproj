@@ -17,6 +17,7 @@
 		4415CD921BDDC38700E91770 /* coreEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4415CD901BDDC38700E91770 /* coreEngine.cpp */; };
 		4415CD951BDDC3EE00E91770 /* time.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4415CD931BDDC3EE00E91770 /* time.cpp */; };
 		4415CD961BDDCD6400E91770 /* libglfw.3.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 449D85F61BD6BACB00B72584 /* libglfw.3.1.dylib */; };
+		442C78981C1A85E70083D86D /* basicShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 442C78961C1A85E70083D86D /* basicShader.cpp */; };
 		447A39091BD6C57200190464 /* window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 447A39071BD6C57200190464 /* window.cpp */; };
 		447A390C1BD6DAC400190464 /* input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 447A390A1BD6DAC400190464 /* input.cpp */; };
 		447A390F1BD6DAF300190464 /* mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 447A390D1BD6DAF300190464 /* mesh.cpp */; };
@@ -30,7 +31,6 @@
 		44B693431C07A45E00743603 /* phongShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44B693411C07A45E00743603 /* phongShader.cpp */; };
 		44D3CD701BCBFAED0074E300 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44D3CD6F1BCBFAED0074E300 /* main.cpp */; };
 		44D3CD7F1BCC0AC30074E300 /* math3d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44D3CD7D1BCC0AC30074E300 /* math3d.cpp */; };
-		44EF00821C00E51000B5AAFF /* cube.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44EF00801C00E51000B5AAFF /* cube.cpp */; };
 		44F722381BDFEB8A0022754F /* game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44F722361BDFEB8A0022754F /* game.cpp */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +63,14 @@
 		4415CD911BDDC38700E91770 /* coreEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = coreEngine.h; sourceTree = "<group>"; };
 		4415CD931BDDC3EE00E91770 /* time.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = time.cpp; sourceTree = "<group>"; };
 		4415CD941BDDC3EE00E91770 /* time.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = time.h; sourceTree = "<group>"; };
+		442C78961C1A85E70083D86D /* basicShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = basicShader.cpp; sourceTree = "<group>"; };
+		442C78971C1A85E70083D86D /* basicShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = basicShader.h; sourceTree = "<group>"; };
+		442C789A1C1B09770083D86D /* PhongShader.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = PhongShader.fs; path = resources/shaders/PhongShader.fs; sourceTree = "<group>"; };
+		442C789B1C1B09770083D86D /* PhongShader.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = PhongShader.vs; path = resources/shaders/PhongShader.vs; sourceTree = "<group>"; };
+		442C789C1C1B09770083D86D /* StandardShading.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = StandardShading.fs; path = resources/shaders/StandardShading.fs; sourceTree = "<group>"; };
+		442C789D1C1B09770083D86D /* StandardShading.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = StandardShading.vs; path = resources/shaders/StandardShading.vs; sourceTree = "<group>"; };
+		442C789E1C1B09770083D86D /* TextVertexShader.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = TextVertexShader.fs; path = resources/shaders/TextVertexShader.fs; sourceTree = "<group>"; };
+		442C789F1C1B09770083D86D /* TextVertexShader.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = TextVertexShader.vs; path = resources/shaders/TextVertexShader.vs; sourceTree = "<group>"; };
 		447A39071BD6C57200190464 /* window.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = window.cpp; sourceTree = "<group>"; };
 		447A39081BD6C57200190464 /* window.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = window.h; sourceTree = "<group>"; };
 		447A390A1BD6DAC400190464 /* input.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = input.cpp; sourceTree = "<group>"; };
@@ -89,8 +97,6 @@
 		44D3CD6F1BCBFAED0074E300 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		44D3CD7D1BCC0AC30074E300 /* math3d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = math3d.cpp; sourceTree = "<group>"; };
 		44D3CD7E1BCC0AC30074E300 /* math3d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = math3d.h; sourceTree = "<group>"; };
-		44EF00801C00E51000B5AAFF /* cube.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cube.cpp; sourceTree = "<group>"; };
-		44EF00811C00E51000B5AAFF /* cube.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cube.h; sourceTree = "<group>"; };
 		44F722361BDFEB8A0022754F /* game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = game.cpp; sourceTree = "<group>"; };
 		44F722371BDFEB8A0022754F /* game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = game.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -112,6 +118,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		442C78991C1B09650083D86D /* Shaders */ = {
+			isa = PBXGroup;
+			children = (
+				442C789A1C1B09770083D86D /* PhongShader.fs */,
+				442C789B1C1B09770083D86D /* PhongShader.vs */,
+				442C789C1C1B09770083D86D /* StandardShading.fs */,
+				442C789D1C1B09770083D86D /* StandardShading.vs */,
+				442C789E1C1B09770083D86D /* TextVertexShader.fs */,
+				442C789F1C1B09770083D86D /* TextVertexShader.vs */,
+			);
+			name = Shaders;
+			sourceTree = "<group>";
+		};
 		449D85F51BD6B6F600B72584 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -128,22 +147,23 @@
 		44B693441C07C6E600743603 /* Rendering */ = {
 			isa = PBXGroup;
 			children = (
-				447A39071BD6C57200190464 /* window.cpp */,
-				447A39081BD6C57200190464 /* window.h */,
+				442C78991C1B09650083D86D /* Shaders */,
 				447A39101BD6DCD900190464 /* shader.cpp */,
 				447A39111BD6DCD900190464 /* shader.h */,
-				44B6933F1C0782AC00743603 /* material.h */,
-				44B693401C07837200743603 /* lighting.h */,
+				442C78961C1A85E70083D86D /* basicShader.cpp */,
+				442C78971C1A85E70083D86D /* basicShader.h */,
 				44B693411C07A45E00743603 /* phongShader.cpp */,
 				44B693421C07A45E00743603 /* phongShader.h */,
 				447A39131BD6F09300190464 /* renderingEngine.cpp */,
 				447A39141BD6F09300190464 /* renderingEngine.h */,
 				447A39161BD7CA4E00190464 /* texture.cpp */,
 				447A39171BD7CA4E00190464 /* texture.h */,
+				44B6933F1C0782AC00743603 /* material.h */,
+				44B693401C07837200743603 /* lighting.h */,
 				4415CD771BDA7C0100E91770 /* text2d.cpp */,
 				4415CD781BDA7C0100E91770 /* text2d.h */,
-				44EF00801C00E51000B5AAFF /* cube.cpp */,
-				44EF00811C00E51000B5AAFF /* cube.h */,
+				447A39071BD6C57200190464 /* window.cpp */,
+				447A39081BD6C57200190464 /* window.h */,
 			);
 			name = Rendering;
 			sourceTree = "<group>";
@@ -269,11 +289,11 @@
 				44D3CD701BCBFAED0074E300 /* main.cpp in Sources */,
 				447A390C1BD6DAC400190464 /* input.cpp in Sources */,
 				447A390F1BD6DAF300190464 /* mesh.cpp in Sources */,
+				442C78981C1A85E70083D86D /* basicShader.cpp in Sources */,
 				4415CD791BDA7C0100E91770 /* text2d.cpp in Sources */,
 				4415CD951BDDC3EE00E91770 /* time.cpp in Sources */,
 				447A39181BD7CA4E00190464 /* texture.cpp in Sources */,
 				4415CD871BDD6EE200E91770 /* utility.cpp in Sources */,
-				44EF00821C00E51000B5AAFF /* cube.cpp in Sources */,
 				44D3CD7F1BCC0AC30074E300 /* math3d.cpp in Sources */,
 				4415CD841BDAB5DC00E91770 /* entity.cpp in Sources */,
 				44B6933E1C077B3600743603 /* stb_image.c in Sources */,

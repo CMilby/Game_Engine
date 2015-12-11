@@ -10,7 +10,6 @@
 
 #include "camera.h"
 #include "coreEngine.h"
-#include "cube.h"
 #include "entity.h"
 #include "game.h"
 #include "input.h"
@@ -39,8 +38,11 @@ void TestGame::Init() {
     cube->SetPosition( Vector3<float>( 2, -1, -2 ) );
     AddToScene( cube );*/
     
-    RenderableEntity *sphere = new RenderableEntity( new Mesh( "sphere.obj" ), new Material( new Texture( "test.png", TYPE_PNG ) ) );
-    AddToScene( sphere );
+    /*RenderableEntity *sphere = new RenderableEntity( new Mesh( "sphere.obj" ), new Material( new Texture( "test.png", TYPE_PNG ) ) );
+    AddToScene( sphere );*/
+    
+    RenderableEntity *cubeSub = new RenderableEntity( new Mesh( "cube_subdivide.obj" ), new Material( new Texture( "test.png", TYPE_PNG ) ) );
+    AddToScene( cubeSub );
 }
 
 int main(int argc, const char * argv[]) {

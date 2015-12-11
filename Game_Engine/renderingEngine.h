@@ -32,7 +32,7 @@ public:
     
     inline static void SetMainCamera( const Camera &camera ) { s_mainCamera = camera; }
     
-    void Init() const;
+    void Init();
     void Render( Entity &root );
 };
 

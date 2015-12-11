@@ -18,6 +18,8 @@
 #include "material.h"
 #include "math3d.h"
 
+#define INVALID_LOCATION 0xFFFFFFFF
+
 class Shader {
     
 private:
@@ -31,6 +33,7 @@ private:
 public:
     Shader();
     virtual ~Shader();
+    virtual void Init() {}
     
     void AddFragmentShader( const std::string &filename );
     void AddVertexShader( const std::string &filename );
@@ -40,7 +43,10 @@ public:
     
     void Bind() const;
     
-    virtual void UpdateUniforms( const Matrix4<float> &world, const Matrix4<float> &projected,  const Camera &camera, const Material &material ) const;
+    virtual void Enable() {}
+    virtual void Disable() {}
+    
+    virtual void UpdateUniforms( const Matrix4<float> &world, const Matrix4<float> &projected,  const Camera &camera, const Material &material );
     
     void AddUniform( const std::string &name );
     inline GLuint GetUniform( const std::string &name ) const { return s_uniformMap[ name ]; }

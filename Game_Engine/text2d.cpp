@@ -31,8 +31,9 @@ void Text2D::Init() {
     glGenBuffers( 1, &m_uvBuffer );
     
     m_shader = new Shader();
-    m_shader->AddVertexShader( "TextVertexShader.vertexshader" );
-    m_shader->AddFragmentShader( "TextVertexShader.fragmentshader" );
+    m_shader->AddVertexShader( "TextVertexShader.vs" );
+    m_shader->AddFragmentShader( "TextVertexShader.fs" );
+    
     m_shader->LinkProgram();
     
     m_shader->AddAttribute( "vertexPosition_screenspace" );

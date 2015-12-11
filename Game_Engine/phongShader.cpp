@@ -1,5 +1,5 @@
 //
-//  phongcpp
+//  phongShader.cpp
 //  Game_Engine
 //
 //  Created by Craig Milby on 11/26/15.
@@ -16,20 +16,33 @@ std::vector<PointLight> PhongShader::s_pointLights = std::vector<PointLight>();
 std::vector<SpotLight> PhongShader::s_spotLights = std::vector<SpotLight>();
 
 PhongShader::PhongShader() {
-    AddVertexShader( "phongShader.vs" );
-    AddFragmentShader( "phongShader.fs" );
     
-    SetAttribLocation( "position", 0 );
-    SetAttribLocation( "texCoord", 1 );
-    SetAttribLocation( "normal", 2 );
+}
+
+PhongShader::~PhongShader() {
+    
+}
+
+void PhongShader::Init() {
+    AddVertexShader( "PhongShader.vs" );
+    AddFragmentShader( "PhongShader.fs" );
+    
+    // SetAttribLocation( "position", 0 );
+    // SetAttribLocation( "texCoord", 1 );
+    // SetAttribLocation( "normal", 2 );
     
     LinkProgram();
+    
+    AddAttribute( "position" );
+    AddAttribute( "texCoord" );
+    AddAttribute( "normal" );
     
     AddUniform( "transform" );
     AddUniform( "transformProjected" );
     AddUniform( "baseColor" );
     AddUniform( "ambientLight" );
     
+    AddUniform( "sampler" );
     AddUniform( "specularIntensity" );
     AddUniform( "specularPower" );
     AddUniform( "eyePos" );
@@ -45,7 +58,7 @@ PhongShader::PhongShader() {
         AddUniform( plName + ".base.intensity" );
         AddUniform( plName + ".atten.constant" );
         AddUniform( plName + ".atten.linear" );
-        AddUniform( plName + ".atten.exponenet" );
+        AddUniform( plName + ".atten.exponent" );
         AddUniform( plName + ".position" );
     }
     
@@ -61,18 +74,26 @@ PhongShader::PhongShader() {
         AddUniform( slName + ".direction" );
         AddUniform( slName + ".cutoff" );
     }
-}
-
-PhongShader::~PhongShader() {
     
+    s_ambientLight = Vector3<float>( 0.5f, 0.5f, 0.5f );
+    s_directionalLight = DirectionalLight( BaseLight( Vector3<float>( 1.0f, 0.0f, 0.0f ), 8.0f ), Vector3<float>( 0.0f, 0.0f, 8.0f ) );
 }
 
-void PhongShader::UpdateUniforms( const Matrix4<float> &world, const Matrix4<float> &projected, const Camera &camera, const Material &material ) const {
+void PhongShader::Enable() {
+    glEnableVertexAttribArray( GetAttribute( "position" ) );
+    glEnableVertexAttribArray( GetAttribute( "texCoord" ) );
+    glEnableVertexAttribArray( GetAttribute( "normal" ) );
+}
+
+void PhongShader::Disable() {
+    glDisableVertexAttribArray( GetAttribute( "position" ) );
+    glDisableVertexAttribArray( GetAttribute( "texCoord" ) );
+    glDisableVertexAttribArray( GetAttribute( "normal" ) );
+}
+
+void PhongShader::UpdateUniforms( const Matrix4<float> &world, const Matrix4<float> &projected, const Camera &camera, const Material &material ) {
     material.m_texture->Bind();
-    Uniform1i( "myTextureSampler", 0 );
-    
-    // UniformMatrix4f( "MVP", Transform::GetProjection() * camera.GetView() * GetModelMatrix() );
-    // UniformMatrix4f( "M", GetModelMatrix() );
+    Uniform1i( "sampler", 0 );
     
     UniformMatrix4f( "transformProjected", projected );
     UniformMatrix4f( "transform", world );

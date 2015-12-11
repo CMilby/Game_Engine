@@ -18,6 +18,19 @@
 Mesh::Mesh( const std::string &filename ) {
     LoadOBJ( Utility::DirectoryPath() + "models/" + filename );
     
+    float radius = 5.0f;
+    for ( unsigned int i = 0; i < m_vertices.size(); i++ ) {
+        float x = m_vertices[ i ].GetX();
+        float y = m_vertices[ i ].GetY();
+        float z = m_vertices[ i ].GetZ();
+        
+        float dx = x * sqrtf( 1.0f - ( y * y / 2.0f ) - ( z * z / 2.0f ) + ( y * y * z * z / 3.0f ) );
+        float dy = y * sqrtf( 1.0f - ( z * z / 2.0f ) - ( x * x / 2.0f ) + ( z * z * x * x / 3.0f ) );
+        float dz = z * sqrtf( 1.0f - ( x * x / 2.0f ) - ( y * y / 2.0f ) + ( x * x * y * y / 3.0f ) );
+        
+        m_vertices[ i ] = Vector3<float>( dx, dy, dz ).Normalized() * radius;
+    }
+    
     /*std::vector<Vector3<float>> vertices;
     std::vector<Vector2<float>> uvs;
     std::vector<Vector3<float>> normals;
@@ -118,76 +131,6 @@ void Mesh::LoadOBJ( const std::string &filename ) {
         m_indices.push_back( face.mIndices[ 1 ] );
         m_indices.push_back( face.mIndices[ 2 ] );
     }
-    
-    /*std::vector<unsigned int> vertexIndices, uvIndices, normalIndices;
-    std::vector<Vector3<float>> vertices;
-    std::vector<Vector2<float>> uvs;
-    std::vector<Vector3<float>> normals;
-    
-    FILE *file = fopen( filename.c_str(), "r" );
-    if ( file == NULL ) {
-        fprintf( stderr, "Unable to open OBJ file\n" );
-        getchar();
-        return;
-    }
-    
-    while ( true ) {
-        char lineHeader[ 128 ];
-        int res = fscanf( file, "%s", lineHeader );
-        if ( res == EOF ) {
-            break;
-        }
-        
-        if ( strcmp( lineHeader, "v" ) == 0 ) {
-            float x, y, z;
-            fscanf( file, "%f %f %f\n", &x, &y, &z );
-            vertices.push_back( Vector3<float>( x, y, z ) );
-        } else if ( strcmp( lineHeader, "vt" ) == 0 ) {
-            float x, y;
-            fscanf( file, "%f %f\n", &x, &y );
-            y = -y;
-            uvs.push_back( Vector2<float>( x, y ) );
-        } else if ( strcmp( lineHeader, "vn" ) == 0 ) {
-            float x, y, z;
-            fscanf( file, "%f %f %f\n", &x, &y, &z );
-            normals.push_back( Vector3<float>( x, y, z ) );
-        } else if ( strcmp( lineHeader, "f" ) == 0 ) {
-            std::string vertex1, vertex2, vertex3;
-            unsigned int vertexIndex[ 3 ], uvIndex[ 3 ], normalIndex[ 3 ];
-            int matches = fscanf( file, "%d/%d/%d %d/%d/%d %d/%d/%d\n", &vertexIndex[0], &uvIndex[0], &normalIndex[0], &vertexIndex[1], &uvIndex[1], &normalIndex[1], &vertexIndex[2], &uvIndex[2], &normalIndex[2] );
-            if ( matches != 9 ) {
-                fprintf( stderr, "File can't be read. Problem with faces." );
-                return;
-            }
-            
-            vertexIndices.push_back( vertexIndex[ 0 ] );
-            vertexIndices.push_back( vertexIndex[ 1 ] );
-            vertexIndices.push_back( vertexIndex[ 2 ] );
-            uvIndices.push_back( uvIndex [ 0 ] );
-            uvIndices.push_back( uvIndex [ 1 ] );
-            uvIndices.push_back( uvIndex [ 2 ] );
-            normalIndices.push_back( normalIndex[ 0 ] );
-            normalIndices.push_back( normalIndex[ 1 ] );
-            normalIndices.push_back( normalIndex[ 2 ] );
-        } else {
-            char commentBuffer[ 1000 ];
-            fgets( commentBuffer, 1000, file );
-        }
-    }
-    
-    for ( unsigned int i = 0; i < vertexIndices.size(); i++ ) {
-        unsigned int vertexIndex = vertexIndices [ i ];
-        unsigned int uvIndex = uvIndices[ i ];
-        unsigned int normalIndex = normalIndices[ i ];
-        
-        Vector3<float> vertex = vertices[ vertexIndex - 1 ];
-        Vector2<float> uv = uvs[ uvIndex - 1 ];
-        Vector3<float> normal = normals[ normalIndex - 1 ];
-        
-        m_vertices.push_back( vertex );
-        m_uvs.push_back( uv );
-        m_normals.push_back( normal );
-    }*/
 }
 
 void Mesh::IndexVBO( std::vector<unsigned short> &outIndices, std::vector<Vector3<float>> &outVertices, std::vector<Vector2<float>> &outUVs, std::vector<Vector3<float>> &outNormals ) {
