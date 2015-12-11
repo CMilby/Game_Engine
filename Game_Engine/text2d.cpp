@@ -21,7 +21,7 @@ Text2D::~Text2D() {
     glDeleteBuffers( 1, &m_uvBuffer );
     
     if ( m_texture ) delete m_texture;
-    if ( m_shader ) delete m_shader;
+    // if ( m_shader ) delete m_shader;
 }
 
 void Text2D::Init() {
@@ -30,16 +30,13 @@ void Text2D::Init() {
     glGenBuffers( 1, &m_vertexBuffer );
     glGenBuffers( 1, &m_uvBuffer );
     
-    m_shader = new Shader();
-    m_shader->AddVertexShader( "TextVertexShader.vs" );
-    m_shader->AddFragmentShader( "TextVertexShader.fs" );
+    // m_shader = new Shader();
+    AddVertexShader( "TextVertexShader.vs" );
+    AddFragmentShader( "TextVertexShader.fs" );
     
-    m_shader->LinkProgram();
+    LinkProgram();
     
-    m_shader->AddAttribute( "vertexPosition_screenspace" );
-    m_shader->AddAttribute( "vertexUV" );
-    
-    m_shader->AddUniform( "myTextureSampler" );
+    AddUniform( "myTextureSampler" );
 }
 
 void Text2D::PrintText2D( const char *text, int x, int y, int size ) {
@@ -85,18 +82,18 @@ void Text2D::PrintText2D( const char *text, int x, int y, int size ) {
     glBindBuffer( GL_ARRAY_BUFFER, m_uvBuffer );
     glBufferData( GL_ARRAY_BUFFER, uvs.size() * sizeof( Vector2<float> ), &uvs[ 0 ], GL_STATIC_DRAW );
     
-    m_shader->Bind();
+    Bind();
     
     m_texture->Bind();
-    glUniform1i( m_shader->GetUniform( "myTextureSampler" ), 0 );
+    Uniform1i( "myTextureSampler", 0 );
     
-    glEnableVertexAttribArray( m_shader->GetAttribute( "vertexPosition_screenspace" ) );
+    glEnableVertexAttribArray( 0 );
     glBindBuffer( GL_ARRAY_BUFFER, m_vertexBuffer );
-    glVertexAttribPointer( m_shader->GetAttribute( "vertexPosition_screenspace" ), 2, GL_FLOAT, GL_FALSE, 0, ( void* ) 0 );
+    glVertexAttribPointer( 0, 2, GL_FLOAT, GL_FALSE, 0, ( void* ) 0 );
     
-    glEnableVertexAttribArray( m_shader->GetAttribute( "vertexUV" ) );
+    glEnableVertexAttribArray( 1 );
     glBindBuffer( GL_ARRAY_BUFFER, m_uvBuffer );
-    glVertexAttribPointer( m_shader->GetAttribute( "vertexUV" ), 2, GL_FLOAT, GL_FALSE, 0, ( void* ) 0 );
+    glVertexAttribPointer( 1, 2, GL_FLOAT, GL_FALSE, 0, ( void* ) 0 );
     
     glEnable( GL_BLEND );
     glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
@@ -105,8 +102,8 @@ void Text2D::PrintText2D( const char *text, int x, int y, int size ) {
     
     glDisable( GL_BLEND );
     
-    glDisableVertexAttribArray( m_shader->GetAttribute( "vertexPosition_screenspace" ) );
-    glDisableVertexAttribArray( m_shader->GetAttribute( "vertexUV" ) );
+    glDisableVertexAttribArray( 0 );
+    glDisableVertexAttribArray( 1 );
 }
 
 

@@ -9,12 +9,15 @@
 #include "renderingEngine.h"
 
 #include "basicShader.h"
+#include "geometryPassTech.h"
 #include "phongShader.h"
 
 Camera RenderingEngine::s_mainCamera = Camera();
 
 RenderingEngine::RenderingEngine() {
     m_shader = new PhongShader();
+    // m_geomPass = new GeometryPassTech();
+    // m_gBuffer = new GBuffer();
     m_text2d = new Text2D( "Holstein.DDS" );
 }
 
@@ -30,6 +33,13 @@ void RenderingEngine::Init() {
     glEnable( GL_CULL_FACE );
     
     m_shader->Init();
+
+    // m_gBuffer->Init( 1024, 768 );
+    
+    /*m_geomPass->Init();
+    m_geomPass->Enable();
+    m_geomPass->SetColorTextureUint( COLOR_TEXTURE_UNIT_INDEX );*/
+    
     m_text2d->Init();
 }
 

@@ -1,11 +1,13 @@
-#version 120
+#version 330 core
 
 const int MAX_POINT_LIGHTS = 4;
 const int MAX_SPOT_LIGHTS = 4;
 
-varying vec2 texCoord0;
-varying vec3 normal0;
-varying vec3 worldPos0;
+in vec2 texCoord0;
+in vec3 normal0;
+in vec3 worldPos0;
+
+out vec4 fragColor;
 
 struct BaseLight
 {
@@ -122,9 +124,13 @@ vec4 calcSpotLight(SpotLight spotLight, vec3 normal)
 
 void main()
 {
-    vec4 color = vec4(baseColor, 1) * texture2D(sampler, texCoord0.xy);
-    
     vec4 totalLight = vec4(ambientLight,1);
+    vec4 color = vec4(baseColor, 1);
+    vec4 textureColor = texture(sampler, texCoord0.xy);
+    
+    if(textureColor != vec4(0,0,0,0))
+        color *= textureColor;
+    
     vec3 normal = normalize(normal0);
     
     totalLight += calcDirectionalLight(directionalLight, normal);
@@ -137,5 +143,5 @@ void main()
         if(spotLights[i].pointLight.base.intensity > 0)
             totalLight += calcSpotLight(spotLights[i], normal);
     
-    gl_FragColor = color * totalLight;
+    fragColor = color * totalLight;
 }

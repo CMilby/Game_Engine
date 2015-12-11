@@ -21,6 +21,9 @@ std::map<std::string, GLuint> Shader::s_attributeMap = std::map<std::string, GLu
 
 Shader::Shader() {
     m_program = glCreateProgram();
+    glGenVertexArrays( 1, &m_vao );
+    
+    glBindVertexArray( m_vao );
 }
 
 Shader::~Shader() {
@@ -79,12 +82,12 @@ void Shader::AttachShader( int shaderID ) const {
 }
 
 void Shader::LinkProgram() const {
-    glLinkProgram(m_program);
-    checkShaderError(m_program, GL_LINK_STATUS, true, "Error linking shader program");
+    glLinkProgram( m_program );
+    checkShaderError( m_program, GL_LINK_STATUS, true, "Error linking shader program" );
 
     
-    glValidateProgram(m_program);
-    checkShaderError(m_program, GL_VALIDATE_STATUS, true, "Invalid shader program");
+    glValidateProgram( m_program );
+    checkShaderError( m_program, GL_VALIDATE_STATUS, true, "Invalid shader program" );
 }
 
 void Shader::Bind() const {
@@ -121,6 +124,10 @@ void Shader::AddAttribute( const std::string &name ) {
 
 void Shader::SetAttribLocation( const std::string &name, int location ) const {
     glBindAttribLocation( m_program, location, name.c_str() );
+}
+
+void Shader::Uniform1ui( const std::string &name, unsigned int value ) const {
+    glUniform1ui( s_uniformMap[ name ], value );
 }
 
 void Shader::Uniform1i( const std::string &name, int value ) const {

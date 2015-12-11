@@ -22,9 +22,9 @@ void BasicShader::Init() {
     
     LinkProgram();
     
-    AddAttribute( "vertexPosition_modelspace" );
-    AddAttribute( "vertexUV" );
-    AddAttribute( "vertexNormal_modelspace" );
+    // AddAttribute( "vertexPosition_modelspace" );
+    // AddAttribute( "vertexUV" );
+    // AddAttribute( "vertexNormal_modelspace" );
     
     AddUniform( "MVP" );
     AddUniform( "V" );
@@ -34,15 +34,15 @@ void BasicShader::Init() {
 }
 
 void BasicShader::Enable() {
-    glEnableVertexAttribArray( GetAttribute( "vertexPosition_modelspace" ) );
-    glEnableVertexAttribArray( GetAttribute( "vertexUV" ) );
-    glEnableVertexAttribArray( GetAttribute( "vertexNormal_modelspace" ) );
+    glEnableVertexAttribArray( 0 );
+    glEnableVertexAttribArray( 1 );
+    glEnableVertexAttribArray( 2 );
 }
 
 void BasicShader::Disable() {
-    glDisableVertexAttribArray( GetAttribute( "vertexPosition_modelspace" ) );
-    glDisableVertexAttribArray( GetAttribute( "vertexUV" ) );
-    glDisableVertexAttribArray( GetAttribute( "vertexNormal_modelspace" ) );
+    glDisableVertexAttribArray( 0 );
+    glDisableVertexAttribArray( 1 );
+    glDisableVertexAttribArray( 2 );
 }
 
 void BasicShader::UpdateUniforms( const Matrix4<float> &world, const Matrix4<float> &projected, const Camera &camera, const Material &material ) {

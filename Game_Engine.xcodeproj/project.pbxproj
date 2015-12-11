@@ -18,6 +18,8 @@
 		4415CD951BDDC3EE00E91770 /* time.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4415CD931BDDC3EE00E91770 /* time.cpp */; };
 		4415CD961BDDCD6400E91770 /* libglfw.3.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 449D85F61BD6BACB00B72584 /* libglfw.3.1.dylib */; };
 		442C78981C1A85E70083D86D /* basicShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 442C78961C1A85E70083D86D /* basicShader.cpp */; };
+		442C78A21C1B476F0083D86D /* gBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 442C78A01C1B476F0083D86D /* gBuffer.cpp */; };
+		442C78A51C1B4BAE0083D86D /* geometryPassTech.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 442C78A31C1B4BAE0083D86D /* geometryPassTech.cpp */; };
 		447A39091BD6C57200190464 /* window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 447A39071BD6C57200190464 /* window.cpp */; };
 		447A390C1BD6DAC400190464 /* input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 447A390A1BD6DAC400190464 /* input.cpp */; };
 		447A390F1BD6DAF300190464 /* mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 447A390D1BD6DAF300190464 /* mesh.cpp */; };
@@ -71,6 +73,12 @@
 		442C789D1C1B09770083D86D /* StandardShading.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = StandardShading.vs; path = resources/shaders/StandardShading.vs; sourceTree = "<group>"; };
 		442C789E1C1B09770083D86D /* TextVertexShader.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = TextVertexShader.fs; path = resources/shaders/TextVertexShader.fs; sourceTree = "<group>"; };
 		442C789F1C1B09770083D86D /* TextVertexShader.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = TextVertexShader.vs; path = resources/shaders/TextVertexShader.vs; sourceTree = "<group>"; };
+		442C78A01C1B476F0083D86D /* gBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gBuffer.cpp; sourceTree = "<group>"; };
+		442C78A11C1B476F0083D86D /* gBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gBuffer.h; sourceTree = "<group>"; };
+		442C78A31C1B4BAE0083D86D /* geometryPassTech.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = geometryPassTech.cpp; sourceTree = "<group>"; };
+		442C78A41C1B4BAE0083D86D /* geometryPassTech.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = geometryPassTech.h; sourceTree = "<group>"; };
+		442C78A61C1B4F2B0083D86D /* geometry_pass.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = geometry_pass.fs; path = resources/shaders/geometry_pass.fs; sourceTree = "<group>"; };
+		442C78A71C1B4F2B0083D86D /* geometry_pass.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = geometry_pass.vs; path = resources/shaders/geometry_pass.vs; sourceTree = "<group>"; };
 		447A39071BD6C57200190464 /* window.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = window.cpp; sourceTree = "<group>"; };
 		447A39081BD6C57200190464 /* window.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = window.h; sourceTree = "<group>"; };
 		447A390A1BD6DAC400190464 /* input.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = input.cpp; sourceTree = "<group>"; };
@@ -121,6 +129,8 @@
 		442C78991C1B09650083D86D /* Shaders */ = {
 			isa = PBXGroup;
 			children = (
+				442C78A61C1B4F2B0083D86D /* geometry_pass.fs */,
+				442C78A71C1B4F2B0083D86D /* geometry_pass.vs */,
 				442C789A1C1B09770083D86D /* PhongShader.fs */,
 				442C789B1C1B09770083D86D /* PhongShader.vs */,
 				442C789C1C1B09770083D86D /* StandardShading.fs */,
@@ -164,6 +174,10 @@
 				4415CD781BDA7C0100E91770 /* text2d.h */,
 				447A39071BD6C57200190464 /* window.cpp */,
 				447A39081BD6C57200190464 /* window.h */,
+				442C78A01C1B476F0083D86D /* gBuffer.cpp */,
+				442C78A11C1B476F0083D86D /* gBuffer.h */,
+				442C78A31C1B4BAE0083D86D /* geometryPassTech.cpp */,
+				442C78A41C1B4BAE0083D86D /* geometryPassTech.h */,
 			);
 			name = Rendering;
 			sourceTree = "<group>";
@@ -285,6 +299,7 @@
 				447A39091BD6C57200190464 /* window.cpp in Sources */,
 				44B693431C07A45E00743603 /* phongShader.cpp in Sources */,
 				44F722381BDFEB8A0022754F /* game.cpp in Sources */,
+				442C78A21C1B476F0083D86D /* gBuffer.cpp in Sources */,
 				4415CD8C1BDD74D400E91770 /* transform.cpp in Sources */,
 				44D3CD701BCBFAED0074E300 /* main.cpp in Sources */,
 				447A390C1BD6DAC400190464 /* input.cpp in Sources */,
@@ -297,6 +312,7 @@
 				44D3CD7F1BCC0AC30074E300 /* math3d.cpp in Sources */,
 				4415CD841BDAB5DC00E91770 /* entity.cpp in Sources */,
 				44B6933E1C077B3600743603 /* stb_image.c in Sources */,
+				442C78A51C1B4BAE0083D86D /* geometryPassTech.cpp in Sources */,
 				4415CD921BDDC38700E91770 /* coreEngine.cpp in Sources */,
 				447A39151BD6F09300190464 /* renderingEngine.cpp in Sources */,
 			);

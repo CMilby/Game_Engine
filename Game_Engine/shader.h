@@ -27,6 +27,7 @@ private:
     static std::map<std::string, GLuint> s_attributeMap;
     
     GLuint m_program;
+    GLuint m_vao;
     
     void LoadShader( const std::string &filename, int type );
     
@@ -55,6 +56,7 @@ public:
 
     void SetAttribLocation( const std::string &name, int location ) const;
     
+    void Uniform1ui( const std::string &name, unsigned int value ) const;
     void Uniform1i( const std::string &name, int value ) const;
     void Uniform1f( const std::string &name, float value ) const;
     void UniformMatrix4f( const std::string &name, const Matrix4<float> &value ) const;

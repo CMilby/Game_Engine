@@ -16,10 +16,9 @@
 #include "shader.h"
 #include "texture.h"
 
-class Text2D {
+class Text2D : public Shader {
   
 private:
-    Shader *m_shader;
     Texture *m_texture;
     
     GLuint m_vertexBuffer;
@@ -30,7 +29,7 @@ private:
 public:
     Text2D( const std::string &file );
     virtual ~Text2D();
-    void Init();
+    virtual void Init();
     
     void PrintText2D( const char *text, int x, int y, int size );
 };

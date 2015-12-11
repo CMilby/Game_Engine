@@ -13,6 +13,8 @@
 
 #include "camera.h"
 #include "entity.h"
+#include "gBuffer.h"
+#include "geometryPassTech.h"
 #include "math3d.h"
 #include "shader.h"
 #include "texture.h"
@@ -24,6 +26,8 @@ private:
     static Camera s_mainCamera;
     
     Shader *m_shader;
+    // GeometryPassTech *m_geomPass;
+    // GBuffer *m_gBuffer;
     Text2D *m_text2d;
     
 public:
