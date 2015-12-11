@@ -14,10 +14,12 @@
 struct BaseLight {
     Vector3<float> m_color;
     float m_intensity;
+    float m_diffuseIntensity;
     
     BaseLight( const Vector3<float> &color = Vector3<float>( 0.0f, 0.0f, 0.0f ), float intensity = 0 ) {
         m_color = color;
         m_intensity = intensity;
+        m_diffuseIntensity = 0.0f;
     }
 };
 

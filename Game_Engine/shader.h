@@ -60,6 +60,7 @@ public:
     void Uniform1i( const std::string &name, int value ) const;
     void Uniform1f( const std::string &name, float value ) const;
     void UniformMatrix4f( const std::string &name, const Matrix4<float> &value ) const;
+    void Uniform2f( const std::string &name, float x, float y ) const;
     void UniformVector3f( const std::string &name, const Vector3<float> &value ) const;
 };
 

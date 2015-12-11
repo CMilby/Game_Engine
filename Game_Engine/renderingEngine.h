@@ -12,10 +12,13 @@
 #include <vector>
 
 #include "camera.h"
+#include "dirLightPassTech.h"
 #include "entity.h"
 #include "gBuffer.h"
 #include "geometryPassTech.h"
+#include "lightPassTech.h"
 #include "math3d.h"
+#include "pointLightPassTech.h"
 #include "shader.h"
 #include "texture.h"
 #include "text2d.h"
@@ -25,9 +28,12 @@ class RenderingEngine {
 private:
     static Camera s_mainCamera;
     
-    Shader *m_shader;
-    // GeometryPassTech *m_geomPass;
-    // GBuffer *m_gBuffer;
+    // Shader *m_shader;
+    GeometryPassTech *m_geomPass;
+    PointLightPassTech *m_pLightPass;
+    DirLightPassTech *m_dirLightPass;
+    GBuffer *m_gBuffer;
+    
     Text2D *m_text2d;
     
 public:

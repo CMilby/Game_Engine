@@ -142,6 +142,10 @@ void Shader::UniformMatrix4f( const std::string &name, const Matrix4<float> &val
     glUniformMatrix4fv( s_uniformMap[ name ], 1, GL_FALSE, &value[ 0 ][ 0 ] );
 }
 
+void Shader::Uniform2f( const std::string &name, float x, float y ) const {
+    glUniform2f( s_uniformMap[ name ], x, y );
+}
+
 void Shader::UniformVector3f( const std::string &name, const Vector3<float> &value ) const {
     glUniform3f( s_uniformMap[ name ], value.GetX(), value.GetY(), value.GetZ() );
 }

@@ -20,6 +20,9 @@
 		442C78981C1A85E70083D86D /* basicShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 442C78961C1A85E70083D86D /* basicShader.cpp */; };
 		442C78A21C1B476F0083D86D /* gBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 442C78A01C1B476F0083D86D /* gBuffer.cpp */; };
 		442C78A51C1B4BAE0083D86D /* geometryPassTech.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 442C78A31C1B4BAE0083D86D /* geometryPassTech.cpp */; };
+		442C78AD1C1B62180083D86D /* lightPassTech.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 442C78AB1C1B62180083D86D /* lightPassTech.cpp */; };
+		442C78B01C1B62F00083D86D /* dirLightPassTech.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 442C78AE1C1B62F00083D86D /* dirLightPassTech.cpp */; };
+		442C78B51C1B64890083D86D /* pointLightPassTech.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 442C78B31C1B64890083D86D /* pointLightPassTech.cpp */; };
 		447A39091BD6C57200190464 /* window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 447A39071BD6C57200190464 /* window.cpp */; };
 		447A390C1BD6DAC400190464 /* input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 447A390A1BD6DAC400190464 /* input.cpp */; };
 		447A390F1BD6DAF300190464 /* mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 447A390D1BD6DAF300190464 /* mesh.cpp */; };
@@ -79,6 +82,15 @@
 		442C78A41C1B4BAE0083D86D /* geometryPassTech.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = geometryPassTech.h; sourceTree = "<group>"; };
 		442C78A61C1B4F2B0083D86D /* geometry_pass.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = geometry_pass.fs; path = resources/shaders/geometry_pass.fs; sourceTree = "<group>"; };
 		442C78A71C1B4F2B0083D86D /* geometry_pass.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = geometry_pass.vs; path = resources/shaders/geometry_pass.vs; sourceTree = "<group>"; };
+		442C78A81C1B61A50083D86D /* dir_light_pass.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = dir_light_pass.fs; path = resources/shaders/dir_light_pass.fs; sourceTree = "<group>"; };
+		442C78A91C1B61A50083D86D /* light_pass.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = light_pass.vs; path = resources/shaders/light_pass.vs; sourceTree = "<group>"; };
+		442C78AA1C1B61A50083D86D /* point_light_pass.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = point_light_pass.fs; path = resources/shaders/point_light_pass.fs; sourceTree = "<group>"; };
+		442C78AB1C1B62180083D86D /* lightPassTech.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lightPassTech.cpp; sourceTree = "<group>"; };
+		442C78AC1C1B62180083D86D /* lightPassTech.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lightPassTech.h; sourceTree = "<group>"; };
+		442C78AE1C1B62F00083D86D /* dirLightPassTech.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dirLightPassTech.cpp; sourceTree = "<group>"; };
+		442C78AF1C1B62F00083D86D /* dirLightPassTech.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dirLightPassTech.h; sourceTree = "<group>"; };
+		442C78B31C1B64890083D86D /* pointLightPassTech.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pointLightPassTech.cpp; sourceTree = "<group>"; };
+		442C78B41C1B64890083D86D /* pointLightPassTech.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pointLightPassTech.h; sourceTree = "<group>"; };
 		447A39071BD6C57200190464 /* window.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = window.cpp; sourceTree = "<group>"; };
 		447A39081BD6C57200190464 /* window.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = window.h; sourceTree = "<group>"; };
 		447A390A1BD6DAC400190464 /* input.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = input.cpp; sourceTree = "<group>"; };
@@ -129,6 +141,9 @@
 		442C78991C1B09650083D86D /* Shaders */ = {
 			isa = PBXGroup;
 			children = (
+				442C78A81C1B61A50083D86D /* dir_light_pass.fs */,
+				442C78A91C1B61A50083D86D /* light_pass.vs */,
+				442C78AA1C1B61A50083D86D /* point_light_pass.fs */,
 				442C78A61C1B4F2B0083D86D /* geometry_pass.fs */,
 				442C78A71C1B4F2B0083D86D /* geometry_pass.vs */,
 				442C789A1C1B09770083D86D /* PhongShader.fs */,
@@ -139,6 +154,34 @@
 				442C789F1C1B09770083D86D /* TextVertexShader.vs */,
 			);
 			name = Shaders;
+			sourceTree = "<group>";
+		};
+		442C78B11C1B644E0083D86D /* ForwardRendering */ = {
+			isa = PBXGroup;
+			children = (
+				442C78961C1A85E70083D86D /* basicShader.cpp */,
+				442C78971C1A85E70083D86D /* basicShader.h */,
+				44B693411C07A45E00743603 /* phongShader.cpp */,
+				44B693421C07A45E00743603 /* phongShader.h */,
+			);
+			name = ForwardRendering;
+			sourceTree = "<group>";
+		};
+		442C78B21C1B645F0083D86D /* DeferredRendering */ = {
+			isa = PBXGroup;
+			children = (
+				442C78A01C1B476F0083D86D /* gBuffer.cpp */,
+				442C78A11C1B476F0083D86D /* gBuffer.h */,
+				442C78A31C1B4BAE0083D86D /* geometryPassTech.cpp */,
+				442C78A41C1B4BAE0083D86D /* geometryPassTech.h */,
+				442C78AB1C1B62180083D86D /* lightPassTech.cpp */,
+				442C78AC1C1B62180083D86D /* lightPassTech.h */,
+				442C78AE1C1B62F00083D86D /* dirLightPassTech.cpp */,
+				442C78AF1C1B62F00083D86D /* dirLightPassTech.h */,
+				442C78B31C1B64890083D86D /* pointLightPassTech.cpp */,
+				442C78B41C1B64890083D86D /* pointLightPassTech.h */,
+			);
+			name = DeferredRendering;
 			sourceTree = "<group>";
 		};
 		449D85F51BD6B6F600B72584 /* Frameworks */ = {
@@ -157,13 +200,11 @@
 		44B693441C07C6E600743603 /* Rendering */ = {
 			isa = PBXGroup;
 			children = (
+				442C78B21C1B645F0083D86D /* DeferredRendering */,
+				442C78B11C1B644E0083D86D /* ForwardRendering */,
 				442C78991C1B09650083D86D /* Shaders */,
 				447A39101BD6DCD900190464 /* shader.cpp */,
 				447A39111BD6DCD900190464 /* shader.h */,
-				442C78961C1A85E70083D86D /* basicShader.cpp */,
-				442C78971C1A85E70083D86D /* basicShader.h */,
-				44B693411C07A45E00743603 /* phongShader.cpp */,
-				44B693421C07A45E00743603 /* phongShader.h */,
 				447A39131BD6F09300190464 /* renderingEngine.cpp */,
 				447A39141BD6F09300190464 /* renderingEngine.h */,
 				447A39161BD7CA4E00190464 /* texture.cpp */,
@@ -174,10 +215,6 @@
 				4415CD781BDA7C0100E91770 /* text2d.h */,
 				447A39071BD6C57200190464 /* window.cpp */,
 				447A39081BD6C57200190464 /* window.h */,
-				442C78A01C1B476F0083D86D /* gBuffer.cpp */,
-				442C78A11C1B476F0083D86D /* gBuffer.h */,
-				442C78A31C1B4BAE0083D86D /* geometryPassTech.cpp */,
-				442C78A41C1B4BAE0083D86D /* geometryPassTech.h */,
 			);
 			name = Rendering;
 			sourceTree = "<group>";
@@ -298,6 +335,7 @@
 				447A39121BD6DCD900190464 /* shader.cpp in Sources */,
 				447A39091BD6C57200190464 /* window.cpp in Sources */,
 				44B693431C07A45E00743603 /* phongShader.cpp in Sources */,
+				442C78B51C1B64890083D86D /* pointLightPassTech.cpp in Sources */,
 				44F722381BDFEB8A0022754F /* game.cpp in Sources */,
 				442C78A21C1B476F0083D86D /* gBuffer.cpp in Sources */,
 				4415CD8C1BDD74D400E91770 /* transform.cpp in Sources */,
@@ -311,8 +349,10 @@
 				4415CD871BDD6EE200E91770 /* utility.cpp in Sources */,
 				44D3CD7F1BCC0AC30074E300 /* math3d.cpp in Sources */,
 				4415CD841BDAB5DC00E91770 /* entity.cpp in Sources */,
+				442C78B01C1B62F00083D86D /* dirLightPassTech.cpp in Sources */,
 				44B6933E1C077B3600743603 /* stb_image.c in Sources */,
 				442C78A51C1B4BAE0083D86D /* geometryPassTech.cpp in Sources */,
+				442C78AD1C1B62180083D86D /* lightPassTech.cpp in Sources */,
 				4415CD921BDDC38700E91770 /* coreEngine.cpp in Sources */,
 				447A39151BD6F09300190464 /* renderingEngine.cpp in Sources */,
 			);
