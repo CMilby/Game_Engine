@@ -36,6 +36,8 @@
 		44B693431C07A45E00743603 /* phongShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44B693411C07A45E00743603 /* phongShader.cpp */; };
 		44D3CD701BCBFAED0074E300 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44D3CD6F1BCBFAED0074E300 /* main.cpp */; };
 		44D3CD7F1BCC0AC30074E300 /* math3d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44D3CD7D1BCC0AC30074E300 /* math3d.cpp */; };
+		44EF3BEF1C1B73F00044B0A8 /* deferredShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44EF3BED1C1B73F00044B0A8 /* deferredShader.cpp */; };
+		44EF3BF21C1CB20B0044B0A8 /* nullTech.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44EF3BF01C1CB20B0044B0A8 /* nullTech.cpp */; };
 		44F722381BDFEB8A0022754F /* game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44F722361BDFEB8A0022754F /* game.cpp */; };
 /* End PBXBuildFile section */
 
@@ -117,6 +119,12 @@
 		44D3CD6F1BCBFAED0074E300 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		44D3CD7D1BCC0AC30074E300 /* math3d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = math3d.cpp; sourceTree = "<group>"; };
 		44D3CD7E1BCC0AC30074E300 /* math3d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = math3d.h; sourceTree = "<group>"; };
+		44EF3BED1C1B73F00044B0A8 /* deferredShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = deferredShader.cpp; sourceTree = "<group>"; };
+		44EF3BEE1C1B73F00044B0A8 /* deferredShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = deferredShader.h; sourceTree = "<group>"; };
+		44EF3BF01C1CB20B0044B0A8 /* nullTech.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = nullTech.cpp; sourceTree = "<group>"; };
+		44EF3BF11C1CB20B0044B0A8 /* nullTech.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nullTech.h; sourceTree = "<group>"; };
+		44EF3BF31C1CB30D0044B0A8 /* null_technique.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = null_technique.fs; path = resources/shaders/null_technique.fs; sourceTree = "<group>"; };
+		44EF3BF41C1CB30D0044B0A8 /* null_technique.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = null_technique.vs; path = resources/shaders/null_technique.vs; sourceTree = "<group>"; };
 		44F722361BDFEB8A0022754F /* game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = game.cpp; sourceTree = "<group>"; };
 		44F722371BDFEB8A0022754F /* game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = game.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -141,6 +149,8 @@
 		442C78991C1B09650083D86D /* Shaders */ = {
 			isa = PBXGroup;
 			children = (
+				44EF3BF31C1CB30D0044B0A8 /* null_technique.fs */,
+				44EF3BF41C1CB30D0044B0A8 /* null_technique.vs */,
 				442C78A81C1B61A50083D86D /* dir_light_pass.fs */,
 				442C78A91C1B61A50083D86D /* light_pass.vs */,
 				442C78AA1C1B61A50083D86D /* point_light_pass.fs */,
@@ -180,6 +190,10 @@
 				442C78AF1C1B62F00083D86D /* dirLightPassTech.h */,
 				442C78B31C1B64890083D86D /* pointLightPassTech.cpp */,
 				442C78B41C1B64890083D86D /* pointLightPassTech.h */,
+				44EF3BF01C1CB20B0044B0A8 /* nullTech.cpp */,
+				44EF3BF11C1CB20B0044B0A8 /* nullTech.h */,
+				44EF3BED1C1B73F00044B0A8 /* deferredShader.cpp */,
+				44EF3BEE1C1B73F00044B0A8 /* deferredShader.h */,
 			);
 			name = DeferredRendering;
 			sourceTree = "<group>";
@@ -331,6 +345,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44EF3BF21C1CB20B0044B0A8 /* nullTech.cpp in Sources */,
 				4415CD8F1BDD8E0400E91770 /* camera.cpp in Sources */,
 				447A39121BD6DCD900190464 /* shader.cpp in Sources */,
 				447A39091BD6C57200190464 /* window.cpp in Sources */,
@@ -338,6 +353,7 @@
 				442C78B51C1B64890083D86D /* pointLightPassTech.cpp in Sources */,
 				44F722381BDFEB8A0022754F /* game.cpp in Sources */,
 				442C78A21C1B476F0083D86D /* gBuffer.cpp in Sources */,
+				44EF3BEF1C1B73F00044B0A8 /* deferredShader.cpp in Sources */,
 				4415CD8C1BDD74D400E91770 /* transform.cpp in Sources */,
 				44D3CD701BCBFAED0074E300 /* main.cpp in Sources */,
 				447A390C1BD6DAC400190464 /* input.cpp in Sources */,

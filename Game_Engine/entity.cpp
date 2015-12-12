@@ -86,14 +86,14 @@ void RenderableEntity::Render( Shader &shader, const Camera &camera ) {
     if ( m_visible ) {
         shader.Bind();
     
-        shader.UpdateUniforms( GetModelMatrix(), Transform::GetProjection() * camera.GetView() * GetModelMatrix(), camera, *m_material );
+        shader.UpdateUniforms( GetModelMatrix(), Transform::GetProjection() * camera.GetView() * GetModelMatrix(), camera, *m_material, *m_mesh );
         
         /*shader.Uniform1i( "myTextureSampler", 0 );
     
         shader.UniformMatrix4f( "MVP", Transform::GetProjection() * camera.GetView() * GetModelMatrix() );
         shader.UniformMatrix4f( "M", GetModelMatrix() );*/
         
-        m_mesh->Render();
+        // m_mesh->Render();
     }
 }
 

@@ -8,6 +8,9 @@
 
 #include "mesh.h"
 
+#include <cassert>
+#include <iostream>
+
 #include <assimp/Importer.hpp>
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
@@ -18,7 +21,7 @@
 Mesh::Mesh( const std::string &filename ) {
     LoadOBJ( Utility::DirectoryPath() + "models/" + filename );
     
-    float radius = 5.0f;
+    /*float radius = 5.0f;
     for ( unsigned int i = 0; i < m_vertices.size(); i++ ) {
         float x = m_vertices[ i ].GetX();
         float y = m_vertices[ i ].GetY();
@@ -29,7 +32,7 @@ Mesh::Mesh( const std::string &filename ) {
         float dz = z * sqrtf( 1.0f - ( x * x / 2.0f ) - ( y * y / 2.0f ) + ( x * x * y * y / 3.0f ) );
         
         m_vertices[ i ] = Vector3<float>( dx, dy, dz ).Normalized() * radius;
-    }
+    }*/
     
     /*std::vector<Vector3<float>> vertices;
     std::vector<Vector2<float>> uvs;
@@ -117,7 +120,8 @@ void Mesh::LoadOBJ( const std::string &filename ) {
     for ( unsigned int i = 0; i < model->mNumVertices; i++ ) {
         const aiVector3D pos = model->mVertices[ i ];
         const aiVector3D normal = model->mNormals[ i ];
-        const aiVector3D texCoord = model->mTextureCoords[ 0 ][ i ];
+      
+        const aiVector3D texCoord = model->HasTextureCoords( 0 ) ? model->mTextureCoords[ 0 ][ i ] : aiVector3D( 0, 0, 0 );
         
         m_vertices.push_back( Vector3<float>( pos.x, pos.y, pos.z ) );
         m_normals.push_back( Vector3<float>( normal.x, normal.y, normal.z ) );

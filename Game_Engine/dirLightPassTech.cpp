@@ -19,7 +19,7 @@ void DirLightPassTech::Init() {
     
     AddUniform( "gDirectionalLight.Base.Color" );
     AddUniform( "gDirectionalLight.Base.AmbientIntensity" );
-    AddUniform( "gDirectioanlLight.Direction" );
+    AddUniform( "gDirectionalLight.Direction" );
     AddUniform( "gDirectionalLight.Base.DiffuseIntensity" );
     
     LightPassTech::Init();

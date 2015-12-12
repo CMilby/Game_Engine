@@ -28,32 +28,20 @@
 
 class GeometryPassTech : public Shader {
     
-public:
-    enum GEOMETRY_PASS {
-        GEOMETRY_PASS,
-        LIGHT_PASS
-    };
-    
-    GeometryPassTech();
-    virtual void Init();
-    
-    virtual void UpdateUniforms( const Matrix4<float> &world, const Matrix4<float> &projected, const Camera &camera, const Material &material );
-    
-    static void SetGBuffer( const GBuffer &buffer ) { s_gBuffer = buffer; }
-    
-    void SetWVP( const Matrix4<float> &WVP );
-    void SetWorldMatrix( const Matrix4<float> &WVP );
-    void SetColorTextureUint( unsigned int textureUnit );
-    
 private:
-    static GBuffer s_gBuffer;
-    
     int m_pass;
     
     GLuint m_WVPlocation;
     GLuint m_worldMatrixLocation;
     GLuint m_colorTextureUnitLocation;
-
+    
+public:
+    GeometryPassTech();
+    virtual void Init();
+    
+    void SetWVP( const Matrix4<float> &WVP );
+    void SetWorldMatrix( const Matrix4<float> &WVP );
+    void SetColorTextureUint( unsigned int textureUnit );
 };
 
 #endif /* geometryPassTech_hpp */

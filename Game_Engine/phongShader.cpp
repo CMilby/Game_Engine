@@ -91,7 +91,7 @@ void PhongShader::Disable() {
     glDisableVertexAttribArray( GetAttribute( "normal" ) );
 }
 
-void PhongShader::UpdateUniforms( const Matrix4<float> &world, const Matrix4<float> &projected, const Camera &camera, const Material &material ) {
+void PhongShader::UpdateUniforms( const Matrix4<float> &world, const Matrix4<float> &projected, const Camera &camera, const Material &material, const Mesh &mesh ) {
     material.m_texture->Bind();
     Uniform1i( "sampler", 0 );
     
@@ -131,6 +131,10 @@ void PhongShader::UpdateUniforms( const Matrix4<float> &world, const Matrix4<flo
     Uniform1f( "specularIntensity", material.m_specularIntensity );
     Uniform1f( "specularPower", material.m_specularPower );
     UniformVector3f( "eyePos", camera.GetPosition() );
+    
+    Enable();
+    mesh.Render();
+    Disable();
 }
 
 

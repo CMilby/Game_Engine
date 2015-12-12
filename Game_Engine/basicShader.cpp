@@ -22,10 +22,6 @@ void BasicShader::Init() {
     
     LinkProgram();
     
-    // AddAttribute( "vertexPosition_modelspace" );
-    // AddAttribute( "vertexUV" );
-    // AddAttribute( "vertexNormal_modelspace" );
-    
     AddUniform( "MVP" );
     AddUniform( "V" );
     AddUniform( "M" );
@@ -45,7 +41,7 @@ void BasicShader::Disable() {
     glDisableVertexAttribArray( 2 );
 }
 
-void BasicShader::UpdateUniforms( const Matrix4<float> &world, const Matrix4<float> &projected, const Camera &camera, const Material &material ) {
+void BasicShader::UpdateUniforms( const Matrix4<float> &world, const Matrix4<float> &projected, const Camera &camera, const Material &material, const Mesh &mesh ) {
     UniformVector3f ( "LightPosition_worldspace", Vector3<float>( 8.0f, 8.0f, 8.0f ) );
     UniformMatrix4f( "V", camera.GetView() );
     
@@ -54,4 +50,8 @@ void BasicShader::UpdateUniforms( const Matrix4<float> &world, const Matrix4<flo
     
     UniformMatrix4f( "MVP", projected );
     UniformMatrix4f( "M", world );
+    
+    Enable();
+    mesh.Render();
+    Disable();
 }

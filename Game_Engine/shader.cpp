@@ -16,9 +16,6 @@
 
 static void checkShaderError(int shader, int flag, bool isProgram, const std::string& errorMessage);
 
-std::map<std::string, GLuint> Shader::s_uniformMap = std::map<std::string, GLuint>();
-std::map<std::string, GLuint> Shader::s_attributeMap = std::map<std::string, GLuint>();
-
 Shader::Shader() {
     m_program = glCreateProgram();
     glGenVertexArrays( 1, &m_vao );
@@ -94,7 +91,7 @@ void Shader::Bind() const {
     glUseProgram( m_program );
 }
 
-void Shader::UpdateUniforms( const Matrix4<float> &world, const Matrix4<float> &projected, const Camera &camera, const Material &material ) {
+void Shader::UpdateUniforms( const Matrix4<float> &world, const Matrix4<float> &projected, const Camera &camera, const Material &material, const Mesh &mesh ) {
     
 }
 
@@ -106,7 +103,7 @@ void Shader::AddUniform( const std::string &name ) {
         return;
     }
     
-    s_uniformMap[ name ] = location;
+    m_uniformMap[ name ] = location;
 }
 
 void Shader::AddAttribute( const std::string &name ) {
@@ -119,7 +116,7 @@ void Shader::AddAttribute( const std::string &name ) {
         return;
     }
     
-    s_attributeMap[ name ] = location;
+    m_attributeMap[ name ] = location;
 }
 
 void Shader::SetAttribLocation( const std::string &name, int location ) const {
@@ -127,27 +124,27 @@ void Shader::SetAttribLocation( const std::string &name, int location ) const {
 }
 
 void Shader::Uniform1ui( const std::string &name, unsigned int value ) const {
-    glUniform1ui( s_uniformMap[ name ], value );
+    glUniform1ui( m_uniformMap.at( name ), value );
 }
 
 void Shader::Uniform1i( const std::string &name, int value ) const {
-    glUniform1i( s_uniformMap[ name ], value );
+    glUniform1i( m_uniformMap.at( name ), value );
 }
 
 void Shader::Uniform1f( const std::string &name, float value ) const {
-    glUniform1f( s_uniformMap[ name ], value );
+    glUniform1f( m_uniformMap.at( name ), value );
 }
 
 void Shader::UniformMatrix4f( const std::string &name, const Matrix4<float> &value ) const {
-    glUniformMatrix4fv( s_uniformMap[ name ], 1, GL_FALSE, &value[ 0 ][ 0 ] );
+    glUniformMatrix4fv( m_uniformMap.at( name ), 1, GL_FALSE, &value[ 0 ][ 0 ] );
 }
 
 void Shader::Uniform2f( const std::string &name, float x, float y ) const {
-    glUniform2f( s_uniformMap[ name ], x, y );
+    glUniform2f( m_uniformMap.at( name ), x, y );
 }
 
 void Shader::UniformVector3f( const std::string &name, const Vector3<float> &value ) const {
-    glUniform3f( s_uniformMap[ name ], value.GetX(), value.GetY(), value.GetZ() );
+    glUniform3f( m_uniformMap.at( name ), value.GetX(), value.GetY(), value.GetZ() );
 }
 
 static void checkShaderError(int shader, int flag, bool isProgram, const std::string& errorMessage) {

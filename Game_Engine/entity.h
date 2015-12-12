@@ -74,6 +74,7 @@ public:
     
     inline void SetVisible( bool visible ) { m_visible = visible; }
     inline bool IsVisible() const { return m_visible; }
+    inline Mesh GetMesh() const { return *m_mesh; }
 };
 
 #endif /* entity_h */

@@ -9,25 +9,19 @@
 #include "renderingEngine.h"
 
 #include "basicShader.h"
+#include "deferredShader.h"
 #include "geometryPassTech.h"
 #include "phongShader.h"
 
 Camera RenderingEngine::s_mainCamera = Camera();
 
 RenderingEngine::RenderingEngine() {
-    // m_shader = new PhongShader();
-    m_geomPass = new GeometryPassTech();
-    m_pLightPass = new PointLightPassTech();
-    m_dirLightPass = new DirLightPassTech();
-    m_gBuffer = new GBuffer();
-    
+    m_shader = new DeferredShader();
     m_text2d = new Text2D( "Holstein.DDS" );
 }
 
 RenderingEngine::~RenderingEngine() {
-    // if ( m_shader ) delete m_shader;
-    if ( m_geomPass ) delete m_geomPass;
-    if ( m_text2d ) delete m_text2d;
+    if ( m_shader ) delete m_shader;
 }
 
 void RenderingEngine::Init() {
@@ -37,29 +31,7 @@ void RenderingEngine::Init() {
     glDepthFunc( GL_LESS );
     glEnable( GL_CULL_FACE );
     
-    // m_shader->Init();
-
-    m_gBuffer->Init( 1024, 768 );
-    
-    m_geomPass->Init();
-    m_geomPass->Enable();
-    m_geomPass->SetColorTextureUint( COLOR_TEXTURE_UNIT_INDEX );
-    
-    m_pLightPass->Init();
-    m_pLightPass->Enable();
-    m_pLightPass->SetPositionTextureUnit( GBuffer::GBUFFER_TEXTURE_TYPE_POSITION );
-    m_pLightPass->SetColorTextureUnit( GBuffer::GBUFFER_TEXTURE_TYPE_DIFFUSE );
-    m_pLightPass->SetNormalTextureUnit( GBuffer::GBUFFER_TEXTURE_TYPE_NORMAL );
-    m_pLightPass->SetScreenSize( 1024, 768 );
-    
-    m_dirLightPass->Init();
-    m_dirLightPass->Enable();
-    m_dirLightPass->SetPositionTextureUnit( GBuffer::GBUFFER_TEXTURE_TYPE_POSITION );
-    m_dirLightPass->SetColorTextureUnit( GBuffer::GBUFFER_TEXTURE_TYPE_DIFFUSE );
-    m_dirLightPass->SetNormalTextureUnit( GBuffer::GBUFFER_TEXTURE_TYPE_NORMAL );
-    m_dirLightPass->SetDirectionalLight( DirectionalLight( BaseLight(), Vector3<float>( 0, 0, -10 ) ) );
-    m_dirLightPass->SetScreenSize( 1024, 768 );
-    
+    m_shader->Init();
     m_text2d->Init();
 }
 
@@ -67,7 +39,7 @@ void RenderingEngine::Render( Entity &root ) {
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 
     // m_shader->Enable();
-    // root.RenderAll( *m_shader, s_mainCamera );
+    root.RenderAll( *m_shader, s_mainCamera );
     // m_shader->Disable();
     
     char text[ 256 ];

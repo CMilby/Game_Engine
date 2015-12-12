@@ -28,13 +28,17 @@ public:
     
     void Init( unsigned int width, unsigned int height );
     
-    void BindWrite();
-    void BindRead();
+    void StartFrame();
+    void BindGeom();
+    void BindStencil();
+    void BindLight();
+    void BindFinal();
     
 private:
     GLuint m_fbo;
     GLuint m_textures[ GBUFFER_NUM_TEXTURES ];
     GLuint m_depthTexture;
+    GLuint m_finalTexture;
 };
 
 #endif /* gBuffer_h */

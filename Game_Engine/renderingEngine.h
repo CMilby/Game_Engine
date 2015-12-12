@@ -28,11 +28,7 @@ class RenderingEngine {
 private:
     static Camera s_mainCamera;
     
-    // Shader *m_shader;
-    GeometryPassTech *m_geomPass;
-    PointLightPassTech *m_pLightPass;
-    DirLightPassTech *m_dirLightPass;
-    GBuffer *m_gBuffer;
+    Shader *m_shader;
     
     Text2D *m_text2d;
     

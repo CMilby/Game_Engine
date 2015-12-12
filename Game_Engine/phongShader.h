@@ -33,7 +33,7 @@ public:
     virtual void Enable();
     virtual void Disable();
     
-    virtual void UpdateUniforms( const Matrix4<float> &world, const Matrix4<float> &projected, const Camera &camera, const Material &material );
+    virtual void UpdateUniforms( const Matrix4<float> &world, const Matrix4<float> &projected, const Camera &camera, const Material &material, const Mesh &mesh );
 };
 
 #endif /* phongShader_h */

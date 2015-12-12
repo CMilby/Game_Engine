@@ -15,6 +15,7 @@
 #include <GL/glew.h>
 
 #include "camera.h"
+#include "mesh.h"
 #include "material.h"
 #include "math3d.h"
 
@@ -23,8 +24,8 @@
 class Shader {
     
 private:
-    static std::map<std::string, GLuint> s_uniformMap;
-    static std::map<std::string, GLuint> s_attributeMap;
+    std::map<std::string, GLuint> m_uniformMap;
+    std::map<std::string, GLuint> m_attributeMap;
     
     GLuint m_program;
     GLuint m_vao;
@@ -47,12 +48,12 @@ public:
     virtual void Enable() {}
     virtual void Disable() {}
     
-    virtual void UpdateUniforms( const Matrix4<float> &world, const Matrix4<float> &projected,  const Camera &camera, const Material &material );
+    virtual void UpdateUniforms( const Matrix4<float> &world, const Matrix4<float> &projected,  const Camera &camera, const Material &material, const Mesh &mesh );
     
     void AddUniform( const std::string &name );
-    inline GLuint GetUniform( const std::string &name ) const { return s_uniformMap[ name ]; }
+    inline GLuint GetUniform( const std::string &name ) const { return m_uniformMap.at( name ); }
     void AddAttribute( const std::string &name );
-    inline GLuint GetAttribute( const std::string &name ) const { return s_attributeMap[ name ]; };
+    inline GLuint GetAttribute( const std::string &name ) const { return m_attributeMap.at( name ); };
 
     void SetAttribLocation( const std::string &name, int location ) const;
     

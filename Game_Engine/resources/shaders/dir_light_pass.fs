@@ -1,4 +1,4 @@
-#version 330 core
+#version 330
 
 struct BaseLight
 {
@@ -88,13 +88,13 @@ vec4 CalcPointLight(vec3 WorldPos, vec3 Normal)
     
     vec4 Color = CalcLightInternal(gPointLight.Base, LightDirection, WorldPos, Normal);
     
-    float Attenuation =  gPointLight.Atten.Constant +
+    float attenu =  gPointLight.Atten.Constant +
     gPointLight.Atten.Linear * Distance +
     gPointLight.Atten.Exp * Distance * Distance;
     
-    Attenuation = max(1.0, Attenuation);
+    attenu = max(1.0, attenu);
     
-    return Color / Attenuation;
+    return Color / attenu;
 }
 
 
