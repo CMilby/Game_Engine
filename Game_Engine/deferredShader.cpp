@@ -39,7 +39,11 @@ void DeferredShader::Init() {
     m_dirLightPass->SetPositionTextureUnit( GBuffer::GBUFFER_TEXTURE_TYPE_POSITION );
     m_dirLightPass->SetColorTextureUnit( GBuffer::GBUFFER_TEXTURE_TYPE_DIFFUSE );
     m_dirLightPass->SetNormalTextureUnit( GBuffer::GBUFFER_TEXTURE_TYPE_NORMAL );
-    m_dirLightPass->SetDirectionalLight( DirectionalLight( BaseLight(), Vector3<float>( 0, 0, -10 ) ) );
+    DirectionalLight dirLight( BaseLight(), Vector3<float>( 1.0f, 0.0f, 0.0f ) );
+    dirLight.m_baseLight.m_color = Vector3<float>( 1, 1, 0 );
+    dirLight.m_baseLight.m_intensity = 0.1f;
+    dirLight.m_baseLight.m_diffuseIntensity = 0.5f;
+    m_dirLightPass->SetDirectionalLight( dirLight );
     m_dirLightPass->SetScreenSize( 1024, 768 );
     m_dirLightPass->SetWVP( Matrix4<float>().InitIdentity() );
     
@@ -72,7 +76,7 @@ void DeferredShader::GeometryPass( const Matrix4<float> &world, const Matrix4<fl
     
     glDepthMask( GL_TRUE );
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
-    glDisable( GL_BLEND );
+    glEnable( GL_DEPTH_TEST );
     
     m_geomPass->SetWVP( projected );
     m_geomPass->SetWorldMatrix( world );
@@ -95,9 +99,8 @@ void DeferredShader::StencilPass( unsigned int index, const Camera &camera ) {
     glStencilOpSeparate( GL_FRONT, GL_KEEP, GL_DECR_WRAP, GL_KEEP );
     
     float boxScale = CalcPointLightSphere( *m_pointLights[ index ] );
-    m_sphere->GetTransform()->SetScale( Vector3<float>( boxScale, boxScale, boxScale ) );
-    
-    m_nullTech->SetWVP( Transform::GetProjection() * camera.GetView() * m_sphere->GetModelMatrix() );
+    Matrix4<float> model = Matrix4<float>().Model( m_pointLights[ index ]->m_position, Vector3<float>( boxScale, boxScale, boxScale ) );
+    m_nullTech->SetWVP( Transform::GetProjection() * camera.GetView() * model );
     m_sphere->GetMesh().Render();
 }
 
@@ -154,7 +157,7 @@ void DeferredShader::FinalPass() {
 
 float DeferredShader::CalcPointLightSphere( const PointLight &light ) {
     float maxChannel = fmaxf( fmax( light.m_baseLight.m_color.GetX(), light.m_baseLight.m_color.GetY() ), light.m_baseLight.m_color.GetZ() );
-    float ret = ( -light.m_atten.m_linear + sqrtf( light.m_atten.m_linear * light.m_atten.m_linear - 4 * light.m_atten.m_exponent * ( light.m_atten.m_exponent - 256 * maxChannel * light.m_baseLight.m_diffuseIntensity ) ) ) / 2.0f * light.m_atten.m_exponent;
+    float ret = ( -light.m_atten.m_linear + sqrtf( light.m_atten.m_linear * light.m_atten.m_linear - 4 * light.m_atten.m_exponent * ( light.m_atten.m_exponent - 256 * maxChannel * light.m_baseLight.m_diffuseIntensity ) ) ) / 2 * light.m_atten.m_exponent;
     return ret;
 }
 
