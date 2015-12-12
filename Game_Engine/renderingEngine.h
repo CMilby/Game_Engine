@@ -9,16 +9,9 @@
 #ifndef __RENDERING_ENGINE_H__
 #define __RENDERING_ENGINE_H__
 
-#include <vector>
-
 #include "camera.h"
-#include "dirLightPassTech.h"
 #include "entity.h"
-#include "gBuffer.h"
-#include "geometryPassTech.h"
-#include "lightPassTech.h"
 #include "math3d.h"
-#include "pointLightPassTech.h"
 #include "shader.h"
 #include "texture.h"
 #include "text2d.h"
@@ -29,7 +22,6 @@ private:
     static Camera s_mainCamera;
     
     Shader *m_shader;
-    
     Text2D *m_text2d;
     
 public:
