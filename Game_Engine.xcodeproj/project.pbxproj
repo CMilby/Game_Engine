@@ -82,11 +82,11 @@
 		442C78A11C1B476F0083D86D /* gBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gBuffer.h; sourceTree = "<group>"; };
 		442C78A31C1B4BAE0083D86D /* geometryPassTech.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = geometryPassTech.cpp; sourceTree = "<group>"; };
 		442C78A41C1B4BAE0083D86D /* geometryPassTech.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = geometryPassTech.h; sourceTree = "<group>"; };
-		442C78A61C1B4F2B0083D86D /* geometry_pass.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = geometry_pass.fs; path = resources/shaders/geometry_pass.fs; sourceTree = "<group>"; };
-		442C78A71C1B4F2B0083D86D /* geometry_pass.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = geometry_pass.vs; path = resources/shaders/geometry_pass.vs; sourceTree = "<group>"; };
-		442C78A81C1B61A50083D86D /* dir_light_pass.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = dir_light_pass.fs; path = resources/shaders/dir_light_pass.fs; sourceTree = "<group>"; };
-		442C78A91C1B61A50083D86D /* light_pass.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = light_pass.vs; path = resources/shaders/light_pass.vs; sourceTree = "<group>"; };
-		442C78AA1C1B61A50083D86D /* point_light_pass.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = point_light_pass.fs; path = resources/shaders/point_light_pass.fs; sourceTree = "<group>"; };
+		442C78A61C1B4F2B0083D86D /* GeometryPass.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = GeometryPass.fs; path = resources/shaders/GeometryPass.fs; sourceTree = "<group>"; };
+		442C78A71C1B4F2B0083D86D /* GeometryPass.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = GeometryPass.vs; path = resources/shaders/GeometryPass.vs; sourceTree = "<group>"; };
+		442C78A81C1B61A50083D86D /* DirectionalLightPass.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = DirectionalLightPass.fs; path = resources/shaders/DirectionalLightPass.fs; sourceTree = "<group>"; };
+		442C78A91C1B61A50083D86D /* LightPass.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = LightPass.vs; path = resources/shaders/LightPass.vs; sourceTree = "<group>"; };
+		442C78AA1C1B61A50083D86D /* PointLightPass.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = PointLightPass.fs; path = resources/shaders/PointLightPass.fs; sourceTree = "<group>"; };
 		442C78AB1C1B62180083D86D /* lightPassTech.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lightPassTech.cpp; sourceTree = "<group>"; };
 		442C78AC1C1B62180083D86D /* lightPassTech.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lightPassTech.h; sourceTree = "<group>"; };
 		442C78AE1C1B62F00083D86D /* dirLightPassTech.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dirLightPassTech.cpp; sourceTree = "<group>"; };
@@ -123,8 +123,8 @@
 		44EF3BEE1C1B73F00044B0A8 /* deferredShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = deferredShader.h; sourceTree = "<group>"; };
 		44EF3BF01C1CB20B0044B0A8 /* nullTech.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = nullTech.cpp; sourceTree = "<group>"; };
 		44EF3BF11C1CB20B0044B0A8 /* nullTech.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nullTech.h; sourceTree = "<group>"; };
-		44EF3BF31C1CB30D0044B0A8 /* null_technique.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = null_technique.fs; path = resources/shaders/null_technique.fs; sourceTree = "<group>"; };
-		44EF3BF41C1CB30D0044B0A8 /* null_technique.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = null_technique.vs; path = resources/shaders/null_technique.vs; sourceTree = "<group>"; };
+		44EF3BF31C1CB30D0044B0A8 /* NullShader.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = NullShader.fs; path = resources/shaders/NullShader.fs; sourceTree = "<group>"; };
+		44EF3BF41C1CB30D0044B0A8 /* NullShader.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = NullShader.vs; path = resources/shaders/NullShader.vs; sourceTree = "<group>"; };
 		44F722361BDFEB8A0022754F /* game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = game.cpp; sourceTree = "<group>"; };
 		44F722371BDFEB8A0022754F /* game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = game.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -149,13 +149,13 @@
 		442C78991C1B09650083D86D /* Shaders */ = {
 			isa = PBXGroup;
 			children = (
-				44EF3BF31C1CB30D0044B0A8 /* null_technique.fs */,
-				44EF3BF41C1CB30D0044B0A8 /* null_technique.vs */,
-				442C78A81C1B61A50083D86D /* dir_light_pass.fs */,
-				442C78A91C1B61A50083D86D /* light_pass.vs */,
-				442C78AA1C1B61A50083D86D /* point_light_pass.fs */,
-				442C78A61C1B4F2B0083D86D /* geometry_pass.fs */,
-				442C78A71C1B4F2B0083D86D /* geometry_pass.vs */,
+				44EF3BF31C1CB30D0044B0A8 /* NullShader.fs */,
+				44EF3BF41C1CB30D0044B0A8 /* NullShader.vs */,
+				442C78A81C1B61A50083D86D /* DirectionalLightPass.fs */,
+				442C78A91C1B61A50083D86D /* LightPass.vs */,
+				442C78AA1C1B61A50083D86D /* PointLightPass.fs */,
+				442C78A61C1B4F2B0083D86D /* GeometryPass.fs */,
+				442C78A71C1B4F2B0083D86D /* GeometryPass.vs */,
 				442C789A1C1B09770083D86D /* PhongShader.fs */,
 				442C789B1C1B09770083D86D /* PhongShader.vs */,
 				442C789C1C1B09770083D86D /* StandardShading.fs */,

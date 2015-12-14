@@ -1,7 +1,7 @@
-#version 330 core
+#version 330
 
-const int MAX_POINT_LIGHTS = 4;
-const int MAX_SPOT_LIGHTS = 4;
+const int MAX_POINT_LIGHTS = 5;
+const int MAX_SPOT_LIGHTS = 5;
 
 in vec2 texCoord0;
 in vec3 normal0;

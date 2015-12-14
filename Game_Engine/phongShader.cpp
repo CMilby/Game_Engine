@@ -10,11 +10,6 @@
 
 #include "transform.h"
 
-Vector3<float> PhongShader::s_ambientLight = Vector3<float>( 0.1f, 0.1f, 0.1f );
-DirectionalLight PhongShader::s_directionalLight = DirectionalLight( BaseLight( Vector3<float>( 0.0f, 0.0f, 0.0f ), 0 ), Vector3<float>( 0.0f, 0.0f, 0.0f ) );
-std::vector<PointLight> PhongShader::s_pointLights = std::vector<PointLight>();
-std::vector<SpotLight> PhongShader::s_spotLights = std::vector<SpotLight>();
-
 PhongShader::PhongShader() {
     
 }
@@ -26,10 +21,6 @@ PhongShader::~PhongShader() {
 void PhongShader::Init() {
     AddVertexShader( "PhongShader.vs" );
     AddFragmentShader( "PhongShader.fs" );
-    
-    // SetAttribLocation( "position", 0 );
-    // SetAttribLocation( "texCoord", 1 );
-    // SetAttribLocation( "normal", 2 );
     
     LinkProgram();
     
@@ -60,6 +51,7 @@ void PhongShader::Init() {
         AddUniform( plName + ".atten.linear" );
         AddUniform( plName + ".atten.exponent" );
         AddUniform( plName + ".position" );
+        AddUniform( plName + ".range" );
     }
     
     for ( int i = 0; i < MAX_SPOT_LIGHTS; i++ ) {
@@ -71,12 +63,16 @@ void PhongShader::Init() {
         AddUniform( slName + ".pointLight.atten.linear" );
         AddUniform( slName + ".pointLight.atten.exponent" );
         AddUniform( slName + ".pointLight.position" );
+        AddUniform( slName + ".pointLight.range" );
         AddUniform( slName + ".direction" );
         AddUniform( slName + ".cutoff" );
     }
     
-    s_ambientLight = Vector3<float>( 0.5f, 0.5f, 0.5f );
-    s_directionalLight = DirectionalLight( BaseLight( Vector3<float>( 1.0f, 0.0f, 0.0f ), 8.0f ), Vector3<float>( 0.0f, 0.0f, 8.0f ) );
+    m_ambientLight = Vector3<float>( 0.2f, 0.2f, 0.2f );
+    m_directionalLight = DirectionalLight( BaseLight( Vector3<float>( 0.1f, 0.1f, 0.1f ), 1.0f ), Vector3<float>( 8.0f, 8.0f, 8.0f ) );
+    
+    PointLight pLight( BaseLight( Vector3<float>( 1, 1, 0 ), 8.0f ), Attenuation( 5, 4, 1 ), Vector3<float>( -2, 0, 0 ), 10.0f );
+    AddPointLight( pLight );
 }
 
 void PhongShader::Enable() {
@@ -99,33 +95,33 @@ void PhongShader::UpdateUniforms( const Matrix4<float> &world, const Matrix4<flo
     UniformMatrix4f( "transform", world );
     UniformVector3f( "baseColor", material.m_color );
     
-    UniformVector3f( "ambientLight", s_ambientLight );
-    UniformVector3f( "directionalLight.direction", s_directionalLight.m_direction );
-    UniformVector3f( "directionalLight.base.color", s_directionalLight.m_baseLight.m_color );
-    Uniform1f( "directionalLight.base.intensity", s_directionalLight.m_baseLight.m_intensity );
+    UniformVector3f( "ambientLight", m_ambientLight );
+    UniformVector3f( "directionalLight.direction", m_directionalLight.m_direction );
+    UniformVector3f( "directionalLight.base.color", m_directionalLight.m_baseLight.m_color );
+    Uniform1f( "directionalLight.base.intensity", m_directionalLight.m_baseLight.m_intensity );
     
-    for ( int i = 0; i < s_pointLights.size(); i++ ) {
+    for ( int i = 0; i < m_pointLights.size(); i++ ) {
         std::string plName = "pointLights[" + std::to_string( i ) + "]";
         
-        UniformVector3f( plName + ".base.color", s_pointLights[ i ].m_baseLight.m_color );
-        Uniform1f( plName + ".base.intensity", s_pointLights[ i ].m_baseLight.m_intensity );
-        Uniform1f( plName + ".atten.constant", s_pointLights[ i ].m_atten.m_constant );
-        Uniform1f( plName + ".atten.linear", s_pointLights[ i ].m_atten.m_linear );
-        Uniform1f( plName + ".atten.exponent", s_pointLights[ i ].m_atten.m_exponent );
-        UniformVector3f( plName + ".position", s_pointLights[ i ].m_position );
+        UniformVector3f( plName + ".base.color", m_pointLights[ i ].m_baseLight.m_color );
+        Uniform1f( plName + ".base.intensity", m_pointLights[ i ].m_baseLight.m_intensity );
+        Uniform1f( plName + ".atten.constant", m_pointLights[ i ].m_atten.m_constant );
+        Uniform1f( plName + ".atten.linear", m_pointLights[ i ].m_atten.m_linear );
+        Uniform1f( plName + ".atten.exponent", m_pointLights[ i ].m_atten.m_exponent );
+        UniformVector3f( plName + ".position", m_pointLights[ i ].m_position );
     }
     
-    for ( int i = 0; i < s_spotLights.size(); i++ ) {
+    for ( int i = 0; i < m_spotLights.size(); i++ ) {
         std::string slName = "spotLights[" + std::to_string( i ) + "]";
         
-        UniformVector3f( slName + ".pointLight.base.color", s_spotLights[ i ].m_pointLight.m_baseLight.m_color );
-        Uniform1f( slName + ".pointLight.base.intensity", s_spotLights[ i ].m_pointLight.m_baseLight.m_intensity );
-        Uniform1f( slName + ".pointLight.atten.constant", s_spotLights[ i ].m_pointLight.m_atten.m_constant );
-        Uniform1f( slName + ".pointLight.atten.linear", s_spotLights[ i ].m_pointLight.m_atten.m_linear );
-        Uniform1f( slName + ".pointLight.atten.exponent", s_spotLights[ i ].m_pointLight.m_atten.m_exponent );
-        UniformVector3f( slName + ".pointLight.position", s_spotLights[ i ].m_pointLight.m_position );
-        UniformVector3f( slName + ".direction", s_spotLights[ i ].m_direction );
-        Uniform1f( slName + ".cutoff", s_spotLights[ i ].m_cutoff );
+        UniformVector3f( slName + ".pointLight.base.color", m_spotLights[ i ].m_pointLight.m_baseLight.m_color );
+        Uniform1f( slName + ".pointLight.base.intensity", m_spotLights[ i ].m_pointLight.m_baseLight.m_intensity );
+        Uniform1f( slName + ".pointLight.atten.constant", m_spotLights[ i ].m_pointLight.m_atten.m_constant );
+        Uniform1f( slName + ".pointLight.atten.linear", m_spotLights[ i ].m_pointLight.m_atten.m_linear );
+        Uniform1f( slName + ".pointLight.atten.exponent", m_spotLights[ i ].m_pointLight.m_atten.m_exponent );
+        UniformVector3f( slName + ".pointLight.position", m_spotLights[ i ].m_pointLight.m_position );
+        UniformVector3f( slName + ".direction", m_spotLights[ i ].m_direction );
+        Uniform1f( slName + ".cutoff", m_spotLights[ i ].m_cutoff );
     }
     
     Uniform1f( "specularIntensity", material.m_specularIntensity );

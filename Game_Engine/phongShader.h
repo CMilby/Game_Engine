@@ -14,16 +14,16 @@
 #include "lighting.h"
 #include "shader.h"
 
-#define MAX_SPOT_LIGHTS 4
-#define MAX_POINT_LIGHTS 4
+#define MAX_SPOT_LIGHTS 5
+#define MAX_POINT_LIGHTS 5
 
 class PhongShader : public Shader {
     
 private:
-    static Vector3<float> s_ambientLight;
-    static DirectionalLight s_directionalLight;
-    static std::vector<PointLight> s_pointLights;
-    static std::vector<SpotLight> s_spotLights;
+    Vector3<float> m_ambientLight;
+    DirectionalLight m_directionalLight;
+    std::vector<PointLight> m_pointLights;
+    std::vector<SpotLight> m_spotLights;
     
 public:
     PhongShader();
@@ -34,6 +34,9 @@ public:
     virtual void Disable();
     
     virtual void UpdateUniforms( const Matrix4<float> &world, const Matrix4<float> &projected, const Camera &camera, const Material &material, const Mesh &mesh );
+    
+    inline void AddPointLight( const PointLight &plight ) { m_pointLights.push_back( plight ); }
+    inline void AddSpotLight( const SpotLight &sLight ) { m_spotLights.push_back( sLight ); }
 };
 
 #endif /* phongShader_h */

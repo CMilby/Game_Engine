@@ -41,7 +41,7 @@ void TestGame::Init() {
     /*RenderableEntity *sphere = new RenderableEntity( new Mesh( "sphere.obj" ), new Material( new Texture( "test.png", TYPE_PNG ) ) );
     AddToScene( sphere );*/
     
-    RenderableEntity *cubeSub = new RenderableEntity( new Mesh( "cube_subdivide.obj" ), new Material( new Texture( "test.png", TYPE_PNG ) ) );
+    RenderableEntity *cubeSub = new RenderableEntity( new Mesh( "cube_subdivide.obj" ), new Material( new Texture( "test.png", TYPE_PNG ), Vector3<float>( 1, 1, 1 ) ) );
     AddToScene( cubeSub );
 }
 
