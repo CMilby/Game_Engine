@@ -24,16 +24,11 @@ void PhongShader::Init() {
     
     LinkProgram();
     
-    AddAttribute( "position" );
-    AddAttribute( "texCoord" );
-    AddAttribute( "normal" );
-    
     AddUniform( "transform" );
     AddUniform( "transformProjected" );
     AddUniform( "baseColor" );
     AddUniform( "ambientLight" );
     
-    AddUniform( "sampler" );
     AddUniform( "specularIntensity" );
     AddUniform( "specularPower" );
     AddUniform( "eyePos" );
@@ -71,25 +66,24 @@ void PhongShader::Init() {
     m_ambientLight = Vector3<float>( 0.2f, 0.2f, 0.2f );
     m_directionalLight = DirectionalLight( BaseLight( Vector3<float>( 0.1f, 0.1f, 0.1f ), 1.0f ), Vector3<float>( 8.0f, 8.0f, 8.0f ) );
     
-    PointLight pLight( BaseLight( Vector3<float>( 1, 1, 0 ), 8.0f ), Attenuation( 5, 4, 1 ), Vector3<float>( -2, 0, 0 ), 10.0f );
+    PointLight pLight( BaseLight( Vector3<float>( 1, 1, 0 ), 8.0f ), Attenuation( 0, 0, 1 ), Vector3<float>( -2, 1, 0 ), 10.0f );
     AddPointLight( pLight );
 }
 
 void PhongShader::Enable() {
-    glEnableVertexAttribArray( GetAttribute( "position" ) );
-    glEnableVertexAttribArray( GetAttribute( "texCoord" ) );
-    glEnableVertexAttribArray( GetAttribute( "normal" ) );
+    glEnableVertexAttribArray( 0);
+    glEnableVertexAttribArray( 1 );
+    glEnableVertexAttribArray( 2 );
 }
 
 void PhongShader::Disable() {
-    glDisableVertexAttribArray( GetAttribute( "position" ) );
-    glDisableVertexAttribArray( GetAttribute( "texCoord" ) );
-    glDisableVertexAttribArray( GetAttribute( "normal" ) );
+    glDisableVertexAttribArray( 0 );
+    glDisableVertexAttribArray( 1 );
+    glDisableVertexAttribArray( 2 );
 }
 
 void PhongShader::UpdateUniforms( const Matrix4<float> &world, const Matrix4<float> &projected, const Camera &camera, const Material &material, const Mesh &mesh ) {
     material.m_texture->Bind();
-    Uniform1i( "sampler", 0 );
     
     UniformMatrix4f( "transformProjected", projected );
     UniformMatrix4f( "transform", world );
@@ -127,10 +121,6 @@ void PhongShader::UpdateUniforms( const Matrix4<float> &world, const Matrix4<flo
     Uniform1f( "specularIntensity", material.m_specularIntensity );
     Uniform1f( "specularPower", material.m_specularPower );
     UniformVector3f( "eyePos", camera.GetPosition() );
-    
-    Enable();
-    mesh.Render();
-    Disable();
 }
 
 

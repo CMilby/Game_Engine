@@ -110,6 +110,7 @@ void Shader::AddAttribute( const std::string &name ) {
     int location = glGetAttribLocation( m_program, name.c_str() );
     
     // printf( "%s %i\n", name.c_str(), location );
+    // fprintf( stderr, "here" );
     
     if( location == INVALID_LOCATION ) {
         fprintf( stderr, "Can't find attribute %s\n", name.c_str() );

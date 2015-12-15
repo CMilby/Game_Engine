@@ -26,7 +26,7 @@ public:
 void TestGame::Init() {
     Game::Init();
     
-    Camera *camera = new Camera( Vector3<float>( 0, 0, 5 ) );
+    Camera *camera = new Camera( Vector3<float>( 0, 2, 5 ) );
     RenderingEngine::SetMainCamera( *camera );
     AddToScene( camera );
     
@@ -42,7 +42,11 @@ void TestGame::Init() {
     AddToScene( sphere );*/
     
     RenderableEntity *cubeSub = new RenderableEntity( new Mesh( "cube_subdivide.obj" ), new Material( new Texture( "test.png", TYPE_PNG ), Vector3<float>( 1, 1, 1 ) ) );
+    cubeSub->GetTransform()->SetPosition( Vector3<float>( -1, 3, -1 ) );
     AddToScene( cubeSub );
+    
+    RenderableEntity *plane = new RenderableEntity( new Mesh( "plane.obj" ), new Material( new Texture( "test.png", TYPE_PNG ) ) );
+    AddToScene( plane );
 }
 
 int main(int argc, const char * argv[]) {
