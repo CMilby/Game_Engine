@@ -49,7 +49,7 @@ struct PointLight {
     Vector3<float> m_position;
     float m_range;
     
-    PointLight( const BaseLight &baseLight = BaseLight(), const Attenuation &atten = Attenuation(), const Vector3<float> &position = Vector3<float>( 0.0f, 0.0f, 0.0f ), float range = 0 ) {
+    PointLight( const BaseLight &baseLight = BaseLight(), const Attenuation &atten = Attenuation(), const Vector3<float> &position = Vector3<float>( 0.0f, 0.0f, 0.0f ), float range = 10.0f ) {
         m_baseLight = baseLight;
         m_atten = atten;
         m_position = position;
@@ -62,7 +62,7 @@ struct SpotLight {
     Vector3<float> m_direction;
     float m_cutoff;
     
-    SpotLight( const PointLight &pointLight = PointLight(), const Vector3<float> &direction = Vector3<float>( 0.0, 0.0, -1.0f ), float cutoff = 0 ) {
+    SpotLight( const PointLight &pointLight = PointLight(), const Vector3<float> &direction = Vector3<float>( 0.0, 0.0, -1.0f ), float cutoff = 10.0f ) {
         m_pointLight = pointLight;
         m_direction = direction;
         m_cutoff = cutoff;
