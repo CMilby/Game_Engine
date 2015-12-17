@@ -13,8 +13,8 @@ GeometryPassTech::GeometryPassTech() {
 }
 
 void GeometryPassTech::Init() {
-    AddVertexShader( "geometry_pass.vs" );
-    AddFragmentShader( "geometry_pass.fs" );
+    AddVertexShader( "GeometryPass.vs" );
+    AddFragmentShader( "GeometryPass.fs" );
     LinkProgram();
     
     AddUniform( "gWVP" );

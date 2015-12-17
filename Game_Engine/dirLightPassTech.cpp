@@ -13,8 +13,8 @@ DirLightPassTech::DirLightPassTech() {
 }
 
 void DirLightPassTech::Init() {
-    AddVertexShader( "light_pass.vs" );
-    AddFragmentShader( "dir_light_pass.fs" );
+    AddVertexShader( "LightPass.vs" );
+    AddFragmentShader( "DirectionalLightPass.fs" );
     LinkProgram();
     
     AddUniform( "gDirectionalLight.Base.Color" );
@@ -29,5 +29,5 @@ void DirLightPassTech::SetDirectionalLight( const DirectionalLight &light ) {
     UniformVector3f( "gDirectionalLight.Base.Color", light.m_baseLight.m_color );
     UniformVector3f( "gDirectionalLight.Direction", light.m_direction );
     Uniform1f( "gDirectionalLight.Base.AmbientIntensity", light.m_baseLight.m_intensity );
-    Uniform1f( "gDirectionalLight.Base.DiffuseIntensity", light.m_baseLight.m_diffuseIntensity );
+    // Uniform1f( "gDirectionalLight.Base.DiffuseIntensity", light.m_baseLight.m_diffuseIntensity );
 }

@@ -65,7 +65,7 @@ protected:
     
 public:
     RenderableEntity();
-    RenderableEntity( Mesh *mesh, Material *material );
+    RenderableEntity( Mesh *mesh, Material *material = new Material() );
     virtual ~RenderableEntity();
     
     Matrix4<float> GetModelMatrix() const;
@@ -74,7 +74,9 @@ public:
     
     inline void SetVisible( bool visible ) { m_visible = visible; }
     inline bool IsVisible() const { return m_visible; }
+    
     inline Mesh GetMesh() const { return *m_mesh; }
+    inline Material GetMaterial() const { return *m_material; }
 };
 
 #endif /* entity_h */

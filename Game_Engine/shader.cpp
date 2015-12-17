@@ -85,6 +85,8 @@ void Shader::LinkProgram() const {
     
     glValidateProgram( m_program );
     checkShaderError( m_program, GL_VALIDATE_STATUS, true, "Invalid shader program" );
+    
+    Bind();
 }
 
 void Shader::Bind() const {

@@ -41,12 +41,27 @@ void TestGame::Init() {
     /*RenderableEntity *sphere = new RenderableEntity( new Mesh( "sphere.obj" ), new Material( new Texture( "test.png", TYPE_PNG ) ) );
     AddToScene( sphere );*/
     
-    RenderableEntity *cubeSub = new RenderableEntity( new Mesh( "cube_subdivide.obj" ), new Material( new Texture( "test.png", TYPE_PNG ), Vector3<float>( 1, 1, 1 ) ) );
-    cubeSub->GetTransform()->SetPosition( Vector3<float>( -1, 3, -1 ) );
+    RenderableEntity *cubeSub = new RenderableEntity( new Mesh( "cube_subdivide.obj" ) );
+    cubeSub->GetTransform()->SetPosition( Vector3<float>( 1, 3, 1 ) );
     AddToScene( cubeSub );
     
-    RenderableEntity *plane = new RenderableEntity( new Mesh( "plane.obj" ), new Material( new Texture( "test.png", TYPE_PNG ) ) );
+    RenderableEntity *plane = new RenderableEntity( new Mesh( "plane.obj" ) );
     AddToScene( plane );
+    
+    RenderableEntity *jeep = new RenderableEntity( new Mesh( "jeep.obj" ), new Material( new Texture( "jeep_army.png", TYPE_PNG ) ) );
+    jeep->GetTransform()->SetScale( Vector3<float>( 0.01f, 0.01f, 0.01f ) );
+    jeep->GetTransform()->SetPosition( Vector3<float>( -4.0f, 0.0f, -4.0f ) );
+    AddToScene( jeep );
+    
+    /*RenderableEntity *sun = new RenderableEntity( new Mesh( "sphere.obj" ), new Material( new Texture( "test.png", TYPE_PNG ) ) );
+    sun->GetTransform()->SetPosition( Vector3<float>( 0, 0, -149600 ) );
+    sun->GetTransform()->SetScale( Vector3<float>( 696.3, 696.3, 696.3 ) );
+    AddToScene( sun );
+    
+    RenderableEntity *earth = new RenderableEntity( new Mesh( "sphere.obj" ), new Material( new Texture( "test.png", TYPE_PNG ) ) );
+    earth->GetTransform()->SetPosition( Vector3<float>( 0, 1, 0 ) );
+    earth->GetTransform()->SetScale( Vector3<float>( 6.3, 6.3, 6.3 ) );
+    AddToScene( earth );*/
 }
 
 int main(int argc, const char * argv[]) {

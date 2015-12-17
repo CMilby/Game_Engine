@@ -26,45 +26,21 @@ void PhongShader::Init() {
     
     AddUniform( "transform" );
     AddUniform( "transformProjected" );
-    AddUniform( "baseColor" );
-    AddUniform( "ambientLight" );
     
-    AddUniform( "specularIntensity" );
-    AddUniform( "specularPower" );
+    AddUniform( "baseColor" );
     AddUniform( "eyePos" );
+    AddUniform( "ambientLight" );
+    AddUniform( "sampler" );
+    
+    AddUniform( "specularPower" );
+    AddUniform( "specularIntensity" );
     
     AddUniform( "directionalLight.base.color" );
     AddUniform( "directionalLight.base.intensity" );
     AddUniform( "directionalLight.direction" );
     
-    for ( int i = 0; i < MAX_POINT_LIGHTS; i++ ) {
-        std::string plName = "pointLights[" + std::to_string( i ) + "]";
-        
-        AddUniform( plName + ".base.color" );
-        AddUniform( plName + ".base.intensity" );
-        AddUniform( plName + ".atten.constant" );
-        AddUniform( plName + ".atten.linear" );
-        AddUniform( plName + ".atten.exponent" );
-        AddUniform( plName + ".position" );
-        AddUniform( plName + ".range" );
-    }
-    
-    for ( int i = 0; i < MAX_SPOT_LIGHTS; i++ ) {
-        std::string slName = "spotLights[" + std::to_string( i ) + "]";
-        
-        AddUniform( slName + ".pointLight.base.color" );
-        AddUniform( slName + ".pointLight.base.intensity" );
-        AddUniform( slName + ".pointLight.atten.constant" );
-        AddUniform( slName + ".pointLight.atten.linear" );
-        AddUniform( slName + ".pointLight.atten.exponent" );
-        AddUniform( slName + ".pointLight.position" );
-        AddUniform( slName + ".pointLight.range" );
-        AddUniform( slName + ".direction" );
-        AddUniform( slName + ".cutoff" );
-    }
-    
-    m_ambientLight = Vector3<float>( 0.2f, 0.2f, 0.2f );
-    m_directionalLight = DirectionalLight( BaseLight( Vector3<float>( 0.1f, 0.1f, 0.1f ), 1.0f ), Vector3<float>( 8.0f, 8.0f, 8.0f ) );
+    m_ambientLight = Vector3<float>( 0.1f, 0.1f, 0.1f );
+    m_directionalLight = DirectionalLight( BaseLight( Vector3<float>( 1.0f, 1.0f, 1.0f ), 0.5f ), Vector3<float>( 1.0f, 1.0f, 0.5f ).Normalized() );
     
     PointLight pLight( BaseLight( Vector3<float>( 1, 1, 0 ), 8.0f ), Attenuation( 0, 0, 1 ), Vector3<float>( -2, 1, 0 ), 10.0f );
     AddPointLight( pLight );
@@ -83,9 +59,30 @@ void PhongShader::Disable() {
 }
 
 void PhongShader::UpdateUniforms( const Matrix4<float> &world, const Matrix4<float> &projected, const Camera &camera, const Material &material, const Mesh &mesh ) {
-    material.m_texture->Bind();
     
+    material.m_texture->Bind();
+    UniformVector3f( "baseColor", material.m_color );
+    UniformVector3f( "eyePos", camera.GetPosition() );
+    
+    UniformMatrix4f( "transform", world );
     UniformMatrix4f( "transformProjected", projected );
+    
+    Uniform1f( "specularPower", material.m_specularPower );
+    Uniform1f( "specularIntensity", material.m_specularIntensity );
+    
+    UniformVector3f( "ambientLight", m_ambientLight );
+    UniformVector3f( "directionalLight.base.color", m_directionalLight.m_baseLight.m_color );
+    Uniform1f( "directionalLight.base.intensity", m_directionalLight.m_baseLight.m_intensity );
+    UniformVector3f( "directionalLight.direction", m_directionalLight.m_direction );
+    
+    // UniformVector3f( "directionalLight.base.color", m_directionalLight.m_baseLight.m_color );
+    // Uniform1f( "directionalLight.base.intensity", m_directionalLight.m_baseLight.m_intensity );
+    // UniformVector3f( "directionalLight.direction", m_directionalLight.m_direction );
+    
+    // Uniform1f( "specularIntensity", material.m_specularIntensity );
+    // Uniform1f( "specularPower", material.m_specularPower );
+    
+    /*UniformMatrix4f( "transformProjected", projected );
     UniformMatrix4f( "transform", world );
     UniformVector3f( "baseColor", material.m_color );
     
@@ -120,7 +117,7 @@ void PhongShader::UpdateUniforms( const Matrix4<float> &world, const Matrix4<flo
     
     Uniform1f( "specularIntensity", material.m_specularIntensity );
     Uniform1f( "specularPower", material.m_specularPower );
-    UniformVector3f( "eyePos", camera.GetPosition() );
+    UniformVector3f( "eyePos", camera.GetPosition() );*/
 }
 
 

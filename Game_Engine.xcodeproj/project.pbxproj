@@ -29,7 +29,6 @@
 		447A39121BD6DCD900190464 /* shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 447A39101BD6DCD900190464 /* shader.cpp */; };
 		447A39151BD6F09300190464 /* renderingEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 447A39131BD6F09300190464 /* renderingEngine.cpp */; };
 		447A39181BD7CA4E00190464 /* texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 447A39161BD7CA4E00190464 /* texture.cpp */; };
-		447B54151BF04A9600BB5977 /* libSDL2-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 447B54141BF04A9600BB5977 /* libSDL2-2.0.0.dylib */; };
 		449D85F41BD6B6F300B72584 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 449D85F31BD6B6F300B72584 /* OpenGL.framework */; };
 		449D85F91BD6BB0900B72584 /* libGLEW.1.12.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 449D85F81BD6BB0900B72584 /* libGLEW.1.12.0.dylib */; };
 		44B6933E1C077B3600743603 /* stb_image.c in Sources */ = {isa = PBXBuildFile; fileRef = 44B6933C1C077B3600743603 /* stb_image.c */; };
@@ -135,7 +134,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				44040E461C18E3410058A84B /* libassimp.3.1.1.dylib in Frameworks */,
-				447B54151BF04A9600BB5977 /* libSDL2-2.0.0.dylib in Frameworks */,
 				4415CD891BDD70CC00E91770 /* CoreFoundation.framework in Frameworks */,
 				449D85F91BD6BB0900B72584 /* libGLEW.1.12.0.dylib in Frameworks */,
 				4415CD961BDDCD6400E91770 /* libglfw.3.1.dylib in Frameworks */,
@@ -462,7 +460,6 @@
 					"$(inherited)",
 					/usr/local/Cellar/glew/1.12.0/lib,
 					/usr/local/lib/,
-					/usr/local/Cellar/sdl2/2.0.3/lib,
 					/usr/local/Cellar/assimp/3.1.1/lib,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -477,7 +474,6 @@
 					"$(inherited)",
 					/usr/local/Cellar/glew/1.12.0/lib,
 					/usr/local/lib/,
-					/usr/local/Cellar/sdl2/2.0.3/lib,
 					/usr/local/Cellar/assimp/3.1.1/lib,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -55,9 +55,9 @@ void GBuffer::Init( unsigned int width, unsigned int height ) {
     glBindTexture( GL_TEXTURE_2D, m_depthTexture );
     glTexImage2D( GL_TEXTURE_2D, 0, GL_DEPTH32F_STENCIL8, width, height, 0, GL_DEPTH_STENCIL, GL_FLOAT_32_UNSIGNED_INT_24_8_REV, NULL );
     glFramebufferTexture2D( GL_DRAW_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_TEXTURE_2D, m_depthTexture, 0 );
-
+    
     glBindTexture( GL_TEXTURE_2D, m_finalTexture );
-    glTexImage2D( GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_FLOAT, NULL );;
+    glTexImage2D( GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGB, GL_FLOAT, NULL );
     glFramebufferTexture2D( GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT4, GL_TEXTURE_2D, m_finalTexture, 0 );
     
     GLenum status = glCheckFramebufferStatus( GL_FRAMEBUFFER );

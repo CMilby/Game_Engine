@@ -1,5 +1,5 @@
 //
-//  geometryPassTech.hpp
+//  geometryPassTech.h
 //  Game_Engine
 //
 //  Created by Craig Milby on 12/11/15.
@@ -11,7 +11,6 @@
 
 #include <GL/glew.h>
 
-#include "gBuffer.h"
 #include "math3d.h"
 #include "shader.h"
 
@@ -44,4 +43,4 @@ public:
     void SetColorTextureUint( unsigned int textureUnit );
 };
 
-#endif /* geometryPassTech_hpp */
+#endif /* geometryPassTech_h */

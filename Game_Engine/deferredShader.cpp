@@ -39,10 +39,11 @@ void DeferredShader::Init() {
     m_dirLightPass->SetPositionTextureUnit( GBuffer::GBUFFER_TEXTURE_TYPE_POSITION );
     m_dirLightPass->SetColorTextureUnit( GBuffer::GBUFFER_TEXTURE_TYPE_DIFFUSE );
     m_dirLightPass->SetNormalTextureUnit( GBuffer::GBUFFER_TEXTURE_TYPE_NORMAL );
+    
     DirectionalLight dirLight( BaseLight(), Vector3<float>( 1.0f, 0.0f, 0.0f ) );
     dirLight.m_baseLight.m_color = Vector3<float>( 1, 1, 0 );
     dirLight.m_baseLight.m_intensity = 0.1f;
-    dirLight.m_baseLight.m_diffuseIntensity = 0.5f;
+    // dirLight.m_baseLight.m_diffuseIntensity = 0.5f;
     m_dirLightPass->SetDirectionalLight( dirLight );
     m_dirLightPass->SetScreenSize( 1024, 768 );
     m_dirLightPass->SetWVP( Matrix4<float>().InitIdentity() );
@@ -51,6 +52,23 @@ void DeferredShader::Init() {
     
     m_sphere = new RenderableEntity( new Mesh( "sphere.obj" ), new Material( new Texture( "test.png", TYPE_PNG ) ) );
     m_quad = new RenderableEntity( new Mesh( "quad.obj" ), new Material( new Texture( "test.png", TYPE_PNG ) ) );
+}
+
+void DeferredShader::Render( const Matrix4<float> &world, const Matrix4<float> &projected,  const Camera &camera, const Material &material, const Mesh &mesh ) {
+    
+    m_gBuffer->StartFrame();
+    GeometryPass( world, projected, mesh );
+    
+    
+    glEnable( GL_STENCIL_TEST );
+    for ( unsigned int i = 0; i < m_pointLights.size(); i++ ) {
+        StencilPass( i, camera );
+        PointLightPass( i, camera );
+    }
+    
+    glDisable( GL_STENCIL_TEST );
+    DirectionaLightPass( camera.GetPosition() );
+    FinalPass();
 }
 
 void DeferredShader::UpdateUniforms(const Matrix4<float> &world, const Matrix4<float> &projected, const Camera &camera, const Material &material, const Mesh &mesh ) {
@@ -156,9 +174,10 @@ void DeferredShader::FinalPass() {
 }
 
 float DeferredShader::CalcPointLightSphere( const PointLight &light ) {
-    float maxChannel = fmaxf( fmax( light.m_baseLight.m_color.GetX(), light.m_baseLight.m_color.GetY() ), light.m_baseLight.m_color.GetZ() );
+    /*float maxChannel = fmaxf( fmax( light.m_baseLight.m_color.GetX(), light.m_baseLight.m_color.GetY() ), light.m_baseLight.m_color.GetZ() );
     float ret = ( -light.m_atten.m_linear + sqrtf( light.m_atten.m_linear * light.m_atten.m_linear - 4 * light.m_atten.m_exponent * ( light.m_atten.m_exponent - 256 * maxChannel * light.m_baseLight.m_diffuseIntensity ) ) ) / 2 * light.m_atten.m_exponent;
-    return ret;
+    return ret;*/
+    return -1;
 }
 
 

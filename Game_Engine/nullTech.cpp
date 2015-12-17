@@ -17,8 +17,8 @@ NullTech::~NullTech() {
 }
 
 void NullTech::Init() {
-    AddVertexShader( "null_technique.vs" );
-    AddFragmentShader( "null_technique.fs" );
+    AddVertexShader( "NullShader.vs" );
+    AddFragmentShader( "NullShader.fs" );
     LinkProgram();
     
     AddUniform( "gWVP" );
