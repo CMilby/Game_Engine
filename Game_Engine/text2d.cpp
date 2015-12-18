@@ -36,7 +36,7 @@ void Text2D::Init() {
     
     LinkProgram();
     
-    AddUniform( "myTextureSampler" );
+    AddUniform( "sampler" );
 }
 
 void Text2D::PrintText2D( const char *text, int x, int y, int size ) {
@@ -85,7 +85,7 @@ void Text2D::PrintText2D( const char *text, int x, int y, int size ) {
     Bind();
     
     m_texture->Bind();
-    Uniform1i( "myTextureSampler", 0 );
+    Uniform1i( "sampler", 0 );
     
     glEnableVertexAttribArray( 0 );
     glBindBuffer( GL_ARRAY_BUFFER, m_vertexBuffer );

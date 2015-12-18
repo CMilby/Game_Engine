@@ -9,10 +9,13 @@
 #ifndef __RENDERING_ENGINE_H__
 #define __RENDERING_ENGINE_H__
 
+#include <vector>
+
 #include "camera.h"
 #include "entity.h"
 #include "math3d.h"
 #include "shader.h"
+#include "skyboxShader.h"
 #include "texture.h"
 #include "text2d.h"
 
@@ -21,8 +24,12 @@ class RenderingEngine {
 private:
     static Camera s_mainCamera;
     
+    std::vector<Shader*> m_shaders;
+    
     Shader *m_shader;
     Text2D *m_text2d;
+    
+    Skybox *m_skybox;
     
 public:
     RenderingEngine();

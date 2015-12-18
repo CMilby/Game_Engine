@@ -34,7 +34,7 @@ public:
         m_view = GetRotation().ToRotationMatrix() * Matrix4<float>().Transform( GetPosition() * -1 );
         
         m_speed = 0.3f;
-        m_sensitivity = 0.05f;
+        m_sensitivity = 2.5f;
         
         m_mouseLocked = false;
     }

@@ -43,10 +43,10 @@ void Entity::UpdateAll( float delta ) {
     }
 }
 
-void Entity::RenderAll( Shader &shader, const Camera &camera ) {
-    Render( shader, camera );
+void Entity::RenderAll( const std::vector<Shader*> &shaders, const Camera &camera ) {
+    Render( shaders, camera );
     for ( unsigned int i = 0; i < m_children.size(); i++ ) {
-        m_children[ i ]->RenderAll( shader, camera );
+        m_children[ i ]->RenderAll( shaders, camera );
     }
 }
 
@@ -82,20 +82,18 @@ void RenderableEntity::Update( float delta ) {
     
 }
 
-void RenderableEntity::Render( Shader &shader, const Camera &camera ) {
+void RenderableEntity::Render( const std::vector<Shader*> &shaders, const Camera &camera ) {
     if ( m_visible ) {
-        shader.Bind();
+        for ( int i = 0; i < shaders.size(); i++ ) {
+            shaders[ i ]->Bind();
     
-        shader.UpdateUniforms( GetModelMatrix(), Transform::GetProjection() * camera.GetView() * GetModelMatrix(), camera, *m_material, *m_mesh );
-        
-        shader.Enable();
-        m_mesh->Render();
-        shader.Disable();
+            shaders[ i ]->UpdateUniforms( GetModelMatrix(), Transform::GetProjection() * camera.GetView() * GetModelMatrix(), camera, *m_material, *m_mesh );
+        }
     }
 }
 
 Matrix4<float> RenderableEntity::GetModelMatrix() const {
-    return Matrix4<float>().Model( GetTransform()->GetPosition(), GetTransform()->GetScale() );
+    return Matrix4<float>().Transform( GetTransform()->GetPosition() ) * GetTransform()->GetRotation().ToRotationMatrix() * Matrix4<float>().InitScale( GetTransform()->GetScale() );
 }
 
 

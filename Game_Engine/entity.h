@@ -32,7 +32,7 @@ protected:
     
     virtual void Input( float delta ) {}
     virtual void Update( float delta ) {}
-    virtual void Render( Shader &shader, const Camera &camera ) {}
+    virtual void Render( const std::vector<Shader*> &shaders, const Camera &camera ) {}
 
 public:
     Entity();
@@ -42,7 +42,7 @@ public:
     
     void InputAll( float delta );
     void UpdateAll( float delta );
-    void RenderAll( Shader &shader, const Camera &camera );
+    void RenderAll( const std::vector<Shader*> &shaders, const Camera &camera );
     
     Entity* AddChild( Entity *entity );
     
@@ -61,7 +61,7 @@ private:
 protected:
     virtual void Input( float delta );
     virtual void Update( float delta );
-    virtual void Render( Shader &shader, const Camera &camera );
+    virtual void Render( const std::vector<Shader*> &shaders, const Camera &camera );
     
 public:
     RenderableEntity();

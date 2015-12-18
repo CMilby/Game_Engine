@@ -33,6 +33,8 @@
 		449D85F91BD6BB0900B72584 /* libGLEW.1.12.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 449D85F81BD6BB0900B72584 /* libGLEW.1.12.0.dylib */; };
 		44B6933E1C077B3600743603 /* stb_image.c in Sources */ = {isa = PBXBuildFile; fileRef = 44B6933C1C077B3600743603 /* stb_image.c */; };
 		44B693431C07A45E00743603 /* phongShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44B693411C07A45E00743603 /* phongShader.cpp */; };
+		44BD91081C23803D000D50B8 /* cubemapTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44BD91061C23803D000D50B8 /* cubemapTexture.cpp */; };
+		44BD910B1C238474000D50B8 /* skyboxShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44BD91091C238474000D50B8 /* skyboxShader.cpp */; };
 		44D3CD701BCBFAED0074E300 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44D3CD6F1BCBFAED0074E300 /* main.cpp */; };
 		44D3CD7F1BCC0AC30074E300 /* math3d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44D3CD7D1BCC0AC30074E300 /* math3d.cpp */; };
 		44EF3BEF1C1B73F00044B0A8 /* deferredShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44EF3BED1C1B73F00044B0A8 /* deferredShader.cpp */; };
@@ -114,6 +116,12 @@
 		44B693401C07837200743603 /* lighting.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lighting.h; sourceTree = "<group>"; };
 		44B693411C07A45E00743603 /* phongShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = phongShader.cpp; sourceTree = "<group>"; };
 		44B693421C07A45E00743603 /* phongShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = phongShader.h; sourceTree = "<group>"; };
+		44BD91061C23803D000D50B8 /* cubemapTexture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cubemapTexture.cpp; sourceTree = "<group>"; };
+		44BD91071C23803D000D50B8 /* cubemapTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cubemapTexture.h; sourceTree = "<group>"; };
+		44BD91091C238474000D50B8 /* skyboxShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = skyboxShader.cpp; sourceTree = "<group>"; };
+		44BD910A1C238474000D50B8 /* skyboxShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = skyboxShader.h; sourceTree = "<group>"; };
+		44BD91101C23AE1D000D50B8 /* Skybox.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = Skybox.fs; path = resources/shaders/Skybox.fs; sourceTree = "<group>"; };
+		44BD91111C23AE1D000D50B8 /* Skybox.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = Skybox.vs; path = resources/shaders/Skybox.vs; sourceTree = "<group>"; };
 		44D3CD6C1BCBFAED0074E300 /* Game_Engine */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Game_Engine; sourceTree = BUILT_PRODUCTS_DIR; };
 		44D3CD6F1BCBFAED0074E300 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		44D3CD7D1BCC0AC30074E300 /* math3d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = math3d.cpp; sourceTree = "<group>"; };
@@ -147,6 +155,8 @@
 		442C78991C1B09650083D86D /* Shaders */ = {
 			isa = PBXGroup;
 			children = (
+				44BD91101C23AE1D000D50B8 /* Skybox.fs */,
+				44BD91111C23AE1D000D50B8 /* Skybox.vs */,
 				44EF3BF31C1CB30D0044B0A8 /* NullShader.fs */,
 				44EF3BF41C1CB30D0044B0A8 /* NullShader.vs */,
 				442C78A81C1B61A50083D86D /* DirectionalLightPass.fs */,
@@ -171,6 +181,8 @@
 				442C78971C1A85E70083D86D /* basicShader.h */,
 				44B693411C07A45E00743603 /* phongShader.cpp */,
 				44B693421C07A45E00743603 /* phongShader.h */,
+				44BD91091C238474000D50B8 /* skyboxShader.cpp */,
+				44BD910A1C238474000D50B8 /* skyboxShader.h */,
 			);
 			name = ForwardRendering;
 			sourceTree = "<group>";
@@ -227,6 +239,8 @@
 				4415CD781BDA7C0100E91770 /* text2d.h */,
 				447A39071BD6C57200190464 /* window.cpp */,
 				447A39081BD6C57200190464 /* window.h */,
+				44BD91061C23803D000D50B8 /* cubemapTexture.cpp */,
+				44BD91071C23803D000D50B8 /* cubemapTexture.h */,
 			);
 			name = Rendering;
 			sourceTree = "<group>";
@@ -347,6 +361,7 @@
 				4415CD8F1BDD8E0400E91770 /* camera.cpp in Sources */,
 				447A39121BD6DCD900190464 /* shader.cpp in Sources */,
 				447A39091BD6C57200190464 /* window.cpp in Sources */,
+				44BD910B1C238474000D50B8 /* skyboxShader.cpp in Sources */,
 				44B693431C07A45E00743603 /* phongShader.cpp in Sources */,
 				442C78B51C1B64890083D86D /* pointLightPassTech.cpp in Sources */,
 				44F722381BDFEB8A0022754F /* game.cpp in Sources */,
@@ -354,6 +369,7 @@
 				44EF3BEF1C1B73F00044B0A8 /* deferredShader.cpp in Sources */,
 				4415CD8C1BDD74D400E91770 /* transform.cpp in Sources */,
 				44D3CD701BCBFAED0074E300 /* main.cpp in Sources */,
+				44BD91081C23803D000D50B8 /* cubemapTexture.cpp in Sources */,
 				447A390C1BD6DAC400190464 /* input.cpp in Sources */,
 				447A390F1BD6DAF300190464 /* mesh.cpp in Sources */,
 				442C78981C1A85E70083D86D /* basicShader.cpp in Sources */,

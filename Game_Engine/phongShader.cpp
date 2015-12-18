@@ -78,13 +78,13 @@ void PhongShader::Init() {
     AddSpotLight( sLight );
 }
 
-void PhongShader::Enable() {
-    glEnableVertexAttribArray( 0);
+void PhongShader::Enable() const {
+    glEnableVertexAttribArray( 0 );
     glEnableVertexAttribArray( 1 );
     glEnableVertexAttribArray( 2 );
 }
 
-void PhongShader::Disable() {
+void PhongShader::Disable() const {
     glDisableVertexAttribArray( 0 );
     glDisableVertexAttribArray( 1 );
     glDisableVertexAttribArray( 2 );
@@ -133,49 +133,9 @@ void PhongShader::UpdateUniforms( const Matrix4<float> &world, const Matrix4<flo
         Uniform1f( name + ".cutoff", m_spotLights[ i ].m_cutoff );
     }
     
-    // UniformVector3f( "directionalLight.base.color", m_directionalLight.m_baseLight.m_color );
-    // Uniform1f( "directionalLight.base.intensity", m_directionalLight.m_baseLight.m_intensity );
-    // UniformVector3f( "directionalLight.direction", m_directionalLight.m_direction );
-    
-    // Uniform1f( "specularIntensity", material.m_specularIntensity );
-    // Uniform1f( "specularPower", material.m_specularPower );
-    
-    /*UniformMatrix4f( "transformProjected", projected );
-    UniformMatrix4f( "transform", world );
-    UniformVector3f( "baseColor", material.m_color );
-    
-    UniformVector3f( "ambientLight", m_ambientLight );
-    UniformVector3f( "directionalLight.direction", m_directionalLight.m_direction );
-    UniformVector3f( "directionalLight.base.color", m_directionalLight.m_baseLight.m_color );
-    Uniform1f( "directionalLight.base.intensity", m_directionalLight.m_baseLight.m_intensity );
-    
-    for ( int i = 0; i < m_pointLights.size(); i++ ) {
-        std::string plName = "pointLights[" + std::to_string( i ) + "]";
-        
-        UniformVector3f( plName + ".base.color", m_pointLights[ i ].m_baseLight.m_color );
-        Uniform1f( plName + ".base.intensity", m_pointLights[ i ].m_baseLight.m_intensity );
-        Uniform1f( plName + ".atten.constant", m_pointLights[ i ].m_atten.m_constant );
-        Uniform1f( plName + ".atten.linear", m_pointLights[ i ].m_atten.m_linear );
-        Uniform1f( plName + ".atten.exponent", m_pointLights[ i ].m_atten.m_exponent );
-        UniformVector3f( plName + ".position", m_pointLights[ i ].m_position );
-    }
-    
-    for ( int i = 0; i < m_spotLights.size(); i++ ) {
-        std::string slName = "spotLights[" + std::to_string( i ) + "]";
-        
-        UniformVector3f( slName + ".pointLight.base.color", m_spotLights[ i ].m_pointLight.m_baseLight.m_color );
-        Uniform1f( slName + ".pointLight.base.intensity", m_spotLights[ i ].m_pointLight.m_baseLight.m_intensity );
-        Uniform1f( slName + ".pointLight.atten.constant", m_spotLights[ i ].m_pointLight.m_atten.m_constant );
-        Uniform1f( slName + ".pointLight.atten.linear", m_spotLights[ i ].m_pointLight.m_atten.m_linear );
-        Uniform1f( slName + ".pointLight.atten.exponent", m_spotLights[ i ].m_pointLight.m_atten.m_exponent );
-        UniformVector3f( slName + ".pointLight.position", m_spotLights[ i ].m_pointLight.m_position );
-        UniformVector3f( slName + ".direction", m_spotLights[ i ].m_direction );
-        Uniform1f( slName + ".cutoff", m_spotLights[ i ].m_cutoff );
-    }
-    
-    Uniform1f( "specularIntensity", material.m_specularIntensity );
-    Uniform1f( "specularPower", material.m_specularPower );
-    UniformVector3f( "eyePos", camera.GetPosition() );*/
+    Enable();
+    mesh.Render();
+    Disable();
 }
 
 

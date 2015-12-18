@@ -29,13 +29,13 @@ void BasicShader::Init() {
     AddUniform( "LightPosition_worldspace" );
 }
 
-void BasicShader::Enable() {
+void BasicShader::Enable() const {
     glEnableVertexAttribArray( 0 );
     glEnableVertexAttribArray( 1 );
     glEnableVertexAttribArray( 2 );
 }
 
-void BasicShader::Disable() {
+void BasicShader::Disable() const {
     glDisableVertexAttribArray( 0 );
     glDisableVertexAttribArray( 1 );
     glDisableVertexAttribArray( 2 );

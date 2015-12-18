@@ -45,8 +45,8 @@ public:
     
     void Bind() const;
     
-    virtual void Enable() {}
-    virtual void Disable() {}
+    virtual void Enable() const {}
+    virtual void Disable() const {}
     
     virtual void UpdateUniforms( const Matrix4<float> &world, const Matrix4<float> &projected,  const Camera &camera, const Material &material, const Mesh &mesh );
     

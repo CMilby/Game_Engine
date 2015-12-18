@@ -17,10 +17,16 @@ Camera RenderingEngine::s_mainCamera = Camera();
 RenderingEngine::RenderingEngine() {
     m_shader = new PhongShader();
     m_text2d = new Text2D( "Holstein.DDS" );
+    m_skybox = new Skybox( "", "stars_rt.jpg", "stars_lf.jpg", "stars_up.jpg", "stars_dn.jpg", "stars_fr.jpg", "stars_bk.jpg" );
+    
+    m_shaders.emplace_back( m_shader );
+    m_shaders.emplace_back( m_skybox );
 }
 
 RenderingEngine::~RenderingEngine() {
     if ( m_shader ) delete m_shader;
+    if ( m_text2d ) delete m_text2d;
+    if ( m_skybox ) delete m_skybox;
 }
 
 void RenderingEngine::Init() {
@@ -34,12 +40,16 @@ void RenderingEngine::Init() {
     
     m_shader->Init();
     m_text2d->Init();
+    m_skybox->Init();
 }
 
 void RenderingEngine::Render( Entity &root ) {
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 
-    root.RenderAll( *m_shader, s_mainCamera );
+    // root.RenderAll( *m_shader, s_mainCamera );
+    // root.RenderAll( *m_skybox, s_mainCamera );
+    
+    root.RenderAll( m_shaders, s_mainCamera );
     
     char text[ 256 ];
     Vector3<float> pos = s_mainCamera.GetPosition();

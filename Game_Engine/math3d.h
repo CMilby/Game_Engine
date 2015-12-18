@@ -537,6 +537,7 @@ public:
     }
     
     Quaternion( const Vector3<float> &vect, float angle ) {
+        angle = ToRadian( angle );
         float sinAngle = sinf( angle / 2.0f );
         float cosAngle = cosf( angle / 2.0f );
         
