@@ -12,7 +12,7 @@
 #include "game.h"
 #include "input.h"
 #include "renderingEngine.h"
-#include "text2d.h"
+#include "textShader.h"
 #include "window.h"
 
 class CoreEngine {
@@ -21,7 +21,7 @@ private:
     bool m_isRunning;
     
     RenderingEngine *m_renderingEngine;
-    Text2D *m_text2d;
+    TextShader *m_textShader;
     
     Game *m_game;
     Window *m_window;

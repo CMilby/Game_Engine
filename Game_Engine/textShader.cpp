@@ -6,40 +6,37 @@
 //  Copyright © 2015 Craig Milby. All rights reserved.
 //
 
-#include "text2d.h"
+#include "textShader.h"
 
 #include <vector>
 
 #include "texture.h"
 
-Text2D::Text2D( const std::string &file ) {
+TextShader::TextShader( const std::string &file ) {
     m_file = file;
 }
 
-Text2D::~Text2D() {
+TextShader::~TextShader() {
     glDeleteBuffers( 1, &m_vertexBuffer );
     glDeleteBuffers( 1, &m_uvBuffer );
     
     if ( m_texture ) delete m_texture;
-    // if ( m_shader ) delete m_shader;
 }
 
-void Text2D::Init() {
-    m_texture = new Texture( m_file, TextureType::TYPE_DDS );
+void TextShader::Init() {
+    m_texture = new Texture( "fonts/" + m_file, TextureType::TYPE_PNG );
     
     glGenBuffers( 1, &m_vertexBuffer );
     glGenBuffers( 1, &m_uvBuffer );
     
-    // m_shader = new Shader();
     AddVertexShader( "TextVertexShader.vs" );
     AddFragmentShader( "TextVertexShader.fs" );
-    
     LinkProgram();
     
     AddUniform( "sampler" );
 }
 
-void Text2D::PrintText2D( const char *text, int x, int y, int size ) {
+void TextShader::Render( const char *text, int x, int y, int size ) {
     unsigned int length = ( unsigned int ) strlen( text );
     
     std::vector<Vector2<float>> vertices;
@@ -60,8 +57,8 @@ void Text2D::PrintText2D( const char *text, int x, int y, int size ) {
         vertices.push_back( vertex_down_left );
         
         char character = text[ i ];
-        float uv_x = ( character % 16 ) / 16.0f;
-        float uv_y = ( character / 16 ) / 16.0f;
+        float uv_x = ( character % ( int ) FONT_SIZE ) / FONT_SIZE;
+        float uv_y = ( character / ( int ) FONT_SIZE ) / FONT_SIZE;
         
         Vector2<float> uv_up_left( uv_x, uv_y );
         Vector2<float> uv_up_right( uv_x + 1.0f / 16.0f, uv_y );

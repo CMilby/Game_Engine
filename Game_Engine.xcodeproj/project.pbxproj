@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		44040E461C18E3410058A84B /* libassimp.3.1.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 44040E451C18E3410058A84B /* libassimp.3.1.1.dylib */; };
-		4415CD791BDA7C0100E91770 /* text2d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4415CD771BDA7C0100E91770 /* text2d.cpp */; };
+		4415CD791BDA7C0100E91770 /* textShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4415CD771BDA7C0100E91770 /* textShader.cpp */; };
 		4415CD841BDAB5DC00E91770 /* entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4415CD821BDAB5DC00E91770 /* entity.cpp */; };
 		4415CD871BDD6EE200E91770 /* utility.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4415CD851BDD6EE200E91770 /* utility.cpp */; };
 		4415CD891BDD70CC00E91770 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4415CD881BDD70CC00E91770 /* CoreFoundation.framework */; };
@@ -56,8 +56,8 @@
 
 /* Begin PBXFileReference section */
 		44040E451C18E3410058A84B /* libassimp.3.1.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libassimp.3.1.1.dylib; path = ../../../../usr/local/Cellar/assimp/3.1.1/lib/libassimp.3.1.1.dylib; sourceTree = "<group>"; };
-		4415CD771BDA7C0100E91770 /* text2d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = text2d.cpp; sourceTree = "<group>"; };
-		4415CD781BDA7C0100E91770 /* text2d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = text2d.h; sourceTree = "<group>"; };
+		4415CD771BDA7C0100E91770 /* textShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = textShader.cpp; sourceTree = "<group>"; };
+		4415CD781BDA7C0100E91770 /* textShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = textShader.h; sourceTree = "<group>"; };
 		4415CD821BDAB5DC00E91770 /* entity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = entity.cpp; sourceTree = "<group>"; };
 		4415CD831BDAB5DC00E91770 /* entity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = entity.h; sourceTree = "<group>"; };
 		4415CD851BDD6EE200E91770 /* utility.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = utility.cpp; sourceTree = "<group>"; };
@@ -183,6 +183,8 @@
 				44B693421C07A45E00743603 /* phongShader.h */,
 				44BD91091C238474000D50B8 /* skyboxShader.cpp */,
 				44BD910A1C238474000D50B8 /* skyboxShader.h */,
+				4415CD771BDA7C0100E91770 /* textShader.cpp */,
+				4415CD781BDA7C0100E91770 /* textShader.h */,
 			);
 			name = ForwardRendering;
 			sourceTree = "<group>";
@@ -235,8 +237,6 @@
 				447A39171BD7CA4E00190464 /* texture.h */,
 				44B6933F1C0782AC00743603 /* material.h */,
 				44B693401C07837200743603 /* lighting.h */,
-				4415CD771BDA7C0100E91770 /* text2d.cpp */,
-				4415CD781BDA7C0100E91770 /* text2d.h */,
 				447A39071BD6C57200190464 /* window.cpp */,
 				447A39081BD6C57200190464 /* window.h */,
 				44BD91061C23803D000D50B8 /* cubemapTexture.cpp */,
@@ -373,7 +373,7 @@
 				447A390C1BD6DAC400190464 /* input.cpp in Sources */,
 				447A390F1BD6DAF300190464 /* mesh.cpp in Sources */,
 				442C78981C1A85E70083D86D /* basicShader.cpp in Sources */,
-				4415CD791BDA7C0100E91770 /* text2d.cpp in Sources */,
+				4415CD791BDA7C0100E91770 /* textShader.cpp in Sources */,
 				4415CD951BDDC3EE00E91770 /* time.cpp in Sources */,
 				447A39181BD7CA4E00190464 /* texture.cpp in Sources */,
 				4415CD871BDD6EE200E91770 /* utility.cpp in Sources */,

@@ -15,19 +15,19 @@ CoreEngine::CoreEngine( Window *window, Game *game ) {
     m_game = game;
     
     m_renderingEngine = new RenderingEngine();
-    m_text2d = new Text2D( "Holstein.DDS" );
+    m_textShader = new TextShader( "Courier_New.png" );
     
     m_isRunning = false;
 }
 
 CoreEngine::~CoreEngine() {
     if ( m_renderingEngine ) delete m_renderingEngine;
-    if ( m_text2d ) delete m_text2d;
+    if ( m_textShader ) delete m_textShader;
 }
 
 void CoreEngine::Init() {
     m_renderingEngine->Init();
-    m_text2d->Init();
+    m_textShader->Init();
     m_game->Init();
 }
 
@@ -64,7 +64,7 @@ void CoreEngine::Start() {
         m_game->ProcessUpdate( currentTime - lastTime );
         m_game->ProcessRender( m_renderingEngine );
         
-        m_text2d->PrintText2D( lastFPM, 5, 5, 20 );
+        m_textShader->Render( lastFPM, 5, 5, 20 );
         
         m_window->SwapBuffers();
     }

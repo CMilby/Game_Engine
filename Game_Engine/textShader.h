@@ -16,7 +16,9 @@
 #include "shader.h"
 #include "texture.h"
 
-class Text2D : public Shader {
+#define FONT_SIZE 16.0f
+
+class TextShader : public Shader {
   
 private:
     Texture *m_texture;
@@ -27,11 +29,11 @@ private:
     std::string m_file;
     
 public:
-    Text2D( const std::string &file );
-    virtual ~Text2D();
+    TextShader( const std::string &file );
+    virtual ~TextShader();
     virtual void Init();
     
-    void PrintText2D( const char *text, int x, int y, int size );
+    void Render( const char *text, int x, int y, int size );
 };
 
 #endif /* text2d_h */

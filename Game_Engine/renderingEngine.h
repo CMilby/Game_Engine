@@ -17,7 +17,7 @@
 #include "shader.h"
 #include "skyboxShader.h"
 #include "texture.h"
-#include "text2d.h"
+#include "textShader.h"
 
 class RenderingEngine {
     
@@ -27,9 +27,9 @@ private:
     std::vector<Shader*> m_shaders;
     
     Shader *m_shader;
-    Text2D *m_text2d;
-    
     Skybox *m_skybox;
+    
+    TextShader *m_textShader;
     
 public:
     RenderingEngine();
