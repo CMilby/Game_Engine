@@ -9,7 +9,6 @@
 #include "renderingEngine.h"
 
 #include "basicShader.h"
-#include "deferredShader.h"
 #include "phongShader.h"
 
 Camera RenderingEngine::s_mainCamera = Camera();
