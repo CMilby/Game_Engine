@@ -39,6 +39,7 @@ public:
     void Rotate( const Quaternion &quat );
     
     inline static Matrix4<float> GetProjection() { return s_projection; }
+    static void SetProjection( float fov, float aspectRatio, float zNear, float zFar );
 };
 
 #endif /* transform_h */

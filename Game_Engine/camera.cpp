@@ -13,9 +13,10 @@
 #include "entity.h"
 #include "input.h"
 #include "renderingEngine.h"
+#include "utility.h"
 
 void Camera::Init() {
-    Input::SetCursorPosition( Vector2<int>( 1024 / 2, 768 / 2 ) );
+    Input::SetCursorPosition( Vector2<int>( Utility::ScreenHalfWidth(), Utility::ScreenHalfHeight() ) );
 }
 
 void Camera::Input( float delta ) {

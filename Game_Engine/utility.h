@@ -19,6 +19,9 @@ namespace Utility {
     void PrintCurrentPath();
     
     std::string DirectoryPath();
+    
+    unsigned int ScreenHalfWidth();
+    unsigned int ScreenHalfHeight();
 };
 
 #endif /* utility_h */

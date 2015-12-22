@@ -12,6 +12,8 @@
 #include <CoreFoundation/CoreFoundation.h>
 #endif
 
+#include "config.h"
+
 #define __PATH_MAX__ 256
 
 void Utility::PrintCurrentPath() {
@@ -39,3 +41,21 @@ std::string Utility::DirectoryPath() {
 #endif
     return "";
 }
+
+unsigned int Utility::ScreenHalfWidth() {
+    return Config::GetScreenWidth() / 2;
+}
+
+unsigned int Utility::ScreenHalfHeight() {
+    return Config::GetScreenHeight() / 2;
+}
+
+
+
+
+
+
+
+
+
+
