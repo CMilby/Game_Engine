@@ -15,7 +15,6 @@ CoreEngine::CoreEngine( Window *window, Game *game ) {
     m_game = game;
     
     m_renderingEngine = new RenderingEngine();
-    m_textShader = new TextShader( "Courier_New.png" );
     
     m_isRunning = false;
 }
@@ -27,8 +26,12 @@ CoreEngine::~CoreEngine() {
 
 void CoreEngine::Init() {
     m_renderingEngine->Init();
+    
+    m_textShader = new TextShader( "Courier_New.png" );
     m_textShader->Init();
     m_game->Init();
+    
+    m_window->SetFullscreen( true );
 }
 
 void CoreEngine::Start() {
@@ -53,8 +56,8 @@ void CoreEngine::Start() {
             frames = 0;
             lastTime += 1.0f;
         }
-        
-        m_window->PollEvents();
+
+        Input::Update();
         
         if ( m_window->ShouldClose() || Input::IsKeyDown( Input::KEY_ESCAPE ) ) {
             Stop();

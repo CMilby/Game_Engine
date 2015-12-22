@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4402CE001C28C95A00F11AA8 /* libSDL2-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 447B54141BF04A9600BB5977 /* libSDL2-2.0.0.dylib */; };
 		44040E461C18E3410058A84B /* libassimp.3.1.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 44040E451C18E3410058A84B /* libassimp.3.1.1.dylib */; };
 		4415CD791BDA7C0100E91770 /* textShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4415CD771BDA7C0100E91770 /* textShader.cpp */; };
 		4415CD841BDAB5DC00E91770 /* entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4415CD821BDAB5DC00E91770 /* entity.cpp */; };
@@ -40,6 +41,7 @@
 		44EF3BEF1C1B73F00044B0A8 /* deferredShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44EF3BED1C1B73F00044B0A8 /* deferredShader.cpp */; };
 		44EF3BF21C1CB20B0044B0A8 /* nullTech.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44EF3BF01C1CB20B0044B0A8 /* nullTech.cpp */; };
 		44F722381BDFEB8A0022754F /* game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44F722361BDFEB8A0022754F /* game.cpp */; };
+		44FB2ED31C28DAF300C6FCAF /* sdlBackend.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44FB2ED11C28DAF300C6FCAF /* sdlBackend.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -134,6 +136,8 @@
 		44EF3BF41C1CB30D0044B0A8 /* NullShader.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = NullShader.vs; path = resources/shaders/NullShader.vs; sourceTree = "<group>"; };
 		44F722361BDFEB8A0022754F /* game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = game.cpp; sourceTree = "<group>"; };
 		44F722371BDFEB8A0022754F /* game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = game.h; sourceTree = "<group>"; };
+		44FB2ED11C28DAF300C6FCAF /* sdlBackend.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sdlBackend.cpp; sourceTree = "<group>"; };
+		44FB2ED21C28DAF300C6FCAF /* sdlBackend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sdlBackend.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +145,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4402CE001C28C95A00F11AA8 /* libSDL2-2.0.0.dylib in Frameworks */,
 				44040E461C18E3410058A84B /* libassimp.3.1.1.dylib in Frameworks */,
 				4415CD891BDD70CC00E91770 /* CoreFoundation.framework in Frameworks */,
 				449D85F91BD6BB0900B72584 /* libGLEW.1.12.0.dylib in Frameworks */,
@@ -297,6 +302,8 @@
 				44F722371BDFEB8A0022754F /* game.h */,
 				44B6933C1C077B3600743603 /* stb_image.c */,
 				44B6933D1C077B3600743603 /* stb_image.h */,
+				44FB2ED11C28DAF300C6FCAF /* sdlBackend.cpp */,
+				44FB2ED21C28DAF300C6FCAF /* sdlBackend.h */,
 			);
 			name = Core_Engine;
 			sourceTree = "<group>";
@@ -362,6 +369,7 @@
 				447A39121BD6DCD900190464 /* shader.cpp in Sources */,
 				447A39091BD6C57200190464 /* window.cpp in Sources */,
 				44BD910B1C238474000D50B8 /* skyboxShader.cpp in Sources */,
+				44FB2ED31C28DAF300C6FCAF /* sdlBackend.cpp in Sources */,
 				44B693431C07A45E00743603 /* phongShader.cpp in Sources */,
 				442C78B51C1B64890083D86D /* pointLightPassTech.cpp in Sources */,
 				44F722381BDFEB8A0022754F /* game.cpp in Sources */,
@@ -477,6 +485,7 @@
 					/usr/local/Cellar/glew/1.12.0/lib,
 					/usr/local/lib/,
 					/usr/local/Cellar/assimp/3.1.1/lib,
+					/usr/local/Cellar/sdl2/2.0.3/lib,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -491,6 +500,7 @@
 					/usr/local/Cellar/glew/1.12.0/lib,
 					/usr/local/lib/,
 					/usr/local/Cellar/assimp/3.1.1/lib,
+					/usr/local/Cellar/sdl2/2.0.3/lib,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

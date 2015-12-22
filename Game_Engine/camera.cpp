@@ -15,7 +15,7 @@
 #include "renderingEngine.h"
 
 void Camera::Init() {
-    Input::SetCursorPosition( Vector2<float>( 1024 / 2, 768 / 2 ) );
+    Input::SetCursorPosition( Vector2<int>( 1024 / 2, 768 / 2 ) );
 }
 
 void Camera::Input( float delta ) {

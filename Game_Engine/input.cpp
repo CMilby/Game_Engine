@@ -11,7 +11,8 @@
 #include <iostream>
 
 #include <GL/glew.h>
-#include <GLFW/glfw3.h>
+
+#include "sdlBackend.h"
 
 Input Input::s_instance = Input();
 Window Input::s_window = Window();
@@ -19,8 +20,8 @@ Window Input::s_window = Window();
 bool Input::s_inputs[] = { false };
 bool Input::s_mouse[] = { false };
 
-float Input::s_mouseX = 0;
-float Input::s_mouseY = 0;
+int Input::s_mouseX = 0;
+int Input::s_mouseY = 0;
 
 int Input::s_drawMode = 0;
 
@@ -31,9 +32,36 @@ Input::Input() {
 
 void Input::Init( const Window &window ) {
     s_window = window;
-    glfwSetKeyCallback( s_window.GetWindow(), KeyCallback );
-    glfwSetMouseButtonCallback( s_window.GetWindow(), ButtonCallback );
-    glfwSetCursorPosCallback( s_window.GetWindow(), CursorPositionCallback );
+}
+
+void Input::Update() {
+    SDL_Event event;
+    while ( SDL_PollEvent( &event ) ) {
+        if ( event.type == SDL_QUIT ) {
+            SDLSetIsCloseRequested( true );
+        }
+        
+        if ( event.type == SDL_KEYDOWN ) {
+            s_inputs[ event.key.keysym.scancode ] = true;
+        }
+        
+        if ( event.type == SDL_KEYUP ) {
+            s_inputs[ event.key.keysym.scancode ] = false;
+        }
+        
+        if ( event.type == SDL_MOUSEMOTION ) {
+            s_mouseX = event.motion.x;
+            s_mouseY = event.motion.y;
+        }
+        
+        if ( event.type == SDL_MOUSEBUTTONDOWN ) {
+            s_mouse[ event.button.button ] = true;
+        }
+        
+        if ( event.type == SDL_MOUSEBUTTONUP ) {
+            s_mouse[ event.button.button ] = false;
+        }
+    }
 }
 
 void Input::SetWindow( const Window &window ) {
@@ -65,46 +93,15 @@ void Input::SetButton( int button, bool value ) {
 }
 
 void Input::SetCursor( bool visible ) {
-    glfwSetInputMode( s_window.GetWindow(), GLFW_CURSOR, ( !visible ) ? GLFW_CURSOR_HIDDEN : GLFW_CURSOR_NORMAL );
+    SDL_ShowCursor( visible ? 1 : 0 );
 }
 
-Vector2<float> Input::GetCursorPosition() {
-    double xPos = 0.0, yPos = 0.0;
-    glfwGetCursorPos( s_window.GetWindow(), &xPos, &yPos );
-    
-    s_mouseX = ( float ) xPos;
-    s_mouseY = ( float ) yPos;
-    
-    return Vector2<float>( s_mouseX, s_mouseY );
+Vector2<int> Input::GetCursorPosition() {
+    return Vector2<int>( s_mouseX, s_mouseY );
 }
 
-void Input::SetCursorPosition( const Vector2<float> &position ) {
-    glfwSetCursorPos( s_window.GetWindow(), position.GetX(), position.GetY() );
-}
-
-void Input::KeyCallback( GLFWwindow* handle, int key, int scancode, int action, int mods ) {
-    if ( action == GLFW_PRESS ) {
-        s_inputs[ key ] = true;
-    }
-    
-    if ( action == GLFW_RELEASE ) {
-        s_inputs[ key ] = false;
-    }
-}
-
-void Input::ButtonCallback( GLFWwindow *handle, int button, int action, int mods ) {
-    if ( action == GLFW_PRESS ) {
-        s_mouse[ button ] = true;
-    }
-    
-    if ( action == GLFW_RELEASE ) {
-        s_mouse[ button ] = false;
-    }
-}
-
-void Input::CursorPositionCallback( GLFWwindow *handle, double xpos, double ypos ) {
-    // s_mouseX = xpos;
-    // s_mouseY = ypos;
+void Input::SetCursorPosition( const Vector2<int> &position ) {
+    s_window.SetMousePosition( position );
 }
 
 void Input::SetDrawMode( int mode ) {

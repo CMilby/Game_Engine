@@ -12,12 +12,15 @@
 #include <string>
 
 #include <GL/glew.h>
-#include <GLFW/glfw3.h>
+#include <SDL2/SDL.h>
+
+#include "math3d.h"
 
 class Window {
     
 private:
-    GLFWwindow *m_window;
+    SDL_Window *m_window;
+    SDL_GLContext m_glContext;
     
     unsigned int m_width;
     unsigned int m_heigt;
@@ -29,11 +32,16 @@ public:
     virtual ~Window();
     
     void SwapBuffers();
-    void PollEvents();
-
-    bool ShouldClose() const;
     
-    inline GLFWwindow* GetWindow() const { return m_window; }
+    bool ShouldClose() const;
+    void SetShouldClose( bool value );
+    
+    void SetMousePosition( const Vector2<int> &position ) const;
+    Vector2<int> GetMousePosition() const;
+    
+    void SetFullscreen( bool value ) const;
+    
+    inline SDL_Window* GetWindow() const { return m_window; }
 };
 
 #endif /* window_h */

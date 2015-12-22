@@ -15,12 +15,7 @@
 Camera RenderingEngine::s_mainCamera = Camera();
 
 RenderingEngine::RenderingEngine() {
-    m_shader = new PhongShader();
-    m_textShader = new TextShader( "Courier_New.png" );
-    m_skybox = new Skybox( "", "stars_rt.jpg", "stars_lf.jpg", "stars_up.jpg", "stars_dn.jpg", "stars_fr.jpg", "stars_bk.jpg" );
-    
-    m_shaders.emplace_back( m_shader );
-    m_shaders.emplace_back( m_skybox );
+
 }
 
 RenderingEngine::~RenderingEngine() {
@@ -38,16 +33,20 @@ void RenderingEngine::Init() {
     glEnable( GL_DEPTH_TEST );
     glEnable( GL_DEPTH_CLAMP );
     
+    m_shader = new PhongShader();
+    m_textShader = new TextShader( "Courier_New.png" );
+    m_skybox = new Skybox( "", "stars_rt.jpg", "stars_lf.jpg", "stars_up.jpg", "stars_dn.jpg", "stars_fr.jpg", "stars_bk.jpg" );
+    
     m_shader->Init();
     m_textShader->Init();
     m_skybox->Init();
+    
+    m_shaders.emplace_back( m_shader );
+    m_shaders.emplace_back( m_skybox );
 }
 
 void RenderingEngine::Render( Entity &root ) {
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
-
-    // root.RenderAll( *m_shader, s_mainCamera );
-    // root.RenderAll( *m_skybox, s_mainCamera );
     
     root.RenderAll( m_shaders, s_mainCamera );
     
