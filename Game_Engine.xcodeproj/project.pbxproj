@@ -18,6 +18,7 @@
 		4415CD921BDDC38700E91770 /* coreEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4415CD901BDDC38700E91770 /* coreEngine.cpp */; };
 		4415CD951BDDC3EE00E91770 /* time.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4415CD931BDDC3EE00E91770 /* time.cpp */; };
 		4415CD961BDDCD6400E91770 /* libglfw.3.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 449D85F61BD6BACB00B72584 /* libglfw.3.1.dylib */; };
+		4421D5BE1C2A6E7900180432 /* fullscreenQuad.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4421D5BC1C2A6E7900180432 /* fullscreenQuad.cpp */; };
 		442C78981C1A85E70083D86D /* basicShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 442C78961C1A85E70083D86D /* basicShader.cpp */; };
 		447A39091BD6C57200190464 /* window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 447A39071BD6C57200190464 /* window.cpp */; };
 		447A390C1BD6DAC400190464 /* input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 447A390A1BD6DAC400190464 /* input.cpp */; };
@@ -40,6 +41,7 @@
 		44FB2EDC1C29B2C700C6FCAF /* deferredShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44FB2EDA1C29B2C700C6FCAF /* deferredShader.cpp */; };
 		44FB2EDF1C29B31600C6FCAF /* logging.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44FB2EDD1C29B31600C6FCAF /* logging.cpp */; };
 		44FB2EE21C29BB5300C6FCAF /* geometryShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44FB2EE01C29BB5300C6FCAF /* geometryShader.cpp */; };
+		44FB2EE51C29BC7100C6FCAF /* lightingShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44FB2EE31C29BC7100C6FCAF /* lightingShader.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -71,6 +73,12 @@
 		4415CD911BDDC38700E91770 /* coreEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = coreEngine.h; sourceTree = "<group>"; };
 		4415CD931BDDC3EE00E91770 /* time.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = time.cpp; sourceTree = "<group>"; };
 		4415CD941BDDC3EE00E91770 /* time.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = time.h; sourceTree = "<group>"; };
+		4421D5B81C29BD8600180432 /* DeferredShading.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = DeferredShading.fs; path = resources/shaders/DeferredShading.fs; sourceTree = "<group>"; };
+		4421D5B91C29BD8600180432 /* DeferredShading.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = DeferredShading.vs; path = resources/shaders/DeferredShading.vs; sourceTree = "<group>"; };
+		4421D5BA1C29BD8600180432 /* GeometryShader.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = GeometryShader.fs; path = resources/shaders/GeometryShader.fs; sourceTree = "<group>"; };
+		4421D5BB1C29BD8600180432 /* GeometryShader.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = GeometryShader.vs; path = resources/shaders/GeometryShader.vs; sourceTree = "<group>"; };
+		4421D5BC1C2A6E7900180432 /* fullscreenQuad.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fullscreenQuad.cpp; sourceTree = "<group>"; };
+		4421D5BD1C2A6E7900180432 /* fullscreenQuad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fullscreenQuad.h; sourceTree = "<group>"; };
 		442C78961C1A85E70083D86D /* basicShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = basicShader.cpp; sourceTree = "<group>"; };
 		442C78971C1A85E70083D86D /* basicShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = basicShader.h; sourceTree = "<group>"; };
 		442C789A1C1B09770083D86D /* PhongShader.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = PhongShader.fs; path = resources/shaders/PhongShader.fs; sourceTree = "<group>"; };
@@ -125,6 +133,8 @@
 		44FB2EDE1C29B31600C6FCAF /* logging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = logging.h; sourceTree = "<group>"; };
 		44FB2EE01C29BB5300C6FCAF /* geometryShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = geometryShader.cpp; sourceTree = "<group>"; };
 		44FB2EE11C29BB5300C6FCAF /* geometryShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = geometryShader.h; sourceTree = "<group>"; };
+		44FB2EE31C29BC7100C6FCAF /* lightingShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lightingShader.cpp; sourceTree = "<group>"; };
+		44FB2EE41C29BC7100C6FCAF /* lightingShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lightingShader.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +157,10 @@
 		442C78991C1B09650083D86D /* Shaders */ = {
 			isa = PBXGroup;
 			children = (
+				4421D5B81C29BD8600180432 /* DeferredShading.fs */,
+				4421D5B91C29BD8600180432 /* DeferredShading.vs */,
+				4421D5BA1C29BD8600180432 /* GeometryShader.fs */,
+				4421D5BB1C29BD8600180432 /* GeometryShader.vs */,
 				44BD91101C23AE1D000D50B8 /* Skybox.fs */,
 				44BD91111C23AE1D000D50B8 /* Skybox.vs */,
 				442C789A1C1B09770083D86D /* PhongShader.fs */,
@@ -183,6 +197,8 @@
 				44FB2EDB1C29B2C700C6FCAF /* deferredShader.h */,
 				44FB2EE01C29BB5300C6FCAF /* geometryShader.cpp */,
 				44FB2EE11C29BB5300C6FCAF /* geometryShader.h */,
+				44FB2EE31C29BC7100C6FCAF /* lightingShader.cpp */,
+				44FB2EE41C29BC7100C6FCAF /* lightingShader.h */,
 			);
 			name = DeferredRendering;
 			sourceTree = "<group>";
@@ -218,6 +234,8 @@
 				447A39081BD6C57200190464 /* window.h */,
 				44BD91061C23803D000D50B8 /* cubemapTexture.cpp */,
 				44BD91071C23803D000D50B8 /* cubemapTexture.h */,
+				4421D5BC1C2A6E7900180432 /* fullscreenQuad.cpp */,
+				4421D5BD1C2A6E7900180432 /* fullscreenQuad.h */,
 			);
 			name = Rendering;
 			sourceTree = "<group>";
@@ -340,8 +358,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44FB2EE51C29BC7100C6FCAF /* lightingShader.cpp in Sources */,
 				4415CD8F1BDD8E0400E91770 /* camera.cpp in Sources */,
 				447A39121BD6DCD900190464 /* shader.cpp in Sources */,
+				4421D5BE1C2A6E7900180432 /* fullscreenQuad.cpp in Sources */,
 				447A39091BD6C57200190464 /* window.cpp in Sources */,
 				44BD910B1C238474000D50B8 /* skyboxShader.cpp in Sources */,
 				44FB2ED31C28DAF300C6FCAF /* sdlBackend.cpp in Sources */,
