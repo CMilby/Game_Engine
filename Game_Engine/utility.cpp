@@ -10,6 +10,10 @@
 
 #ifdef __APPLE__
 #include <CoreFoundation/CoreFoundation.h>
+#include <CoreGraphics/CoreGraphics.h>
+#endif
+#ifdef _WIN32
+#include <windows.h>
 #endif
 
 #include "config.h"
@@ -39,7 +43,31 @@ std::string Utility::DirectoryPath() {
 #ifdef __APPLE__
     return "/Users/Craig/Xcode/Game_Engine/Game_Engine/resources/";
 #endif
+#ifdef _WIN32
+    return "C:\\Users\\Craig";
+#endif
     return "";
+}
+
+unsigned int Utility::GetMonitorWidth() {
+#ifdef __APPLE__
+    CGRect mainMonitor = CGDisplayBounds( CGMainDisplayID() );
+    return ( unsigned int ) CGRectGetWidth( mainMonitor );
+#endif
+#ifdef _WIN32
+    return ( unsigned int ) GetSystemMetrics( SM_CWSCREEN );
+#endif
+    return -1;
+}
+
+unsigned int Utility::GetMonitorHeight() {
+#ifdef __APPLE__
+    CGRect mainMonitor = CGDisplayBounds( CGMainDisplayID() );
+    return ( unsigned int ) CGRectGetHeight( mainMonitor );
+#endif
+#ifdef _WIN32
+    return ( unsigned int ) GetSystemMetrics( SM_CYSCREEN );
+#endif
 }
 
 unsigned int Utility::ScreenHalfWidth() {

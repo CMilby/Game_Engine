@@ -20,6 +20,9 @@ namespace Utility {
     
     std::string DirectoryPath();
     
+    unsigned int GetMonitorWidth();
+    unsigned int GetMonitorHeight();
+    
     unsigned int ScreenHalfWidth();
     unsigned int ScreenHalfHeight();
 };
