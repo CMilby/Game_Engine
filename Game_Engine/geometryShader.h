@@ -20,6 +20,8 @@ public:
     virtual ~GeometryShader();
     
     virtual void Init();
+    virtual void Enable();
+    virtual void Disable();
 };
 
 #endif /* geometryShader_h */

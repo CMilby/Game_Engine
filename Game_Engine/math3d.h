@@ -1,5 +1,5 @@
 //
-//  math3d.hpp
+//  ( *this )ath3d.hpp
 //  Game_Engine
 //
 //  Created by Craig Milby on 10/12/15.
@@ -49,6 +49,26 @@ public:
     
     inline Vector<T, D> Normalized() const {
         return *this / Length();
+    }
+    
+    inline T Max() const {
+        T max = m_values[ 0 ];
+        for ( unsigned int i = 1; i < D; i++ ) {
+            if ( m_values[ i ] > max ) {
+                max = m_values[ i ];
+            }
+        }
+        return max;
+    }
+    
+    inline T Min() const {
+        T min = m_values[ 0 ];
+        for ( unsigned int i = 1; i < D; i++ ) {
+            if ( m_values[ i ] < min ) {
+                min = m_values[ i ];
+            }
+        }
+        return min;
     }
     
     inline Vector<T, D> operator+( const Vector<T, D> &vect ) const {
@@ -330,6 +350,15 @@ public:
         m_values[ x ][ y ] = value;
     }
     
+    inline Matrix<T, D> operator/=( const T &value ) {
+        for ( unsigned int i = 0; i < D; i++ ) {
+            for ( unsigned int j = 0; j < D; j++ ) {
+                ( *this )[ i ][ j ] /= value;
+            }
+        }
+        return *this;
+    }
+    
     inline const T* operator[]( int index) const {
         return m_values[ index ];
     }
@@ -344,6 +373,46 @@ public:
                 std::cout << m_values[ i ][ j ] << " ";
             }
             std::cout << "\n";
+        }
+    }
+};
+
+template<class T> class Matrix3 : public Matrix<T, 3> {
+    
+public:
+    Matrix3() {
+        this->InitIdentity();
+    }
+    
+    Matrix3( T value ) {
+        for ( unsigned int i = 0; i < 3; i++ ) {
+            for ( unsigned int j = 0; j < 3; j++ ) {
+                ( *this )[ i ][ j ] = value;
+            }
+        }
+    }
+    
+    Matrix3( const Matrix<T, 3> &matrix ) {
+        for ( unsigned int i = 0; i < 3; i++ ) {
+            for ( unsigned int j = 0; j < 3; j++ ) {
+                ( *this )[ i ][ j ] = matrix[ i ][ j ];
+            }
+        }
+    }
+    
+    Matrix3( const Matrix3<T> &matrix ) {
+        for ( unsigned int i = 0; i < 3; i++ ) {
+            for ( unsigned int j = 0; j < 3; j++ ) {
+                ( *this )[ i ][ j ] = matrix[ i ][ j ];
+            }
+        }
+    }
+    
+    Matrix3( const Matrix<T, 4> &matrix ) {
+        for ( unsigned int i = 0; i < 3; i++ ) {
+            for ( unsigned int j = 0; j < 3; j++ ) {
+                ( *this )[ i ][ j ] = matrix[ i ][ j ];
+            }
         }
     }
 };
@@ -509,6 +578,57 @@ public:
         ret[ 2 ][ 2 ] = n.GetZ();
         
         return ret;
+    }
+    
+    // Thanks GLM!
+    inline Matrix4<T> InverseTranspose() {
+        T SubFactor00 = ( *this )[2][2] * ( *this )[3][3] - ( *this )[3][2] * ( *this )[2][3];
+        T SubFactor01 = ( *this )[2][1] * ( *this )[3][3] - ( *this )[3][1] * ( *this )[2][3];
+        T SubFactor02 = ( *this )[2][1] * ( *this )[3][2] - ( *this )[3][1] * ( *this )[2][2];
+        T SubFactor03 = ( *this )[2][0] * ( *this )[3][3] - ( *this )[3][0] * ( *this )[2][3];
+        T SubFactor04 = ( *this )[2][0] * ( *this )[3][2] - ( *this )[3][0] * ( *this )[2][2];
+        T SubFactor05 = ( *this )[2][0] * ( *this )[3][1] - ( *this )[3][0] * ( *this )[2][1];
+        T SubFactor06 = ( *this )[1][2] * ( *this )[3][3] - ( *this )[3][2] * ( *this )[1][3];
+        T SubFactor07 = ( *this )[1][1] * ( *this )[3][3] - ( *this )[3][1] * ( *this )[1][3];
+        T SubFactor08 = ( *this )[1][1] * ( *this )[3][2] - ( *this )[3][1] * ( *this )[1][2];
+        T SubFactor09 = ( *this )[1][0] * ( *this )[3][3] - ( *this )[3][0] * ( *this )[1][3];
+        T SubFactor10 = ( *this )[1][0] * ( *this )[3][2] - ( *this )[3][0] * ( *this )[1][2];
+        T SubFactor11 = ( *this )[1][1] * ( *this )[3][3] - ( *this )[3][1] * ( *this )[1][3];
+        T SubFactor12 = ( *this )[1][0] * ( *this )[3][1] - ( *this )[3][0] * ( *this )[1][1];
+        T SubFactor13 = ( *this )[1][2] * ( *this )[2][3] - ( *this )[2][2] * ( *this )[1][3];
+        T SubFactor14 = ( *this )[1][1] * ( *this )[2][3] - ( *this )[2][1] * ( *this )[1][3];
+        T SubFactor15 = ( *this )[1][1] * ( *this )[2][2] - ( *this )[2][1] * ( *this )[1][2];
+        T SubFactor16 = ( *this )[1][0] * ( *this )[2][3] - ( *this )[2][0] * ( *this )[1][3];
+        T SubFactor17 = ( *this )[1][0] * ( *this )[2][2] - ( *this )[2][0] * ( *this )[1][2];
+        T SubFactor18 = ( *this )[1][0] * ( *this )[2][1] - ( *this )[2][0] * ( *this )[1][1];
+    
+        Matrix4<T> inverse;
+        inverse[0][0] = + (( *this )[1][1] * SubFactor00 - ( *this )[1][2] * SubFactor01 + ( *this )[1][3] * SubFactor02);
+        inverse[0][1] = - (( *this )[1][0] * SubFactor00 - ( *this )[1][2] * SubFactor03 + ( *this )[1][3] * SubFactor04);
+        inverse[0][2] = + (( *this )[1][0] * SubFactor01 - ( *this )[1][1] * SubFactor03 + ( *this )[1][3] * SubFactor05);
+        inverse[0][3] = - (( *this )[1][0] * SubFactor02 - ( *this )[1][1] * SubFactor04 + ( *this )[1][2] * SubFactor05);
+        
+        inverse[1][0] = - (( *this )[0][1] * SubFactor00 - ( *this )[0][2] * SubFactor01 + ( *this )[0][3] * SubFactor02);
+        inverse[1][1] = + (( *this )[0][0] * SubFactor00 - ( *this )[0][2] * SubFactor03 + ( *this )[0][3] * SubFactor04);
+        inverse[1][2] = - (( *this )[0][0] * SubFactor01 - ( *this )[0][1] * SubFactor03 + ( *this )[0][3] * SubFactor05);
+        inverse[1][3] = + (( *this )[0][0] * SubFactor02 - ( *this )[0][1] * SubFactor04 + ( *this )[0][2] * SubFactor05);
+        
+        inverse[2][0] = + (( *this )[0][1] * SubFactor06 - ( *this )[0][2] * SubFactor07 + ( *this )[0][3] * SubFactor08);
+        inverse[2][1] = - (( *this )[0][0] * SubFactor06 - ( *this )[0][2] * SubFactor09 + ( *this )[0][3] * SubFactor10);
+        inverse[2][2] = + (( *this )[0][0] * SubFactor11 - ( *this )[0][1] * SubFactor09 + ( *this )[0][3] * SubFactor12);
+        inverse[2][3] = - (( *this )[0][0] * SubFactor08 - ( *this )[0][1] * SubFactor10 + ( *this )[0][2] * SubFactor12);
+        
+        inverse[3][0] = - (( *this )[0][1] * SubFactor13 - ( *this )[0][2] * SubFactor14 + ( *this )[0][3] * SubFactor15);
+        inverse[3][1] = + (( *this )[0][0] * SubFactor13 - ( *this )[0][2] * SubFactor16 + ( *this )[0][3] * SubFactor17);
+        inverse[3][2] = - (( *this )[0][0] * SubFactor14 - ( *this )[0][1] * SubFactor16 + ( *this )[0][3] * SubFactor18);
+        inverse[3][3] = + (( *this )[0][0] * SubFactor15 - ( *this )[0][1] * SubFactor17 + ( *this )[0][2] * SubFactor18);
+        
+        T determinant = ( *this )[ 0 ][ 0 ] * inverse[ 0 ][ 0 ] +
+                        ( *this )[ 0 ][ 1 ] * inverse[ 0 ][ 1 ] +
+                        ( *this )[ 0 ][ 2 ] * inverse[ 0 ][ 2 ] +
+                        ( *this )[ 0 ][ 3 ] * inverse[ 0 ][ 3 ];
+        inverse /= determinant;
+        return inverse;
     }
 };
 

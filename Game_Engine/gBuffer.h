@@ -12,43 +12,31 @@
 #include <GL/glew.h>
 
 class GBuffer {
-    
-private:
-    GLuint m_fbo;
-    GLuint m_position;
-    GLuint m_normal;
-    GLuint m_color;
-    GLuint m_depth;
-    GLuint m_light;
-    GLuint m_effect1;
-    GLuint m_effect2;
-    
-    GLenum m_drawBuffers[ 3 ];
-    
+
 public:
+    enum GBUFFER_TEXTURE_TYPE {
+        GBUFFER_TEXTURE_TYPE_POSITION,
+        GBUFFER_TEXTURE_TYPE_DIFFUSE,
+        GBUFFER_TEXTURE_TYPE_NORMAL,
+        GBUFFER_NUM_TEXTURES
+    };
+    
     GBuffer();
     virtual ~GBuffer();
     
     void Init();
     
-    inline GLuint GetFBO() const { return m_fbo; };
+    void StartFrame();
+    void BindGeom();
+    void BindStencil();
+    void BindLight();
+    void BindFinal();
     
-    void SetDrawBuffers();
-    void SetDrawLight();
-    void SetDrawEffect();
-    void SetDrawNone();
-    
-    void SetReadEffect();
-    
-    void Bind();
-    void BindDraw();
-    void BindRead();
-    
-    void Unbind();
-    void UnbindDraw();
-    void UnbindRead();
-    
-    void SetGeomTextures();
+private:
+    GLuint m_fbo;
+    GLuint m_textures[ GBUFFER_NUM_TEXTURES ];
+    GLuint m_depthTexture;
+    GLuint m_finalTexture;
 };
 
 #endif /* gBuffer_h */

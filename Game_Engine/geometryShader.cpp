@@ -21,9 +21,19 @@ void GeometryShader::Init() {
     AddFragmentShader( "GeometryShader.fs" );
     LinkProgram();
     
-    AddUniform( "model" );
-    AddUniform( "view" );
-    AddUniform( "projection" );
-    AddUniform( "textureDiffuse" );
-    AddUniform( "textureSpecular" );
+    AddUniform( "gWVP" );
+    AddUniform( "gWorld" );
+    AddUniform( "gColorMap" );
+}
+
+void GeometryShader::Enable() {
+    glEnableVertexAttribArray( 0 );
+    glEnableVertexAttribArray( 1 );
+    glEnableVertexAttribArray( 2 );
+}
+
+void GeometryShader::Disable() {
+    glDisableVertexAttribArray( 0 );
+    glDisableVertexAttribArray( 1 );
+    glDisableVertexAttribArray( 2 );
 }

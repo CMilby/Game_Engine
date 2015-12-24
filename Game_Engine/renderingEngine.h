@@ -12,6 +12,7 @@
 #include <vector>
 
 #include "camera.h"
+#include "deferredShader.h"
 #include "entity.h"
 #include "phongShader.h"
 #include "skyboxShader.h"
@@ -24,7 +25,9 @@ private:
     
     std::vector<Shader*> m_shaders;
     
-    PhongShader *m_shader;
+    // PhongShader *m_shader;
+    DeferredShader *m_deferredShader;
+    RenderableEntity *m_entity;
     Skybox *m_skybox;
     
     TextShader *m_textShader;

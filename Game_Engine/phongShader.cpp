@@ -103,7 +103,7 @@ void PhongShader::UpdateUniforms( const Matrix4<float> &world, const Matrix4<flo
     Uniform1f( "specularIntensity", material.m_specularIntensity );
     
     UniformVector3f( "ambientLight", m_ambientLight );
-    UniformVector3f( "directionalLight.base.color", m_directionalLight.m_baseLight.m_color );
+    /*UniformVector3f( "directionalLight.base.color", m_directionalLight.m_baseLight.m_color );
     Uniform1f( "directionalLight.base.intensity", m_directionalLight.m_baseLight.m_intensity );
     UniformVector3f( "directionalLight.direction", m_directionalLight.m_direction );
     
@@ -131,7 +131,7 @@ void PhongShader::UpdateUniforms( const Matrix4<float> &world, const Matrix4<flo
         Uniform1f( name + ".pointLight.range", m_spotLights[ i ].m_pointLight.m_range );
         UniformVector3f( name + ".direction", m_spotLights[ i ].m_direction );
         Uniform1f( name + ".cutoff", m_spotLights[ i ].m_cutoff );
-    }
+    }*/
     
     Enable();
     mesh.Render();

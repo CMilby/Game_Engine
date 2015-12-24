@@ -19,6 +19,11 @@
 		4415CD951BDDC3EE00E91770 /* time.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4415CD931BDDC3EE00E91770 /* time.cpp */; };
 		4415CD961BDDCD6400E91770 /* libglfw.3.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 449D85F61BD6BACB00B72584 /* libglfw.3.1.dylib */; };
 		4421D5BE1C2A6E7900180432 /* fullscreenQuad.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4421D5BC1C2A6E7900180432 /* fullscreenQuad.cpp */; };
+		4421D5C11C2C603400180432 /* directionalLightShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4421D5BF1C2C603400180432 /* directionalLightShader.cpp */; };
+		4421D5C41C2C611400180432 /* pointLightShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4421D5C21C2C611400180432 /* pointLightShader.cpp */; };
+		4421D5C71C2C61FB00180432 /* lightShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4421D5C51C2C61FB00180432 /* lightShader.cpp */; };
+		4421D5CA1C2C62EF00180432 /* nullShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4421D5C81C2C62EF00180432 /* nullShader.cpp */; };
+		4421D5CC1C2C731600180432 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4421D5CB1C2C731600180432 /* CoreGraphics.framework */; };
 		442C78981C1A85E70083D86D /* basicShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 442C78961C1A85E70083D86D /* basicShader.cpp */; };
 		447A39091BD6C57200190464 /* window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 447A39071BD6C57200190464 /* window.cpp */; };
 		447A390C1BD6DAC400190464 /* input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 447A390A1BD6DAC400190464 /* input.cpp */; };
@@ -41,7 +46,6 @@
 		44FB2EDC1C29B2C700C6FCAF /* deferredShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44FB2EDA1C29B2C700C6FCAF /* deferredShader.cpp */; };
 		44FB2EDF1C29B31600C6FCAF /* logging.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44FB2EDD1C29B31600C6FCAF /* logging.cpp */; };
 		44FB2EE21C29BB5300C6FCAF /* geometryShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44FB2EE01C29BB5300C6FCAF /* geometryShader.cpp */; };
-		44FB2EE51C29BC7100C6FCAF /* lightingShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44FB2EE31C29BC7100C6FCAF /* lightingShader.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -73,12 +77,20 @@
 		4415CD911BDDC38700E91770 /* coreEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = coreEngine.h; sourceTree = "<group>"; };
 		4415CD931BDDC3EE00E91770 /* time.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = time.cpp; sourceTree = "<group>"; };
 		4415CD941BDDC3EE00E91770 /* time.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = time.h; sourceTree = "<group>"; };
-		4421D5B81C29BD8600180432 /* DeferredShading.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = DeferredShading.fs; path = resources/shaders/DeferredShading.fs; sourceTree = "<group>"; };
-		4421D5B91C29BD8600180432 /* DeferredShading.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = DeferredShading.vs; path = resources/shaders/DeferredShading.vs; sourceTree = "<group>"; };
-		4421D5BA1C29BD8600180432 /* GeometryShader.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = GeometryShader.fs; path = resources/shaders/GeometryShader.fs; sourceTree = "<group>"; };
-		4421D5BB1C29BD8600180432 /* GeometryShader.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = GeometryShader.vs; path = resources/shaders/GeometryShader.vs; sourceTree = "<group>"; };
 		4421D5BC1C2A6E7900180432 /* fullscreenQuad.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fullscreenQuad.cpp; sourceTree = "<group>"; };
 		4421D5BD1C2A6E7900180432 /* fullscreenQuad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fullscreenQuad.h; sourceTree = "<group>"; };
+		4421D5BF1C2C603400180432 /* directionalLightShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = directionalLightShader.cpp; sourceTree = "<group>"; };
+		4421D5C01C2C603400180432 /* directionalLightShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = directionalLightShader.h; sourceTree = "<group>"; };
+		4421D5C21C2C611400180432 /* pointLightShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pointLightShader.cpp; sourceTree = "<group>"; };
+		4421D5C31C2C611400180432 /* pointLightShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pointLightShader.h; sourceTree = "<group>"; };
+		4421D5C51C2C61FB00180432 /* lightShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lightShader.cpp; sourceTree = "<group>"; };
+		4421D5C61C2C61FB00180432 /* lightShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lightShader.h; sourceTree = "<group>"; };
+		4421D5C81C2C62EF00180432 /* nullShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = nullShader.cpp; sourceTree = "<group>"; };
+		4421D5C91C2C62EF00180432 /* nullShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nullShader.h; sourceTree = "<group>"; };
+		4421D5CB1C2C731600180432 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		4421D5CF1C2C8CB300180432 /* GeometryShader.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = GeometryShader.vs; path = resources/shaders/GeometryShader.vs; sourceTree = "<group>"; };
+		4421D5D01C2C8CB300180432 /* LightShader.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = LightShader.vs; path = resources/shaders/LightShader.vs; sourceTree = "<group>"; };
+		4421D5D21C2C8CB300180432 /* NullShader.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = NullShader.vs; path = resources/shaders/NullShader.vs; sourceTree = "<group>"; };
 		442C78961C1A85E70083D86D /* basicShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = basicShader.cpp; sourceTree = "<group>"; };
 		442C78971C1A85E70083D86D /* basicShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = basicShader.h; sourceTree = "<group>"; };
 		442C789A1C1B09770083D86D /* PhongShader.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = PhongShader.fs; path = resources/shaders/PhongShader.fs; sourceTree = "<group>"; };
@@ -119,6 +131,10 @@
 		44D3CD6F1BCBFAED0074E300 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		44D3CD7D1BCC0AC30074E300 /* math3d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = math3d.cpp; sourceTree = "<group>"; };
 		44D3CD7E1BCC0AC30074E300 /* math3d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = math3d.h; sourceTree = "<group>"; };
+		44F49FBE1C2C8D7800FD2F49 /* DirectionalLightShader.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = DirectionalLightShader.fs; path = resources/shaders/DirectionalLightShader.fs; sourceTree = "<group>"; };
+		44F49FBF1C2C8D7800FD2F49 /* GeometryShader.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = GeometryShader.fs; path = resources/shaders/GeometryShader.fs; sourceTree = "<group>"; };
+		44F49FC11C2C8D8E00FD2F49 /* NullShader.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = NullShader.fs; path = resources/shaders/NullShader.fs; sourceTree = "<group>"; };
+		44F49FC21C2C925800FD2F49 /* PointLightShader.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = PointLightShader.fs; path = resources/shaders/PointLightShader.fs; sourceTree = "<group>"; };
 		44F722361BDFEB8A0022754F /* game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = game.cpp; sourceTree = "<group>"; };
 		44F722371BDFEB8A0022754F /* game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = game.h; sourceTree = "<group>"; };
 		44FB2ED11C28DAF300C6FCAF /* sdlBackend.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sdlBackend.cpp; sourceTree = "<group>"; };
@@ -133,8 +149,6 @@
 		44FB2EDE1C29B31600C6FCAF /* logging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = logging.h; sourceTree = "<group>"; };
 		44FB2EE01C29BB5300C6FCAF /* geometryShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = geometryShader.cpp; sourceTree = "<group>"; };
 		44FB2EE11C29BB5300C6FCAF /* geometryShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = geometryShader.h; sourceTree = "<group>"; };
-		44FB2EE31C29BC7100C6FCAF /* lightingShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lightingShader.cpp; sourceTree = "<group>"; };
-		44FB2EE41C29BC7100C6FCAF /* lightingShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lightingShader.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +156,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4421D5CC1C2C731600180432 /* CoreGraphics.framework in Frameworks */,
 				4402CE001C28C95A00F11AA8 /* libSDL2-2.0.0.dylib in Frameworks */,
 				44040E461C18E3410058A84B /* libassimp.3.1.1.dylib in Frameworks */,
 				4415CD891BDD70CC00E91770 /* CoreFoundation.framework in Frameworks */,
@@ -157,10 +172,13 @@
 		442C78991C1B09650083D86D /* Shaders */ = {
 			isa = PBXGroup;
 			children = (
-				4421D5B81C29BD8600180432 /* DeferredShading.fs */,
-				4421D5B91C29BD8600180432 /* DeferredShading.vs */,
-				4421D5BA1C29BD8600180432 /* GeometryShader.fs */,
-				4421D5BB1C29BD8600180432 /* GeometryShader.vs */,
+				44F49FC21C2C925800FD2F49 /* PointLightShader.fs */,
+				44F49FBE1C2C8D7800FD2F49 /* DirectionalLightShader.fs */,
+				44F49FBF1C2C8D7800FD2F49 /* GeometryShader.fs */,
+				4421D5CF1C2C8CB300180432 /* GeometryShader.vs */,
+				4421D5D01C2C8CB300180432 /* LightShader.vs */,
+				44F49FC11C2C8D8E00FD2F49 /* NullShader.fs */,
+				4421D5D21C2C8CB300180432 /* NullShader.vs */,
 				44BD91101C23AE1D000D50B8 /* Skybox.fs */,
 				44BD91111C23AE1D000D50B8 /* Skybox.vs */,
 				442C789A1C1B09770083D86D /* PhongShader.fs */,
@@ -197,8 +215,14 @@
 				44FB2EDB1C29B2C700C6FCAF /* deferredShader.h */,
 				44FB2EE01C29BB5300C6FCAF /* geometryShader.cpp */,
 				44FB2EE11C29BB5300C6FCAF /* geometryShader.h */,
-				44FB2EE31C29BC7100C6FCAF /* lightingShader.cpp */,
-				44FB2EE41C29BC7100C6FCAF /* lightingShader.h */,
+				4421D5BF1C2C603400180432 /* directionalLightShader.cpp */,
+				4421D5C01C2C603400180432 /* directionalLightShader.h */,
+				4421D5C21C2C611400180432 /* pointLightShader.cpp */,
+				4421D5C31C2C611400180432 /* pointLightShader.h */,
+				4421D5C51C2C61FB00180432 /* lightShader.cpp */,
+				4421D5C61C2C61FB00180432 /* lightShader.h */,
+				4421D5C81C2C62EF00180432 /* nullShader.cpp */,
+				4421D5C91C2C62EF00180432 /* nullShader.h */,
 			);
 			name = DeferredRendering;
 			sourceTree = "<group>";
@@ -206,6 +230,7 @@
 		449D85F51BD6B6F600B72584 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4421D5CB1C2C731600180432 /* CoreGraphics.framework */,
 				44040E451C18E3410058A84B /* libassimp.3.1.1.dylib */,
 				447B54141BF04A9600BB5977 /* libSDL2-2.0.0.dylib */,
 				4415CD881BDD70CC00E91770 /* CoreFoundation.framework */,
@@ -358,9 +383,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				44FB2EE51C29BC7100C6FCAF /* lightingShader.cpp in Sources */,
 				4415CD8F1BDD8E0400E91770 /* camera.cpp in Sources */,
 				447A39121BD6DCD900190464 /* shader.cpp in Sources */,
+				4421D5C41C2C611400180432 /* pointLightShader.cpp in Sources */,
 				4421D5BE1C2A6E7900180432 /* fullscreenQuad.cpp in Sources */,
 				447A39091BD6C57200190464 /* window.cpp in Sources */,
 				44BD910B1C238474000D50B8 /* skyboxShader.cpp in Sources */,
@@ -375,6 +400,7 @@
 				44BD91081C23803D000D50B8 /* cubemapTexture.cpp in Sources */,
 				447A390C1BD6DAC400190464 /* input.cpp in Sources */,
 				447A390F1BD6DAF300190464 /* mesh.cpp in Sources */,
+				4421D5CA1C2C62EF00180432 /* nullShader.cpp in Sources */,
 				442C78981C1A85E70083D86D /* basicShader.cpp in Sources */,
 				4415CD791BDA7C0100E91770 /* textShader.cpp in Sources */,
 				4415CD951BDDC3EE00E91770 /* time.cpp in Sources */,
@@ -386,6 +412,8 @@
 				44B6933E1C077B3600743603 /* stb_image.c in Sources */,
 				4415CD921BDDC38700E91770 /* coreEngine.cpp in Sources */,
 				447A39151BD6F09300190464 /* renderingEngine.cpp in Sources */,
+				4421D5C71C2C61FB00180432 /* lightShader.cpp in Sources */,
+				4421D5C11C2C603400180432 /* directionalLightShader.cpp in Sources */,
 				44FB2EDF1C29B31600C6FCAF /* logging.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
