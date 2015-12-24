@@ -13,10 +13,8 @@
 
 #include "camera.h"
 #include "entity.h"
-#include "math3d.h"
-#include "shader.h"
+#include "phongShader.h"
 #include "skyboxShader.h"
-#include "texture.h"
 #include "textShader.h"
 
 class RenderingEngine {
@@ -26,7 +24,7 @@ private:
     
     std::vector<Shader*> m_shaders;
     
-    Shader *m_shader;
+    PhongShader *m_shader;
     Skybox *m_skybox;
     
     TextShader *m_textShader;

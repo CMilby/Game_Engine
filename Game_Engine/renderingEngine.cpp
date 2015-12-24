@@ -8,13 +8,10 @@
 
 #include "renderingEngine.h"
 
-#include "basicShader.h"
-#include "phongShader.h"
-
 Camera RenderingEngine::s_mainCamera = Camera();
 
 RenderingEngine::RenderingEngine() {
-
+    
 }
 
 RenderingEngine::~RenderingEngine() {

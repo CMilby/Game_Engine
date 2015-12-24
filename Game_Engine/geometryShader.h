@@ -16,7 +16,10 @@ class GeometryShader : public Shader {
 private:
     
 public:
+    GeometryShader();
+    virtual ~GeometryShader();
     
+    virtual void Init();
 };
 
 #endif /* geometryShader_h */

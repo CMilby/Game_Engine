@@ -7,3 +7,23 @@
 //
 
 #include "geometryShader.h"
+
+GeometryShader::GeometryShader() {
+    
+}
+
+GeometryShader::~GeometryShader() {
+    
+}
+
+void GeometryShader::Init() {
+    AddVertexShader( "GeometryShader.vs" );
+    AddFragmentShader( "GeometryShader.fs" );
+    LinkProgram();
+    
+    AddUniform( "model" );
+    AddUniform( "view" );
+    AddUniform( "projection" );
+    AddUniform( "textureDiffuse" );
+    AddUniform( "textureSpecular" );
+}

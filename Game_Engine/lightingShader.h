@@ -1,5 +1,5 @@
 //
-//  LightingShader.h
+//  lightingShader.h
 //  Game_Engine
 //
 //  Created by Craig Milby on 12/22/15.
@@ -9,6 +9,17 @@
 #ifndef __LIGHTING_SHADER_H__
 #define __LIGHTING_SHADER_H__
 
-#include "shader
+#include "shader.h"
 
-#endif /* LightingShader_h */
+class LightingShader : public Shader {
+    
+private:
+    
+public:
+    LightingShader();
+    virtual ~LightingShader();
+    
+    virtual void Init();
+};
+
+#endif /* lightingShader_h */
