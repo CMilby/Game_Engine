@@ -8,6 +8,7 @@
 
 #include "coreEngine.h"
 
+#include "logging.h"
 #include "time.h"
 
 CoreEngine::CoreEngine( Window *window, Game *game ) {
@@ -17,6 +18,7 @@ CoreEngine::CoreEngine( Window *window, Game *game ) {
     m_renderingEngine = new RenderingEngine();
     
     m_isRunning = false;
+    m_profiler = new Profiler();
 }
 
 CoreEngine::~CoreEngine() {
@@ -48,6 +50,8 @@ void CoreEngine::Start() {
     char lastFPM[ 256 ];
     sprintf( lastFPM, "0.00 ms/frame" );
     
+    const std::string function = "CoreEngine: Start";
+    
     while ( m_isRunning ) {
         currentTime = Timing::GetTime();
         frames++;
@@ -64,13 +68,30 @@ void CoreEngine::Start() {
             Stop();
         }
         
+        m_profiler->StartProfile();
         m_game->ProcessInput( currentTime - lastTime );
+        m_profiler->StopProfile();
+        Logging::LogInfo( function, "Game Input: " + m_profiler->ToString(), 0 );
+        
+        m_profiler->StartProfile();
         m_game->ProcessUpdate( currentTime - lastTime );
+        m_profiler->StopProfile();
+        Logging::LogInfo( function, "Game Update:" + m_profiler->ToString(), 0 );
+        
+        m_profiler->StartProfile();
         m_game->ProcessRender( m_renderingEngine );
+        m_profiler->StopProfile();
+        Logging::LogInfo( function, "Game Render: " + m_profiler->ToString(), 0 );
         
+        m_profiler->StartProfile();
         m_textShader->Render( lastFPM, 5, 5, 20 );
+        m_profiler->StopProfile();
+        Logging::LogInfo( function, "Text Shader: " + m_profiler->ToString(), 0 );
         
+        m_profiler->StartProfile();
         m_window->SwapBuffers();
+        m_profiler->StopProfile();
+        Logging::LogInfo( function, "Swap Buffers: " + m_profiler->ToString(), 0 );
     }
 }
 

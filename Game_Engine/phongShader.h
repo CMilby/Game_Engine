@@ -17,7 +17,7 @@
 class PhongShader : public Shader {
     
 private:
-    const int MAX_POINT_LIGHTS = 5;
+    const int MAX_POINT_LIGHTS = 50;
     const int MAX_SPOT_LIGHTS = 5;
     
     Vector3<float> m_ambientLight;

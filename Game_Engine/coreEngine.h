@@ -11,6 +11,7 @@
 
 #include "game.h"
 #include "input.h"
+#include "profiler.h"
 #include "renderingEngine.h"
 #include "textShader.h"
 #include "window.h"
@@ -25,6 +26,8 @@ private:
     
     Game *m_game;
     Window *m_window;
+    
+    Profiler *m_profiler;
     
 public:
     CoreEngine( Window *window, Game *game );

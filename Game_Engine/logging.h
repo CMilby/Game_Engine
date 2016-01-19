@@ -22,13 +22,17 @@ public:
     
     template<class T>
     static void Log( LogLevel level, const std::string &function, const std::string &message, const T &errors = 0 ) {
-        printf( "%s: %s - %s : %o", function.c_str(), GetLogLevel( level ).c_str(), message.c_str(), errors );
+        printf( "%s: %s - %s : %o\n", function.c_str(), GetLogLevel( level ).c_str(), message.c_str(), errors );
     }
     
     template<class T>
     static void LogInfo( const std::string &function, const std::string &message, const T &errors = 0 ) {
         Log( LOGGING_INFO, function, message, errors );
     }
+    
+    /*static void LogInfo( const std::string &function, const std::string &message ) {
+        Log( LOGGING_INFO, function, message, 0 );
+    }*/
     
     template<class T>
     static void LogWarning( const std::string &function, const std::string &message, const T &errors = 0 ) {

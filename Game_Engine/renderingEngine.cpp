@@ -38,7 +38,7 @@ void RenderingEngine::Init() {
     m_skybox->Init();
     
     m_shaders.emplace_back( m_shader );
-    m_shaders.emplace_back( m_skybox );
+    // m_shaders.emplace_back( m_skybox );
 }
 
 void RenderingEngine::Render( Entity &root ) {
