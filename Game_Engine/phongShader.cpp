@@ -71,9 +71,6 @@ void PhongShader::Init() {
     PointLight pLight( BaseLight( Vector3<float>( 0.0f, 1.0f, 1.0f ), 0.8f ), Attenuation( 0.0f, 0.0f, 1.0f ), Vector3<float>( 3.0f, 1.5f, 3.0f ), 10.0f );
     AddPointLight( pLight );
     
-    
-    
-    
     SpotLight sLight( PointLight( BaseLight( Vector3<float>( 0.0f, 1.0f, 0.0f ), 0.8f ), Attenuation( 0.0f, 0.0f, 0.1f ), Vector3<float>( -4.0f, 2.0f, 4.0f ), 30.0f ), Vector3<float>( 1.0f, 0.0f, -1.0f ), 0.7f );
     AddSpotLight( sLight );
 }
@@ -103,7 +100,7 @@ void PhongShader::UpdateUniforms( const Matrix4<float> &world, const Matrix4<flo
     Uniform1f( "specularIntensity", material.m_specularIntensity );
     
     UniformVector3f( "ambientLight", m_ambientLight );
-    /*UniformVector3f( "directionalLight.base.color", m_directionalLight.m_baseLight.m_color );
+    UniformVector3f( "directionalLight.base.color", m_directionalLight.m_baseLight.m_color );
     Uniform1f( "directionalLight.base.intensity", m_directionalLight.m_baseLight.m_intensity );
     UniformVector3f( "directionalLight.direction", m_directionalLight.m_direction );
     
@@ -131,7 +128,7 @@ void PhongShader::UpdateUniforms( const Matrix4<float> &world, const Matrix4<flo
         Uniform1f( name + ".pointLight.range", m_spotLights[ i ].m_pointLight.m_range );
         UniformVector3f( name + ".direction", m_spotLights[ i ].m_direction );
         Uniform1f( name + ".cutoff", m_spotLights[ i ].m_cutoff );
-    }*/
+    }
     
     Enable();
     mesh.Render();

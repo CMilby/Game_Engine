@@ -51,10 +51,11 @@ void CoreEngine::Start() {
     while ( m_isRunning ) {
         currentTime = Timing::GetTime();
         frames++;
-        if ( currentTime - lastTime >= 1.0f ) {
+        if ( currentTime - lastTime >= 1000.0f ) {
             sprintf( lastFPM, "%.2f ms/frame", 1000.0f / ( float ) frames );
+            printf( "%i\n", frames );
             frames = 0;
-            lastTime += 1.0f;
+            lastTime += 1000.0f;
         }
 
         Input::Update();

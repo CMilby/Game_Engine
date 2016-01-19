@@ -51,8 +51,8 @@ std::string Utility::DirectoryPath() {
 
 unsigned int Utility::GetMonitorWidth() {
 #ifdef __APPLE__
-    CGRect mainMonitor = CGDisplayBounds( CGMainDisplayID() );
-    return ( unsigned int ) CGRectGetWidth( mainMonitor );
+    size_t mainMonitor = CGDisplayPixelsWide( CGMainDisplayID() );
+    return ( unsigned int ) mainMonitor;
 #endif
 #ifdef _WIN32
     return ( unsigned int ) GetSystemMetrics( SM_CWSCREEN );

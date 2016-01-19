@@ -8,9 +8,26 @@
 
 #include "time.h"
 
-#include <GL/glew.h>
-#include <GLFW/glfw3.h>
+#include <SDL2/SDL.h>
+
+#ifdef __APPLE__
+#include <sys/time.h>
+#endif
+#ifdef _WIN32
+#include <windows.h>
+#endif
 
 float Timing::GetTime() {
-    return ( float ) glfwGetTime();
+#ifdef __APPLE__
+    timeval time;
+    gettimeofday( &time, NULL );
+    // return ( float ) ( ( time.tv_sec * 1000 ) + ( time.tv_usec / 1000 ) );
+    return SDL_GetTicks();
+#endif
+#ifdef _WIN32
+    SYSTEMTIME time;
+    GetSystemTime( &time );
+    return ( float ) ( ( time.wSeconds * 1000 ) + time.wMilliseconds );
+#endif
+    return -1.0f;
 }

@@ -33,6 +33,7 @@ void TestGame::Init() {
     RenderableEntity *cubeSub = new RenderableEntity( new Mesh( "cube_subdivide.obj" ) );
     cubeSub->GetTransform()->SetPosition( Vector3<float>( 1, 3, 1 ) );
     cubeSub->GetTransform()->Rotate( Vector3<float>( 0, 1, 0 ), 45.0f );
+    cubeSub->GetTransform()->Rotate( Vector3<float>( 0, 0, 1 ), 45.0f );
     AddToScene( cubeSub );
     
     RenderableEntity *plane = new RenderableEntity( new Mesh( "plane.obj" ) );
