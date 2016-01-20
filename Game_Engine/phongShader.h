@@ -17,7 +17,7 @@
 class PhongShader : public Shader {
     
 private:
-    const int MAX_POINT_LIGHTS = 50;
+    const int MAX_POINT_LIGHTS = 5;
     const int MAX_SPOT_LIGHTS = 5;
     
     Vector3<float> m_ambientLight;
@@ -33,7 +33,7 @@ public:
     virtual void Enable() const;
     virtual void Disable() const;
     
-    virtual void UpdateUniforms( const Matrix4<float> &world, const Matrix4<float> &projected, const Camera &camera, const Material &material, const Mesh &mesh );
+    virtual void UpdateUniforms( const Matrix4<float> &world, const Matrix4<float> &projected, const Camera &camera, const Material &material );
     
     inline void AddPointLight( const PointLight &plight ) { m_pointLights.push_back( plight ); }
     inline void AddSpotLight( const SpotLight &sLight ) { m_spotLights.push_back( sLight ); }

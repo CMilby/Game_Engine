@@ -23,7 +23,7 @@ public:
     virtual void Enable() const;
     virtual void Disable() const;
     
-    virtual void UpdateUniforms( const Matrix4<float> &world, const Matrix4<float> &projected, const Camera &camera, const Material &material, const Mesh &mesh );
+    virtual void UpdateUniforms( const Matrix4<float> &world, const Matrix4<float> &projected, const Camera &camera, const Material &material );
 };
 
 #endif /* basicShader_h */

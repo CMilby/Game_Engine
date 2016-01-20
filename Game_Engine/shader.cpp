@@ -93,7 +93,7 @@ void Shader::Bind() const {
     glUseProgram( m_program );
 }
 
-void Shader::UpdateUniforms( const Matrix4<float> &world, const Matrix4<float> &projected, const Camera &camera, const Material &material, const Mesh &mesh ) {
+void Shader::UpdateUniforms( const Matrix4<float> &world, const Matrix4<float> &projected, const Camera &camera, const Material &material ) {
     
 }
 

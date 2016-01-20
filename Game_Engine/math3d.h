@@ -494,9 +494,9 @@ public:
         ret[ 1 ][ 3 ] = T( 0 );
         ret[ 2 ][ 3 ] = T( 0 );
         
-        ret[ 3 ][ 0 ] = -Dot( s, eye );
-        ret[ 3 ][ 1 ] = -Dot( u, eye );
-        ret[ 3 ][ 2 ] = Dot( f, eye );
+        ret[ 3 ][ 0 ] = -s.Dot( eye );
+        ret[ 3 ][ 1 ] = -u.Dot( eye );
+        ret[ 3 ][ 2 ] = f.Dot( eye );
         
         return ret;
     }
@@ -629,6 +629,19 @@ public:
                         ( *this )[ 0 ][ 3 ] * inverse[ 0 ][ 3 ];
         inverse /= determinant;
         return inverse;
+    }
+    
+    inline Matrix4<T> Ortho( const T &left, const T &right, const T &top, const T &bottom, const T &far, const T &near ) {
+        Matrix4<float> ret = Matrix4<float>().InitIdentity();
+        
+        ret[ 0 ][ 0 ] = 2 / ( right - left );
+        ret[ 1 ][ 1 ] = 2 / ( top - bottom );
+        ret[ 2 ][ 2 ] = -2 / ( far - near );
+        ret[ 0 ][ 3 ] = -( ( right + left ) / ( right - left ) );
+        ret[ 1 ][ 3 ] = -( ( top + bottom ) / ( top - bottom ) );
+        ret[ 2 ][ 3 ] = -( ( far + near ) / ( far - near ) );
+        
+        return ret;
     }
 };
 

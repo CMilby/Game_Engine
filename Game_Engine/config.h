@@ -22,6 +22,8 @@ private:
     static float s_zNear;
     static float s_zFar;
     
+    static bool s_debug;
+    
     Config() {}
 public:
     inline static void SetScreenWidth( unsigned int screenWidth ) {
@@ -70,6 +72,10 @@ public:
     }
     
     inline static float GetZFar() { return s_zFar; }
+    
+    inline static bool Debug() {
+        return s_debug;
+    }
 };
 
 #endif /* config_h */

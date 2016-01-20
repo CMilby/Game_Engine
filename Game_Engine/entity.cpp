@@ -86,7 +86,9 @@ void RenderableEntity::Render( const std::vector<Shader*> &shaders, const Camera
     if ( m_visible ) {
         for ( int i = 0; i < shaders.size(); i++ ) {
             shaders[ i ]->Bind();
-            shaders[ i ]->UpdateUniforms( GetModelMatrix(), Transform::GetProjection() * camera.GetView() * GetModelMatrix(), camera, *m_material, *m_mesh );
+            shaders[ i ]->UpdateUniforms( GetModelMatrix(), Transform::GetProjection() * camera.GetView() * GetModelMatrix(), camera, *m_material );
+            
+            m_mesh->Render();
         }
     }
 }

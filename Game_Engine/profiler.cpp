@@ -8,6 +8,9 @@
 
 #include "profiler.h"
 
+#include "config.h"
+#include "logging.h"
+
 Profiler::Profiler() {
     m_profiling = false;
 }
@@ -30,4 +33,10 @@ std::string Profiler::ToString() {
     float time = m_stopTime - m_startTime;
     // time /= 100.0f;
     return std::to_string( time ) + " ms";
+}
+
+void Profiler::Profile( const std::string &function, const std::string &message ) {
+    if ( Config::Debug() ) {
+        Logging::LogInfo( function, message + ToString(), 0 );
+    }
 }

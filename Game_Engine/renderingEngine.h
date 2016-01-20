@@ -12,7 +12,6 @@
 #include <vector>
 
 #include "camera.h"
-#include "phongShader.h"
 #include "skyboxShader.h"
 #include "textShader.h"
 
@@ -23,7 +22,7 @@ private:
     
     std::vector<Shader*> m_shaders;
     
-    PhongShader *m_shader;
+    Shader *m_standardShader;
     Skybox *m_skybox;
     TextShader *m_textShader;
     

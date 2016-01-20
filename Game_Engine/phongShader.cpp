@@ -87,7 +87,7 @@ void PhongShader::Disable() const {
     glDisableVertexAttribArray( 2 );
 }
 
-void PhongShader::UpdateUniforms( const Matrix4<float> &world, const Matrix4<float> &projected, const Camera &camera, const Material &material, const Mesh &mesh ) {
+void PhongShader::UpdateUniforms( const Matrix4<float> &world, const Matrix4<float> &projected, const Camera &camera, const Material &material ) {
     
     material.m_texture->Bind();
     UniformVector3f( "baseColor", material.m_color );
@@ -129,10 +129,6 @@ void PhongShader::UpdateUniforms( const Matrix4<float> &world, const Matrix4<flo
         UniformVector3f( name + ".direction", m_spotLights[ i ].m_direction );
         Uniform1f( name + ".cutoff", m_spotLights[ i ].m_cutoff );
     }
-    
-    Enable();
-    mesh.Render();
-    Disable();
 }
 
 

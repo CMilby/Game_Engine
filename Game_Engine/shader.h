@@ -48,7 +48,7 @@ public:
     virtual void Enable() const {}
     virtual void Disable() const {}
     
-    virtual void UpdateUniforms( const Matrix4<float> &world, const Matrix4<float> &projected,  const Camera &camera, const Material &material, const Mesh &mesh );
+    virtual void UpdateUniforms( const Matrix4<float> &world, const Matrix4<float> &projected, const Camera &camera, const Material &material );
     
     void AddUniform( const std::string &name );
     inline GLuint GetUniform( const std::string &name ) const { return m_uniformMap.at( name ); }

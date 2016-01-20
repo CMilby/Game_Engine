@@ -30,10 +30,6 @@ public:
         Log( LOGGING_INFO, function, message, errors );
     }
     
-    /*static void LogInfo( const std::string &function, const std::string &message ) {
-        Log( LOGGING_INFO, function, message, 0 );
-    }*/
-    
     template<class T>
     static void LogWarning( const std::string &function, const std::string &message, const T &errors = 0 ) {
         Log( LOGGING_WARNING, function, message, errors );

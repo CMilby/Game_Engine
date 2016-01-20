@@ -8,6 +8,9 @@
 
 #include "renderingEngine.h"
 
+#include "phongShader.h"
+#include "basicShader.h"
+
 Camera RenderingEngine::s_mainCamera = Camera();
 
 RenderingEngine::RenderingEngine() {
@@ -15,7 +18,7 @@ RenderingEngine::RenderingEngine() {
 }
 
 RenderingEngine::~RenderingEngine() {
-    if ( m_shader ) delete m_shader;
+    if ( m_standardShader ) delete m_standardShader;
     if ( m_textShader ) delete m_textShader;
     if ( m_skybox ) delete m_skybox;
 }
@@ -29,16 +32,16 @@ void RenderingEngine::Init() {
     glEnable( GL_DEPTH_TEST );
     glEnable( GL_DEPTH_CLAMP );
     
-    m_shader = new PhongShader();
+    m_standardShader = new PhongShader();
     m_textShader = new TextShader( "Courier_New.png" );
     m_skybox = new Skybox( "", "stars_rt.jpg", "stars_lf.jpg", "stars_up.jpg", "stars_dn.jpg", "stars_fr.jpg", "stars_bk.jpg" );
     
-    m_shader->Init();
+    m_standardShader->Init();
     m_textShader->Init();
     m_skybox->Init();
     
-    m_shaders.emplace_back( m_shader );
-    // m_shaders.emplace_back( m_skybox );
+    m_shaders.emplace_back( m_standardShader );
+    m_shaders.emplace_back( m_skybox );
 }
 
 void RenderingEngine::Render( Entity &root ) {
@@ -51,6 +54,7 @@ void RenderingEngine::Render( Entity &root ) {
     sprintf( text, "%.2f %.2f %.2f", pos.GetX(), pos.GetY(), pos.GetZ() );
     m_textShader->Render( text, 5, 25, 20 );
 }
+
 
 
 

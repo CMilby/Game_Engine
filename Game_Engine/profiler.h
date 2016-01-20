@@ -28,6 +28,7 @@ public:
     void StopProfile();
     
     std::string ToString();
+    void Profile( const std::string &function, const std::string &message );
 };
 
 #endif /* profiler_h */

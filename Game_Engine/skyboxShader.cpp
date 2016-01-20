@@ -50,7 +50,7 @@ void Skybox::Disable() const {
     glDisableVertexAttribArray( 0 );
 }
 
-void Skybox::UpdateUniforms( const Matrix4<float> &world, const Matrix4<float> &projected,  const Camera &camera, const Material &material, const Mesh &mesh ) {
+void Skybox::UpdateUniforms( const Matrix4<float> &world, const Matrix4<float> &projected,  const Camera &camera, const Material &material ) {
     GLint oldCullFaceMode;
     glGetIntegerv( GL_CULL_FACE_MODE, &oldCullFaceMode );
     
