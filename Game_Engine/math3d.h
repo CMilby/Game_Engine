@@ -489,7 +489,7 @@ public:
         ret[ 0 ][ 2 ] = -f.GetX();
         ret[ 1 ][ 2 ] = -f.GetY();
         ret[ 2 ][ 2 ] = -f.GetZ();
-
+        
         ret[ 0 ][ 3 ] = T( 0 );
         ret[ 1 ][ 3 ] = T( 0 );
         ret[ 2 ][ 3 ] = T( 0 );
@@ -502,7 +502,7 @@ public:
     }
     
     inline Matrix4<T>Scale( const Vector3<T> &scale ) const {
-        Matrix4<T> ret;
+        Matrix4<T> ret = Matrix4<float>().InitIdentity();
         
         ret[ 0 ][ 0 ] = scale.GetX();
         ret[ 1 ][ 1 ] = scale.GetY();
@@ -734,6 +734,14 @@ public:
         return Matrix4<float>().InitRotationFromVectors( forward, up, right );
     }
     
+    inline Vector3<float> ZDirection() {
+        Vector3<float> vect( 0.0f, 0.0f, 0.0f );
+        vect.SetX( 2 * GetW() * GetY() + 2 * GetX() * GetZ() );
+        vect.SetY( 2 * GetY() * GetZ() - 2 * GetX() * GetW() );
+        vect.SetZ( GetW() * GetW() + GetZ() * GetZ() - GetX() * GetX() - GetY() * GetY() );
+        return vect;
+    }
+    
     inline float GetX() const { return ( *this )[ 0 ]; }
     inline float GetY() const { return ( *this )[ 1 ]; }
     inline float GetZ() const { return ( *this )[ 2 ]; }
@@ -749,5 +757,21 @@ namespace Random {
     
     float InRangeF( float min, float max );
 };
+
+namespace Math3D {
+    
+    template<class T>
+    inline T Clamp( const T &value, const T &min, const T &max ) {
+        if ( value > max ) {
+            return max;
+        }
+        
+        if ( value < min ) {
+            return min;
+        }
+        
+        return value;
+    }
+}
 
 #endif /* math3d_hpp */

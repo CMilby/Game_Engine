@@ -27,6 +27,9 @@
 		447A39151BD6F09300190464 /* renderingEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 447A39131BD6F09300190464 /* renderingEngine.cpp */; };
 		447A39181BD7CA4E00190464 /* texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 447A39161BD7CA4E00190464 /* texture.cpp */; };
 		449A0C3C1C4ED3670052E92D /* profiler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 449A0C3A1C4ED3670052E92D /* profiler.cpp */; };
+		449A0C511C501E6B0052E92D /* freeCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 449A0C4F1C501E6B0052E92D /* freeCamera.cpp */; };
+		449A0C541C501E800052E92D /* thirdPersonCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 449A0C521C501E800052E92D /* thirdPersonCamera.cpp */; };
+		449A0C5A1C50297E0052E92D /* firstPersonCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 449A0C581C50297E0052E92D /* firstPersonCamera.cpp */; };
 		449D85F41BD6B6F300B72584 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 449D85F31BD6B6F300B72584 /* OpenGL.framework */; };
 		449D85F91BD6BB0900B72584 /* libGLEW.1.12.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 449D85F81BD6BB0900B72584 /* libGLEW.1.12.0.dylib */; };
 		44B6933E1C077B3600743603 /* stb_image.c in Sources */ = {isa = PBXBuildFile; fileRef = 44B6933C1C077B3600743603 /* stb_image.c */; };
@@ -94,6 +97,12 @@
 		447B54141BF04A9600BB5977 /* libSDL2-2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libSDL2-2.0.0.dylib"; path = "../../../../usr/local/Cellar/sdl2/2.0.3/lib/libSDL2-2.0.0.dylib"; sourceTree = "<group>"; };
 		449A0C3A1C4ED3670052E92D /* profiler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = profiler.cpp; sourceTree = "<group>"; };
 		449A0C3B1C4ED3670052E92D /* profiler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = profiler.h; sourceTree = "<group>"; };
+		449A0C4F1C501E6B0052E92D /* freeCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = freeCamera.cpp; sourceTree = "<group>"; };
+		449A0C501C501E6B0052E92D /* freeCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = freeCamera.h; sourceTree = "<group>"; };
+		449A0C521C501E800052E92D /* thirdPersonCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = thirdPersonCamera.cpp; sourceTree = "<group>"; };
+		449A0C531C501E800052E92D /* thirdPersonCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = thirdPersonCamera.h; sourceTree = "<group>"; };
+		449A0C581C50297E0052E92D /* firstPersonCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = firstPersonCamera.cpp; sourceTree = "<group>"; };
+		449A0C591C50297E0052E92D /* firstPersonCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = firstPersonCamera.h; sourceTree = "<group>"; };
 		449D85F31BD6B6F300B72584 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		449D85F61BD6BACB00B72584 /* libglfw.3.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw.3.1.dylib; path = ../../../../usr/local/lib/libglfw.3.1.dylib; sourceTree = "<group>"; };
 		449D85F81BD6BB0900B72584 /* libGLEW.1.12.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libGLEW.1.12.0.dylib; path = ../../../../usr/local/Cellar/glew/1.12.0/lib/libGLEW.1.12.0.dylib; sourceTree = "<group>"; };
@@ -178,6 +187,57 @@
 			name = DeferredRendering;
 			sourceTree = "<group>";
 		};
+		449A0C551C501E8B0052E92D /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				4415CD8D1BDD8E0400E91770 /* camera.cpp */,
+				4415CD8E1BDD8E0400E91770 /* camera.h */,
+				449A0C4F1C501E6B0052E92D /* freeCamera.cpp */,
+				449A0C501C501E6B0052E92D /* freeCamera.h */,
+				449A0C581C50297E0052E92D /* firstPersonCamera.cpp */,
+				449A0C591C50297E0052E92D /* firstPersonCamera.h */,
+				449A0C521C501E800052E92D /* thirdPersonCamera.cpp */,
+				449A0C531C501E800052E92D /* thirdPersonCamera.h */,
+			);
+			name = Camera;
+			sourceTree = "<group>";
+		};
+		449A0C561C501E980052E92D /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				4415CD8A1BDD74D400E91770 /* transform.cpp */,
+				4415CD8B1BDD74D400E91770 /* transform.h */,
+				447A390D1BD6DAF300190464 /* mesh.cpp */,
+				447A390E1BD6DAF300190464 /* mesh.h */,
+				4415CD821BDAB5DC00E91770 /* entity.cpp */,
+				4415CD831BDAB5DC00E91770 /* entity.h */,
+			);
+			name = Components;
+			sourceTree = "<group>";
+		};
+		449A0C571C501EAE0052E92D /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				44D3CD7D1BCC0AC30074E300 /* math3d.cpp */,
+				44D3CD7E1BCC0AC30074E300 /* math3d.h */,
+				4415CD931BDDC3EE00E91770 /* time.cpp */,
+				4415CD941BDDC3EE00E91770 /* time.h */,
+				44B6933C1C077B3600743603 /* stb_image.c */,
+				44B6933D1C077B3600743603 /* stb_image.h */,
+				44FB2ED11C28DAF300C6FCAF /* sdlBackend.cpp */,
+				44FB2ED21C28DAF300C6FCAF /* sdlBackend.h */,
+				44FB2ED71C29AFA000C6FCAF /* config.cpp */,
+				44FB2ED81C29AFA000C6FCAF /* config.h */,
+				44FB2EDD1C29B31600C6FCAF /* logging.cpp */,
+				44FB2EDE1C29B31600C6FCAF /* logging.h */,
+				449A0C3A1C4ED3670052E92D /* profiler.cpp */,
+				449A0C3B1C4ED3670052E92D /* profiler.h */,
+				4415CD851BDD6EE200E91770 /* utility.cpp */,
+				4415CD861BDD6EE200E91770 /* utility.h */,
+			);
+			name = Utility;
+			sourceTree = "<group>";
+		};
 		449D85F51BD6B6F600B72584 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -244,36 +304,15 @@
 		44D3CD761BCBFAF40074E300 /* Core_Engine */ = {
 			isa = PBXGroup;
 			children = (
-				44D3CD7D1BCC0AC30074E300 /* math3d.cpp */,
-				44D3CD7E1BCC0AC30074E300 /* math3d.h */,
+				449A0C571C501EAE0052E92D /* Utility */,
+				449A0C561C501E980052E92D /* Components */,
+				449A0C551C501E8B0052E92D /* Camera */,
 				447A390A1BD6DAC400190464 /* input.cpp */,
 				447A390B1BD6DAC400190464 /* input.h */,
-				447A390D1BD6DAF300190464 /* mesh.cpp */,
-				447A390E1BD6DAF300190464 /* mesh.h */,
-				4415CD821BDAB5DC00E91770 /* entity.cpp */,
-				4415CD831BDAB5DC00E91770 /* entity.h */,
-				4415CD851BDD6EE200E91770 /* utility.cpp */,
-				4415CD861BDD6EE200E91770 /* utility.h */,
-				4415CD8A1BDD74D400E91770 /* transform.cpp */,
-				4415CD8B1BDD74D400E91770 /* transform.h */,
-				4415CD8D1BDD8E0400E91770 /* camera.cpp */,
-				4415CD8E1BDD8E0400E91770 /* camera.h */,
 				4415CD901BDDC38700E91770 /* coreEngine.cpp */,
 				4415CD911BDDC38700E91770 /* coreEngine.h */,
-				4415CD931BDDC3EE00E91770 /* time.cpp */,
-				4415CD941BDDC3EE00E91770 /* time.h */,
 				44F722361BDFEB8A0022754F /* game.cpp */,
 				44F722371BDFEB8A0022754F /* game.h */,
-				44B6933C1C077B3600743603 /* stb_image.c */,
-				44B6933D1C077B3600743603 /* stb_image.h */,
-				44FB2ED11C28DAF300C6FCAF /* sdlBackend.cpp */,
-				44FB2ED21C28DAF300C6FCAF /* sdlBackend.h */,
-				44FB2ED71C29AFA000C6FCAF /* config.cpp */,
-				44FB2ED81C29AFA000C6FCAF /* config.h */,
-				44FB2EDD1C29B31600C6FCAF /* logging.cpp */,
-				44FB2EDE1C29B31600C6FCAF /* logging.h */,
-				449A0C3A1C4ED3670052E92D /* profiler.cpp */,
-				449A0C3B1C4ED3670052E92D /* profiler.h */,
 			);
 			name = Core_Engine;
 			sourceTree = "<group>";
@@ -342,7 +381,9 @@
 				449A0C3C1C4ED3670052E92D /* profiler.cpp in Sources */,
 				44B693431C07A45E00743603 /* phongShader.cpp in Sources */,
 				44F722381BDFEB8A0022754F /* game.cpp in Sources */,
+				449A0C511C501E6B0052E92D /* freeCamera.cpp in Sources */,
 				4415CD8C1BDD74D400E91770 /* transform.cpp in Sources */,
+				449A0C5A1C50297E0052E92D /* firstPersonCamera.cpp in Sources */,
 				44D3CD701BCBFAED0074E300 /* main.cpp in Sources */,
 				44BD91081C23803D000D50B8 /* cubemapTexture.cpp in Sources */,
 				447A390C1BD6DAC400190464 /* input.cpp in Sources */,
@@ -353,6 +394,7 @@
 				447A39181BD7CA4E00190464 /* texture.cpp in Sources */,
 				44FB2ED91C29AFA000C6FCAF /* config.cpp in Sources */,
 				4415CD871BDD6EE200E91770 /* utility.cpp in Sources */,
+				449A0C541C501E800052E92D /* thirdPersonCamera.cpp in Sources */,
 				44D3CD7F1BCC0AC30074E300 /* math3d.cpp in Sources */,
 				4415CD841BDAB5DC00E91770 /* entity.cpp in Sources */,
 				44B6933E1C077B3600743603 /* stb_image.c in Sources */,

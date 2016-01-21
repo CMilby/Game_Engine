@@ -23,3 +23,7 @@ void Transform::Rotate( const Quaternion &quat ) {
 void Transform::SetProjection( float fov, float aspectRatio, float zNear, float zFar ) {
     s_projection = Matrix4<float>().Perspective( fov, aspectRatio, zNear, zFar );
 }
+
+void Transform::Move( const Vector3<float> &direction, float amount ) {
+    SetPosition( GetPosition() + ( direction * amount ) );
+}

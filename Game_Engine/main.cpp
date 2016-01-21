@@ -8,11 +8,13 @@
 
 #include <cstdio>
 
-#include "camera.h"
+#include "firstPersonCamera.h"
+#include "freeCamera.h"
 #include "coreEngine.h"
 #include "entity.h"
 #include "game.h"
 #include "input.h"
+#include "thirdPersonCamera.h"
 #include "window.h"
 
 class TestGame : public Game {
@@ -26,7 +28,7 @@ public:
 void TestGame::Init() {
     Game::Init();
     
-    Camera *camera = new Camera( Vector3<float>( 0, 2, 5 ) );
+    Camera *camera = new FirstPersonCamera( Vector3<float>( 0, 2, 0 ) );
     RenderingEngine::SetMainCamera( *camera );
     AddToScene( camera );
     
@@ -36,12 +38,22 @@ void TestGame::Init() {
     
     RenderableEntity *build = new RenderableEntity( new Mesh( "cube.obj" ), new Material( new Texture( "Plain.png", TYPE_PNG ) ) );
     build->GetTransform()->SetScale( Vector3<float>( 10.0f, 30.0f, 10.0f ) );
-    build->GetTransform()->SetPosition( Vector3<float>( -15.0f, 30.0f, -15.0f ) );
+    build->GetTransform()->SetPosition( Vector3<float>( -15.0f, 30.0f, -10.0f ) );
     AddToScene( build );
     
     build = new RenderableEntity( new Mesh( "cube.obj" ), new Material( new Texture( "Plain.png", TYPE_PNG ) ) );
     build->GetTransform()->SetScale( Vector3<float>( 10.0f, 30.0f, 10.0f ) );
     build->GetTransform()->SetPosition( Vector3<float>( 30.0f, 30.0f, -15.0f ) );
+    AddToScene( build );
+    
+    build = new RenderableEntity( new Mesh( "cube.obj" ), new Material( new Texture( "Plain.png", TYPE_PNG ) ) );
+    build->GetTransform()->SetScale( Vector3<float>( 10.0f, 30.0f, 10.0f ) );
+    build->GetTransform()->SetPosition( Vector3<float>( 30.0f, 30.0f, 10.0f ) );
+    AddToScene( build );
+    
+    build = new RenderableEntity( new Mesh( "cube.obj" ), new Material( new Texture( "Plain.png", TYPE_PNG ) ) );
+    build->GetTransform()->SetScale( Vector3<float>( 10.0f, 30.0f, 10.0f ) );
+    build->GetTransform()->SetPosition( Vector3<float>( -15.0f, 30.0f, 15.0f ) );
     AddToScene( build );
 }
 

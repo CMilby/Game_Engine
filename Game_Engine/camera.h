@@ -10,6 +10,7 @@
 #define __CAMERA_H__
 
 #include "entity.h"
+#include "input.h"
 #include "math3d.h"
 #include "transform.h"
 
@@ -18,13 +19,8 @@ class Camera : public Entity {
 private:
     Matrix4<float> m_view;
     
-    float m_speed;
-    float m_sensitivity;
-    bool m_mouseLocked;
-    
 protected:
-    virtual void Init();
-    virtual void Input( float delta );
+    inline void SetView( const Matrix4<float> &view ) { m_view = view; }
     
 public:
     Camera( const Vector3<float> &position = Vector3<float>( 0.0f, 0.0f, 0.0f ), const Quaternion &rotation = Quaternion( 0, 0, 0, 1 ) ) {
@@ -32,16 +28,11 @@ public:
         SetRotation( rotation );
         
         m_view = GetRotation().ToRotationMatrix() * Matrix4<float>().Transform( GetPosition() * -1 );
-        
-        m_speed = 0.3f;
-        m_sensitivity = 2.5f;
-        
-        m_mouseLocked = false;
     }
     
-    void Move( const Vector3<float> &direction, float amount );
-    
-    
+    virtual void Init();
+    virtual void Input( float delta );
+    virtual void Render( const std::vector<Shader*> &shaders, const Camera &camera ) {}
     
     inline Matrix4<float> GetView() const { return m_view; };
     

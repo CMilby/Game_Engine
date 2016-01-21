@@ -35,6 +35,7 @@ public:
     inline Vector3<float> GetScale() const { return m_scale; }
     inline Quaternion GetRotation() const { return m_rotation; }
     
+    void Move( const Vector3<float> &direction, float amount );
     void Rotate( const Vector3<float> &axis, float angle );
     void Rotate( const Quaternion &quat );
     

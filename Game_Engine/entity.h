@@ -26,13 +26,6 @@ private:
     std::vector<Entity*> m_children;
     
     Transform *m_transform;
-    
-protected:
-    virtual void Init() {}
-    
-    virtual void Input( float delta ) {}
-    virtual void Update( float delta ) {}
-    virtual void Render( const std::vector<Shader*> &shaders, const Camera &camera ) {}
 
 public:
     Entity();
@@ -43,6 +36,12 @@ public:
     void InputAll( float delta );
     void UpdateAll( float delta );
     void RenderAll( const std::vector<Shader*> &shaders, const Camera &camera );
+    
+    virtual void Init() {}
+    
+    virtual void Input( float delta ) {}
+    virtual void Update( float delta ) {}
+    virtual void Render( const std::vector<Shader*> &shaders, const Camera &camera ) {}
     
     Entity* AddChild( Entity *entity );
     
@@ -58,15 +57,16 @@ private:
     
     bool m_visible;
     
-protected:
-    virtual void Input( float delta );
-    virtual void Update( float delta );
-    virtual void Render( const std::vector<Shader*> &shaders, const Camera &camera );
-    
 public:
     RenderableEntity();
     RenderableEntity( Mesh *mesh, Material *material = new Material() );
     virtual ~RenderableEntity();
+    
+    virtual void Init() {}
+    
+    virtual void Input( float delta );
+    virtual void Update( float delta );
+    virtual void Render( const std::vector<Shader*> &shaders, const Camera &camera );
     
     Matrix4<float> GetModelMatrix() const;
     
