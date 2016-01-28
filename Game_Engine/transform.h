@@ -31,7 +31,11 @@ public:
     inline void SetScale( const Vector3<float> &scale ) { m_scale = scale; }
     inline void SetRotation( const Quaternion &rotation ) { m_rotation = rotation; }
     
-    inline Vector3<float> GetPosition() const { return m_position; }
+    inline void SetXPosition( float x ) { m_position.SetX( x ); }
+    inline void SetYPosition( float y ) { m_position.SetY( y ); }
+    inline void SetZPosition( float z ) { m_position.SetZ( z ); }
+    
+    inline Vector3<float> GetPosition() { return m_position; }
     inline Vector3<float> GetScale() const { return m_scale; }
     inline Quaternion GetRotation() const { return m_rotation; }
     

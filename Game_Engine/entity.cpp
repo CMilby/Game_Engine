@@ -55,10 +55,17 @@ Entity* Entity::AddChild( Entity *entity ) {
     return this;
 }
 
+void Entity::ClearChildren() {
+    for ( unsigned int i = 0; i < m_children.size(); i++ ) {
+        if ( m_children[ i ] ) delete m_children[ i ];
+    }
+    m_children.clear();
+}
+
 RenderableEntity::RenderableEntity() {
     m_mesh = new Mesh( "cube.obj" );
     SetTransform( new Transform() );
-    m_material = new Material( new Texture( "cube.DDS", TextureType::TYPE_DDS ) );
+    m_material = new Material( new Texture( "test.png" ) );
     m_visible = false;
 }
 

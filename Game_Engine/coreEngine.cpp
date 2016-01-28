@@ -71,28 +71,28 @@ void CoreEngine::Start() {
         m_profiler->StartProfile();
         m_game->ProcessInput( currentTime - lastTime );
         m_profiler->StopProfile();
-        m_profiler->Profile( function, "Game Input:" );
+        // m_profiler->Profile( function, "Game Input:" );
         
         m_profiler->StartProfile();
         m_game->ProcessUpdate( currentTime - lastTime );
         m_profiler->StopProfile();
-        m_profiler->Profile( function, "Game Update:" );
+        // m_profiler->Profile( function, "Game Update:" );
         
         m_profiler->StartProfile();
         m_game->ProcessRender( m_renderingEngine );
         m_profiler->StopProfile();
-        m_profiler->Profile( function, "Game Render:" );
+        // m_profiler->Profile( function, "Game Render:" );
         
         m_profiler->StartProfile();
         m_textShader->Render( lastFPM, 5, 5, 20 );
         m_profiler->StopProfile();
-        m_profiler->Profile( function, "Text Shader:" );
+        // m_profiler->Profile( function, "Text Shader:" );
         
         m_profiler->StartProfile();
         m_window->SwapBuffers();
         m_profiler->StopProfile();
-        m_profiler->Profile( function, "Swap Buffers:" );
-        std::cout << std::endl;
+        // m_profiler->Profile( function, "Swap Buffers:" );
+        // std::cout << std::endl;
     }
 }
 

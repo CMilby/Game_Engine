@@ -19,7 +19,7 @@ struct Material {
     float m_specularPower;
     float m_specularIntensity;
     
-    Material( Texture *texture = new Texture( "test.png", TYPE_PNG ), const Vector3<float> &color = Vector3<float>( 1.0f, 1.0f, 1.0f ), float specularIntensity = 1.0f, float specularPower = 32.0f ) {
+    Material( Texture *texture = new Texture( "test.png" ), const Vector3<float> &color = Vector3<float>( 1.0f, 1.0f, 1.0f ), float specularIntensity = 1.0f, float specularPower = 32.0f ) {
         m_texture = texture;
         m_color = color;
         m_specularIntensity = specularIntensity;

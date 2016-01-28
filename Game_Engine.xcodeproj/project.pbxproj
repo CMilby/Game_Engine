@@ -39,9 +39,12 @@
 		44D3CD701BCBFAED0074E300 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44D3CD6F1BCBFAED0074E300 /* main.cpp */; };
 		44D3CD7F1BCC0AC30074E300 /* math3d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44D3CD7D1BCC0AC30074E300 /* math3d.cpp */; };
 		44F722381BDFEB8A0022754F /* game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44F722361BDFEB8A0022754F /* game.cpp */; };
+		44F9907C1C541F8700BFBAF8 /* planet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44F9907A1C541F8700BFBAF8 /* planet.cpp */; };
+		44F9907F1C541F8F00BFBAF8 /* terrain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44F9907D1C541F8F00BFBAF8 /* terrain.cpp */; };
 		44FB2ED31C28DAF300C6FCAF /* sdlBackend.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44FB2ED11C28DAF300C6FCAF /* sdlBackend.cpp */; };
 		44FB2ED91C29AFA000C6FCAF /* config.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44FB2ED71C29AFA000C6FCAF /* config.cpp */; };
 		44FB2EDF1C29B31600C6FCAF /* logging.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44FB2EDD1C29B31600C6FCAF /* logging.cpp */; };
+		44FF2BEF1C56FF18005DDFCB /* terrainMesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44FF2BED1C56FF18005DDFCB /* terrainMesh.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -124,12 +127,18 @@
 		44D3CD7E1BCC0AC30074E300 /* math3d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = math3d.h; sourceTree = "<group>"; };
 		44F722361BDFEB8A0022754F /* game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = game.cpp; sourceTree = "<group>"; };
 		44F722371BDFEB8A0022754F /* game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = game.h; sourceTree = "<group>"; };
+		44F9907A1C541F8700BFBAF8 /* planet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = planet.cpp; sourceTree = "<group>"; };
+		44F9907B1C541F8700BFBAF8 /* planet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = planet.h; sourceTree = "<group>"; };
+		44F9907D1C541F8F00BFBAF8 /* terrain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = terrain.cpp; sourceTree = "<group>"; };
+		44F9907E1C541F8F00BFBAF8 /* terrain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = terrain.h; sourceTree = "<group>"; };
 		44FB2ED11C28DAF300C6FCAF /* sdlBackend.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sdlBackend.cpp; sourceTree = "<group>"; };
 		44FB2ED21C28DAF300C6FCAF /* sdlBackend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sdlBackend.h; sourceTree = "<group>"; };
 		44FB2ED71C29AFA000C6FCAF /* config.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = config.cpp; sourceTree = "<group>"; };
 		44FB2ED81C29AFA000C6FCAF /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
 		44FB2EDD1C29B31600C6FCAF /* logging.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = logging.cpp; sourceTree = "<group>"; };
 		44FB2EDE1C29B31600C6FCAF /* logging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = logging.h; sourceTree = "<group>"; };
+		44FF2BED1C56FF18005DDFCB /* terrainMesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = terrainMesh.cpp; sourceTree = "<group>"; };
+		44FF2BEE1C56FF18005DDFCB /* terrainMesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = terrainMesh.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -296,7 +305,7 @@
 			children = (
 				44D3CD761BCBFAF40074E300 /* Core_Engine */,
 				44B693441C07C6E600743603 /* Rendering */,
-				44D3CD6F1BCBFAED0074E300 /* main.cpp */,
+				44F990791C5415BF00BFBAF8 /* Game */,
 			);
 			path = Game_Engine;
 			sourceTree = "<group>";
@@ -315,6 +324,20 @@
 				44F722371BDFEB8A0022754F /* game.h */,
 			);
 			name = Core_Engine;
+			sourceTree = "<group>";
+		};
+		44F990791C5415BF00BFBAF8 /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				44D3CD6F1BCBFAED0074E300 /* main.cpp */,
+				44F9907A1C541F8700BFBAF8 /* planet.cpp */,
+				44F9907B1C541F8700BFBAF8 /* planet.h */,
+				44F9907D1C541F8F00BFBAF8 /* terrain.cpp */,
+				44F9907E1C541F8F00BFBAF8 /* terrain.h */,
+				44FF2BED1C56FF18005DDFCB /* terrainMesh.cpp */,
+				44FF2BEE1C56FF18005DDFCB /* terrainMesh.h */,
+			);
+			name = Game;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -378,6 +401,7 @@
 				447A39091BD6C57200190464 /* window.cpp in Sources */,
 				44BD910B1C238474000D50B8 /* skyboxShader.cpp in Sources */,
 				44FB2ED31C28DAF300C6FCAF /* sdlBackend.cpp in Sources */,
+				44F9907F1C541F8F00BFBAF8 /* terrain.cpp in Sources */,
 				449A0C3C1C4ED3670052E92D /* profiler.cpp in Sources */,
 				44B693431C07A45E00743603 /* phongShader.cpp in Sources */,
 				44F722381BDFEB8A0022754F /* game.cpp in Sources */,
@@ -398,9 +422,11 @@
 				44D3CD7F1BCC0AC30074E300 /* math3d.cpp in Sources */,
 				4415CD841BDAB5DC00E91770 /* entity.cpp in Sources */,
 				44B6933E1C077B3600743603 /* stb_image.c in Sources */,
+				44F9907C1C541F8700BFBAF8 /* planet.cpp in Sources */,
 				4415CD921BDDC38700E91770 /* coreEngine.cpp in Sources */,
 				447A39151BD6F09300190464 /* renderingEngine.cpp in Sources */,
 				44FB2EDF1C29B31600C6FCAF /* logging.cpp in Sources */,
+				44FF2BEF1C56FF18005DDFCB /* terrainMesh.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

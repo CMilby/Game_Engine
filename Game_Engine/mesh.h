@@ -17,19 +17,9 @@
 
 #include "math3d.h"
 
-struct Vertex {
-    Vector3<float> m_position;
-    Vector2<float> m_uv;
-    Vector3<float> m_normal;
-
-    inline bool operator<( const Vertex &vertex ) const {
-        return memcmp( ( void* ) this, ( void* ) &vertex, sizeof( Vertex ) ) > 0;
-    }
-};
-
 class Mesh {
     
-private:
+protected:
     GLuint m_vertexBuffer;
     GLuint m_uvBuffer;
     GLuint m_normalBuffer;
@@ -41,15 +31,15 @@ private:
     std::vector<Vector3<float>> m_normals;
     
     void LoadOBJ( const std::string &filename );
-
-    void IndexVBO( std::vector<unsigned short> &outIndices, std::vector<Vector3<float>> &outVertices, std::vector<Vector2<float>> &outUVs, std::vector<Vector3<float>> &outNormals );
-    bool GetSimilarVertexIndex( Vertex &vertex, std::map<Vertex, unsigned short> vertexToOut, unsigned short &result );
     
 public:
+    Mesh();
     Mesh( const std::string &filename );
     virtual ~Mesh();
     
     void Render() const;
+    
+    void GenerateBuffers();
 };
 
 #endif /* mesh_h */

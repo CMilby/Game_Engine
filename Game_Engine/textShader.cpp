@@ -24,7 +24,7 @@ TextShader::~TextShader() {
 }
 
 void TextShader::Init() {
-    m_texture = new Texture( "fonts/" + m_file, TextureType::TYPE_PNG );
+    m_texture = new Texture( "fonts/" + m_file );
     
     glGenBuffers( 1, &m_vertexBuffer );
     glGenBuffers( 1, &m_uvBuffer );

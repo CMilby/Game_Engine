@@ -14,6 +14,6 @@ unsigned int Config::s_screenHeight = 800;
 float Config::s_fieldOfView = 45.0f;
 float Config::s_aspectRatio = 1.6f;
 float Config::s_zNear = 0.1f;
-float Config::s_zFar = 1024.0f;
+float Config::s_zFar = 16384.0f;
 
 bool Config::s_debug = false;

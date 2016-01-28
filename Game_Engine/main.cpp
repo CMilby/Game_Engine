@@ -14,6 +14,8 @@
 #include "entity.h"
 #include "game.h"
 #include "input.h"
+#include "planet.h"
+#include "terrain.h"
 #include "thirdPersonCamera.h"
 #include "window.h"
 
@@ -28,33 +30,67 @@ public:
 void TestGame::Init() {
     Game::Init();
     
-    Camera *camera = new FirstPersonCamera( Vector3<float>( 0, 2, 0 ) );
+    Camera *camera = new FreeCamera( Vector3<float>( 0, 0, 20 ) );
     RenderingEngine::SetMainCamera( *camera );
     AddToScene( camera );
     
-    RenderableEntity *plane = new RenderableEntity( new Mesh( "plane.obj" ), new Material( new Texture( "Test.png", TYPE_PNG ) ) );
-    plane->GetTransform()->SetScale( Vector3<float>( 100.0f, 1.0f, 100.0f ) );
-    AddToScene( plane );
+    /*RenderableEntity *plane = new RenderableEntity( new Mesh( "plane_test.obj" ), new Material( new Texture( "test.png" ) ) );
+    // plane->GetTransform()->SetScale( Vector3<float>( 2.0f, 2.0f, 2.0f ) );
+    AddToScene( plane );*/
     
-    RenderableEntity *build = new RenderableEntity( new Mesh( "cube.obj" ), new Material( new Texture( "Plain.png", TYPE_PNG ) ) );
-    build->GetTransform()->SetScale( Vector3<float>( 10.0f, 30.0f, 10.0f ) );
-    build->GetTransform()->SetPosition( Vector3<float>( -15.0f, 30.0f, -10.0f ) );
-    AddToScene( build );
+    /*RenderableEntity *cube = new RenderableEntity( new Mesh( "cube.obj" ) );
+    cube->SetPosition( Vector3<float>( -10, 1, 2 ) );
+    plane->AddChild( cube );
     
-    build = new RenderableEntity( new Mesh( "cube.obj" ), new Material( new Texture( "Plain.png", TYPE_PNG ) ) );
-    build->GetTransform()->SetScale( Vector3<float>( 10.0f, 30.0f, 10.0f ) );
-    build->GetTransform()->SetPosition( Vector3<float>( 30.0f, 30.0f, -15.0f ) );
-    AddToScene( build );
+    cube = new RenderableEntity( new Mesh( "cube.obj" ) );
+    cube->SetPosition( Vector3<float>( 10, 1, 5 ) );
+    plane->AddChild( cube );
     
-    build = new RenderableEntity( new Mesh( "cube.obj" ), new Material( new Texture( "Plain.png", TYPE_PNG ) ) );
-    build->GetTransform()->SetScale( Vector3<float>( 10.0f, 30.0f, 10.0f ) );
-    build->GetTransform()->SetPosition( Vector3<float>( 30.0f, 30.0f, 10.0f ) );
-    AddToScene( build );
+    RenderableEntity *ent = new RenderableEntity( new Mesh( "cube.obj" ) );
+    ent->SetPosition( Vector3<float>( 10, 4, -1 ) );
     
-    build = new RenderableEntity( new Mesh( "cube.obj" ), new Material( new Texture( "Plain.png", TYPE_PNG ) ) );
-    build->GetTransform()->SetScale( Vector3<float>( 10.0f, 30.0f, 10.0f ) );
-    build->GetTransform()->SetPosition( Vector3<float>( -15.0f, 30.0f, 15.0f ) );
-    AddToScene( build );
+    RenderableEntity *add = new RenderableEntity( new Mesh( "plane_subdivide.obj" ) );
+    add->SetPosition( Vector3<float>( 4, 2, 5 ) );
+    ent->AddChild( add );
+    
+    add = new RenderableEntity( new Mesh( "plane_subdivide.obj" ) );
+    add->SetPosition( Vector3<float>( -6, 3, 4 ) );
+    ent->AddChild( add );
+    
+    add = new RenderableEntity( new Mesh( "plane_subdivide.obj" ) );
+    add->SetPosition( Vector3<float>( -1, 0, 5 ) );
+    ent->AddChild( add );
+    
+    plane->AddChild( ent );
+    AddToScene( plane );*/
+    
+    /*Terrain *terrain = new Terrain( 1, true, false, true );
+    terrain->SetPosition( Vector3<float>( 4, 0, 0 ) );
+    terrain->SetScale( Vector3<float>( 2, 2, 2 ) );
+    AddToScene( terrain );
+    
+    terrain = new Terrain( 1, true, false, true );
+    terrain->SetPosition( Vector3<float>( -4, 0, 0 ) );
+    terrain->SetScale( Vector3<float>( 2, 2, 2 ) );
+    AddToScene( terrain );
+    
+    terrain = new Terrain( 1, true, false, true );
+    terrain->SetPosition( Vector3<float>( 0, 0, 4 ) );
+    terrain->SetScale( Vector3<float>( 2, 2, 2 ) );
+    AddToScene( terrain );
+    
+    terrain = new Terrain( 1, true, false, true );
+    terrain->SetPosition( Vector3<float>( 0, 0, -4 ) );
+    terrain->SetScale( Vector3<float>( 2, 2, 2 ) );
+    AddToScene( terrain );
+    
+    terrain = new Terrain( 1, true, false, true );
+    terrain->SetPosition( Vector3<float>( 0, 0, 0 ) );
+    terrain->SetScale( Vector3<float>( 2, 2, 2 ) );
+    AddToScene( terrain );*/
+    
+    Planet *planet = new Planet();
+    AddToScene( planet );
 }
 
 int main(int argc, const char * argv[]) {

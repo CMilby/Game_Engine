@@ -17,20 +17,44 @@
 #include "stb_image.h"
 #include "utility.h"
 
-#define FOURCC_DXT1 0x31545844
-#define FOURCC_DXT3 0x33545844
-#define FOURCC_DXT5 0x35545844
+std::map<std::string, GLuint> TextureAtlas::s_textureAtlas = std::map<std::string, GLuint>();
 
-Texture* Texture::s_lastBind = 0;
+GLuint Texture::s_lastBind = 0;
+TextureAtlas* Texture::s_textureAtlas = new TextureAtlas();
+
+TextureAtlas::TextureAtlas() {
+    
+}
+
+TextureAtlas::~TextureAtlas() {
+    
+}
+
+void TextureAtlas::Add( const std::string &name, GLuint value ) {
+    s_textureAtlas.insert( std::pair<std::string, GLuint>( name, value ) );
+}
+
+bool TextureAtlas::Contains( const std::string &name ) const {
+    return s_textureAtlas.count( name ) == 1;
+}
+
+GLuint TextureAtlas::Get( const std::string &name ) const {
+    return s_textureAtlas[ name ];
+}
+
+void TextureAtlas::Remove( const std::string &name ) {
+    s_textureAtlas.erase( name );
+}
 
 Texture::Texture( int width, int height, unsigned char *data, GLenum textureTarget, GLfloat filter ) {
     InitTexture( width, height, data, textureTarget, filter );
 }
 
-Texture::Texture( const std::string &file, TextureType type ) {
-    m_type = type;
-    
-    if ( type == TextureType::TYPE_PNG ) {
+Texture::Texture( const std::string &file ) {
+    if ( s_textureAtlas->Contains( file ) ) {
+        m_freeTexture = true;
+        m_textureID = s_textureAtlas->Get( file );
+    } else {
         int x;
         int y;
         int numComponenets;
@@ -43,14 +67,12 @@ Texture::Texture( const std::string &file, TextureType type ) {
         
         InitTexture( x, y, data, GL_TEXTURE_2D, GL_LINEAR );
         stbi_image_free( data );
-    } else if ( type == TextureType::TYPE_DDS ) {
-        m_textureID = LoadDDS( ( Utility::DirectoryPath() + "textures/" + file ).c_str() );
-        m_freeTexture = true;
+        
+        s_textureAtlas->Add( file, m_textureID );
     }
 }
 
 void Texture::InitTexture( int width, int height, unsigned char *data, GLenum textureTarget, GLfloat filter ) {
-    m_textureTarget = textureTarget;
     m_freeTexture = true;
     
     if ( width > 0 && height > 0 ) {
@@ -71,110 +93,20 @@ Texture::~Texture() {
 }
 
 void Texture::Bind( GLenum textureUnit ) const {
-    if ( s_lastBind != this ) {
-        if ( m_type == TYPE_PNG ) {
-            glActiveTexture( textureUnit );
-            glBindTexture( m_textureTarget, m_textureID );
-        } else if ( m_type == TYPE_DDS ) {
-            glActiveTexture( GL_TEXTURE0 );
-            glBindTexture( GL_TEXTURE_2D, m_textureID );
-        }
+    if ( s_lastBind != m_textureID ) {
+        glActiveTexture( textureUnit );
+        glBindTexture( GL_TEXTURE_2D, m_textureID );
+        s_lastBind = m_textureID;
     }
-}
-
-GLuint Texture::LoadDDS( const std::string &filename ) {
-    unsigned char header[ 124 ];
-    
-    FILE *fp;
-    fp = fopen( filename.c_str(), "rb" );
-    if ( fp == NULL ) {
-        printf( "%s could not be opened\n", filename.c_str() );
-        getchar();
-        return 0;
-    }
-    
-    char filecode[ 4 ];
-    fread( filecode, 1, 4, fp );
-    if ( strncmp( filecode, "DDS ", 4) != 0 ) {
-        fclose( fp );
-        return 0;
-    }
-    
-    fread( &header, 124, 1, fp );
-    
-    unsigned int height = *( unsigned int* ) &header[ 8 ];
-    unsigned int width = *( unsigned int* ) &header[ 12 ];
-    unsigned int linearSize = *( unsigned int* ) & header[ 16 ];
-    unsigned int mipMapCount = *( unsigned int* ) &header[ 24 ];
-    unsigned int fourCC = *( unsigned int* ) &header[ 80 ];
-    
-    unsigned char *buffer;
-    unsigned int bufSize;
-    bufSize = mipMapCount > 1 ? linearSize * 2 : linearSize;
-    buffer = ( unsigned char* ) malloc( bufSize * sizeof( unsigned char ) );
-    fread( buffer, 1, bufSize, fp );
-    fclose( fp );
-    
-    // unsigned int components = ( fourCC == FOURCC_DXT1 ) ? 3 : 4;
-    unsigned int format;
-    
-    switch ( fourCC ) {
-        case FOURCC_DXT1:
-            format = GL_COMPRESSED_RGBA_S3TC_DXT1_EXT;
-            break;
-        case FOURCC_DXT3:
-            format = GL_COMPRESSED_RGBA_S3TC_DXT3_EXT;
-            break;
-        case FOURCC_DXT5:
-            format = GL_COMPRESSED_RGBA_S3TC_DXT5_EXT;
-            break;
-        default:
-            free( buffer );
-            return 0;
-    }
-    
-    GLuint textureID;
-    glGenTextures( 1, &textureID );
-    
-    glBindTexture( GL_TEXTURE_2D, textureID );
-    glPixelStorei( GL_UNPACK_ALIGNMENT, 1 );
-    
-    unsigned int blockSize = ( format == GL_COMPRESSED_RGBA_S3TC_DXT1_EXT) ? 8 : 16;
-    unsigned int offset = 0;
-    
-    for ( unsigned int level = 0; level < mipMapCount && ( width || height ); level++ ) {
-        unsigned int size = ( ( width + 3 ) / 4 ) * ( ( height + 3 ) / 4 ) * blockSize;
-        glCompressedTexImage2D( GL_TEXTURE_2D, level, format, width, height, 0, size, buffer + offset );
-        
-        offset += size;
-        width /= 2;
-        height /= 2;
-        
-        if ( width < 1 ) width = 1;
-        if ( height < 1 ) height = 1;
-    }
-    
-    free( buffer );
-    return textureID;
-}
-
-GLuint Texture::LoadTGA( const std::string &filename ) {
-    GLuint textureID;
-    glGenTextures( 1, &textureID );
-    
-    glBindTexture( GL_TEXTURE_2D, textureID );
-    return 0;
 }
 
 Texture::Texture( Texture &texture ) {
-    m_textureTarget = texture.m_textureTarget;
     m_textureID = texture.m_textureID;
     m_freeTexture = true;
     texture.m_freeTexture = false;
 }
 
 void Texture::operator=( Texture &texture ) {
-    m_textureTarget = texture.m_textureTarget;
     m_textureID = texture.m_textureID;
     m_freeTexture = true;
     texture.m_freeTexture = false;

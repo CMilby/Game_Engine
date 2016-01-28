@@ -33,9 +33,9 @@ public:
     
     void InitAll();
     
-    void InputAll( float delta );
-    void UpdateAll( float delta );
-    void RenderAll( const std::vector<Shader*> &shaders, const Camera &camera );
+    virtual void InputAll( float delta );
+    virtual void UpdateAll( float delta );
+    virtual void RenderAll( const std::vector<Shader*> &shaders, const Camera &camera );
     
     virtual void Init() {}
     
@@ -44,6 +44,7 @@ public:
     virtual void Render( const std::vector<Shader*> &shaders, const Camera &camera ) {}
     
     Entity* AddChild( Entity *entity );
+    void ClearChildren();
     
     inline Transform* GetTransform() const { return m_transform; }
     inline void SetTransform( Transform *transform ) { m_transform = transform; }
@@ -71,12 +72,17 @@ public:
     Matrix4<float> GetModelMatrix() const;
     
     inline void SetPosition( const Vector3<float> &position ) { GetTransform()->SetPosition( position ); }
+    inline void SetScale( const Vector3<float> &scale ) { GetTransform()->SetScale( scale ); }
+    inline void SetRotation( const Quaternion &rotation ) { GetTransform()->SetRotation( rotation ); }
     
     inline void SetVisible( bool visible ) { m_visible = visible; }
     inline bool IsVisible() const { return m_visible; }
     
     inline Mesh GetMesh() const { return *m_mesh; }
     inline Material GetMaterial() const { return *m_material; }
+    
+    inline void SetMesh( Mesh *mesh ) { m_mesh = mesh; }
+    inline void SetMaterial( Material *material ) { m_material = material; }
 };
 
 #endif /* entity_h */

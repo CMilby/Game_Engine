@@ -15,11 +15,11 @@ void Camera::Init() {
 }
 
 void Camera::Input( float delta ) {
-    if ( Input::IsKeyDown( Input::KEY_0 ) ) {
+    if ( Input::IsKeyDown( Input::KEY_O ) ) {
         Input::SetDrawMode( 0 );
     }
     
-    if ( Input::IsKeyDown( Input::KEY_1 ) ) {
+    if ( Input::IsKeyDown( Input::KEY_P ) ) {
         Input::SetDrawMode( 1 );
     }
 }

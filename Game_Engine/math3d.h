@@ -233,7 +233,7 @@ public:
     inline T GetY() const { return ( *this )[ 1 ]; }
     inline T GetZ() const { return ( *this )[ 2 ]; }
     
-    inline void SetX( T x ) { ( *this )[ 0 ] = x; }
+    inline void SetX( const T &x ) { ( *this )[ 0 ] = x; }
     inline void SetY( T y ) { ( *this )[ 1 ] = y; }
     inline void SetZ( T z ) { ( *this )[ 2 ] = z; }
 };
@@ -771,6 +771,12 @@ namespace Math3D {
         }
         
         return value;
+    }
+    
+    
+    template<class T>
+    inline T Distance( const Vector3<T> &vect1, const Vector3<T> &vect2 ) {
+        return sqrtf( powf( vect2.GetX() - vect1.GetX(), 2.0f ) + powf( vect2.GetY() - vect1.GetY(), 2.0f ) + powf( vect2.GetZ() - vect1.GetZ(), 2.0f ) );
     }
 }
 
