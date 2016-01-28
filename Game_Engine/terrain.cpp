@@ -71,29 +71,11 @@ void Terrain::RenderAll( const std::vector<Shader*> &shaders, const Camera &came
    
     float distance = Math3D::Distance( camera.GetPosition(), m_realPosition );
     if ( !m_split ) {
-        if ( m_level == 1 && distance < 10.0f ) {
-            Split();
-        }
-        if ( m_level == 2 && distance < 5.0f ) {
-            Split();
-        }
-        if ( m_level == 3 && distance < 2.5f ) {
-            Split();
-        }
-        if ( m_level == 4 && distance < 1.0f ) {
+        if ( distance < SplitDistance( m_level ) ) {
             Split();
         }
     } else {
-        if ( m_level == 1 && distance > 10.0f ) {
-            Join();
-        }
-        if ( m_level == 2 && distance > 5.0f ) {
-            Join();
-        }
-        if ( m_level == 3 && distance > 2.5f ) {
-            Join();
-        }
-        if ( m_level == 4 && distance > 1.0f ) {
+        if ( distance > SplitDistance( m_level ) ) {
             Join();
         }
     }
@@ -148,6 +130,44 @@ void Terrain::Join() {
     SetVisible( true );
     m_split = false;
 }
+
+float Terrain::SplitDistance( int level ) {
+    if ( level == 10 ) {
+        return 50;
+    }
+    if ( level == 9 ) {
+        return 100;
+    }
+    if ( level == 8 ) {
+        return 200;
+    }
+    if ( level == 7 ) {
+        return 400;
+    }
+    if ( level == 6 ) {
+        return 800;
+    }
+    if ( level == 5 ) {
+        return 1600;
+    }
+    if ( level == 4 ) {
+        return 3200;
+    }
+    if ( level == 3 ) {
+        return 6400;
+    }
+    if ( level == 2 ) {
+        return 12000;
+    }
+    if ( level == 1 ) {
+        return 24000;
+    }
+    return 0;
+}
+
+
+
+
 
 
 

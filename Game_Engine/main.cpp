@@ -30,66 +30,12 @@ public:
 void TestGame::Init() {
     Game::Init();
     
-    Camera *camera = new FreeCamera( Vector3<float>( 0, 0, 20 ) );
+    Camera *camera = new FreeCamera( Vector3<float>( 0, 0, 10000.0f ) );
     RenderingEngine::SetMainCamera( *camera );
     AddToScene( camera );
     
-    /*RenderableEntity *plane = new RenderableEntity( new Mesh( "plane_test.obj" ), new Material( new Texture( "test.png" ) ) );
-    // plane->GetTransform()->SetScale( Vector3<float>( 2.0f, 2.0f, 2.0f ) );
-    AddToScene( plane );*/
-    
-    /*RenderableEntity *cube = new RenderableEntity( new Mesh( "cube.obj" ) );
-    cube->SetPosition( Vector3<float>( -10, 1, 2 ) );
-    plane->AddChild( cube );
-    
-    cube = new RenderableEntity( new Mesh( "cube.obj" ) );
-    cube->SetPosition( Vector3<float>( 10, 1, 5 ) );
-    plane->AddChild( cube );
-    
-    RenderableEntity *ent = new RenderableEntity( new Mesh( "cube.obj" ) );
-    ent->SetPosition( Vector3<float>( 10, 4, -1 ) );
-    
-    RenderableEntity *add = new RenderableEntity( new Mesh( "plane_subdivide.obj" ) );
-    add->SetPosition( Vector3<float>( 4, 2, 5 ) );
-    ent->AddChild( add );
-    
-    add = new RenderableEntity( new Mesh( "plane_subdivide.obj" ) );
-    add->SetPosition( Vector3<float>( -6, 3, 4 ) );
-    ent->AddChild( add );
-    
-    add = new RenderableEntity( new Mesh( "plane_subdivide.obj" ) );
-    add->SetPosition( Vector3<float>( -1, 0, 5 ) );
-    ent->AddChild( add );
-    
-    plane->AddChild( ent );
-    AddToScene( plane );*/
-    
-    /*Terrain *terrain = new Terrain( 1, true, false, true );
-    terrain->SetPosition( Vector3<float>( 4, 0, 0 ) );
-    terrain->SetScale( Vector3<float>( 2, 2, 2 ) );
-    AddToScene( terrain );
-    
-    terrain = new Terrain( 1, true, false, true );
-    terrain->SetPosition( Vector3<float>( -4, 0, 0 ) );
-    terrain->SetScale( Vector3<float>( 2, 2, 2 ) );
-    AddToScene( terrain );
-    
-    terrain = new Terrain( 1, true, false, true );
-    terrain->SetPosition( Vector3<float>( 0, 0, 4 ) );
-    terrain->SetScale( Vector3<float>( 2, 2, 2 ) );
-    AddToScene( terrain );
-    
-    terrain = new Terrain( 1, true, false, true );
-    terrain->SetPosition( Vector3<float>( 0, 0, -4 ) );
-    terrain->SetScale( Vector3<float>( 2, 2, 2 ) );
-    AddToScene( terrain );
-    
-    terrain = new Terrain( 1, true, false, true );
-    terrain->SetPosition( Vector3<float>( 0, 0, 0 ) );
-    terrain->SetScale( Vector3<float>( 2, 2, 2 ) );
-    AddToScene( terrain );*/
-    
-    Planet *planet = new Planet();
+    // Earth Sized Planet
+    Planet *planet = new Planet( 6378.0f );
     AddToScene( planet );
 }
 

@@ -17,7 +17,7 @@ private:
     float m_radius;
 
 public:
-    Planet();
+    Planet( float radius );
     virtual ~Planet();
     
     void Render();
