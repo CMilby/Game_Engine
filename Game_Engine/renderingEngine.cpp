@@ -33,7 +33,7 @@ void RenderingEngine::Init() {
     glEnable( GL_DEPTH_TEST );
     glEnable( GL_DEPTH_CLAMP );
     
-    m_standardShader = new PhongShader();
+    m_standardShader = new PlanetShader();
     m_textShader = new TextShader( "Courier_New.png" );
     m_skybox = new Skybox( "", "stars_rt.jpg", "stars_lf.jpg", "stars_up.jpg", "stars_dn.jpg", "stars_fr.jpg", "stars_bk.jpg" );
     

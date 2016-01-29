@@ -67,12 +67,6 @@ void PhongShader::Init() {
     
     m_ambientLight = Vector3<float>( 0.1f, 0.1f, 0.1f );
     m_directionalLight = DirectionalLight( BaseLight( Vector3<float>( 1.0f, 1.0f, 1.0f ), 0.5f ), Vector3<float>( 1.0f, 1.0f, 0.5f ).Normalized() );
-    
-    // PointLight pLight( BaseLight( Vector3<float>( 0.0f, 1.0f, 1.0f ), 0.8f ), Attenuation( 0.0f, 0.0f, 1.0f ), Vector3<float>( 3.0f, 1.5f, 3.0f ), 10.0f );
-    // AddPointLight( pLight );
-    
-    // SpotLight sLight( PointLight( BaseLight( Vector3<float>( 0.0f, 1.0f, 0.0f ), 0.8f ), Attenuation( 0.0f, 0.0f, 0.1f ), Vector3<float>( -4.0f, 2.0f, 4.0f ), 30.0f ), Vector3<float>( 1.0f, 0.0f, -1.0f ), 0.7f );
-    // AddSpotLight( sLight );
 }
 
 void PhongShader::Enable() const {

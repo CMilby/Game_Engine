@@ -9,11 +9,14 @@
 #ifndef __PLANET_SHADER_H__
 #define __PLANET_SHADER_H__
 
+#include "lighting.h"
 #include "shader.h"
 
 class PlanetShader : public Shader {
     
 private:
+    Vector3<float> m_ambientLight;
+    DirectionalLight m_directionalLight;
     
 public:
     PlanetShader();

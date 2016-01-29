@@ -19,10 +19,14 @@
 class TerrainMesh : public Mesh {
     
 private:
-   
+    GLuint m_colorBuffer;
+    std::vector<Vector3<float>> m_colors;
+    
 public:
     TerrainMesh( const std::string &file, float radus, float xOffset, float yOffset, float zOffset, float scale, bool generateBuffers );
     virtual ~TerrainMesh();
+    
+    virtual void Render() const;
     
     inline std::vector<Vector3<float>> GetVertices() const { return m_vertices; }
     inline std::vector<Vector2<float>> GetUVs() const { return m_uvs; }
