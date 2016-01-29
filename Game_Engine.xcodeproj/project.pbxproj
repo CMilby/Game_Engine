@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4400F2281C5AE5B900028A71 /* planetShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4400F2261C5AE5B900028A71 /* planetShader.cpp */; };
 		4402CE001C28C95A00F11AA8 /* libSDL2-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 447B54141BF04A9600BB5977 /* libSDL2-2.0.0.dylib */; };
 		44040E461C18E3410058A84B /* libassimp.3.1.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 44040E451C18E3410058A84B /* libassimp.3.1.1.dylib */; };
 		4415CD791BDA7C0100E91770 /* textShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4415CD771BDA7C0100E91770 /* textShader.cpp */; };
@@ -60,6 +61,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4400F2261C5AE5B900028A71 /* planetShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = planetShader.cpp; sourceTree = "<group>"; };
+		4400F2271C5AE5B900028A71 /* planetShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = planetShader.h; sourceTree = "<group>"; };
+		4400F22B1C5AE66200028A71 /* PlanetShader.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = PlanetShader.fs; path = resources/shaders/PlanetShader.fs; sourceTree = "<group>"; };
+		4400F22C1C5AE66200028A71 /* PlanetShader.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = PlanetShader.vs; path = resources/shaders/PlanetShader.vs; sourceTree = "<group>"; };
 		44040E451C18E3410058A84B /* libassimp.3.1.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libassimp.3.1.1.dylib; path = ../../../../usr/local/Cellar/assimp/3.1.1/lib/libassimp.3.1.1.dylib; sourceTree = "<group>"; };
 		4415CD771BDA7C0100E91770 /* textShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = textShader.cpp; sourceTree = "<group>"; };
 		4415CD781BDA7C0100E91770 /* textShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = textShader.h; sourceTree = "<group>"; };
@@ -170,6 +175,8 @@
 				442C789D1C1B09770083D86D /* StandardShading.vs */,
 				442C789E1C1B09770083D86D /* TextVertexShader.fs */,
 				442C789F1C1B09770083D86D /* TextVertexShader.vs */,
+				4400F22B1C5AE66200028A71 /* PlanetShader.fs */,
+				4400F22C1C5AE66200028A71 /* PlanetShader.vs */,
 			);
 			name = Shaders;
 			sourceTree = "<group>";
@@ -177,6 +184,8 @@
 		442C78B11C1B644E0083D86D /* ForwardRendering */ = {
 			isa = PBXGroup;
 			children = (
+				4400F2261C5AE5B900028A71 /* planetShader.cpp */,
+				4400F2271C5AE5B900028A71 /* planetShader.h */,
 				442C78961C1A85E70083D86D /* basicShader.cpp */,
 				442C78971C1A85E70083D86D /* basicShader.h */,
 				44B693411C07A45E00743603 /* phongShader.cpp */,
@@ -422,6 +431,7 @@
 				44D3CD7F1BCC0AC30074E300 /* math3d.cpp in Sources */,
 				4415CD841BDAB5DC00E91770 /* entity.cpp in Sources */,
 				44B6933E1C077B3600743603 /* stb_image.c in Sources */,
+				4400F2281C5AE5B900028A71 /* planetShader.cpp in Sources */,
 				44F9907C1C541F8700BFBAF8 /* planet.cpp in Sources */,
 				4415CD921BDDC38700E91770 /* coreEngine.cpp in Sources */,
 				447A39151BD6F09300190464 /* renderingEngine.cpp in Sources */,

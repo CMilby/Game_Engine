@@ -30,12 +30,11 @@ public:
 void TestGame::Init() {
     Game::Init();
     
-    Camera *camera = new FreeCamera( Vector3<float>( 0, 0, 10000.0f ) );
+    Camera *camera = new FreeCamera( Vector3<float>( 0, 0, 512.0f ) );
     RenderingEngine::SetMainCamera( *camera );
     AddToScene( camera );
     
-    // Earth Sized Planet
-    Planet *planet = new Planet( 6378.0f );
+    Planet *planet = new Planet( 256.0f );
     AddToScene( planet );
 }
 

@@ -16,11 +16,11 @@ void Camera::Init() {
 
 void Camera::Input( float delta ) {
     if ( Input::IsKeyDown( Input::KEY_O ) ) {
-        Input::SetDrawMode( 0 );
+        glPolygonMode( GL_FRONT_AND_BACK, GL_FILL );
     }
     
     if ( Input::IsKeyDown( Input::KEY_P ) ) {
-        Input::SetDrawMode( 1 );
+        glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
     }
 }
 

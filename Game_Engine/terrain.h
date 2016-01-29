@@ -16,7 +16,7 @@
 #include "shader.h"
 #include "terrainMesh.h"
 
-#define MAX_LEVEL 16
+#define GRID_SIZE 8
 
 class Terrain : public RenderableEntity {
   
@@ -24,6 +24,7 @@ private:
     std::string m_file;
     
     unsigned int m_level;
+    unsigned int m_maxLevel;
     bool m_split;
     
     bool m_splitX;

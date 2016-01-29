@@ -12,7 +12,10 @@ Terrain::Terrain( const std::string &file, float radius, unsigned int level, flo
     m_file = file;
     
     m_radius = radius;
-    m_level = level;    
+    m_level = level;
+    
+    m_maxLevel  = ( int ) log2f( radius * 2.0f );
+    m_maxLevel -= ( int ) log2f( GRID_SIZE );
     
     m_splitX = x;
     m_splitY = y;
@@ -132,37 +135,15 @@ void Terrain::Join() {
 }
 
 float Terrain::SplitDistance( int level ) {
-    if ( level == 10 ) {
-        return 50;
+    if ( level > m_maxLevel ) {
+        return 0.0f;
     }
-    if ( level == 9 ) {
-        return 100;
+    
+    if ( level == m_maxLevel ) {
+        return 50.0f;
     }
-    if ( level == 8 ) {
-        return 200;
-    }
-    if ( level == 7 ) {
-        return 400;
-    }
-    if ( level == 6 ) {
-        return 800;
-    }
-    if ( level == 5 ) {
-        return 1600;
-    }
-    if ( level == 4 ) {
-        return 3200;
-    }
-    if ( level == 3 ) {
-        return 6400;
-    }
-    if ( level == 2 ) {
-        return 12000;
-    }
-    if ( level == 1 ) {
-        return 24000;
-    }
-    return 0;
+    
+    return SplitDistance( level + 1 ) * 2.0f;
 }
 
 

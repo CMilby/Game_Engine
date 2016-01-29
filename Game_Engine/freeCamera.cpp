@@ -15,7 +15,7 @@ FreeCamera::FreeCamera( const Vector3<float> &position, const Quaternion &rotati
     SetPosition( position );
     SetRotation( rotation );
     
-    m_speed = 10.0f;
+    m_speed = 0.3f;
     m_sensitivity = 2.5f;
     
     m_mouseLocked = false;

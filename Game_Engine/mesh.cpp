@@ -49,12 +49,8 @@ void Mesh::Render() const {
     
     glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, m_elementBuffer );
     
-    if ( Input::GetDrawMode() == 0 ) {
-        glDrawElements( GL_TRIANGLES, ( unsigned int ) m_indices.size(), GL_UNSIGNED_SHORT, ( void* ) 0 );
-    } else if ( Input::GetDrawMode() == 1 ) {
-        glDrawElements( GL_LINE_STRIP, ( unsigned int ) m_indices.size(), GL_UNSIGNED_SHORT, ( void* ) 0 );
-    }
-    
+    glDrawElements( GL_TRIANGLES, ( unsigned int ) m_indices.size(), GL_UNSIGNED_SHORT, ( void* ) 0 );
+
     glDisableVertexAttribArray( 0 );
     glDisableVertexAttribArray( 1 );
     glDisableVertexAttribArray( 2 );

@@ -37,7 +37,7 @@ public:
     Mesh( const std::string &filename );
     virtual ~Mesh();
     
-    void Render() const;
+    virtual void Render() const;
     
     void GenerateBuffers();
 };

@@ -8,8 +8,9 @@
 
 #include "renderingEngine.h"
 
-#include "phongShader.h"
 #include "basicShader.h"
+#include "phongShader.h"
+#include "planetShader.h"
 
 Camera RenderingEngine::s_mainCamera = Camera();
 
