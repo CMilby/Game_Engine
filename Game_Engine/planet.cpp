@@ -12,23 +12,23 @@ Planet::Planet( float radius ) {
     m_radius = radius;
     Terrain *terrain;
     
-    terrain = new Terrain( "cube_top.obj", m_radius, 1, 1.0f, true, false, true );
-    AddChild( terrain );
+    // terrain = new Terrain( "cube_top_128.obj", m_radius, 1, 1.0f, true, false, true );
+    // AddChild( terrain );
     
-    terrain = new Terrain( "cube_bottom.obj", m_radius, 1, -1.0f, true, false, true );
-    AddChild( terrain );
+    // terrain = new Terrain( "cube_bottom_128.obj", m_radius, 1, -1.0f, true, false, true );
+    // AddChild( terrain );
     
     terrain = new Terrain( "cube_front.obj", m_radius, 1, 1.0f, true, true, false );
     AddChild( terrain );
     
-    terrain = new Terrain( "cube_back.obj", m_radius, 1, -1.0f, true, true, false );
-    AddChild( terrain );
+    // terrain = new Terrain( "cube_back.obj", m_radius, 1, -1.0f, true, true, false );
+    // AddChild( terrain );
     
-    terrain = new Terrain( "cube_left.obj", m_radius, 1, -1.0f, false, true, true );
-    AddChild( terrain );
+    // terrain = new Terrain( "cube_left.obj", m_radius, 1, -1.0f, false, true, true );
+    // AddChild( terrain );
     
-    terrain = new Terrain( "cube_right.obj", m_radius, 1, 1.0f, false, true, true );
-    AddChild( terrain );
+    // terrain = new Terrain( "cube_right.obj", m_radius, 1, 1.0f, false, true, true );
+    // AddChild( terrain );
 }
 
 Planet::~Planet() {

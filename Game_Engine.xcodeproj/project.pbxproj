@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		4400F2281C5AE5B900028A71 /* planetShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4400F2261C5AE5B900028A71 /* planetShader.cpp */; };
+		4400F2451C5BA54B00028A71 /* random.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4400F2431C5BA54B00028A71 /* random.cpp */; };
+		4400F2481C5BA57100028A71 /* simplexNoise.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4400F2461C5BA57100028A71 /* simplexNoise.cpp */; };
 		4402CE001C28C95A00F11AA8 /* libSDL2-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 447B54141BF04A9600BB5977 /* libSDL2-2.0.0.dylib */; };
 		44040E461C18E3410058A84B /* libassimp.3.1.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 44040E451C18E3410058A84B /* libassimp.3.1.1.dylib */; };
 		4415CD791BDA7C0100E91770 /* textShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4415CD771BDA7C0100E91770 /* textShader.cpp */; };
@@ -65,6 +67,10 @@
 		4400F2271C5AE5B900028A71 /* planetShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = planetShader.h; sourceTree = "<group>"; };
 		4400F22B1C5AE66200028A71 /* PlanetShader.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = PlanetShader.fs; path = resources/shaders/PlanetShader.fs; sourceTree = "<group>"; };
 		4400F22C1C5AE66200028A71 /* PlanetShader.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = PlanetShader.vs; path = resources/shaders/PlanetShader.vs; sourceTree = "<group>"; };
+		4400F2431C5BA54B00028A71 /* random.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = random.cpp; sourceTree = "<group>"; };
+		4400F2441C5BA54B00028A71 /* random.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = random.h; sourceTree = "<group>"; };
+		4400F2461C5BA57100028A71 /* simplexNoise.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = simplexNoise.cpp; sourceTree = "<group>"; };
+		4400F2471C5BA57100028A71 /* simplexNoise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = simplexNoise.h; sourceTree = "<group>"; };
 		44040E451C18E3410058A84B /* libassimp.3.1.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libassimp.3.1.1.dylib; path = ../../../../usr/local/Cellar/assimp/3.1.1/lib/libassimp.3.1.1.dylib; sourceTree = "<group>"; };
 		4415CD771BDA7C0100E91770 /* textShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = textShader.cpp; sourceTree = "<group>"; };
 		4415CD781BDA7C0100E91770 /* textShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = textShader.h; sourceTree = "<group>"; };
@@ -164,6 +170,39 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4400F2401C5BA51E00028A71 /* Math */ = {
+			isa = PBXGroup;
+			children = (
+				44D3CD7D1BCC0AC30074E300 /* math3d.cpp */,
+				44D3CD7E1BCC0AC30074E300 /* math3d.h */,
+				4400F2431C5BA54B00028A71 /* random.cpp */,
+				4400F2441C5BA54B00028A71 /* random.h */,
+				4400F2461C5BA57100028A71 /* simplexNoise.cpp */,
+				4400F2471C5BA57100028A71 /* simplexNoise.h */,
+			);
+			name = Math;
+			sourceTree = "<group>";
+		};
+		4400F2411C5BA52A00028A71 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				44FB2ED71C29AFA000C6FCAF /* config.cpp */,
+				44FB2ED81C29AFA000C6FCAF /* config.h */,
+			);
+			name = Config;
+			sourceTree = "<group>";
+		};
+		4400F2421C5BA53000028A71 /* 3rd Party */ = {
+			isa = PBXGroup;
+			children = (
+				44B6933C1C077B3600743603 /* stb_image.c */,
+				44B6933D1C077B3600743603 /* stb_image.h */,
+				44FB2ED11C28DAF300C6FCAF /* sdlBackend.cpp */,
+				44FB2ED21C28DAF300C6FCAF /* sdlBackend.h */,
+			);
+			name = "3rd Party";
+			sourceTree = "<group>";
+		};
 		442C78991C1B09650083D86D /* Shaders */ = {
 			isa = PBXGroup;
 			children = (
@@ -236,16 +275,9 @@
 		449A0C571C501EAE0052E92D /* Utility */ = {
 			isa = PBXGroup;
 			children = (
-				44D3CD7D1BCC0AC30074E300 /* math3d.cpp */,
-				44D3CD7E1BCC0AC30074E300 /* math3d.h */,
+				4400F2421C5BA53000028A71 /* 3rd Party */,
 				4415CD931BDDC3EE00E91770 /* time.cpp */,
 				4415CD941BDDC3EE00E91770 /* time.h */,
-				44B6933C1C077B3600743603 /* stb_image.c */,
-				44B6933D1C077B3600743603 /* stb_image.h */,
-				44FB2ED11C28DAF300C6FCAF /* sdlBackend.cpp */,
-				44FB2ED21C28DAF300C6FCAF /* sdlBackend.h */,
-				44FB2ED71C29AFA000C6FCAF /* config.cpp */,
-				44FB2ED81C29AFA000C6FCAF /* config.h */,
 				44FB2EDD1C29B31600C6FCAF /* logging.cpp */,
 				44FB2EDE1C29B31600C6FCAF /* logging.h */,
 				449A0C3A1C4ED3670052E92D /* profiler.cpp */,
@@ -322,6 +354,8 @@
 		44D3CD761BCBFAF40074E300 /* Core_Engine */ = {
 			isa = PBXGroup;
 			children = (
+				4400F2411C5BA52A00028A71 /* Config */,
+				4400F2401C5BA51E00028A71 /* Math */,
 				449A0C571C501EAE0052E92D /* Utility */,
 				449A0C561C501E980052E92D /* Components */,
 				449A0C551C501E8B0052E92D /* Camera */,
@@ -428,9 +462,11 @@
 				44FB2ED91C29AFA000C6FCAF /* config.cpp in Sources */,
 				4415CD871BDD6EE200E91770 /* utility.cpp in Sources */,
 				449A0C541C501E800052E92D /* thirdPersonCamera.cpp in Sources */,
+				4400F2451C5BA54B00028A71 /* random.cpp in Sources */,
 				44D3CD7F1BCC0AC30074E300 /* math3d.cpp in Sources */,
 				4415CD841BDAB5DC00E91770 /* entity.cpp in Sources */,
 				44B6933E1C077B3600743603 /* stb_image.c in Sources */,
+				4400F2481C5BA57100028A71 /* simplexNoise.cpp in Sources */,
 				4400F2281C5AE5B900028A71 /* planetShader.cpp in Sources */,
 				44F9907C1C541F8700BFBAF8 /* planet.cpp in Sources */,
 				4415CD921BDDC38700E91770 /* coreEngine.cpp in Sources */,

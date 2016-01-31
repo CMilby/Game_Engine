@@ -41,6 +41,7 @@ private:
     void Join();
 
     float SplitDistance( int level );
+    void GenerateTexture();
     
 public:
     Terrain( const std::string &file, float radius, unsigned int level, float direction, bool x, bool y, bool z, float xOffset = 0.0f, float yOffset = 0.0f, float zOffset = 0.0f, float scale = 1.0f );

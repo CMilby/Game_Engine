@@ -14,6 +14,7 @@
 
 #include <GLFW/glfw3.h>
 
+#include "simplexNoise.h"
 #include "stb_image.h"
 #include "utility.h"
 
@@ -72,6 +73,14 @@ Texture::Texture( const std::string &file ) {
     }
 }
 
+Texture::Texture( int width, int height, float data[] ) {
+    glGenTextures( 1, &m_textureID );
+    glBindTexture( GL_TEXTURE_2D, m_textureID );
+    glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR );
+    glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
+    glTexImage2D( GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_FLOAT, data );
+}
+
 void Texture::InitTexture( int width, int height, unsigned char *data, GLenum textureTarget, GLfloat filter ) {
     m_freeTexture = true;
     
@@ -111,9 +120,6 @@ void Texture::operator=( Texture &texture ) {
     m_freeTexture = true;
     texture.m_freeTexture = false;
 }
-
-
-
 
 
 

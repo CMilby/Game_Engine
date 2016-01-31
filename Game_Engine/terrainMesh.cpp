@@ -16,10 +16,16 @@
 #include <assimp/postprocess.h>
 
 #include "input.h"
+#include "random.h"
+#include "simplexNoise.h"
 #include "utility.h"
 
 TerrainMesh::TerrainMesh( const std::string &file, float radius, float xOffset, float yOffset, float zOffset, float scale, bool generateBuffers ) {
     LoadOBJ( Utility::DirectoryPath() + "models/" + file );
+    
+    float r = Random::InRangeF( 0.0f, 1.0f );
+    float g = Random::InRangeF( 0.0f, 1.0f );
+    float b = Random::InRangeF( 0.0f, 1.0f );
     
     for ( unsigned int i = 0; i < m_vertices.size(); i++ ) {
         if ( xOffset != 0.0f ) {
@@ -48,8 +54,9 @@ TerrainMesh::TerrainMesh( const std::string &file, float radius, float xOffset, 
         
         m_normals[ i ] = Vector3<float>( dx, dy, dz ).Normalized();
         m_vertices[ i ] = m_normals[ i ] * radius;
-        
-        m_colors.push_back( Vector3<float>( 1.0f, 0.0f, 0.0f ) );
+        m_vertices[ i ] = CalculateHeight( m_vertices[ i ], m_normals[ i ] );
+    
+        m_colors.push_back( Vector3<float>( r, g, b ) );
     }
     
     if ( generateBuffers ) {
@@ -68,6 +75,8 @@ TerrainMesh::TerrainMesh( const std::string &file, float radius, float xOffset, 
         glGenBuffers( 1, &m_elementBuffer );
         glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, m_elementBuffer );
         glBufferData( GL_ELEMENT_ARRAY_BUFFER, m_indices.size() * sizeof( unsigned short ), &m_indices[ 0 ], GL_STATIC_DRAW );
+        
+        // GenerateBuffers();
     }
 }
 
@@ -88,6 +97,10 @@ void TerrainMesh::Render() const {
     glVertexAttribPointer( 1, 3, GL_FLOAT, GL_FALSE, 0, ( void* ) 0 );
     glEnableVertexAttribArray( 1 );
     
+    // glBindBuffer( GL_ARRAY_BUFFER, m_uvBuffer );
+    // glVertexAttribPointer( 1, 2, GL_FLOAT, GL_FALSE, 0, ( void* ) 0 );
+    // glEnableVertexAttribArray( 1 );
+    
     glBindBuffer( GL_ARRAY_BUFFER, m_normalBuffer );
     glVertexAttribPointer( 2, 3, GL_FLOAT, GL_FALSE, 0, ( void* ) 0 );
     glEnableVertexAttribArray( 2 );
@@ -101,7 +114,35 @@ void TerrainMesh::Render() const {
     glDisableVertexAttribArray( 2 );
 }
 
-
+Vector3<float> TerrainMesh::CalculateHeight( const Vector3<float> &position, const Vector3<float> &normal ) {
+    static const float HEIGHT_MAX = 24.5f;
+    static const float HEIGHT_MIN = -31.0f;
+    static const float NOISE_PERSISTENCE = 0.3f;
+    static const float NOISE_OCTAVES = 8.0f;
+    static const float NOISE_SCALE = 0.007f;
+    
+    float noise = ScaledOctaveNoise3D( NOISE_OCTAVES, NOISE_PERSISTENCE, NOISE_SCALE, HEIGHT_MIN, HEIGHT_MAX, position.GetX(), position.GetY(), position.GetZ() );
+    
+    /*if ( noise <= 0.0f ) {
+        // noise = 0.0f;
+        // color = Vector3<float>( 0.0f, 0.0f, 1.0f );
+        // m_texture.push_back( 0.0f );
+        // m_texture.push_back( 0.0f );
+        // m_texture.push_back( 1.0f );
+    } else {
+        // color = Vector3<float>( 0.0f, Math3D::Scale( noise, 0.5f, 1.0f ), 0.0f );
+        // m_texture.push_back( 0.0f );
+        // m_texture.push_back( 1.0f );
+        // m_texture.push_back( 0.0f );
+    }
+    
+    float tex = noise; // Math3D::Scale( noise, 0.0f, 1.0f, HEIGHT_MIN, HEIGHT_MAX );
+    m_texture.push_back( tex );
+    m_texture.push_back( tex );
+    m_texture.push_back( tex );*/
+    
+    return position + normal * noise;
+}
 
 
 

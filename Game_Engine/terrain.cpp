@@ -8,6 +8,8 @@
 
 #include "terrain.h"
 
+#include "simplexNoise.h"
+
 Terrain::Terrain( const std::string &file, float radius, unsigned int level, float direction, bool x, bool y, bool z, float xOffset, float yOffset, float zOffset, float scale ) {
     m_file = file;
     
@@ -60,8 +62,9 @@ Terrain::Terrain( const std::string &file, float radius, unsigned int level, flo
     
     m_realPosition = Vector3<float>( dx, dy, dz ).Normalized() * m_radius;
     
-    SetMesh( new TerrainMesh( m_file, radius, xOffset, yOffset, zOffset, scale, true ) );
-    SetMaterial( new Material( new Texture( "test.png" ) ) );
+    TerrainMesh *terrain = new TerrainMesh( m_file, radius, xOffset, yOffset, zOffset, scale, true );
+    SetMesh( terrain );
+    SetMaterial( new Material( new Texture( 8, 8, &terrain->GetTextureData()[ 0 ] ) ) );
     SetVisible( true );
 }
 
@@ -146,6 +149,27 @@ float Terrain::SplitDistance( int level ) {
     return SplitDistance( level + 1 ) * 2.0f;
 }
 
+void Terrain::GenerateTexture() {
+    std::vector<float> values;
+    
+    for ( int i = 0; i < 32; i++ ) {
+        for ( int j = 0; j < 32; j++ ) {
+            static const float HEIGHT_MAX = 24.5f;
+            static const float HEIGHT_MIN = -31.0f;
+            static const float NOISE_PERSISTENCE = 0.3f;
+            static const float NOISE_OCTAVES = 8.0f;
+            static const float NOISE_SCALE = 0.007f;
+            
+            float noise = ScaledOctaveNoise3D( NOISE_OCTAVES, NOISE_PERSISTENCE, NOISE_SCALE, HEIGHT_MIN, HEIGHT_MAX, j, i, -1 );
+            // noise = Math3D::Scale( noise, 0.0f, 1.0f );
+            values.push_back( noise );
+            values.push_back( noise );
+            values.push_back( noise );
+        }
+    }
+    
+    SetMaterial( new Material( new Texture( 32, 32, &values[ 0 ] ) ) );
+}
 
 
 

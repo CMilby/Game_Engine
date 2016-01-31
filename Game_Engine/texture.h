@@ -40,12 +40,12 @@ private:
     GLuint m_textureID;
     bool m_freeTexture;
     
-    void InitTexture( int width, int height, unsigned char *data, GLenum textureTarget, GLfloat filter );
-    
     Texture( int width = 0, int height = 0, unsigned char *data = 0, GLenum textureTarget = GL_TEXTURE_2D, GLfloat filter = GL_LINEAR );
+    void InitTexture( int width, int height, unsigned char *data, GLenum textureTarget, GLfloat filter );
     
 public:
     Texture( const std::string &file );
+    Texture( int width, int height, float data[] );
     virtual ~Texture();
     
     void Bind( GLenum textureUint = GL_TEXTURE0 ) const;

@@ -753,11 +753,6 @@ public:
     inline void SetW( float w ) { ( *this )[ 3 ] = w; }
 };
 
-namespace Random {
-    
-    float InRangeF( float min, float max );
-};
-
 namespace Math3D {
     
     template<class T>
@@ -777,6 +772,18 @@ namespace Math3D {
     template<class T>
     inline T Distance( const Vector3<T> &vect1, const Vector3<T> &vect2 ) {
         return sqrtf( powf( vect2.GetX() - vect1.GetX(), 2.0f ) + powf( vect2.GetY() - vect1.GetY(), 2.0f ) + powf( vect2.GetZ() - vect1.GetZ(), 2.0f ) );
+    }
+    
+    inline int FastFloor( const float x ) {
+        return x > 0 ? ( int ) x : ( int ) x - 1 ;
+    }
+    
+    inline float Dot( const int *g, const float x, const float y, const float z ) {
+        return g[ 0 ] * x + g[ 1 ] * y + g[ 2 ] * z;
+    }
+    
+    inline float Scale( const float value, const float min, const float max, const float smallest, const float largest ) {
+        return min + ( max - min ) / ( largest - smallest ) * ( value - smallest );
     }
 }
 

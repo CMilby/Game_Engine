@@ -21,12 +21,18 @@ class TerrainMesh : public Mesh {
 private:
     GLuint m_colorBuffer;
     std::vector<Vector3<float>> m_colors;
+    std::vector<float> m_texture;
+    
+    Vector3<float> CalculateHeight( const Vector3<float> &position, const Vector3<float> &normal );
+    std::vector<float> Texturize();
     
 public:
     TerrainMesh( const std::string &file, float radus, float xOffset, float yOffset, float zOffset, float scale, bool generateBuffers );
     virtual ~TerrainMesh();
     
     virtual void Render() const;
+    
+    inline std::vector<float> GetTextureData() const { return m_texture; }
     
     inline std::vector<Vector3<float>> GetVertices() const { return m_vertices; }
     inline std::vector<Vector2<float>> GetUVs() const { return m_uvs; }
