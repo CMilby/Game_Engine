@@ -10,9 +10,16 @@
 
 #include "math3d.h"
 
-float Random::InRangeF( float min, float max ) {
+float Random::InRangef( float min, float max ) {
     float random = ( ( float ) rand() ) / ( float ) RAND_MAX;
     float diff = max - min;
     float r = random * diff;
+    return min + r;
+}
+
+int Random::InRangei( int min, int max ) {
+    int random = ( int ) ( ( float ) rand() ) / ( float ) RAND_MAX;
+    int diff = max - min;
+    int r = random * diff;
     return min + r;
 }

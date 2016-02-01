@@ -9,6 +9,7 @@
 #include "simplexNoise.h"
 
 #include "math3d.h"
+#include "random.h"
 
 float RawNoise3D( const float x, const float y, const float z ) {
     float n0, n1, n2, n3;
@@ -122,4 +123,23 @@ float OctaveNoise3D( const float octaves, const float persistence, const float s
 
 float ScaledOctaveNoise3D( const float octaves, const float persistence, const float scale, const float loBound, const float hiBound, const float x, const float y, const float z ) {
     return OctaveNoise3D( octaves, persistence, scale, x, y, z ) * ( hiBound - loBound ) / 2 + ( hiBound + loBound ) / 2;
+}
+
+void SetSeed( unsigned int seed ) {
+    srand( seed );
+    
+    for ( int i = 0; i < 256; i++ ) {
+        perm[ i ] = i;
+    }
+    
+    for ( int i = 0; i < 256; i++ ) {
+        int k = perm[ i ];
+        int j = ( int ) Random::InRangei( 0, 255 );
+        
+        perm[ i ] = perm[ j ];
+        perm[ j ] = k;
+        
+        perm[ 256 + i ] = perm[ j ];
+        perm[ 256 + j ] = k;
+    }
 }

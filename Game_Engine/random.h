@@ -9,9 +9,12 @@
 #ifndef __RANDOM_H__
 #define __RANDOM_H__
 
+#include <random>
+
 namespace Random {
     
-    float InRangeF( float min, float max );
+    float InRangef( float min, float max );
+    int InRangei( int min, int max );
 };
 
 #endif /* random_h */
