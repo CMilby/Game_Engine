@@ -140,7 +140,7 @@
 		44F722371BDFEB8A0022754F /* game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = game.h; sourceTree = "<group>"; };
 		44F9907A1C541F8700BFBAF8 /* planet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = planet.cpp; sourceTree = "<group>"; };
 		44F9907B1C541F8700BFBAF8 /* planet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = planet.h; sourceTree = "<group>"; };
-		44F9907D1C541F8F00BFBAF8 /* terrain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = terrain.cpp; sourceTree = "<group>"; };
+		44F9907D1C541F8F00BFBAF8 /* terrain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = terrain.cpp; sourceTree = "<group>"; usesTabs = 1; wrapsLines = 1; };
 		44F9907E1C541F8F00BFBAF8 /* terrain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = terrain.h; sourceTree = "<group>"; };
 		44FB2ED11C28DAF300C6FCAF /* sdlBackend.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sdlBackend.cpp; sourceTree = "<group>"; };
 		44FB2ED21C28DAF300C6FCAF /* sdlBackend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sdlBackend.h; sourceTree = "<group>"; };
@@ -332,6 +332,7 @@
 				44D3CD6D1BCBFAED0074E300 /* Products */,
 			);
 			sourceTree = "<group>";
+			usesTabs = 1;
 		};
 		44D3CD6D1BCBFAED0074E300 /* Products */ = {
 			isa = PBXGroup;

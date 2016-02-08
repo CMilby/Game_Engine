@@ -65,7 +65,7 @@ void PhongShader::Init() {
         AddUniform( name + ".cutoff" );
     }
     
-    m_ambientLight = Vector3<float>( 0.1f, 0.1f, 0.1f );
+    m_ambientLight = Vector3<float>( 0.5f, 0.5f, 0.5f );
     m_directionalLight = DirectionalLight( BaseLight( Vector3<float>( 1.0f, 1.0f, 1.0f ), 0.5f ), Vector3<float>( 1.0f, 1.0f, 0.5f ).Normalized() );
 }
 

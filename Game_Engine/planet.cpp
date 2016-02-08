@@ -18,7 +18,7 @@ Planet::Planet( float radius ) {
     // terrain = new Terrain( "cube_bottom_128.obj", m_radius, 1, -1.0f, true, false, true );
     // AddChild( terrain );
     
-    terrain = new Terrain( "cube_front.obj", m_radius, 1, 1.0f, true, true, false );
+    terrain = new Terrain( "cube_front.obj", m_radius, 1, 1.0f, true, true, false, 0.0f, 0.0f, 0.0f, 1.0f, "root" );
     AddChild( terrain );
     
     // terrain = new Terrain( "cube_back.obj", m_radius, 1, -1.0f, true, true, false );

@@ -151,6 +151,38 @@ public:
         return !operator==( vect );
     }
     
+    inline bool operator<( const Vector<T, D> &vect ) const {
+        for ( unsigned int i = 0; i < D; i++ ) {
+            if ( m_values[ i ] >= vect[ i ] )
+                return false;
+        }
+        return true;
+    }
+    
+    inline bool operator>( const Vector<T, D> &vect ) const {
+        for ( unsigned int i = 0; i < D; i++ ) {
+            if ( m_values[ i ] <= vect[ i ] )
+                return false;
+        }
+        return true;
+    }
+    
+    inline bool operator<=( const Vector<T, D> &vect ) const {
+        for ( unsigned int i = 0; i < D; i++ ) {
+            if ( m_values[ i ] > vect[ i ] )
+                return false;
+        }
+        return true;
+    }
+    
+    inline bool operator>=( const Vector<T, D> &vect ) const {
+        for ( unsigned int i = 0; i < D; i++ ) {
+            if ( m_values[ i ] < vect[ i ] )
+                return false;
+        }
+        return true;
+    }
+    
     inline T& operator[]( unsigned int index ) {
         return m_values[ index ];
     }

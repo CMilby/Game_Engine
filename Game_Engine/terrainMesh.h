@@ -27,7 +27,7 @@ private:
     std::vector<float> Texturize();
     
 public:
-    TerrainMesh( const std::string &file, float radus, float xOffset, float yOffset, float zOffset, float scale, bool generateBuffers );
+    TerrainMesh( const std::string &file, float radus, float xOffset, float yOffset, float zOffset, float scale, bool generateBuffers, const std::string &position, int level );
     virtual ~TerrainMesh();
     
     virtual void Render() const;

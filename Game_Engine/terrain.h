@@ -44,7 +44,7 @@ private:
     void GenerateTexture();
     
 public:
-    Terrain( const std::string &file, float radius, unsigned int level, float direction, bool x, bool y, bool z, float xOffset = 0.0f, float yOffset = 0.0f, float zOffset = 0.0f, float scale = 1.0f );
+    Terrain( const std::string &file, float radius, unsigned int level, float direction, bool x, bool y, bool z, float xOffset, float yOffset, float zOffset, float scale, const std::string &position );
     virtual ~Terrain();
     
     virtual void RenderAll( const std::vector<Shader*> &shaders, const Camera &camera );

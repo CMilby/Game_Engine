@@ -17,7 +17,7 @@
 #include "window.h"
 
 class CoreEngine {
-    
+	
 private:
     bool m_isRunning;
     

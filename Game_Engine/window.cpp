@@ -36,8 +36,8 @@ Window::Window( unsigned int width, unsigned int height, const std::string &titl
     SDL_GL_SetAttribute( SDL_GL_DOUBLEBUFFER, 1 );
     
     m_window = SDL_CreateWindow( title.c_str(), SDL_WINDOWPOS_CENTERED, 0, width, height, SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN | SDL_WINDOW_ALLOW_HIGHDPI );
-    
     m_glContext = SDL_GL_CreateContext( m_window );
+	
     if ( m_glContext == NULL ) {
         fprintf( stderr, "Failed to make GL Context\n" );
     }
@@ -55,7 +55,7 @@ Window::Window( unsigned int width, unsigned int height, const std::string &titl
     if ( status != GLEW_OK ) {
         fprintf( stderr, "Error initalizing glew: %s\n", glewGetErrorString( status ) );
     }
-    
+
     SDLSetIsCloseRequested( false );
 }
 
