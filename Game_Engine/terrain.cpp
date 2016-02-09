@@ -62,7 +62,7 @@ Terrain::Terrain( const std::string &file, float radius, unsigned int level, flo
     
     m_realPosition = Vector3<float>( dx, dy, dz ).Normalized() * m_radius;
     
-    TerrainMesh *terrain = new TerrainMesh( m_file, radius, xOffset, yOffset, zOffset, scale, true, position, level, lastX, lastY, lastZ );
+    TerrainMesh *terrain = new TerrainMesh( m_file, radius, xOffset, yOffset, zOffset, scale, true, position, lastX, lastY, lastZ, direction );
     SetMesh( terrain );
     SetMaterial( new Material( new Texture( "earth.jpg" ) ) );
 	SetVisible( true );
@@ -151,6 +151,10 @@ float Terrain::SplitDistance( int level ) {
     }
     
     return SplitDistance( level + 1 ) * 2.0f;*/
+	
+	if ( m_level == 4 ) {
+		return 100.0f;
+	}
 	
 	if ( m_level == 3 ) {
 		return 150.0f;

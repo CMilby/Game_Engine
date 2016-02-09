@@ -21,7 +21,7 @@
 #include "simplexNoise.h"
 #include "utility.h"
 
-TerrainMesh::TerrainMesh( const std::string &file, float radius, float xOffset, float yOffset, float zOffset, float scale, bool generateBuffers, const std::string &position, int level, float &lastX, float &lastY, float &lastZ ) {
+TerrainMesh::TerrainMesh( const std::string &file, float radius, float xOffset, float yOffset, float zOffset, float scale, bool generateBuffers, const std::string &position, float &lastX, float &lastY, float &lastZ, float direction ) {
     LoadOBJ( Utility::DirectoryPath() + "models/" + file );
     
     for ( unsigned int i = 0; i < m_vertices.size(); i++ ) {
@@ -81,35 +81,62 @@ TerrainMesh::TerrainMesh( const std::string &file, float radius, float xOffset, 
 		if ( zOffset == 0.0f ) {
 			lastX += scale;
 			lastY += scale;
-			
-			for ( unsigned int i = 0; i < m_uvs.size(); i++ ) {
-				m_uvs[ i ].SetX( Math3D::Scale( m_uvs[ i ].GetX(), lastX, lastX + scale, 0.0f, 1.0f ) );
-				m_uvs[ i ].SetY( -Math3D::Scale( m_uvs[ i ].GetY(), lastY, lastY + scale, 1.0f, 0.0f ) );
+			if ( direction > 0.0f ) {
+				for ( unsigned int i = 0; i < m_uvs.size(); i++ ) {
+					m_uvs[ i ].SetX(  Math3D::Scale( m_uvs[ i ].GetX(), lastX, lastX + scale, 0.0f, 1.0f ) );
+					m_uvs[ i ].SetY( -Math3D::Scale( m_uvs[ i ].GetY(), lastY, lastY + scale, 1.0f, 0.0f ) );
+				}
+			} else {
+				for ( unsigned int i = 0; i < m_uvs.size(); i++ ) {
+					m_uvs[ i ].SetX( -Math3D::Scale( m_uvs[ i ].GetX(), lastX, lastX + scale, 1.0f, 0.0f ) );
+					m_uvs[ i ].SetY( -Math3D::Scale( m_uvs[ i ].GetY(), lastY, lastY + scale, 1.0f, 0.0f ) );
+				}
 			}
 		}
 	} else if ( position == "top_left" ) {
 		if ( zOffset == 0.0f ) {
 			lastY += scale;
 			
-			for ( unsigned int i = 0; i < m_uvs.size(); i++ ) {
-				m_uvs[ i ].SetX( Math3D::Scale( m_uvs[ i ].GetX(), lastX, lastX + scale, 0.0f, 1.0f ) );
-				m_uvs[ i ].SetY( -Math3D::Scale( m_uvs[ i ].GetY(), lastY, lastY + scale, 1.0f, 0.0f ) );
+			if ( direction > 0.0f ) {
+				for ( unsigned int i = 0; i < m_uvs.size(); i++ ) {
+					m_uvs[ i ].SetX(  Math3D::Scale( m_uvs[ i ].GetX(), lastX, lastX + scale, 0.0f, 1.0f ) );
+					m_uvs[ i ].SetY( -Math3D::Scale( m_uvs[ i ].GetY(), lastY, lastY + scale, 1.0f, 0.0f ) );
+				}
+			} else {
+				for ( unsigned int i = 0; i < m_uvs.size(); i++ ) {
+					m_uvs[ i ].SetX( -Math3D::Scale( m_uvs[ i ].GetX(), lastX, lastX + scale, 1.0f, 0.0f ) );
+					m_uvs[ i ].SetY( -Math3D::Scale( m_uvs[ i ].GetY(), lastY, lastY + scale, 1.0f, 0.0f ) );
+				}
 			}
 		}
 	} else if ( position == "bottom_right" ) {
 		if ( zOffset == 0.0f ) {
 			lastX += scale;
 			
-			for ( unsigned int i = 0; i < m_uvs.size(); i++ ) {
-				m_uvs[ i ].SetX(  Math3D::Scale( m_uvs[ i ].GetX(), lastX, lastX + scale, 0.0f, 1.0f ) );
-				m_uvs[ i ].SetY( -Math3D::Scale( m_uvs[ i ].GetY(), lastY, lastY + scale, 1.0f, 0.0f ) );
+			if ( direction > 0.0f ) {
+				for ( unsigned int i = 0; i < m_uvs.size(); i++ ) {
+					m_uvs[ i ].SetX(  Math3D::Scale( m_uvs[ i ].GetX(), lastX, lastX + scale, 0.0f, 1.0f ) );
+					m_uvs[ i ].SetY( -Math3D::Scale( m_uvs[ i ].GetY(), lastY, lastY + scale, 1.0f, 0.0f ) );
+				}
+			} else {
+				for ( unsigned int i = 0; i < m_uvs.size(); i++ ) {
+					m_uvs[ i ].SetX( -Math3D::Scale( m_uvs[ i ].GetX(), lastX, lastX + scale, 1.0f, 0.0f ) );
+					m_uvs[ i ].SetY( -Math3D::Scale( m_uvs[ i ].GetY(), lastY, lastY + scale, 1.0f, 0.0f ) );
+				}
 			}
 		}
 	} else if ( position == "bottom_left" ) {
 		if ( zOffset == 0.0f ) {
-			for ( unsigned int i = 0; i < m_uvs.size(); i++ ) {
-				m_uvs[ i ].SetX(  Math3D::Scale( m_uvs[ i ].GetX(), lastX, lastX + scale, 0.0f, 1.0f ) );
-				m_uvs[ i ].SetY( -Math3D::Scale( m_uvs[ i ].GetY(), lastY, lastY + scale, 1.0f, 0.0f ) );
+			if ( direction > 0.0f ) {
+				for ( unsigned int i = 0; i < m_uvs.size(); i++ ) {
+					m_uvs[ i ].SetX(  Math3D::Scale( m_uvs[ i ].GetX(), lastX, lastX + scale, 0.0f, 1.0f ) );
+					m_uvs[ i ].SetY( -Math3D::Scale( m_uvs[ i ].GetY(), lastY, lastY + scale, 1.0f, 0.0f ) );
+				}
+			} else {
+				for ( unsigned int i = 0; i < m_uvs.size(); i++ ) {
+					m_uvs[ i ].SetX( -Math3D::Scale( m_uvs[ i ].GetX(), lastX, lastX + scale, 1.0f, 0.0f ) );
+					m_uvs[ i ].SetY( -Math3D::Scale( m_uvs[ i ].GetY(), lastY, lastY + scale, 1.0f, 0.0f ) );
+				}
 			}
 		}
 	}
