@@ -10,7 +10,7 @@
 
 #include "simplexNoise.h"
 
-Terrain::Terrain( const std::string &file, float radius, unsigned int level, float direction, bool x, bool y, bool z, float xOffset, float yOffset, float zOffset, float scale, const std::string &position ) {
+Terrain::Terrain( const std::string &file, float radius, unsigned int level, float direction, bool x, bool y, bool z, float xOffset, float yOffset, float zOffset, float scale, const std::string &position, float lastX, float lastY, float lastZ ) {
     m_file = file;
     
     m_radius = radius;
@@ -38,7 +38,7 @@ Terrain::Terrain( const std::string &file, float radius, unsigned int level, flo
     if ( !z ) {
         m_realPosition.SetZ( direction );
     }
-    
+	
     Vector3<float> pos = m_realPosition;
     float x2 = pos.GetX() * pos.GetX();
     float y2 = pos.GetY() * pos.GetY();
@@ -54,20 +54,22 @@ Terrain::Terrain( const std::string &file, float radius, unsigned int level, flo
     
     if ( isnan( dy ) ) {
         dy = 0.0f;
-    }
-    
+	}
+	
     if ( isnan( dz ) ) {
         dz = 0.0f;
     }
     
     m_realPosition = Vector3<float>( dx, dy, dz ).Normalized() * m_radius;
     
-    TerrainMesh *terrain = new TerrainMesh( m_file, radius, xOffset, yOffset, zOffset, scale, true, position, level );
+    TerrainMesh *terrain = new TerrainMesh( m_file, radius, xOffset, yOffset, zOffset, scale, true, position, level, lastX, lastY, lastZ );
     SetMesh( terrain );
     SetMaterial( new Material( new Texture( "earth.jpg" ) ) );
-    // SetMaterial( new Material( new Texture( 8, 8, &terrain->GetTextureData()[ 0 ] ) ) );
-    // GenerateTexture();
-    SetVisible( true );
+	SetVisible( true );
+	
+	m_lastXOffset = lastX;
+	m_lastYOffset = lastY;
+	m_lastZOffset = lastZ;
 }
 
 Terrain::~Terrain() {
@@ -102,26 +104,26 @@ void Terrain::Split() {
         float x = m_position.GetX();
         float z = m_position.GetZ();
         
-        t1 = new Terrain( m_file, m_radius, m_level + 1, m_direction, m_splitX, m_splitY, m_splitZ, x + scale, 0.0f, z + scale, scale, "top_right" );
-        t2 = new Terrain( m_file, m_radius, m_level + 1, m_direction, m_splitX, m_splitY, m_splitZ, x - scale, 0.0f, z + scale, scale, "top_left" );
-        t3 = new Terrain( m_file, m_radius, m_level + 1, m_direction, m_splitX, m_splitY, m_splitZ, x + scale, 0.0f, z - scale, scale, "bottom_right" );
-        t4 = new Terrain( m_file, m_radius, m_level + 1, m_direction, m_splitX, m_splitY, m_splitZ, x - scale, 0.0f, z - scale, scale, "bottom_left" );
+        t1 = new Terrain( m_file, m_radius, m_level + 1, m_direction, m_splitX, m_splitY, m_splitZ, x + scale, 0.0f, z + scale, scale, "top_right", m_lastXOffset, m_lastYOffset, m_lastZOffset );
+        t2 = new Terrain( m_file, m_radius, m_level + 1, m_direction, m_splitX, m_splitY, m_splitZ, x - scale, 0.0f, z + scale, scale, "top_left", m_lastXOffset, m_lastYOffset, m_lastZOffset );
+        t3 = new Terrain( m_file, m_radius, m_level + 1, m_direction, m_splitX, m_splitY, m_splitZ, x + scale, 0.0f, z - scale, scale, "bottom_right", m_lastXOffset, m_lastYOffset, m_lastZOffset );
+        t4 = new Terrain( m_file, m_radius, m_level + 1, m_direction, m_splitX, m_splitY, m_splitZ, x - scale, 0.0f, z - scale, scale, "bottom_left", m_lastXOffset, m_lastYOffset, m_lastZOffset );
     } else if ( m_splitX && m_splitY ) {
         float x = m_position.GetX();
         float y = m_position.GetY();
         
-        t1 = new Terrain( m_file, m_radius, m_level + 1, m_direction, m_splitX, m_splitY, m_splitZ, x + scale, y + scale, 0.0f, scale, "top_right" );
-        t2 = new Terrain( m_file, m_radius, m_level + 1, m_direction, m_splitX, m_splitY, m_splitZ, x - scale, y + scale, 0.0f, scale, "top_left" );
-        t3 = new Terrain( m_file, m_radius, m_level + 1, m_direction, m_splitX, m_splitY, m_splitZ, x + scale, y - scale, 0.0f, scale, "bottom_right" );
-        t4 = new Terrain( m_file, m_radius, m_level + 1, m_direction, m_splitX, m_splitY, m_splitZ, x - scale, y - scale, 0.0f, scale, "bottom_left" );
+        t1 = new Terrain( m_file, m_radius, m_level + 1, m_direction, m_splitX, m_splitY, m_splitZ, x + scale, y + scale, 0.0f, scale, "top_right", m_lastXOffset, m_lastYOffset, m_lastZOffset );
+        t2 = new Terrain( m_file, m_radius, m_level + 1, m_direction, m_splitX, m_splitY, m_splitZ, x - scale, y + scale, 0.0f, scale, "top_left", m_lastXOffset, m_lastYOffset, m_lastZOffset );
+        t3 = new Terrain( m_file, m_radius, m_level + 1, m_direction, m_splitX, m_splitY, m_splitZ, x + scale, y - scale, 0.0f, scale, "bottom_right", m_lastXOffset, m_lastYOffset, m_lastZOffset );
+        t4 = new Terrain( m_file, m_radius, m_level + 1, m_direction, m_splitX, m_splitY, m_splitZ, x - scale, y - scale, 0.0f, scale, "bottom_left", m_lastXOffset, m_lastYOffset, m_lastZOffset );
     } else if ( m_splitY && m_splitZ ) {
         float y = m_position.GetY();
         float z = m_position.GetZ();
         
-        t1 = new Terrain( m_file, m_radius, m_level + 1, m_direction, m_splitX, m_splitY, m_splitZ, 0.0f, y + scale, z + scale, scale, "top_right" );
-        t2 = new Terrain( m_file, m_radius, m_level + 1, m_direction, m_splitX, m_splitY, m_splitZ, 0.0f, y - scale, z + scale, scale, "top_left" );
-        t3 = new Terrain( m_file, m_radius, m_level + 1, m_direction, m_splitX, m_splitY, m_splitZ, 0.0f, y + scale, z - scale, scale, "bottom_right" );
-        t4 = new Terrain( m_file, m_radius, m_level + 1, m_direction, m_splitX, m_splitY, m_splitZ, 0.0f, y - scale, z - scale, scale, "bottom_left" );
+        t1 = new Terrain( m_file, m_radius, m_level + 1, m_direction, m_splitX, m_splitY, m_splitZ, 0.0f, y + scale, z + scale, scale, "top_right", m_lastXOffset, m_lastYOffset, m_lastZOffset );
+        t2 = new Terrain( m_file, m_radius, m_level + 1, m_direction, m_splitX, m_splitY, m_splitZ, 0.0f, y - scale, z + scale, scale, "top_left", m_lastXOffset, m_lastYOffset, m_lastZOffset );
+        t3 = new Terrain( m_file, m_radius, m_level + 1, m_direction, m_splitX, m_splitY, m_splitZ, 0.0f, y + scale, z - scale, scale, "bottom_right", m_lastXOffset, m_lastYOffset, m_lastZOffset );
+        t4 = new Terrain( m_file, m_radius, m_level + 1, m_direction, m_splitX, m_splitY, m_splitZ, 0.0f, y - scale, z - scale, scale, "bottom_left", m_lastXOffset, m_lastYOffset, m_lastZOffset );
     }
     
     AddChild( t1 );

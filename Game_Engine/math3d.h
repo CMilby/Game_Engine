@@ -814,8 +814,8 @@ namespace Math3D {
         return g[ 0 ] * x + g[ 1 ] * y + g[ 2 ] * z;
     }
     
-    inline float Scale( const float value, const float min, const float max, const float smallest, const float largest ) {
-        return min + ( max - min ) / ( largest - smallest ) * ( value - smallest );
+    inline float Scale( const float x, const float a, const float b, const float min, const float max ) {
+		return ( ( ( b - a ) * ( x - min ) ) / ( max - min ) ) + a;
     }
 }
 

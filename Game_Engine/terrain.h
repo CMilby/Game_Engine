@@ -33,6 +33,10 @@ private:
     
     float m_radius;
     float m_direction;
+	
+	float m_lastXOffset;
+	float m_lastYOffset;
+	float m_lastZOffset;
     
     Vector3<float> m_position;
     Vector3<float> m_realPosition;
@@ -44,7 +48,7 @@ private:
     void GenerateTexture();
     
 public:
-    Terrain( const std::string &file, float radius, unsigned int level, float direction, bool x, bool y, bool z, float xOffset, float yOffset, float zOffset, float scale, const std::string &position );
+    Terrain( const std::string &file, float radius, unsigned int level, float direction, bool x, bool y, bool z, float xOffset, float yOffset, float zOffset, float scale, const std::string &position, float lastX, float lastY, float lastZ );
     virtual ~Terrain();
     
     virtual void RenderAll( const std::vector<Shader*> &shaders, const Camera &camera );
