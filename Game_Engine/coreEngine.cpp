@@ -33,7 +33,7 @@ void CoreEngine::Init() {
     m_textShader->Init();
     m_game->Init();
     
-    m_window->SetFullscreen( true );
+    // m_window->SetFullscreen( true );
 }
 
 void CoreEngine::Start() {

@@ -25,6 +25,11 @@ private:
     
     Vector3<float> CalculateHeight( const Vector3<float> &position, const Vector3<float> &normal );
     std::vector<float> Texturize();
+	
+	void HandleTopLeft( float scale, float &lastX, float &lastY, float &lastZ, float direction, float xOffset, float yOffset, float zOffset );
+	void HandleTopRight( float scale, float &lastX, float &lastY, float &lastZ, float direction, float xOffset, float yOffset, float zOffset );
+	void HandleBottomLeft( float scale, float &lastX, float &lastY, float &lastZ, float direction, float xOffset, float yOffset, float zOffset );
+	void HandleBottomRight( float scale, float &lastX, float &lastY, float &lastZ, float direction, float xOffset, float yOffset, float zOffset );
     
 public:
     TerrainMesh( const std::string &file, float radus, float xOffset, float yOffset, float zOffset, float scale, bool generateBuffers, const std::string &position, float &lastX, float &lastY, float &lastZ, float direction );

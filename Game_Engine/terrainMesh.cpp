@@ -78,67 +78,13 @@ TerrainMesh::TerrainMesh( const std::string &file, float radius, float xOffset, 
 	*/
 	
 	if ( position == "top_right" ) {
-		if ( zOffset == 0.0f ) {
-			lastX += scale;
-			lastY += scale;
-			if ( direction > 0.0f ) {
-				for ( unsigned int i = 0; i < m_uvs.size(); i++ ) {
-					m_uvs[ i ].SetX(  Math3D::Scale( m_uvs[ i ].GetX(), lastX, lastX + scale, 0.0f, 1.0f ) );
-					m_uvs[ i ].SetY( -Math3D::Scale( m_uvs[ i ].GetY(), lastY, lastY + scale, 1.0f, 0.0f ) );
-				}
-			} else {
-				for ( unsigned int i = 0; i < m_uvs.size(); i++ ) {
-					m_uvs[ i ].SetX( -Math3D::Scale( m_uvs[ i ].GetX(), lastX, lastX + scale, 1.0f, 0.0f ) );
-					m_uvs[ i ].SetY( -Math3D::Scale( m_uvs[ i ].GetY(), lastY, lastY + scale, 1.0f, 0.0f ) );
-				}
-			}
-		}
+		HandleTopRight( scale, lastX, lastY, lastZ, direction, xOffset, yOffset, zOffset );
 	} else if ( position == "top_left" ) {
-		if ( zOffset == 0.0f ) {
-			lastY += scale;
-			
-			if ( direction > 0.0f ) {
-				for ( unsigned int i = 0; i < m_uvs.size(); i++ ) {
-					m_uvs[ i ].SetX(  Math3D::Scale( m_uvs[ i ].GetX(), lastX, lastX + scale, 0.0f, 1.0f ) );
-					m_uvs[ i ].SetY( -Math3D::Scale( m_uvs[ i ].GetY(), lastY, lastY + scale, 1.0f, 0.0f ) );
-				}
-			} else {
-				for ( unsigned int i = 0; i < m_uvs.size(); i++ ) {
-					m_uvs[ i ].SetX( -Math3D::Scale( m_uvs[ i ].GetX(), lastX, lastX + scale, 1.0f, 0.0f ) );
-					m_uvs[ i ].SetY( -Math3D::Scale( m_uvs[ i ].GetY(), lastY, lastY + scale, 1.0f, 0.0f ) );
-				}
-			}
-		}
+		HandleTopLeft( scale, lastX, lastY, lastZ, direction, xOffset, yOffset, zOffset );
 	} else if ( position == "bottom_right" ) {
-		if ( zOffset == 0.0f ) {
-			lastX += scale;
-			
-			if ( direction > 0.0f ) {
-				for ( unsigned int i = 0; i < m_uvs.size(); i++ ) {
-					m_uvs[ i ].SetX(  Math3D::Scale( m_uvs[ i ].GetX(), lastX, lastX + scale, 0.0f, 1.0f ) );
-					m_uvs[ i ].SetY( -Math3D::Scale( m_uvs[ i ].GetY(), lastY, lastY + scale, 1.0f, 0.0f ) );
-				}
-			} else {
-				for ( unsigned int i = 0; i < m_uvs.size(); i++ ) {
-					m_uvs[ i ].SetX( -Math3D::Scale( m_uvs[ i ].GetX(), lastX, lastX + scale, 1.0f, 0.0f ) );
-					m_uvs[ i ].SetY( -Math3D::Scale( m_uvs[ i ].GetY(), lastY, lastY + scale, 1.0f, 0.0f ) );
-				}
-			}
-		}
+		HandleBottomRight( scale, lastX, lastY, lastZ, direction, xOffset, yOffset, zOffset );
 	} else if ( position == "bottom_left" ) {
-		if ( zOffset == 0.0f ) {
-			if ( direction > 0.0f ) {
-				for ( unsigned int i = 0; i < m_uvs.size(); i++ ) {
-					m_uvs[ i ].SetX(  Math3D::Scale( m_uvs[ i ].GetX(), lastX, lastX + scale, 0.0f, 1.0f ) );
-					m_uvs[ i ].SetY( -Math3D::Scale( m_uvs[ i ].GetY(), lastY, lastY + scale, 1.0f, 0.0f ) );
-				}
-			} else {
-				for ( unsigned int i = 0; i < m_uvs.size(); i++ ) {
-					m_uvs[ i ].SetX( -Math3D::Scale( m_uvs[ i ].GetX(), lastX, lastX + scale, 1.0f, 0.0f ) );
-					m_uvs[ i ].SetY( -Math3D::Scale( m_uvs[ i ].GetY(), lastY, lastY + scale, 1.0f, 0.0f ) );
-				}
-			}
-		}
+		HandleBottomLeft( scale, lastX, lastY, lastZ, direction, xOffset, yOffset, zOffset );
 	}
     
     if ( generateBuffers ) {
@@ -187,6 +133,188 @@ Vector3<float> TerrainMesh::CalculateHeight( const Vector3<float> &position, con
     
     return position + normal * noise;
 }
+
+void TerrainMesh::HandleTopRight( float scale, float &lastX, float &lastY, float &lastZ, float direction, float xOffset, float yOffset, float zOffset ) {
+	if ( xOffset == 0.0f ) {
+		lastY += scale;
+		lastZ += scale;
+		if ( direction < 0.0f ) {
+			for ( unsigned int i = 0; i < m_uvs.size(); i++ ) {
+				m_uvs[ i ].SetX(  Math3D::Scale( m_uvs[ i ].GetX(), lastZ, lastZ + scale, 0.0f, 1.0f ) );
+				m_uvs[ i ].SetY( -Math3D::Scale( m_uvs[ i ].GetY(), lastY, lastY + scale, 1.0f, 0.0f ) );
+			}
+		} else {
+			for ( unsigned int i = 0; i < m_uvs.size(); i++ ) {
+				m_uvs[ i ].SetX( -Math3D::Scale( m_uvs[ i ].GetX(), lastZ, lastZ + scale, 1.0f, 0.0f ) );
+				m_uvs[ i ].SetY( -Math3D::Scale( m_uvs[ i ].GetY(), lastY, lastY + scale, 1.0f, 0.0f ) );
+			}
+		}
+	} else if ( yOffset == 0.0f ) {
+		if ( direction < 0.0f ) {
+			for ( unsigned int i = 0; i < m_uvs.size(); i++ ) {
+				m_uvs[ i ].SetX(  Math3D::Scale( m_uvs[ i ].GetX(), lastX, lastX + scale, 0.0f, 1.0f ) );
+				m_uvs[ i ].SetY( -Math3D::Scale( m_uvs[ i ].GetY(), lastZ, lastZ + scale, 1.0f, 0.0f ) );
+			}
+		} else {
+			for ( unsigned int i = 0; i < m_uvs.size(); i++ ) {
+				m_uvs[ i ].SetX( -Math3D::Scale( m_uvs[ i ].GetX(), lastX, lastX + scale, 1.0f, 0.0f ) );
+				m_uvs[ i ].SetY( -Math3D::Scale( m_uvs[ i ].GetY(), lastZ, lastZ + scale, 1.0f, 0.0f ) );
+			}
+		}
+	} else if ( zOffset == 0.0f ) {
+		lastX += scale;
+		lastY += scale;
+		if ( direction > 0.0f ) {
+			for ( unsigned int i = 0; i < m_uvs.size(); i++ ) {
+				m_uvs[ i ].SetX(  Math3D::Scale( m_uvs[ i ].GetX(), lastX, lastX + scale, 0.0f, 1.0f ) );
+				m_uvs[ i ].SetY( -Math3D::Scale( m_uvs[ i ].GetY(), lastY, lastY + scale, 1.0f, 0.0f ) );
+			}
+		} else {
+			for ( unsigned int i = 0; i < m_uvs.size(); i++ ) {
+				m_uvs[ i ].SetX( -Math3D::Scale( m_uvs[ i ].GetX(), lastX, lastX + scale, 1.0f, 0.0f ) );
+				m_uvs[ i ].SetY( -Math3D::Scale( m_uvs[ i ].GetY(), lastY, lastY + scale, 1.0f, 0.0f ) );
+			}
+		}
+	}
+}
+
+void TerrainMesh::HandleTopLeft( float scale, float &lastX, float &lastY, float &lastZ, float direction, float xOffset, float yOffset, float zOffset ) {
+	if ( xOffset == 0.0f ) {
+		lastZ += scale;
+		if ( direction < 0.0f ) {
+			for ( unsigned int i = 0; i < m_uvs.size(); i++ ) {
+				m_uvs[ i ].SetX(  Math3D::Scale( m_uvs[ i ].GetX(), lastZ, lastZ + scale, 0.0f, 1.0f ) );
+				m_uvs[ i ].SetY( -Math3D::Scale( m_uvs[ i ].GetY(), lastY, lastY + scale, 1.0f, 0.0f ) );
+			}
+		} else {
+			for ( unsigned int i = 0; i < m_uvs.size(); i++ ) {
+				m_uvs[ i ].SetX( -Math3D::Scale( m_uvs[ i ].GetX(), lastZ, lastZ + scale, 1.0f, 0.0f ) );
+				m_uvs[ i ].SetY( -Math3D::Scale( m_uvs[ i ].GetY(), lastY, lastY + scale, 1.0f, 0.0f ) );
+			}
+		}
+	} else if ( yOffset == 0.0f ) {
+		lastX += scale;
+		if ( direction < 0.0f ) {
+			for ( unsigned int i = 0; i < m_uvs.size(); i++ ) {
+				m_uvs[ i ].SetX(  Math3D::Scale( m_uvs[ i ].GetX(), lastX, lastX + scale, 0.0f, 1.0f ) );
+				m_uvs[ i ].SetY( -Math3D::Scale( m_uvs[ i ].GetY(), lastZ, lastZ + scale, 1.0f, 0.0f ) );
+			}
+		} else {
+			for ( unsigned int i = 0; i < m_uvs.size(); i++ ) {
+				m_uvs[ i ].SetX( -Math3D::Scale( m_uvs[ i ].GetX(), lastX, lastX + scale, 1.0f, 0.0f ) );
+				m_uvs[ i ].SetY( -Math3D::Scale( m_uvs[ i ].GetY(), lastZ, lastZ + scale, 1.0f, 0.0f ) );
+			}
+		}
+	} else if ( zOffset == 0.0f ) {
+		lastY += scale;
+		if ( direction > 0.0f ) {
+			for ( unsigned int i = 0; i < m_uvs.size(); i++ ) {
+				m_uvs[ i ].SetX(  Math3D::Scale( m_uvs[ i ].GetX(), lastX, lastX + scale, 0.0f, 1.0f ) );
+				m_uvs[ i ].SetY( -Math3D::Scale( m_uvs[ i ].GetY(), lastY, lastY + scale, 1.0f, 0.0f ) );
+			}
+		} else {
+			for ( unsigned int i = 0; i < m_uvs.size(); i++ ) {
+				m_uvs[ i ].SetX( -Math3D::Scale( m_uvs[ i ].GetX(), lastX, lastX + scale, 1.0f, 0.0f ) );
+				m_uvs[ i ].SetY( -Math3D::Scale( m_uvs[ i ].GetY(), lastY, lastY + scale, 1.0f, 0.0f ) );
+			}
+		}
+	}
+}
+
+void TerrainMesh::HandleBottomRight( float scale, float &lastX, float &lastY, float &lastZ, float direction, float xOffset, float yOffset, float zOffset ) {
+	if ( xOffset == 0.0f ) {
+		lastY += scale;
+		if ( direction < 0.0f ) {
+			for ( unsigned int i = 0; i < m_uvs.size(); i++ ) {
+				m_uvs[ i ].SetX(  Math3D::Scale( m_uvs[ i ].GetX(), lastZ, lastZ + scale, 0.0f, 1.0f ) );
+				m_uvs[ i ].SetY( -Math3D::Scale( m_uvs[ i ].GetY(), lastY, lastY + scale, 1.0f, 0.0f ) );
+			}
+		} else {
+			for ( unsigned int i = 0; i < m_uvs.size(); i++ ) {
+				m_uvs[ i ].SetX( -Math3D::Scale( m_uvs[ i ].GetX(), lastZ, lastZ + scale, 1.0f, 0.0f ) );
+				m_uvs[ i ].SetY( -Math3D::Scale( m_uvs[ i ].GetY(), lastY, lastY + scale, 1.0f, 0.0f ) );
+			}
+		}
+	} else if ( yOffset == 0.0f ) {
+		lastZ += scale;
+		if ( direction < 0.0f ) {
+			for ( unsigned int i = 0; i < m_uvs.size(); i++ ) {
+				m_uvs[ i ].SetX(  Math3D::Scale( m_uvs[ i ].GetX(), lastX, lastX + scale, 0.0f, 1.0f ) );
+				m_uvs[ i ].SetY( -Math3D::Scale( m_uvs[ i ].GetY(), lastZ, lastZ + scale, 1.0f, 0.0f ) );
+			}
+		} else {
+			for ( unsigned int i = 0; i < m_uvs.size(); i++ ) {
+				m_uvs[ i ].SetX( -Math3D::Scale( m_uvs[ i ].GetX(), lastX, lastX + scale, 1.0f, 0.0f ) );
+				m_uvs[ i ].SetY( -Math3D::Scale( m_uvs[ i ].GetY(), lastZ, lastZ + scale, 1.0f, 0.0f ) );
+			}
+		}
+	} else if ( zOffset == 0.0f ) {
+		lastX += scale;
+		if ( direction > 0.0f ) {
+			for ( unsigned int i = 0; i < m_uvs.size(); i++ ) {
+				m_uvs[ i ].SetX(  Math3D::Scale( m_uvs[ i ].GetX(), lastX, lastX + scale, 0.0f, 1.0f ) );
+				m_uvs[ i ].SetY( -Math3D::Scale( m_uvs[ i ].GetY(), lastY, lastY + scale, 1.0f, 0.0f ) );
+			}
+		} else {
+			for ( unsigned int i = 0; i < m_uvs.size(); i++ ) {
+				m_uvs[ i ].SetX( -Math3D::Scale( m_uvs[ i ].GetX(), lastX, lastX + scale, 1.0f, 0.0f ) );
+				m_uvs[ i ].SetY( -Math3D::Scale( m_uvs[ i ].GetY(), lastY, lastY + scale, 1.0f, 0.0f ) );
+			}
+		}
+	}
+}
+
+
+void TerrainMesh::HandleBottomLeft( float scale, float &lastX, float &lastY, float &lastZ, float direction, float xOffset, float yOffset, float zOffset ) {
+	if ( xOffset == 0.0f ) {
+		if ( direction < 0.0f ) {
+			for ( unsigned int i = 0; i < m_uvs.size(); i++ ) {
+				m_uvs[ i ].SetX(  Math3D::Scale( m_uvs[ i ].GetX(), lastZ, lastZ + scale, 0.0f, 1.0f ) );
+				m_uvs[ i ].SetY( -Math3D::Scale( m_uvs[ i ].GetY(), lastY, lastY + scale, 1.0f, 0.0f ) );
+			}
+		} else {
+			for ( unsigned int i = 0; i < m_uvs.size(); i++ ) {
+				m_uvs[ i ].SetX( -Math3D::Scale( m_uvs[ i ].GetX(), lastZ, lastZ + scale, 1.0f, 0.0f ) );
+				m_uvs[ i ].SetY( -Math3D::Scale( m_uvs[ i ].GetY(), lastY, lastY + scale, 1.0f, 0.0f ) );
+			}
+		}
+	} else if ( yOffset == 0.0f ) {
+		lastX += scale;
+		lastZ += scale;
+		if ( direction < 0.0f ) {
+			for ( unsigned int i = 0; i < m_uvs.size(); i++ ) {
+				m_uvs[ i ].SetX(  Math3D::Scale( m_uvs[ i ].GetX(), lastX, lastX + scale, 0.0f, 1.0f ) );
+				m_uvs[ i ].SetY( -Math3D::Scale( m_uvs[ i ].GetY(), lastZ, lastZ + scale, 1.0f, 0.0f ) );
+			}
+		} else {
+			for ( unsigned int i = 0; i < m_uvs.size(); i++ ) {
+				m_uvs[ i ].SetX( -Math3D::Scale( m_uvs[ i ].GetX(), lastX, lastX + scale, 1.0f, 0.0f ) );
+				m_uvs[ i ].SetY( -Math3D::Scale( m_uvs[ i ].GetY(), lastZ, lastZ + scale, 1.0f, 0.0f ) );
+			}
+		}
+	} else if ( zOffset == 0.0f ) {
+		if ( direction > 0.0f ) {
+			for ( unsigned int i = 0; i < m_uvs.size(); i++ ) {
+				m_uvs[ i ].SetX(  Math3D::Scale( m_uvs[ i ].GetX(), lastX, lastX + scale, 0.0f, 1.0f ) );
+				m_uvs[ i ].SetY( -Math3D::Scale( m_uvs[ i ].GetY(), lastY, lastY + scale, 1.0f, 0.0f ) );
+			}
+		} else {
+			for ( unsigned int i = 0; i < m_uvs.size(); i++ ) {
+				m_uvs[ i ].SetX( -Math3D::Scale( m_uvs[ i ].GetX(), lastX, lastX + scale, 1.0f, 0.0f ) );
+				m_uvs[ i ].SetY( -Math3D::Scale( m_uvs[ i ].GetY(), lastY, lastY + scale, 1.0f, 0.0f ) );
+			}
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
 
 
 

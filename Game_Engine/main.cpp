@@ -8,10 +8,11 @@
 
 #include <cstdio>
 
-#include "firstPersonCamera.h"
-#include "freeCamera.h"
+#include "config.h"
 #include "coreEngine.h"
 #include "entity.h"
+#include "firstPersonCamera.h"
+#include "freeCamera.h"
 #include "game.h"
 #include "input.h"
 #include "planet.h"
@@ -30,7 +31,7 @@ public:
 void TestGame::Init() {
     Game::Init();
     
-    Camera *camera = new FreeCamera( Vector3<float>( 0, 0, 500.0f ) );
+    Camera *camera = new FreeCamera( Vector3<float>( 0.0f, 0.0f, 500.0f ) );
     RenderingEngine::SetMainCamera( *camera );
     AddToScene( camera );
     
@@ -39,7 +40,7 @@ void TestGame::Init() {
 }
 
 int main(int argc, const char * argv[]) {
-    Window window( 1200, 800, "Game" );
+	Window window( Config::GetScreenWidth(), Config::GetScreenHeight(), "Game" );
     Input::Init( window );
     TestGame game;
     

@@ -8,8 +8,8 @@
 
 #include "config.h"
 
-unsigned int Config::s_screenWidth = 1280;
-unsigned int Config::s_screenHeight = 800;
+unsigned int Config::s_screenWidth = 800;
+unsigned int Config::s_screenHeight = 600;
 
 float Config::s_fieldOfView = 45.0f;
 float Config::s_aspectRatio = 1.6f;
