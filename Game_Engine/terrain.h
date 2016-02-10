@@ -50,8 +50,11 @@ private:
 	
 	Texture* GenerateTexture( float xOffset, float yOffset, float zOffset, float direction );
 	std::vector<float> GenerateXTexture( int width, int height, float direction );
+	std::vector<float> XProcedure( int width, int height, int i, int j, float direction );
 	std::vector<float> GenerateYTexture( int width, int height, float direction );
+	std::vector<float> YProcedure( int width, int height, int i, int j, float direction );
 	std::vector<float> GenerateZTexture( int width, int height, float direction );
+	std::vector<float> ZProcedure( int width, int height, int i, int j, float direction );
 	
 public:
 	Terrain( const std::string &file, float radius, unsigned int level, float direction, bool x, bool y, bool z, float xOffset, float yOffset, float zOffset, float scale, const std::string &position, float lastX, float lastY, float lastZ, Material *material = new Material() );

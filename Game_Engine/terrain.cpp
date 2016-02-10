@@ -65,8 +65,6 @@ Terrain::Terrain( const std::string &file, float radius, unsigned int level, flo
     TerrainMesh *terrain = new TerrainMesh( m_file, radius, xOffset, yOffset, zOffset, scale, true, position, lastX, lastY, lastZ, direction );
     SetMesh( terrain );
 	
-	// SetMaterial( new Material( new Texture( "earth.jpg" ) ) );
-	
 	if ( position == "root" ) {
 		m_material = new Material( GenerateTexture( xOffset, yOffset, zOffset, direction ) );
 		SetMaterial( m_material );
@@ -161,58 +159,20 @@ float Terrain::SplitDistance( int level ) {
     }
     
     return SplitDistance( level + 1 ) * 2.0f;
-	
-	/*if ( m_level == 4 ) {
-		return 100.0f;
-	}
-	
-	if ( m_level == 3 ) {
-		return 150.0f;
-	}
-	
-	if ( m_level == 2 ) {
-		return 175.0f;
-	}
-    if ( m_level == 1 ) {
-        return 200.0f;
-		// return 50.0f;
-    }
-    
-    return 0.0f;*/
 }
 
 Texture* Terrain::GenerateTexture( float xOffset, float yOffset, float zOffset, float direction ) {
-	int width = 256;
-	int height = 256;
+	int width = m_radius * 4.0f;
+	int height = width;
 	std::vector<float> values;
 	
-	if ( xOffset == 0.0f ) {
+	if ( !m_splitZ ) {
 		values = GenerateXTexture( width, height, direction );
-	} else if ( yOffset == 0.0f ) {
+	} else if ( !m_splitY ) {
 		values = GenerateYTexture( width, height, direction );
-	} else if ( zOffset == 0.0f ) {
+	} else if ( !m_splitX ) {
 		values = GenerateZTexture( width, height, direction );
 	}
-	
-    /*std::vector<float> values;
-    
-    for ( int i = 0; i < 32; i++ ) {
-        for ( int j = 0; j < 32; j++ ) {
-            static const float HEIGHT_MAX = 24.5f;
-            static const float HEIGHT_MIN = -31.0f;
-            static const float NOISE_PERSISTENCE = 0.3f;
-            static const float NOISE_OCTAVES = 8.0f;
-            static const float NOISE_SCALE = 0.007f;
-            
-            float noise = ScaledOctaveNoise3D( NOISE_OCTAVES, NOISE_PERSISTENCE, NOISE_SCALE, HEIGHT_MIN, HEIGHT_MAX, j, i, -1 );
-            // noise = Math3D::Scale( noise, 0.0f, 1.0f );
-            values.push_back( noise );
-            values.push_back( noise );
-            values.push_back( noise );
-        }
-    }
-    
-    SetMaterial( new Material( new Texture( GRID_SIZE, GRID_SIZE, &values[ 0 ] ) ) );*/
 	
 	return new Texture( width, height, &values[ 0 ] );
 }
@@ -220,41 +180,62 @@ Texture* Terrain::GenerateTexture( float xOffset, float yOffset, float zOffset, 
 std::vector<float> Terrain::GenerateXTexture( int width, int height, float direction ) {
 	std::vector<float> values;
 	
-	for ( int i = height - 1; i >= 0; i-- ) {
-		for ( int j = 0; j < width; j++ ) {
-			static const float HEIGHT_MAX = 24.5f;
-			static const float HEIGHT_MIN = -31.0f;
-			static const float NOISE_PERSISTENCE = 0.3f;
-			static const float NOISE_OCTAVES = 8.0f;
-			static const float NOISE_SCALE = 0.007f;
-			
-			Vector3<float> position = Vector3<float>( Math3D::Scale( j, -1.0f, 1.0f, 0.0f, width - 1 ), Math3D::Scale( i, -1.0f, 1.0f, 0.0f, height - 1 ), direction );
-			
-			float x2 = position.GetX() * position.GetX();
-			float y2 = position.GetY() * position.GetY();
-			float z2 = position.GetZ() * position.GetZ();
-			
-			float dx = position.GetX() * sqrtf( 1.0f - ( y2 * 0.5f ) - ( z2 * 0.5f ) + ( ( y2 * z2 ) / 3.0f ) );
-			float dy = position.GetY() * sqrtf( 1.0f - ( z2 * 0.5f ) - ( x2 * 0.5f ) + ( ( z2 * x2 ) / 3.0f ) );
-			float dz = position.GetZ() * sqrtf( 1.0f - ( x2 * 0.5f ) - ( y2 * 0.5f ) + ( ( x2 * y2 ) / 3.0f ) );
-			
-			Vector3<float> normal = Vector3<float>( dx, dy, dz ).Normalized();
-			Vector3<float> point = normal * m_radius;
-			
-			float noise = ScaledOctaveNoise3D( NOISE_OCTAVES, NOISE_PERSISTENCE, NOISE_SCALE, HEIGHT_MIN, HEIGHT_MAX, point.GetX(), point.GetY(), point.GetZ() );
-		
-			if ( noise > 0.0f ) {
-				values.push_back( noise );
-				values.push_back( 0 );
-				values.push_back( 0 );
-				values.push_back( 1.0f );
-			} else {
-				values.push_back( 0 );
-				values.push_back( -noise );
-				values.push_back( 0 );
-				values.push_back( 1.0f );
+	if ( direction == 1.0f ) {
+		for ( int i = height - 1; i >= 0; i-- ) {
+			for ( int j = 0; j < width; j++ ) {
+				std::vector<float> insertValues = XProcedure( width, height, i, j, direction );
+				values.insert( values.end(), insertValues.begin(), insertValues.end() );
 			}
 		}
+	} else if ( direction == -1.0f ) {
+		for ( int i = height - 1; i >= 0; i-- ) {
+			for ( int j = width - 1; j >= 0; j-- ) {
+				std::vector<float> insertValues = XProcedure( width, height, i, j, direction );
+				values.insert( values.end(), insertValues.begin(), insertValues.end() );
+			}
+		}
+	}
+	
+	return values;
+}
+
+std::vector<float> Terrain::XProcedure( int width, int height, int i, int j, float direction ) {
+	std::vector<float> values;
+	
+	static const float HEIGHT_MAX = 24.5f;
+	static const float HEIGHT_MIN = -31.0f;
+	static const float NOISE_PERSISTENCE = 0.3f;
+	static const float NOISE_OCTAVES = 8.0f;
+	static const float NOISE_SCALE = 0.007f;
+	
+	Vector3<float> position = Vector3<float>( Math3D::Scale( j, -1.0f, 1.0f, 0.0f, width - 1 ), Math3D::Scale( i, -1.0f, 1.0f, 0.0f, height - 1 ), direction );
+	
+	float x2 = position.GetX() * position.GetX();
+	float y2 = position.GetY() * position.GetY();
+	float z2 = position.GetZ() * position.GetZ();
+	
+	float dx = position.GetX() * sqrtf( 1.0f - ( y2 * 0.5f ) - ( z2 * 0.5f ) + ( ( y2 * z2 ) / 3.0f ) );
+	float dy = position.GetY() * sqrtf( 1.0f - ( z2 * 0.5f ) - ( x2 * 0.5f ) + ( ( z2 * x2 ) / 3.0f ) );
+	float dz = position.GetZ() * sqrtf( 1.0f - ( x2 * 0.5f ) - ( y2 * 0.5f ) + ( ( x2 * y2 ) / 3.0f ) );
+	
+	Vector3<float> normal = Vector3<float>( dx, dy, dz ).Normalized();
+	Vector3<float> point = normal * m_radius;
+	
+	float noise = ScaledOctaveNoise3D( NOISE_OCTAVES, NOISE_PERSISTENCE, NOISE_SCALE, HEIGHT_MIN, HEIGHT_MAX, point.GetX(), point.GetY(), point.GetZ() );
+	
+	if ( noise > 0.0f ) {
+		noise = Math3D::Scale( noise, 0.5f, 1.0f, 0.0f, HEIGHT_MAX );
+		values.push_back( 0 );
+		values.push_back( noise );
+		values.push_back( 0 );
+		values.push_back( 1.0f );
+		
+	} else {
+		noise = Math3D::Scale( -noise, 0.5f, 1.0f, HEIGHT_MIN, 0.0f );
+		values.push_back( 0 );
+		values.push_back( 0 );
+		values.push_back( noise );
+		values.push_back( 1.0f );
 	}
 	
 	return values;
@@ -263,11 +244,127 @@ std::vector<float> Terrain::GenerateXTexture( int width, int height, float direc
 std::vector<float> Terrain::GenerateYTexture( int width, int height, float direction ) {
 	std::vector<float> values;
 	
+	if ( direction == 1.0f ) {
+		for ( int i = 0; i < height; i++ ) {
+			for ( int j = 0; j < width; j++ ) {
+				std::vector<float> insertValues = YProcedure( width, height, i, j, direction );
+				values.insert( values.end(), insertValues.begin(), insertValues.end() );
+			}
+		}
+	} else if ( direction == -1.0f ) {
+		for ( int i = 0; i < height; i++ ) {
+			for ( int j = width - 1; j >= 0; j-- ) {
+				std::vector<float> insertValues = YProcedure( width, height, i, j, direction );
+				values.insert( values.end(), insertValues.begin(), insertValues.end() );
+			}
+		}
+	}
+	
+	return values;
+}
+
+std::vector<float> Terrain::YProcedure( int width, int height, int i, int j, float direction ) {
+	std::vector<float> values;
+	
+	static const float HEIGHT_MAX = 24.5f;
+	static const float HEIGHT_MIN = -31.0f;
+	static const float NOISE_PERSISTENCE = 0.3f;
+	static const float NOISE_OCTAVES = 8.0f;
+	static const float NOISE_SCALE = 0.007f;
+	
+	Vector3<float> position = Vector3<float>( Math3D::Scale( j, -1.0f, 1.0f, 0.0f, height - 1 ), direction, Math3D::Scale( i, -1.0f, 1.0f, 0.0f, width - 1 ) );
+	
+	float x2 = position.GetX() * position.GetX();
+	float y2 = position.GetY() * position.GetY();
+	float z2 = position.GetZ() * position.GetZ();
+	
+	float dx = position.GetX() * sqrtf( 1.0f - ( y2 * 0.5f ) - ( z2 * 0.5f ) + ( ( y2 * z2 ) / 3.0f ) );
+	float dy = position.GetY() * sqrtf( 1.0f - ( z2 * 0.5f ) - ( x2 * 0.5f ) + ( ( z2 * x2 ) / 3.0f ) );
+	float dz = position.GetZ() * sqrtf( 1.0f - ( x2 * 0.5f ) - ( y2 * 0.5f ) + ( ( x2 * y2 ) / 3.0f ) );
+	
+	Vector3<float> normal = Vector3<float>( dx, dy, dz ).Normalized();
+	Vector3<float> point = normal * m_radius;
+	
+	float noise = ScaledOctaveNoise3D( NOISE_OCTAVES, NOISE_PERSISTENCE, NOISE_SCALE, HEIGHT_MIN, HEIGHT_MAX, point.GetX(), point.GetY(), point.GetZ() );
+	
+	if ( noise > 0.0f ) {
+		noise = Math3D::Scale( noise, 0.5f, 1.0f, 0.0f, HEIGHT_MAX );
+		values.push_back( 0 );
+		values.push_back( noise );
+		values.push_back( 0 );
+		values.push_back( 1.0f );
+		
+	} else {
+		noise = Math3D::Scale( -noise, 0.5f, 1.0f, HEIGHT_MIN, 0.0f );
+		values.push_back( 0 );
+		values.push_back( 0 );
+		values.push_back( noise );
+		values.push_back( 1.0f );
+	}
+	
 	return values;
 }
 
 std::vector<float> Terrain::GenerateZTexture( int width, int height, float direction ) {
 	std::vector<float> values;
+	
+	if ( direction == 1.0f ) {
+		for ( int i = height - 1; i >= 0; i-- ) {
+			for ( int j = width - 1; j >= 0; j-- ) {
+				std::vector<float> insertValues = ZProcedure( width, height, i, j, direction );
+				values.insert( values.end(), insertValues.begin(), insertValues.end() );
+			}
+		}
+	} else if ( direction == -1.0f ) {
+		for ( int i = height - 1; i >= 0; i-- ) {
+			for ( int j = 0; j < width; j++ ) {
+				std::vector<float> insertValues = ZProcedure( width, height, i, j, direction );
+				values.insert( values.end(), insertValues.begin(), insertValues.end() );
+			}
+		}
+	}
+	
+	return values;
+}
+
+std::vector<float> Terrain::ZProcedure( int width, int height, int i, int j, float direction ) {
+	std::vector<float> values;
+	
+	static const float HEIGHT_MAX = 24.5f;
+	static const float HEIGHT_MIN = -31.0f;
+	static const float NOISE_PERSISTENCE = 0.3f;
+	static const float NOISE_OCTAVES = 8.0f;
+	static const float NOISE_SCALE = 0.007f;
+	
+	Vector3<float> position = Vector3<float>( direction, Math3D::Scale( i, -1.0f, 1.0f, 0.0f, height - 1 ), Math3D::Scale( j, -1.0f, 1.0f, 0.0f, width - 1 ) );
+	
+	float x2 = position.GetX() * position.GetX();
+	float y2 = position.GetY() * position.GetY();
+	float z2 = position.GetZ() * position.GetZ();
+	
+	float dx = position.GetX() * sqrtf( 1.0f - ( y2 * 0.5f ) - ( z2 * 0.5f ) + ( ( y2 * z2 ) / 3.0f ) );
+	float dy = position.GetY() * sqrtf( 1.0f - ( z2 * 0.5f ) - ( x2 * 0.5f ) + ( ( z2 * x2 ) / 3.0f ) );
+	float dz = position.GetZ() * sqrtf( 1.0f - ( x2 * 0.5f ) - ( y2 * 0.5f ) + ( ( x2 * y2 ) / 3.0f ) );
+	
+	Vector3<float> normal = Vector3<float>( dx, dy, dz ).Normalized();
+	Vector3<float> point = normal * m_radius;
+	
+	float noise = ScaledOctaveNoise3D( NOISE_OCTAVES, NOISE_PERSISTENCE, NOISE_SCALE, HEIGHT_MIN, HEIGHT_MAX, point.GetX(), point.GetY(), point.GetZ() );
+	
+	if ( noise > 0.0f ) {
+		noise = Math3D::Scale( noise, 0.5f, 1.0f, 0.0f, HEIGHT_MAX );
+		values.push_back( 0 );
+		values.push_back( noise );
+		values.push_back( 0 );
+		values.push_back( 1.0f );
+		
+	} else {
+		noise = Math3D::Scale( -noise, 0.5f, 1.0f, HEIGHT_MIN, 0.0f );
+		values.push_back( 0 );
+		values.push_back( 0 );
+		values.push_back( noise );
+		values.push_back( 1.0f );
+	}
 	
 	return values;
 }

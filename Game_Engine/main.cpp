@@ -31,7 +31,7 @@ public:
 void TestGame::Init() {
     Game::Init();
     
-    Camera *camera = new FreeCamera( Vector3<float>( 0.0f, 0.0f, 500.0f ) );
+    Camera *camera = new FreeCamera( Vector3<float>( 200.0f, 100.0f, 400.0f ) );
     RenderingEngine::SetMainCamera( *camera );
     AddToScene( camera );
     
