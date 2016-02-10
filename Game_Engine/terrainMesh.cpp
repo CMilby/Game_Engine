@@ -123,14 +123,17 @@ void TerrainMesh::Render() const {
 }
 
 Vector3<float> TerrainMesh::CalculateHeight( const Vector3<float> &position, const Vector3<float> &normal ) {
-    static const float HEIGHT_MAX = 24.5f;
-    static const float HEIGHT_MIN = -31.0f;
-    static const float NOISE_PERSISTENCE = 0.3f;
-    static const float NOISE_OCTAVES = 8.0f;
-    static const float NOISE_SCALE = 0.007f;
-    
+	static const float HEIGHT_MAX = 24.5f;
+	static const float HEIGHT_MIN = -31.0f;
+	static const float NOISE_PERSISTENCE = 0.3f;
+	static const float NOISE_OCTAVES = 8.0f;
+	static const float NOISE_SCALE = 0.007f;
+	
     float noise = ScaledOctaveNoise3D( NOISE_OCTAVES, NOISE_PERSISTENCE, NOISE_SCALE, HEIGHT_MIN, HEIGHT_MAX, position.GetX(), position.GetY(), position.GetZ() );
-    
+	if ( noise < 0.0f ){
+		noise = 0.0f;
+	}
+	
     return position + normal * noise;
 }
 

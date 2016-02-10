@@ -19,8 +19,6 @@ private:
 public:
     Planet( float radius );
     virtual ~Planet();
-    
-    void Render();
 };
 
 #endif /* planet_h */

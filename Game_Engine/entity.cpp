@@ -77,8 +77,7 @@ RenderableEntity::RenderableEntity( Mesh *mesh, Material *material ) {
 }
 
 RenderableEntity::~RenderableEntity() {
-    if ( m_mesh ) delete m_mesh;
-    if ( m_material ) delete m_material;
+    if ( m_mesh != NULL ) delete m_mesh;
 }
 
 void RenderableEntity::Input( float delta ) {
