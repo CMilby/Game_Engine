@@ -10,6 +10,7 @@
 #define __PLANET_H__
 
 #include "terrain.h"
+#include "terrainLocation.h"
 
 class Planet : public RenderableEntity {
     

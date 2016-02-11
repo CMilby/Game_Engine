@@ -21,7 +21,7 @@
 #include "simplexNoise.h"
 #include "utility.h"
 
-TerrainMesh::TerrainMesh( const std::string &file, float radius, float xOffset, float yOffset, float zOffset, float scale, bool generateBuffers, const std::string &position, float &lastX, float &lastY, float &lastZ, float direction ) {
+TerrainMesh::TerrainMesh( const std::string &file, float radius, float xOffset, float yOffset, float zOffset, float scale, bool generateBuffers, const TerrainLocation &location, float &lastX, float &lastY, float &lastZ, float direction ) {
     LoadOBJ( Utility::DirectoryPath() + "models/" + file );
     
     for ( unsigned int i = 0; i < m_vertices.size(); i++ ) {
@@ -77,13 +77,13 @@ TerrainMesh::TerrainMesh( const std::string &file, float radius, float xOffset, 
 	 
 	*/
 	
-	if ( position == "top_right" ) {
+	if ( location == TERRAIN_TOP_RIGHT ) {
 		HandleTopRight( scale, lastX, lastY, lastZ, direction, xOffset, yOffset, zOffset );
-	} else if ( position == "top_left" ) {
+	} else if ( location == TERRAIN_TOP_LEFT ) {
 		HandleTopLeft( scale, lastX, lastY, lastZ, direction, xOffset, yOffset, zOffset );
-	} else if ( position == "bottom_right" ) {
+	} else if ( location == TERRAIN_BOTTOM_RIGHT ) {
 		HandleBottomRight( scale, lastX, lastY, lastZ, direction, xOffset, yOffset, zOffset );
-	} else if ( position == "bottom_left" ) {
+	} else if ( location == TERRAIN_BOTTOM_LEFT ) {
 		HandleBottomLeft( scale, lastX, lastY, lastZ, direction, xOffset, yOffset, zOffset );
 	}
     

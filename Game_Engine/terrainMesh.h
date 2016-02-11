@@ -15,6 +15,7 @@
 
 #include "math3d.h"
 #include "mesh.h"
+#include "terrainLocation.h"
 
 class TerrainMesh : public Mesh {
     
@@ -32,7 +33,7 @@ private:
 	void HandleBottomRight( float scale, float &lastX, float &lastY, float &lastZ, float direction, float xOffset, float yOffset, float zOffset );
     
 public:
-    TerrainMesh( const std::string &file, float radus, float xOffset, float yOffset, float zOffset, float scale, bool generateBuffers, const std::string &position, float &lastX, float &lastY, float &lastZ, float direction );
+    TerrainMesh( const std::string &file, float radus, float xOffset, float yOffset, float zOffset, float scale, bool generateBuffers, const TerrainLocation &location, float &lastX, float &lastY, float &lastZ, float direction );
     virtual ~TerrainMesh();
     
     virtual void Render() const;

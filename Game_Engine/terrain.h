@@ -14,52 +14,54 @@
 #include "camera.h"
 #include "entity.h"
 #include "shader.h"
+#include "terrainLocation.h"
 #include "terrainMesh.h"
 
 #define GRID_SIZE 8
 
 class Terrain : public RenderableEntity {
-  
+
 private:
-    std::string m_file;
-    
-    unsigned int m_level;
-    unsigned int m_maxLevel;
-    bool m_split;
-    
-    bool m_splitX;
-    bool m_splitY;
-    bool m_splitZ;
-    
-    float m_radius;
-    float m_direction;
+	std::string m_file;
+	
+	unsigned int m_level;
+	unsigned int m_maxLevel;
+	bool m_split;
+	
+	bool m_splitX;
+	bool m_splitY;
+	bool m_splitZ;
+	
+	float m_radius;
+	float m_direction;
 	
 	float m_lastXOffset;
 	float m_lastYOffset;
 	float m_lastZOffset;
-    
-    Vector3<float> m_position;
-    Vector3<float> m_realPosition;
+	
+	Vector3<float> m_position;
+	Vector3<float> m_realPosition;
 	
 	Material *m_material;
-    
-    void Split();
-    void Join();
-
-    float SplitDistance( int level );
+	TerrainLocation m_location;
 	
-	Texture* GenerateTexture( float xOffset, float yOffset, float zOffset, float direction );
-	std::vector<float> GenerateXTexture( int width, int height, float direction );
+	void Split();
+	void Join();
+	
+	float SplitDistance( int level );
+	
+	void GenerateTexture( float xOffset, float yOffset, float zOffset, float direction );
+	void GenerateXTexture( int width, int height, float direction, std::vector<float> &values );
 	std::vector<float> XProcedure( int width, int height, int i, int j, float direction );
-	std::vector<float> GenerateYTexture( int width, int height, float direction );
+	void GenerateYTexture( int width, int height, float direction, std::vector<float> &values );
 	std::vector<float> YProcedure( int width, int height, int i, int j, float direction );
-	std::vector<float> GenerateZTexture( int width, int height, float direction );
+	void GenerateZTexture( int width, int height, float direction, std::vector<float> &values );
 	std::vector<float> ZProcedure( int width, int height, int i, int j, float direction );
 	
 public:
-	Terrain( const std::string &file, float radius, unsigned int level, float direction, bool x, bool y, bool z, float xOffset, float yOffset, float zOffset, float scale, const std::string &position, float lastX, float lastY, float lastZ, Material *material = new Material() );
+	Terrain( const std::string &file, float radius, unsigned int level, float direction, bool x, bool y, bool z, float xOffset, float yOffset, float zOffset, float scale, const TerrainLocation &location, float lastX, float lastY, float lastZ, Material *material = new Material() );
     virtual ~Terrain();
-    
+	
     virtual void RenderAll( const std::vector<Shader*> &shaders, const Camera &camera );
     
     void SetPosition( const Vector3<float> &position ) { m_position = position; }

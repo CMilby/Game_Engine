@@ -120,6 +120,7 @@
 		449D85F31BD6B6F300B72584 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		449D85F61BD6BACB00B72584 /* libglfw.3.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw.3.1.dylib; path = ../../../../usr/local/lib/libglfw.3.1.dylib; sourceTree = "<group>"; };
 		449D85F81BD6BB0900B72584 /* libGLEW.1.12.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libGLEW.1.12.0.dylib; path = ../../../../usr/local/Cellar/glew/1.12.0/lib/libGLEW.1.12.0.dylib; sourceTree = "<group>"; };
+		44A189441C6D264200ED13BD /* terrainLocation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = terrainLocation.h; sourceTree = "<group>"; };
 		44B6933C1C077B3600743603 /* stb_image.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = stb_image.c; sourceTree = "<group>"; };
 		44B6933D1C077B3600743603 /* stb_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_image.h; sourceTree = "<group>"; };
 		44B6933F1C0782AC00743603 /* material.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = material.h; sourceTree = "<group>"; };
@@ -380,6 +381,7 @@
 				44F9907E1C541F8F00BFBAF8 /* terrain.h */,
 				44FF2BED1C56FF18005DDFCB /* terrainMesh.cpp */,
 				44FF2BEE1C56FF18005DDFCB /* terrainMesh.h */,
+				44A189441C6D264200ED13BD /* terrainLocation.h */,
 			);
 			name = Game;
 			sourceTree = "<group>";
