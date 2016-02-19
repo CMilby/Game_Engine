@@ -17,7 +17,7 @@
 #include <windows.h>
 #endif
 
-float Timing::GetTime() {
+float Timing::GetMillis() {
 #ifdef __APPLE__
     timeval time;
     gettimeofday( &time, NULL );
@@ -31,3 +31,8 @@ float Timing::GetTime() {
 #endif
     return -1.0f;
 }
+
+time_t Timing::GetCurrentTime() {
+	return time( 0 );
+}
+

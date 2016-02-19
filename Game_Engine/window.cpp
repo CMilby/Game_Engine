@@ -81,7 +81,8 @@ void Window::SetMousePosition( const Vector2<int> &position ) const {
     SDL_WarpMouseInWindow( m_window, position.GetX(), position.GetY() );
 }
 
-void Window::SetFullscreen( bool value ) const {
+void Window::SetFullscreen( bool value ) {
+	m_fullscreen = value;
     SDL_SetWindowFullscreen( m_window, value ? SDL_WINDOW_FULLSCREEN_DESKTOP : 0 );
 }
 

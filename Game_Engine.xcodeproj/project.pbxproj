@@ -12,6 +12,13 @@
 		4400F2481C5BA57100028A71 /* simplexNoise.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4400F2461C5BA57100028A71 /* simplexNoise.cpp */; };
 		4402CE001C28C95A00F11AA8 /* libSDL2-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 447B54141BF04A9600BB5977 /* libSDL2-2.0.0.dylib */; };
 		44040E461C18E3410058A84B /* libassimp.3.1.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 44040E451C18E3410058A84B /* libassimp.3.1.1.dylib */; };
+		440574691C767D1F00F1CE5B /* renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 440574671C767D1F00F1CE5B /* renderer.cpp */; };
+		4405746C1C767D2800F1CE5B /* input_framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4405746A1C767D2800F1CE5B /* input_framework.cpp */; };
+		4405746F1C769D7B00F1CE5B /* messageBus.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4405746D1C769D7B00F1CE5B /* messageBus.cpp */; };
+		440574731C76A14100F1CE5B /* system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 440574711C76A14100F1CE5B /* system.cpp */; };
+		440574771C76A5AD00F1CE5B /* message.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 440574751C76A5AD00F1CE5B /* message.cpp */; };
+		440574901C76B43D00F1CE5B /* messagePayload.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4405748F1C76B43D00F1CE5B /* messagePayload.cpp */; };
+		440574951C76CEAE00F1CE5B /* dateTime.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 440574931C76CEAE00F1CE5B /* dateTime.cpp */; };
 		4415CD791BDA7C0100E91770 /* textShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4415CD771BDA7C0100E91770 /* textShader.cpp */; };
 		4415CD841BDAB5DC00E91770 /* entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4415CD821BDAB5DC00E91770 /* entity.cpp */; };
 		4415CD871BDD6EE200E91770 /* utility.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4415CD851BDD6EE200E91770 /* utility.cpp */; };
@@ -72,6 +79,23 @@
 		4400F2461C5BA57100028A71 /* simplexNoise.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = simplexNoise.cpp; sourceTree = "<group>"; };
 		4400F2471C5BA57100028A71 /* simplexNoise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = simplexNoise.h; sourceTree = "<group>"; };
 		44040E451C18E3410058A84B /* libassimp.3.1.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libassimp.3.1.1.dylib; path = ../../../../usr/local/Cellar/assimp/3.1.1/lib/libassimp.3.1.1.dylib; sourceTree = "<group>"; };
+		440574671C767D1F00F1CE5B /* renderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = renderer.cpp; sourceTree = "<group>"; };
+		440574681C767D1F00F1CE5B /* renderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = renderer.h; sourceTree = "<group>"; };
+		4405746A1C767D2800F1CE5B /* input_framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = input_framework.cpp; sourceTree = "<group>"; };
+		4405746B1C767D2800F1CE5B /* input_framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = input_framework.h; sourceTree = "<group>"; };
+		4405746D1C769D7B00F1CE5B /* messageBus.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = messageBus.cpp; sourceTree = "<group>"; };
+		4405746E1C769D7B00F1CE5B /* messageBus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = messageBus.h; sourceTree = "<group>"; };
+		440574711C76A14100F1CE5B /* system.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = system.cpp; sourceTree = "<group>"; };
+		440574721C76A14100F1CE5B /* system.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = system.h; sourceTree = "<group>"; };
+		440574741C76A4E400F1CE5B /* receiverType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = receiverType.h; sourceTree = "<group>"; };
+		440574751C76A5AD00F1CE5B /* message.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = message.cpp; sourceTree = "<group>"; };
+		440574761C76A5AD00F1CE5B /* message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = message.h; sourceTree = "<group>"; };
+		440574791C76AB8800F1CE5B /* messageType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = messageType.h; sourceTree = "<group>"; };
+		4405747B1C76AC3000F1CE5B /* messagePayload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = messagePayload.h; sourceTree = "<group>"; };
+		4405747E1C76AD6F00F1CE5B /* payloadType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = payloadType.h; sourceTree = "<group>"; };
+		4405748F1C76B43D00F1CE5B /* messagePayload.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = messagePayload.cpp; sourceTree = "<group>"; };
+		440574931C76CEAE00F1CE5B /* dateTime.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dateTime.cpp; sourceTree = "<group>"; };
+		440574941C76CEAE00F1CE5B /* dateTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dateTime.h; sourceTree = "<group>"; };
 		4415CD771BDA7C0100E91770 /* textShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = textShader.cpp; sourceTree = "<group>"; };
 		4415CD781BDA7C0100E91770 /* textShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = textShader.h; sourceTree = "<group>"; };
 		4415CD821BDAB5DC00E91770 /* entity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = entity.cpp; sourceTree = "<group>"; };
@@ -204,6 +228,56 @@
 			name = "3rd Party";
 			sourceTree = "<group>";
 		};
+		440574661C767D1000F1CE5B /* Framework */ = {
+			isa = PBXGroup;
+			children = (
+				440574671C767D1F00F1CE5B /* renderer.cpp */,
+				440574681C767D1F00F1CE5B /* renderer.h */,
+				4405746A1C767D2800F1CE5B /* input_framework.cpp */,
+				4405746B1C767D2800F1CE5B /* input_framework.h */,
+			);
+			name = Framework;
+			sourceTree = "<group>";
+		};
+		440574701C76A0D100F1CE5B /* Planets */ = {
+			isa = PBXGroup;
+			children = (
+				44F9907A1C541F8700BFBAF8 /* planet.cpp */,
+				44F9907B1C541F8700BFBAF8 /* planet.h */,
+				44F9907D1C541F8F00BFBAF8 /* terrain.cpp */,
+				44F9907E1C541F8F00BFBAF8 /* terrain.h */,
+				44FF2BED1C56FF18005DDFCB /* terrainMesh.cpp */,
+				44FF2BEE1C56FF18005DDFCB /* terrainMesh.h */,
+				44A189441C6D264200ED13BD /* terrainLocation.h */,
+			);
+			name = Planets;
+			sourceTree = "<group>";
+		};
+		440574781C76A97300F1CE5B /* Systems */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Systems;
+			sourceTree = "<group>";
+		};
+		4405747D1C76AC3400F1CE5B /* Messaging */ = {
+			isa = PBXGroup;
+			children = (
+				4405746D1C769D7B00F1CE5B /* messageBus.cpp */,
+				4405746E1C769D7B00F1CE5B /* messageBus.h */,
+				440574711C76A14100F1CE5B /* system.cpp */,
+				440574721C76A14100F1CE5B /* system.h */,
+				440574751C76A5AD00F1CE5B /* message.cpp */,
+				440574761C76A5AD00F1CE5B /* message.h */,
+				4405748F1C76B43D00F1CE5B /* messagePayload.cpp */,
+				4405747B1C76AC3000F1CE5B /* messagePayload.h */,
+				440574791C76AB8800F1CE5B /* messageType.h */,
+				440574741C76A4E400F1CE5B /* receiverType.h */,
+				4405747E1C76AD6F00F1CE5B /* payloadType.h */,
+			);
+			name = Messaging;
+			sourceTree = "<group>";
+		};
 		442C78991C1B09650083D86D /* Shaders */ = {
 			isa = PBXGroup;
 			children = (
@@ -279,6 +353,8 @@
 				4400F2421C5BA53000028A71 /* 3rd Party */,
 				4415CD931BDDC3EE00E91770 /* time.cpp */,
 				4415CD941BDDC3EE00E91770 /* time.h */,
+				440574931C76CEAE00F1CE5B /* dateTime.cpp */,
+				440574941C76CEAE00F1CE5B /* dateTime.h */,
 				44FB2EDD1C29B31600C6FCAF /* logging.cpp */,
 				44FB2EDE1C29B31600C6FCAF /* logging.h */,
 				449A0C3A1C4ED3670052E92D /* profiler.cpp */,
@@ -346,6 +422,8 @@
 		44D3CD6E1BCBFAED0074E300 /* Game_Engine */ = {
 			isa = PBXGroup;
 			children = (
+				440574781C76A97300F1CE5B /* Systems */,
+				440574661C767D1000F1CE5B /* Framework */,
 				44D3CD761BCBFAF40074E300 /* Core_Engine */,
 				44B693441C07C6E600743603 /* Rendering */,
 				44F990791C5415BF00BFBAF8 /* Game */,
@@ -356,11 +434,12 @@
 		44D3CD761BCBFAF40074E300 /* Core_Engine */ = {
 			isa = PBXGroup;
 			children = (
-				4400F2411C5BA52A00028A71 /* Config */,
-				4400F2401C5BA51E00028A71 /* Math */,
-				449A0C571C501EAE0052E92D /* Utility */,
-				449A0C561C501E980052E92D /* Components */,
 				449A0C551C501E8B0052E92D /* Camera */,
+				449A0C561C501E980052E92D /* Components */,
+				449A0C571C501EAE0052E92D /* Utility */,
+				4400F2401C5BA51E00028A71 /* Math */,
+				4400F2411C5BA52A00028A71 /* Config */,
+				4405747D1C76AC3400F1CE5B /* Messaging */,
 				447A390A1BD6DAC400190464 /* input.cpp */,
 				447A390B1BD6DAC400190464 /* input.h */,
 				4415CD901BDDC38700E91770 /* coreEngine.cpp */,
@@ -374,14 +453,8 @@
 		44F990791C5415BF00BFBAF8 /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				440574701C76A0D100F1CE5B /* Planets */,
 				44D3CD6F1BCBFAED0074E300 /* main.cpp */,
-				44F9907A1C541F8700BFBAF8 /* planet.cpp */,
-				44F9907B1C541F8700BFBAF8 /* planet.h */,
-				44F9907D1C541F8F00BFBAF8 /* terrain.cpp */,
-				44F9907E1C541F8F00BFBAF8 /* terrain.h */,
-				44FF2BED1C56FF18005DDFCB /* terrainMesh.cpp */,
-				44FF2BEE1C56FF18005DDFCB /* terrainMesh.h */,
-				44A189441C6D264200ED13BD /* terrainLocation.h */,
 			);
 			name = Game;
 			sourceTree = "<group>";
@@ -442,6 +515,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				440574731C76A14100F1CE5B /* system.cpp in Sources */,
 				4415CD8F1BDD8E0400E91770 /* camera.cpp in Sources */,
 				447A39121BD6DCD900190464 /* shader.cpp in Sources */,
 				447A39091BD6C57200190464 /* window.cpp in Sources */,
@@ -451,19 +525,25 @@
 				449A0C3C1C4ED3670052E92D /* profiler.cpp in Sources */,
 				44B693431C07A45E00743603 /* phongShader.cpp in Sources */,
 				44F722381BDFEB8A0022754F /* game.cpp in Sources */,
+				440574901C76B43D00F1CE5B /* messagePayload.cpp in Sources */,
 				449A0C511C501E6B0052E92D /* freeCamera.cpp in Sources */,
 				4415CD8C1BDD74D400E91770 /* transform.cpp in Sources */,
 				449A0C5A1C50297E0052E92D /* firstPersonCamera.cpp in Sources */,
+				440574691C767D1F00F1CE5B /* renderer.cpp in Sources */,
+				440574771C76A5AD00F1CE5B /* message.cpp in Sources */,
 				44D3CD701BCBFAED0074E300 /* main.cpp in Sources */,
 				44BD91081C23803D000D50B8 /* cubemapTexture.cpp in Sources */,
+				4405746F1C769D7B00F1CE5B /* messageBus.cpp in Sources */,
 				447A390C1BD6DAC400190464 /* input.cpp in Sources */,
 				447A390F1BD6DAF300190464 /* mesh.cpp in Sources */,
+				4405746C1C767D2800F1CE5B /* input_framework.cpp in Sources */,
 				442C78981C1A85E70083D86D /* basicShader.cpp in Sources */,
 				4415CD791BDA7C0100E91770 /* textShader.cpp in Sources */,
 				4415CD951BDDC3EE00E91770 /* time.cpp in Sources */,
 				447A39181BD7CA4E00190464 /* texture.cpp in Sources */,
 				44FB2ED91C29AFA000C6FCAF /* config.cpp in Sources */,
 				4415CD871BDD6EE200E91770 /* utility.cpp in Sources */,
+				440574951C76CEAE00F1CE5B /* dateTime.cpp in Sources */,
 				449A0C541C501E800052E92D /* thirdPersonCamera.cpp in Sources */,
 				4400F2451C5BA54B00028A71 /* random.cpp in Sources */,
 				44D3CD7F1BCC0AC30074E300 /* math3d.cpp in Sources */,

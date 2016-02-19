@@ -9,9 +9,13 @@
 #ifndef __TIME_H__
 #define __TIME_H__
 
+#include <string>
+
 namespace Timing {
     
-    float GetTime();
+    float GetMillis();
+	
+	time_t GetCurrentTime();
 };
 
 #endif /* time_h */

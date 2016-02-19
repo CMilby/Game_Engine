@@ -25,6 +25,7 @@ private:
     unsigned int m_width;
     unsigned int m_heigt;
     std::string m_title;
+	bool m_fullscreen;
     
 public:
     Window() {}
@@ -39,7 +40,8 @@ public:
     void SetMousePosition( const Vector2<int> &position ) const;
     Vector2<int> GetMousePosition() const;
     
-    void SetFullscreen( bool value ) const;
+    void SetFullscreen( bool value );
+	inline bool IsFullscreen() const { return m_fullscreen; }
     
     inline SDL_Window* GetWindow() const { return m_window; }
 };

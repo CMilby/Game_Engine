@@ -29,12 +29,20 @@ public:
 };
 
 void TestGame::Init() {
-	Camera *camera = new FreeCamera( Vector3<float>( 50.0f, 100.0f, 400.0f ) );
+	Camera *camera = new FreeCamera( Vector3<float>( 0.0f, 3.0f, 10.0f ) );
     RenderingEngine::SetMainCamera( *camera );
     AddToScene( camera );
-    
-    Planet *planet = new Planet( 256.0f );
-    AddToScene( planet );
+	
+	RenderableEntity *plane = new RenderableEntity( new Mesh( "plane.obj" ) );
+	AddToScene( plane );
+	
+	RenderableEntity *cube = new RenderableEntity( new Mesh( "cube.obj" ) );
+	cube->SetPosition( Vector3<float>( 1.0f, 2.0f, -1.0f ) );
+	cube->GetTransform()->Rotate( Vector3<float>( 0.0f, 1.0f, 0.0f ), 45.0f );
+	AddToScene( cube );
+	
+    // Planet *planet = new Planet( 256.0f );
+    // AddToScene( planet );
 	
 	Game::Init();
 }

@@ -43,7 +43,7 @@ void CoreEngine::Start() {
     
     m_isRunning = true;
     
-    float lastTime = Timing::GetTime();
+    float lastTime = Timing::GetMillis();
     float currentTime = lastTime;
     int frames = 0;
     
@@ -53,7 +53,7 @@ void CoreEngine::Start() {
     const std::string function = "CoreEngine: Start";
     
     while ( m_isRunning ) {
-        currentTime = Timing::GetTime();
+        currentTime = Timing::GetMillis();
         frames++;
         if ( currentTime - lastTime >= 1000.0f ) {
             sprintf( lastFPM, "%.2f ms/frame", 1000.0f / ( float ) frames );
@@ -67,7 +67,7 @@ void CoreEngine::Start() {
         if ( m_window->ShouldClose() || Input::IsKeyDown( Input::KEY_ESCAPE ) ) {
             Stop();
         }
-        
+
         m_profiler->StartProfile();
         m_game->ProcessInput( currentTime - lastTime );
         m_profiler->StopProfile();
