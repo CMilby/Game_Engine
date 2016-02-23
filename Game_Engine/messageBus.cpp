@@ -8,24 +8,28 @@
 
 #include "messageBus.h"
 
-#include "system.h"
-
 MessageBus* MessageBus::s_instance = 0;
 
 MessageBus::MessageBus() {
 	
 }
 
-void MessageBus::PostMessage( const MessageReceiver &receiver, const Message &message ) const {
-	if ( receiver == RECEIVER_ALL ) {
+void MessageBus::Update() {
+    for ( auto const &s : m_systems ) {
+        s.second->HandleMessages();
+    }
+}
+
+void MessageBus::PostMessage( const SystemType &system, const Message &message ) const {
+	if ( system == SYSTEM_ALL ) {
 		for ( auto const &s : m_systems ) {
 			s.second->ReceiveMessage( message );
 		}
 	} else {
-		m_systems.at( receiver )->ReceiveMessage( message );
+		m_systems.at( system )->ReceiveMessage( message );
 	}
 }
 
 void MessageBus::AddSystem( System *system ) {
-	m_systems.emplace( std::pair<MessageReceiver, System*>( system->GetReceiverType(), system ) );
+	m_systems.emplace( std::pair<SystemType, System*>( system->GetSystemType(), system ) );
 }

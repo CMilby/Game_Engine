@@ -13,16 +13,22 @@
 
 enum MessageType {
 	MESSAGE_INFO,
+	MESSAGE_KEYSTROKE,
+	MESSAGE_MOUSE_BUTTON_PRESS,
 	MESSAGE_UPDATE,
 	MESSAGE_ERROR,
 	MESSAGE_WARNING,
 	NUMBER_MESSAGES
 };
 
-std::string MessageTypeToString( MessageType type ) {
+inline std::string MessageTypeToString( MessageType type ) {
 	switch ( type ) {
 		case MESSAGE_INFO:
 			return "INFO";
+		case MESSAGE_KEYSTROKE:
+			return "KEYSTROKE";
+		case MESSAGE_MOUSE_BUTTON_PRESS:
+			return "MOUSE_BUTTON_PRESS";
 		case MESSAGE_UPDATE:
 			return "UPDATE";
 		case MESSAGE_ERROR:
@@ -30,7 +36,7 @@ std::string MessageTypeToString( MessageType type ) {
 		case MESSAGE_WARNING:
 			return "WARNING";
 		case NUMBER_MESSAGES:
-			return "HOW_DID_THIS_EVEN_HAPPEN?";
+			return std::to_string( NUMBER_MESSAGES );
 	}
 	return "NO_MESSAGE_TYPE";
 }

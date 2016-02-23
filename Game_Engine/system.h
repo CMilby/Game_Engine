@@ -9,33 +9,31 @@
 #ifndef __SYSTEM_H__
 #define __SYSTEM_H__
 
+#include <iostream>
 #include <queue>
 
 #include "message.h"
-#include "messageBus.h"
-#include "receiverType.h"
 
 class System {
 	
 private:
-	MessageReceiver m_receiverType;
+	SystemType m_systemType;
 	std::queue<Message> m_messages;
-	
-protected:
-    void HandleMessages();
     
 public:
-	System( const MessageReceiver &receiverType );
+	System( const SystemType &system );
 	virtual ~System();
 	
-	void SendMessage( const MessageReceiver &receiver, const Message &message ) const;
+	void SendMessage( const SystemType &system, const Message &message ) const;
 	void ReceiveMessage( const Message &message );
 	
 	virtual void Input() {}
 	virtual void Update() {}
 	virtual void Render() {}
 	
-	inline MessageReceiver GetReceiverType() const { return m_receiverType; }
+	void HandleMessages();
+    
+	inline SystemType GetSystemType() const { return m_systemType; }
 };
 
 #endif /* system_h */

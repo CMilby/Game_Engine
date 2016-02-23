@@ -13,7 +13,7 @@
 		4402CE001C28C95A00F11AA8 /* libSDL2-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 447B54141BF04A9600BB5977 /* libSDL2-2.0.0.dylib */; };
 		44040E461C18E3410058A84B /* libassimp.3.1.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 44040E451C18E3410058A84B /* libassimp.3.1.1.dylib */; };
 		440574691C767D1F00F1CE5B /* renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 440574671C767D1F00F1CE5B /* renderer.cpp */; };
-		4405746C1C767D2800F1CE5B /* input_framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4405746A1C767D2800F1CE5B /* input_framework.cpp */; };
+		4405746C1C767D2800F1CE5B /* inputFramework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4405746A1C767D2800F1CE5B /* inputFramework.cpp */; };
 		4405746F1C769D7B00F1CE5B /* messageBus.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4405746D1C769D7B00F1CE5B /* messageBus.cpp */; };
 		440574731C76A14100F1CE5B /* system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 440574711C76A14100F1CE5B /* system.cpp */; };
 		440574771C76A5AD00F1CE5B /* message.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 440574751C76A5AD00F1CE5B /* message.cpp */; };
@@ -31,7 +31,7 @@
 		4421D5CC1C2C731600180432 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4421D5CB1C2C731600180432 /* CoreGraphics.framework */; };
 		442C78981C1A85E70083D86D /* basicShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 442C78961C1A85E70083D86D /* basicShader.cpp */; };
 		447A39091BD6C57200190464 /* window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 447A39071BD6C57200190464 /* window.cpp */; };
-		447A390C1BD6DAC400190464 /* input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 447A390A1BD6DAC400190464 /* input.cpp */; };
+		447A390C1BD6DAC400190464 /* inputSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 447A390A1BD6DAC400190464 /* inputSystem.cpp */; };
 		447A390F1BD6DAF300190464 /* mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 447A390D1BD6DAF300190464 /* mesh.cpp */; };
 		447A39121BD6DCD900190464 /* shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 447A39101BD6DCD900190464 /* shader.cpp */; };
 		447A39151BD6F09300190464 /* renderingEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 447A39131BD6F09300190464 /* renderingEngine.cpp */; };
@@ -81,13 +81,13 @@
 		44040E451C18E3410058A84B /* libassimp.3.1.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libassimp.3.1.1.dylib; path = ../../../../usr/local/Cellar/assimp/3.1.1/lib/libassimp.3.1.1.dylib; sourceTree = "<group>"; };
 		440574671C767D1F00F1CE5B /* renderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = renderer.cpp; sourceTree = "<group>"; };
 		440574681C767D1F00F1CE5B /* renderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = renderer.h; sourceTree = "<group>"; };
-		4405746A1C767D2800F1CE5B /* input_framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = input_framework.cpp; sourceTree = "<group>"; };
-		4405746B1C767D2800F1CE5B /* input_framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = input_framework.h; sourceTree = "<group>"; };
+		4405746A1C767D2800F1CE5B /* inputFramework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = inputFramework.cpp; sourceTree = "<group>"; };
+		4405746B1C767D2800F1CE5B /* inputFramework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = inputFramework.h; sourceTree = "<group>"; };
 		4405746D1C769D7B00F1CE5B /* messageBus.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = messageBus.cpp; sourceTree = "<group>"; };
 		4405746E1C769D7B00F1CE5B /* messageBus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = messageBus.h; sourceTree = "<group>"; };
 		440574711C76A14100F1CE5B /* system.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = system.cpp; sourceTree = "<group>"; };
 		440574721C76A14100F1CE5B /* system.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = system.h; sourceTree = "<group>"; };
-		440574741C76A4E400F1CE5B /* receiverType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = receiverType.h; sourceTree = "<group>"; };
+		440574741C76A4E400F1CE5B /* systemType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = systemType.h; sourceTree = "<group>"; };
 		440574751C76A5AD00F1CE5B /* message.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = message.cpp; sourceTree = "<group>"; };
 		440574761C76A5AD00F1CE5B /* message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = message.h; sourceTree = "<group>"; };
 		440574791C76AB8800F1CE5B /* messageType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = messageType.h; sourceTree = "<group>"; };
@@ -122,8 +122,8 @@
 		442C789F1C1B09770083D86D /* TextVertexShader.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = TextVertexShader.vs; path = resources/shaders/TextVertexShader.vs; sourceTree = "<group>"; };
 		447A39071BD6C57200190464 /* window.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = window.cpp; sourceTree = "<group>"; };
 		447A39081BD6C57200190464 /* window.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = window.h; sourceTree = "<group>"; };
-		447A390A1BD6DAC400190464 /* input.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = input.cpp; sourceTree = "<group>"; };
-		447A390B1BD6DAC400190464 /* input.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = input.h; sourceTree = "<group>"; };
+		447A390A1BD6DAC400190464 /* inputSystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = inputSystem.cpp; sourceTree = "<group>"; };
+		447A390B1BD6DAC400190464 /* inputSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = inputSystem.h; sourceTree = "<group>"; };
 		447A390D1BD6DAF300190464 /* mesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mesh.cpp; sourceTree = "<group>"; };
 		447A390E1BD6DAF300190464 /* mesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mesh.h; sourceTree = "<group>"; };
 		447A39101BD6DCD900190464 /* shader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = shader.cpp; sourceTree = "<group>"; };
@@ -217,24 +217,17 @@
 			name = Config;
 			sourceTree = "<group>";
 		};
-		4400F2421C5BA53000028A71 /* 3rd Party */ = {
-			isa = PBXGroup;
-			children = (
-				44B6933C1C077B3600743603 /* stb_image.c */,
-				44B6933D1C077B3600743603 /* stb_image.h */,
-				44FB2ED11C28DAF300C6FCAF /* sdlBackend.cpp */,
-				44FB2ED21C28DAF300C6FCAF /* sdlBackend.h */,
-			);
-			name = "3rd Party";
-			sourceTree = "<group>";
-		};
 		440574661C767D1000F1CE5B /* Framework */ = {
 			isa = PBXGroup;
 			children = (
 				440574671C767D1F00F1CE5B /* renderer.cpp */,
 				440574681C767D1F00F1CE5B /* renderer.h */,
-				4405746A1C767D2800F1CE5B /* input_framework.cpp */,
-				4405746B1C767D2800F1CE5B /* input_framework.h */,
+				4405746A1C767D2800F1CE5B /* inputFramework.cpp */,
+				4405746B1C767D2800F1CE5B /* inputFramework.h */,
+				44B6933C1C077B3600743603 /* stb_image.c */,
+				44B6933D1C077B3600743603 /* stb_image.h */,
+				44FB2ED11C28DAF300C6FCAF /* sdlBackend.cpp */,
+				44FB2ED21C28DAF300C6FCAF /* sdlBackend.h */,
 			);
 			name = Framework;
 			sourceTree = "<group>";
@@ -272,10 +265,19 @@
 				4405748F1C76B43D00F1CE5B /* messagePayload.cpp */,
 				4405747B1C76AC3000F1CE5B /* messagePayload.h */,
 				440574791C76AB8800F1CE5B /* messageType.h */,
-				440574741C76A4E400F1CE5B /* receiverType.h */,
+				440574741C76A4E400F1CE5B /* systemType.h */,
 				4405747E1C76AD6F00F1CE5B /* payloadType.h */,
 			);
 			name = Messaging;
+			sourceTree = "<group>";
+		};
+		440642021C7799A10093470A /* Systems */ = {
+			isa = PBXGroup;
+			children = (
+				447A390A1BD6DAC400190464 /* inputSystem.cpp */,
+				447A390B1BD6DAC400190464 /* inputSystem.h */,
+			);
+			name = Systems;
 			sourceTree = "<group>";
 		};
 		442C78991C1B09650083D86D /* Shaders */ = {
@@ -350,7 +352,6 @@
 		449A0C571C501EAE0052E92D /* Utility */ = {
 			isa = PBXGroup;
 			children = (
-				4400F2421C5BA53000028A71 /* 3rd Party */,
 				4415CD931BDDC3EE00E91770 /* time.cpp */,
 				4415CD941BDDC3EE00E91770 /* time.h */,
 				440574931C76CEAE00F1CE5B /* dateTime.cpp */,
@@ -422,6 +423,7 @@
 		44D3CD6E1BCBFAED0074E300 /* Game_Engine */ = {
 			isa = PBXGroup;
 			children = (
+				4405747D1C76AC3400F1CE5B /* Messaging */,
 				440574781C76A97300F1CE5B /* Systems */,
 				440574661C767D1000F1CE5B /* Framework */,
 				44D3CD761BCBFAF40074E300 /* Core_Engine */,
@@ -434,14 +436,12 @@
 		44D3CD761BCBFAF40074E300 /* Core_Engine */ = {
 			isa = PBXGroup;
 			children = (
+				440642021C7799A10093470A /* Systems */,
 				449A0C551C501E8B0052E92D /* Camera */,
 				449A0C561C501E980052E92D /* Components */,
 				449A0C571C501EAE0052E92D /* Utility */,
 				4400F2401C5BA51E00028A71 /* Math */,
 				4400F2411C5BA52A00028A71 /* Config */,
-				4405747D1C76AC3400F1CE5B /* Messaging */,
-				447A390A1BD6DAC400190464 /* input.cpp */,
-				447A390B1BD6DAC400190464 /* input.h */,
 				4415CD901BDDC38700E91770 /* coreEngine.cpp */,
 				4415CD911BDDC38700E91770 /* coreEngine.h */,
 				44F722361BDFEB8A0022754F /* game.cpp */,
@@ -534,9 +534,9 @@
 				44D3CD701BCBFAED0074E300 /* main.cpp in Sources */,
 				44BD91081C23803D000D50B8 /* cubemapTexture.cpp in Sources */,
 				4405746F1C769D7B00F1CE5B /* messageBus.cpp in Sources */,
-				447A390C1BD6DAC400190464 /* input.cpp in Sources */,
+				447A390C1BD6DAC400190464 /* inputSystem.cpp in Sources */,
 				447A390F1BD6DAF300190464 /* mesh.cpp in Sources */,
-				4405746C1C767D2800F1CE5B /* input_framework.cpp in Sources */,
+				4405746C1C767D2800F1CE5B /* inputFramework.cpp in Sources */,
 				442C78981C1A85E70083D86D /* basicShader.cpp in Sources */,
 				4415CD791BDA7C0100E91770 /* textShader.cpp in Sources */,
 				4415CD951BDDC3EE00E91770 /* time.cpp in Sources */,

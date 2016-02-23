@@ -8,7 +8,7 @@
 
 #ifndef __PAYLOAD_TYPE_H__
 #define __PAYLOAD_TYPE_H__
-
+    
 enum PayloadType {
 	TYPE_INT,
 	TYPE_STRING,

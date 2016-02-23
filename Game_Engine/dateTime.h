@@ -28,7 +28,15 @@ public:
 	int GetMinute() const;
 	int GetSecond() const;
 	
+	void AddYear( int years );
+	void AddMonth( int months );
+	void AddDay( int days );
+	void AddHour( int hours );
+	void AddMinute( int minutes );
+	void AddSeconds( int seconds );
+	
 	std::string ToString() const;
+	std::string ToString( const std::string &format ) const;
 };
 
 #endif /* dateTime_h */

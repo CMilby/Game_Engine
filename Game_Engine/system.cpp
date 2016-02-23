@@ -8,8 +8,10 @@
 
 #include "system.h"
 
-System::System( const MessageReceiver &receiverType ) {
-	m_receiverType = receiverType;
+#include "messageBus.h"
+
+System::System( const SystemType &system ) {
+	m_systemType = system;
 }
 
 System::~System() {
@@ -20,8 +22,8 @@ void System::ReceiveMessage( const Message &message ) {
 	m_messages.emplace( message );
 }
 
-void System::SendMessage( const MessageReceiver &receiver, const Message &message ) const {
-	MessageBus::GetInstance()->PostMessage( receiver, message );
+void System::SendMessage( const SystemType &system, const Message &message ) const {
+	MessageBus::GetInstance()->PostMessage( system, message );
 }
 
 void System::HandleMessages() {
@@ -29,6 +31,6 @@ void System::HandleMessages() {
         Message message = m_messages.front();
         m_messages.pop();
         
-    
+		std::cout << message.ToString() << std::endl;
     }
 }

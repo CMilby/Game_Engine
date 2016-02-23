@@ -1,5 +1,5 @@
 //
-//  message.hpp
+//  message.h
 //  Game_Engine
 //
 //  Created by Craig Milby on 2/18/16.
@@ -14,7 +14,7 @@
 #include "dateTime.h"
 #include "messagePayload.h"
 #include "messageType.h"
-#include "receiverType.h"
+#include "systemType.h"
 
 class Message {
 	
@@ -22,12 +22,12 @@ private:
 	MessageType m_type;
 	std::vector<MessagePayload> m_payload;
 	DateTime m_time;
-	MessageReceiver m_from;
+	SystemType m_from;
 	
 public:
-	Message( MessageReceiver from, MessageType type, const std::vector<MessagePayload> payload );
+	Message( SystemType from, MessageType type, const std::vector<MessagePayload> &payload = std::vector<MessagePayload>() );
     
     std::string ToString() const;
 };
 
-#endif /* message_hpp */
+#endif /* message_h */

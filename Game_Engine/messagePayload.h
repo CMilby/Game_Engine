@@ -16,25 +16,19 @@
 class MessagePayload {
 	
 private:
-	PayloadType m_type;
+    PayloadType m_type;
 	std::string m_payload;
 	
 public:
-	MessagePayload( const PayloadType &type, const std::string &payload );
+    MessagePayload( const PayloadType &type, const std::string &payload );
 	
-	void SetPayload( int payload ) { m_payload = std::to_string( payload ); }
-	void SetPayload( float payload ) { m_payload = std::to_string( payload ); }
-	void SetPayload( const std::string &payload ) { m_payload = payload; }
+	inline void SetPayload( int payload ) { m_payload = std::to_string( payload ); }
+	inline void SetPayload( float payload ) { m_payload = std::to_string( payload ); }
+	inline void SetPayload( const std::string &payload ) { m_payload = payload; }
 	
-	template<class T>
-	inline T GetPayload() const {
-		if ( m_type == TYPE_INT ) {
-			return std::stoi( m_payload );
-		} else if ( m_type == TYPE_FLOAT ) {
-			return std::stof( m_payload );
-		}
-		return m_payload;
-	}
+	inline std::string GetPayload() const { return m_payload; }
+	inline float GetPayloadFloat() const { return std::stof( m_payload ); }
+	inline int GetPayloadInt() const { return std::stoi( m_payload ); }
 };
 
 #endif /* messagePayload_h */

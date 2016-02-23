@@ -13,9 +13,8 @@
 #include <map>
 
 #include "message.h"
-#include "receiverType.h"
-
-class System;
+#include "system.h"
+#include "systemType.h"
 
 class MessageBus {
 	
@@ -23,7 +22,7 @@ private:
 	static MessageBus *s_instance;
 	MessageBus();
 	
-	std::map<MessageReceiver, System*> m_systems;
+	std::map<SystemType, System*> m_systems;
 	
 public:
 	static MessageBus* GetInstance() {
@@ -33,9 +32,11 @@ public:
         return s_instance;
     }
 	
+    void Update();
+    
 	void AddSystem( System *system );
 	
-	void PostMessage( const MessageReceiver &receiver, const Message &message ) const;
+	void PostMessage( const SystemType &receiver, const Message &message ) const;
 };
 
 #endif /* messageBus_h */
