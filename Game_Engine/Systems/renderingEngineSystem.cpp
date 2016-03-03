@@ -20,18 +20,10 @@ void RenderingEngineSystem::Init() {
     RenderFramework::InitRenderer();
 }
 
-void RenderingEngineSystem::Update() {
-    
-}
-
 void RenderingEngineSystem::Render() {
     RenderFramework::ClearScreen();
-    
+	
     SendMessage( SYSTEM_ENTITY, Message( SYSTEM_RENDERING_ENGINE, MESSAGE_RENDER ) );
 }
 
-void RenderingEngineSystem::HandleUpdate( const std::vector<MessagePayload> &payload ) {
-    System::HandleUpdate( payload );
-    
-    Render();
-}
+

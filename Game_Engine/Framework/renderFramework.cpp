@@ -23,3 +23,11 @@ void RenderFramework::InitRenderer() {
 void RenderFramework::ClearScreen() {
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 }
+
+void RenderFramework::SetDrawMode( const DrawMode &mode ) {
+	if ( mode == DRAW_MODE_SHADED ) {
+		glPolygonMode( GL_FRONT_AND_BACK, GL_FILL );
+	} else if ( mode == DRAW_MODE_WIREFRAME ) {
+		glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
+	}
+}

@@ -43,11 +43,12 @@ void CoreEngineSystem::HandleCoreEngineStart( const std::vector<MessagePayload>&
         while ( frameTime > 0.0f ) {
             float deltaTime = Math3D::Min( frameTime, dt );
             SendMessage( SYSTEM_INPUT, Message( SYSTEM_CORE_ENGINE, MESSAGE_UPDATE ) );
+			SendMessage( SYSTEM_GAME, Message( SYSTEM_CORE_ENGINE, MESSAGE_INPUT ) );
             SendMessage( SYSTEM_GAME, Message( SYSTEM_CORE_ENGINE, MESSAGE_UPDATE ) );
             frameTime -= deltaTime;
         }
         
-        SendMessage( SYSTEM_RENDERING_ENGINE, Message( SYSTEM_CORE_ENGINE, MESSAGE_UPDATE ) );
+        SendMessage( SYSTEM_RENDERING_ENGINE, Message( SYSTEM_CORE_ENGINE, MESSAGE_RENDER ) );
         SendMessage( SYSTEM_WINDOW, Message( SYSTEM_CORE_ENGINE, MESSAGE_UPDATE ) );
     }
 }

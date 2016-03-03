@@ -19,6 +19,7 @@ public:
     GameSystem();
     
     virtual void Init();
+	virtual void Input();
     virtual void Update();
 };
 

@@ -28,12 +28,13 @@ protected:
     void HandleCallback( const MessageType &type, const std::vector<MessagePayload> &payload );
     virtual void HandleUpdate( const std::vector<MessagePayload> &payload );
     virtual void HandleRender( const std::vector<MessagePayload> &payload );
+	virtual void HandleInput( const std::vector<MessagePayload> &payload );
     
 public:
 	System( const SystemType &system );
 	virtual ~System();
 	
-	void SendMessage( const SystemType &system, const Message &message ) const;
+	static void SendMessage( const SystemType &system, const Message &message );
 	void ReceiveMessage( const Message &message );
 	
     virtual void Init();

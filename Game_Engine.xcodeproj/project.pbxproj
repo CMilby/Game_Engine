@@ -109,6 +109,7 @@
 		440BD7341C889064001DB584 /* utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = utility.h; path = Engine/utility.h; sourceTree = "<group>"; };
 		440BD7421C88909D001DB584 /* windowFramework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = windowFramework.cpp; path = Framework/windowFramework.cpp; sourceTree = "<group>"; };
 		440BD7431C88909D001DB584 /* windowFramework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = windowFramework.h; path = Framework/windowFramework.h; sourceTree = "<group>"; };
+		440BD7451C88CD1E001DB584 /* drawMode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = drawMode.h; sourceTree = "<group>"; };
 		4415CD881BDD70CC00E91770 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		4421D5CB1C2C731600180432 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		447B54141BF04A9600BB5977 /* libSDL2-2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libSDL2-2.0.0.dylib"; path = "../../../../usr/local/Cellar/sdl2/2.0.3/lib/libSDL2-2.0.0.dylib"; sourceTree = "<group>"; };
@@ -148,6 +149,7 @@
 				440BD71B1C889057001DB584 /* renderFramework.h */,
 				440BD71C1C889057001DB584 /* shadingFramework.cpp */,
 				440BD71D1C889057001DB584 /* shadingFramework.h */,
+				440BD7451C88CD1E001DB584 /* drawMode.h */,
 			);
 			name = Framework;
 			sourceTree = "<group>";
@@ -168,10 +170,10 @@
 				440BD7091C88904F001DB584 /* renderingEngineSystem.cpp */,
 				440BD70A1C88904F001DB584 /* renderingEngineSystem.h */,
 				440BD70B1C88904F001DB584 /* system.cpp */,
-				440BD70C1C88904F001DB584 /* system.h */,
-				440BD70D1C88904F001DB584 /* systemType.h */,
 				440BD70E1C88904F001DB584 /* windowSystem.cpp */,
 				440BD70F1C88904F001DB584 /* windowSystem.h */,
+				440BD70C1C88904F001DB584 /* system.h */,
+				440BD70D1C88904F001DB584 /* systemType.h */,
 			);
 			name = Systems;
 			sourceTree = "<group>";

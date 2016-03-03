@@ -9,10 +9,14 @@
 #ifndef __RENDER_FRAMEWORK_H__
 #define __RENDER_FRAMEWORK_H__
 
+#include "drawMode.h"
+
 namespace RenderFramework {
 
     void InitRenderer();
     void ClearScreen();
+	
+	void SetDrawMode( const DrawMode &mode );
 };
 
 #endif /* renderer_h */

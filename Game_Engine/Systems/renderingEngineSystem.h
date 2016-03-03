@@ -15,14 +15,10 @@ class RenderingEngineSystem : public System {
     
 private:
     
-protected:
-    virtual void HandleUpdate( const std::vector<MessagePayload> &payload );
-    
 public:
     RenderingEngineSystem();
     
     virtual void Init();
-    virtual void Update();
     virtual void Render();
 };
 

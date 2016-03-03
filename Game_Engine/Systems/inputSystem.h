@@ -19,7 +19,7 @@ private:
     static InputSystem *s_instance;
 	static InputFramework *s_framework;
 	
-	static int s_drawMode;
+	static DrawMode s_drawMode;
 	
     InputSystem();
     
@@ -35,16 +35,16 @@ public:
     virtual void Init();
     virtual void Update();
     
-	bool IsKeyDown( int key ) const;
-	bool IsKeyUp( int key ) const;
+	static bool IsKeyDown( int key );
+	static bool IsKeyUp( int key );
 	
-	bool IsMouseDown( int button ) const;
-	bool IsMouseUp( int button ) const;
+	static bool IsMouseDown( int button );
+	static bool IsMouseUp( int button );
     
-	void SetCursorPosition( const Vector2<int> &position );
+	static void SetCursorPosition( const Vector2<int> &position );
     
-	void SetDrawMode( int mode );
-	int GetDrawMode();
+	static void SetDrawMode( const DrawMode &mode );
+	static DrawMode GetDrawMode();
 };
 
 #endif /* input_h */

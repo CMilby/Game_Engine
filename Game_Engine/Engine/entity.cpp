@@ -29,6 +29,13 @@ Entity* Entity::AddChild( Entity *child ) {
 	return this;
 }
 
+void Entity::InitAll() {
+	Init();
+	for ( unsigned int i = 0; i < m_children.size(); i++ ) {
+		m_children[ i ]->InitAll();
+	}
+}
+
 void Entity::InputAll() {
 	Input();
 	for ( unsigned int i = 0; i < m_children.size(); i++ ) {

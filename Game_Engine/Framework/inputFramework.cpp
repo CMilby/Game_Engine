@@ -10,6 +10,8 @@
 
 #include <SDL2/SDL.h>
 
+#include "renderFramework.h"
+
 InputFramework* InputFramework::s_instance = 0;
 
 bool InputFramework::s_inputs[] = { false };
@@ -110,6 +112,9 @@ bool InputFramework::IsWindowCloseRequested() {
     return s_isWindowCloseRequested;
 }
 
+void InputFramework::SetDrawMode( const DrawMode &mode ) {
+	RenderFramework::SetDrawMode( mode );
+}
 
 
 

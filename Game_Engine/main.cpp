@@ -26,7 +26,7 @@ int main( int argc, const char *argv[] ) {
     InputSystem *input = InputSystem::GetInstance();
     GameSystem *game = new GameSystem();
     EntitySystem *entity = new EntitySystem();
-    CameraSystem *camera = new CameraSystem();
+    CameraSystem *camera = new CameraSystem( new Camera() );
     
     bus->AddSystem( coreEngine );
     bus->AddSystem( renderingEngine );

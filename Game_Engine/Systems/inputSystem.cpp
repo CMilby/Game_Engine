@@ -15,7 +15,7 @@
 InputSystem* InputSystem::s_instance = 0;
 InputFramework* InputSystem::s_framework = 0;
 
-int InputSystem::s_drawMode = 0;
+DrawMode InputSystem::s_drawMode = DRAW_MODE_SHADED;
 
 InputSystem::InputSystem() : System( SYSTEM_INPUT ) {
     
@@ -51,34 +51,35 @@ void InputSystem::Update() {
     }
 }
 
-bool InputSystem::IsKeyDown( int key ) const {
+bool InputSystem::IsKeyDown( int key ) {
 	return s_framework->IsKeyDown( key );
 }
 
-bool InputSystem::IsKeyUp( int key ) const {
+bool InputSystem::IsKeyUp( int key ) {
 	return s_framework->IsKeyUp( key );
 }
 
-bool InputSystem::IsMouseDown( int button ) const {
+bool InputSystem::IsMouseDown( int button ) {
 	return s_framework->IsButtonDown( button );
 }
 
-bool InputSystem::IsMouseUp( int button ) const {
+bool InputSystem::IsMouseUp( int button ) {
 	return s_framework->IsButtonUp( button );
 }
 
 void InputSystem::SetCursorPosition( const Vector2<int> &position ) {
     std::vector<MessagePayload> payload;
     payload.emplace_back( MessagePayload( PAYLOAD_FLOAT, std::to_string( position.GetX() ) ) );
-    payload.emplace_back( MessagePayload( PAYLOAD_FLOAT, std::to_string( position.GetY() ) ) );
+	payload.emplace_back( MessagePayload( PAYLOAD_FLOAT, std::to_string( position.GetY() ) ) );
     SendMessage( SYSTEM_WINDOW, Message( SYSTEM_INPUT, MESSAGE_UPDATE_MOUSE_POSITION, payload ) );
 }
 
-void InputSystem::SetDrawMode( int mode ) {
+void InputSystem::SetDrawMode( const DrawMode &mode ) {
     s_drawMode = mode;
+	s_framework->SetDrawMode( mode );
 }
 
-int InputSystem::GetDrawMode() {
+DrawMode InputSystem::GetDrawMode() {
     return s_drawMode;
 }
 

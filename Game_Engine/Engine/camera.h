@@ -9,12 +9,22 @@
 #ifndef __CAMERA_H__
 #define __CAMERA_H__
 
-class Camera {
+#include "entity.h"
+
+class Camera : public Entity {
     
 private:
-    
+	
+protected:
+	virtual void Input();
+	
 public:
-    
+	Camera();
+	Camera( const Vector3<float> &position );
+	virtual ~Camera();
+
+	inline void SetPosition( const Vector3<float> &position ) { Entity::SetPosition( position ); }
+	inline Vector3<float> GetPosition() const { return Entity::GetPosition(); }
 };
 
 /*#include "entity.h"

@@ -20,6 +20,7 @@ private:
 	Transform m_transform;
 	
 protected:
+	virtual void Init() {}
 	virtual void Input() {}
 	virtual void Update() {}
 	virtual void Render() {}
@@ -32,9 +33,18 @@ public:
 	
 	Entity* AddChild( Entity *child );
 	
+	void InitAll();
 	void InputAll();
 	void UpdateAll();
 	void RenderAll();
+	
+	inline void SetPosition( const Vector3<float> &position ) { m_transform.SetPosition( position ); }
+	inline void SetScale( const Vector3<float> &scale ) { m_transform.SetScale( scale ); }
+	inline void SetRotation( const Quaternion &rotation ) { m_transform.SetRotation( rotation ); }
+	
+	inline Vector3<float> GetPosition() const { return m_transform.GetPosition(); }
+	inline Vector3<float> GetScale() const { return m_transform.GetScale(); }
+	inline Quaternion GetRotation() const { return m_transform.GetRotation(); }
 };
 
 #endif /* entity_h */

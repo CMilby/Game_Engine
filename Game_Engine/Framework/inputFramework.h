@@ -11,6 +11,7 @@
 
 #include <vector>
 
+#include "drawMode.h"
 #include "math3d.h"
 
 namespace MouseButton {
@@ -224,6 +225,8 @@ public:
     static std::vector<int> GetDownButtons();
     
     static bool IsWindowCloseRequested();
+	
+	static void SetDrawMode( const DrawMode &mode );
 	
 private:
 	static InputFramework *s_instance;

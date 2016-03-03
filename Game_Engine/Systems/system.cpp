@@ -21,13 +21,14 @@ System::~System() {
 void System::Init() {
     m_callbacks[ MESSAGE_UPDATE ] = std::bind( &System::HandleUpdate, this, std::placeholders::_1 );
     m_callbacks[ MESSAGE_RENDER ] = std::bind( &System::HandleRender, this, std::placeholders::_1 );
+	m_callbacks[ MESSAGE_INPUT ]  = std::bind( &System::HandleInput,  this, std::placeholders::_1 );
 }
 
 void System::ReceiveMessage( const Message &message ) {
     HandleCallback( message.GetType(), message.GetPayload() );
 }
 
-void System::SendMessage( const SystemType &system, const Message &message ) const {
+void System::SendMessage( const SystemType &system, const Message &message ) {
 	MessageBus::GetInstance()->PostMessage( system, message );
 }
 
@@ -43,6 +44,10 @@ void System::HandleUpdate( const std::vector<MessagePayload> &payload ) {
 
 void System::HandleRender( const std::vector<MessagePayload> &payload ) {
     Render();
+}
+
+void System::HandleInput( const std::vector<MessagePayload> &payload ) {
+	Input();
 }
 
 
