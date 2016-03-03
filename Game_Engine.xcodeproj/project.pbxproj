@@ -34,6 +34,9 @@
 		440BD73F1C889064001DB584 /* transform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 440BD7311C889064001DB584 /* transform.cpp */; };
 		440BD7401C889064001DB584 /* utility.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 440BD7331C889064001DB584 /* utility.cpp */; };
 		440BD7441C88909D001DB584 /* windowFramework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 440BD7421C88909D001DB584 /* windowFramework.cpp */; };
+		440BD74F1C88E35B001DB584 /* texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 440BD74D1C88E35B001DB584 /* texture.cpp */; };
+		440BD7541C88E3EF001DB584 /* renderableEntity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 440BD7511C88E3EF001DB584 /* renderableEntity.cpp */; };
+		440BD7571C88E4BF001DB584 /* stb_image.c in Sources */ = {isa = PBXBuildFile; fileRef = 440BD7551C88E4BF001DB584 /* stb_image.c */; };
 		4415CD891BDD70CC00E91770 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4415CD881BDD70CC00E91770 /* CoreFoundation.framework */; };
 		4415CD961BDDCD6400E91770 /* libglfw.3.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 449D85F61BD6BACB00B72584 /* libglfw.3.1.dylib */; };
 		4421D5CC1C2C731600180432 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4421D5CB1C2C731600180432 /* CoreGraphics.framework */; };
@@ -109,7 +112,15 @@
 		440BD7341C889064001DB584 /* utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = utility.h; path = Engine/utility.h; sourceTree = "<group>"; };
 		440BD7421C88909D001DB584 /* windowFramework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = windowFramework.cpp; path = Framework/windowFramework.cpp; sourceTree = "<group>"; };
 		440BD7431C88909D001DB584 /* windowFramework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = windowFramework.h; path = Framework/windowFramework.h; sourceTree = "<group>"; };
-		440BD7451C88CD1E001DB584 /* drawMode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = drawMode.h; sourceTree = "<group>"; };
+		440BD74C1C88E35B001DB584 /* material.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = material.h; path = Engine/material.h; sourceTree = "<group>"; };
+		440BD74D1C88E35B001DB584 /* texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = texture.cpp; path = Engine/texture.cpp; sourceTree = "<group>"; };
+		440BD74E1C88E35B001DB584 /* texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = texture.h; path = Engine/texture.h; sourceTree = "<group>"; };
+		440BD7501C88E3DC001DB584 /* drawMode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = drawMode.h; path = Framework/drawMode.h; sourceTree = "<group>"; };
+		440BD7511C88E3EF001DB584 /* renderableEntity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = renderableEntity.cpp; path = Engine/renderableEntity.cpp; sourceTree = "<group>"; };
+		440BD7521C88E3EF001DB584 /* renderableEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = renderableEntity.h; path = Engine/renderableEntity.h; sourceTree = "<group>"; };
+		440BD7531C88E3EF001DB584 /* shaderType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = shaderType.h; path = Engine/shaderType.h; sourceTree = "<group>"; };
+		440BD7551C88E4BF001DB584 /* stb_image.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = stb_image.c; path = Engine/stb_image.c; sourceTree = "<group>"; };
+		440BD7561C88E4BF001DB584 /* stb_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = stb_image.h; path = Engine/stb_image.h; sourceTree = "<group>"; };
 		4415CD881BDD70CC00E91770 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		4421D5CB1C2C731600180432 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		447B54141BF04A9600BB5977 /* libSDL2-2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libSDL2-2.0.0.dylib"; path = "../../../../usr/local/Cellar/sdl2/2.0.3/lib/libSDL2-2.0.0.dylib"; sourceTree = "<group>"; };
@@ -149,7 +160,7 @@
 				440BD71B1C889057001DB584 /* renderFramework.h */,
 				440BD71C1C889057001DB584 /* shadingFramework.cpp */,
 				440BD71D1C889057001DB584 /* shadingFramework.h */,
-				440BD7451C88CD1E001DB584 /* drawMode.h */,
+				440BD7501C88E3DC001DB584 /* drawMode.h */,
 			);
 			name = Framework;
 			sourceTree = "<group>";
@@ -240,6 +251,11 @@
 		44D3CD761BCBFAF40074E300 /* Engine */ = {
 			isa = PBXGroup;
 			children = (
+				440BD7551C88E4BF001DB584 /* stb_image.c */,
+				440BD7561C88E4BF001DB584 /* stb_image.h */,
+				440BD74C1C88E35B001DB584 /* material.h */,
+				440BD74D1C88E35B001DB584 /* texture.cpp */,
+				440BD74E1C88E35B001DB584 /* texture.h */,
 				440BD7211C889064001DB584 /* basicShader.cpp */,
 				440BD7221C889064001DB584 /* basicShader.h */,
 				440BD7231C889064001DB584 /* camera.cpp */,
@@ -260,6 +276,9 @@
 				440BD7321C889064001DB584 /* transform.h */,
 				440BD7331C889064001DB584 /* utility.cpp */,
 				440BD7341C889064001DB584 /* utility.h */,
+				440BD7511C88E3EF001DB584 /* renderableEntity.cpp */,
+				440BD7521C88E3EF001DB584 /* renderableEntity.h */,
+				440BD7531C88E3EF001DB584 /* shaderType.h */,
 			);
 			name = Engine;
 			sourceTree = "<group>";
@@ -342,9 +361,12 @@
 				440BD71F1C889057001DB584 /* renderFramework.cpp in Sources */,
 				440BD73E1C889064001DB584 /* time.cpp in Sources */,
 				440BD71E1C889057001DB584 /* inputFramework.cpp in Sources */,
+				440BD7541C88E3EF001DB584 /* renderableEntity.cpp in Sources */,
 				440BD7401C889064001DB584 /* utility.cpp in Sources */,
 				440BD6FC1C889027001DB584 /* message.cpp in Sources */,
+				440BD74F1C88E35B001DB584 /* texture.cpp in Sources */,
 				440BD7151C88904F001DB584 /* renderingEngineSystem.cpp in Sources */,
+				440BD7571C88E4BF001DB584 /* stb_image.c in Sources */,
 				440BD73C1C889064001DB584 /* mesh.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

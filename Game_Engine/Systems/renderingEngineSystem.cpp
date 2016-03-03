@@ -10,8 +10,10 @@
 
 #include "renderFramework.h"
 
+std::map<ShaderType, Shader*> RenderingEngineSystem::s_shaders = std::map<ShaderType, Shader*>();
+
 RenderingEngineSystem::RenderingEngineSystem() : System( SYSTEM_RENDERING_ENGINE ) {
-    
+	
 }
 
 void RenderingEngineSystem::Init() {
@@ -24,6 +26,10 @@ void RenderingEngineSystem::Render() {
     RenderFramework::ClearScreen();
 	
     SendMessage( SYSTEM_ENTITY, Message( SYSTEM_RENDERING_ENGINE, MESSAGE_RENDER ) );
+}
+
+void RenderingEngineSystem::AddShader( const ShaderType &type, Shader *shader ) {
+	s_shaders[ type ] = shader;
 }
 
 
