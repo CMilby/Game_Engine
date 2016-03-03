@@ -7,3 +7,9 @@
 //
 
 #include "transform.h"
+
+Transform::Transform( const Vector3<float> &position, const Vector3<float> &scale, const Quaternion &rotation ) {
+	m_position = position;
+	m_scale = scale;
+	m_rotation = rotation;
+}
