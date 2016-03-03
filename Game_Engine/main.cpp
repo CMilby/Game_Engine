@@ -8,51 +8,41 @@
 
 #include <cstdio>
 
-#include "config.h"
-#include "coreEngine.h"
-#include "entity.h"
-#include "firstPersonCamera.h"
-#include "freeCamera.h"
-#include "game.h"
-#include "input.h"
-#include "planet.h"
-#include "terrain.h"
-#include "thirdPersonCamera.h"
-#include "window.h"
+#include "cameraSystem.h"
+#include "coreEngineSystem.h"
+#include "entitySystem.h"
+#include "gameSystem.h"
+#include "inputSystem.h"
+#include "messageBus.h"
+#include "renderingEngineSystem.h"
+#include "windowSystem.h"
 
-class TestGame : public Game {
+int main( int argc, const char *argv[] ) {
+    MessageBus *bus = MessageBus::GetInstance();
     
-public:
-    TestGame() {}
+    CoreEngineSystem *coreEngine = new CoreEngineSystem();
+    RenderingEngineSystem *renderingEngine = new RenderingEngineSystem();
+    WindowSystem *window = new WindowSystem( 800, 768, "Game" );
+    InputSystem *input = InputSystem::GetInstance();
+    GameSystem *game = new GameSystem();
+    EntitySystem *entity = new EntitySystem();
+    CameraSystem *camera = new CameraSystem();
     
-    virtual void Init();
-};
-
-void TestGame::Init() {
-	Camera *camera = new FreeCamera( Vector3<float>( 0.0f, 3.0f, 10.0f ) );
-    RenderingEngine::SetMainCamera( *camera );
-    AddToScene( camera );
-	
-	RenderableEntity *plane = new RenderableEntity( new Mesh( "plane.obj" ) );
-	AddToScene( plane );
-	
-	RenderableEntity *cube = new RenderableEntity( new Mesh( "cube.obj" ) );
-	cube->SetPosition( Vector3<float>( 1.0f, 2.0f, -1.0f ) );
-	cube->GetTransform()->Rotate( Vector3<float>( 0.0f, 1.0f, 0.0f ), 45.0f );
-	AddToScene( cube );
-	
-    // Planet *planet = new Planet( 256.0f );
-    // AddToScene( planet );
-	
-	Game::Init();
+    bus->AddSystem( coreEngine );
+    bus->AddSystem( renderingEngine );
+    bus->AddSystem( window );
+    bus->AddSystem( input );
+    bus->AddSystem( game );
+    bus->AddSystem( entity );
+    bus->AddSystem( camera );
+    
+    bus->Init();
+    bus->PostMessage( SYSTEM_CORE_ENGINE, Message( SYSTEM_MESSAGE_BUS, MESSAGE_CORE_ENGINE_START ) );
 }
 
-int main(int argc, const char * argv[]) {
-	Window window( Config::GetScreenWidth(), Config::GetScreenHeight(), "Game" );
-    Input::Init( window );
-    TestGame game;
-    
-    CoreEngine coreEngine( &window, &game );
-    coreEngine.Init();
-    coreEngine.Start();
-}
+
+
+
+
+
+
