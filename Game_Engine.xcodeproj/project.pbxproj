@@ -10,6 +10,7 @@
 		440276501C8A2C8A00449791 /* phongShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4402764C1C8A2C8A00449791 /* phongShader.cpp */; };
 		440276511C8A2C8A00449791 /* textShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4402764E1C8A2C8A00449791 /* textShader.cpp */; };
 		440276541C8A35C400449791 /* config.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 440276521C8A35C400449791 /* config.cpp */; };
+		4402765B1C8A553800449791 /* testGame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 440276591C8A553800449791 /* testGame.cpp */; };
 		4402CE001C28C95A00F11AA8 /* libSDL2-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 447B54141BF04A9600BB5977 /* libSDL2-2.0.0.dylib */; };
 		44040E461C18E3410058A84B /* libassimp.3.1.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 44040E451C18E3410058A84B /* libassimp.3.1.1.dylib */; };
 		440BD6FC1C889027001DB584 /* message.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 440BD6F41C889027001DB584 /* message.cpp */; };
@@ -68,6 +69,8 @@
 		4402764F1C8A2C8A00449791 /* textShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = textShader.h; path = Engine/textShader.h; sourceTree = "<group>"; };
 		440276521C8A35C400449791 /* config.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = config.cpp; path = Engine/config.cpp; sourceTree = "<group>"; };
 		440276531C8A35C400449791 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = config.h; path = Engine/config.h; sourceTree = "<group>"; };
+		440276591C8A553800449791 /* testGame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = testGame.cpp; path = Game/testGame.cpp; sourceTree = "<group>"; };
+		4402765A1C8A553800449791 /* testGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = testGame.h; path = Game/testGame.h; sourceTree = "<group>"; };
 		44040E451C18E3410058A84B /* libassimp.3.1.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libassimp.3.1.1.dylib; path = ../../../../usr/local/Cellar/assimp/3.1.1/lib/libassimp.3.1.1.dylib; sourceTree = "<group>"; };
 		440BD6F41C889027001DB584 /* message.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = message.cpp; path = Messaging/message.cpp; sourceTree = "<group>"; };
 		440BD6F51C889027001DB584 /* message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = message.h; path = Messaging/message.h; sourceTree = "<group>"; };
@@ -159,6 +162,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		440276551C8A550D00449791 /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				440276591C8A553800449791 /* testGame.cpp */,
+				4402765A1C8A553800449791 /* testGame.h */,
+			);
+			name = Game;
+			sourceTree = "<group>";
+		};
 		440574661C767D1000F1CE5B /* Framework */ = {
 			isa = PBXGroup;
 			children = (
@@ -253,6 +265,7 @@
 				440574781C76A97300F1CE5B /* Systems */,
 				440574661C767D1000F1CE5B /* Framework */,
 				44D3CD761BCBFAF40074E300 /* Engine */,
+				440276551C8A550D00449791 /* Game */,
 				44D3CD6F1BCBFAED0074E300 /* main.cpp */,
 			);
 			path = Game_Engine;
@@ -380,6 +393,7 @@
 				440BD71F1C889057001DB584 /* renderFramework.cpp in Sources */,
 				440BD73E1C889064001DB584 /* time.cpp in Sources */,
 				440BD71E1C889057001DB584 /* inputFramework.cpp in Sources */,
+				4402765B1C8A553800449791 /* testGame.cpp in Sources */,
 				440BD7541C88E3EF001DB584 /* renderableEntity.cpp in Sources */,
 				440276511C8A2C8A00449791 /* textShader.cpp in Sources */,
 				440BD7401C889064001DB584 /* utility.cpp in Sources */,

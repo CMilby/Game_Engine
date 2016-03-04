@@ -18,22 +18,8 @@
 #include "renderingEngineSystem.h"
 #include "windowSystem.h"
 
-// Game Components
-#include "renderableEntity.h"
-
-class TestGame : public GameSystem {
-	
-private:
-	
-public:
-	TestGame() {}
-	
-	virtual void LoadGame();
-};
-
-void TestGame::LoadGame() {
-	AddToScene( new RenderableEntity( new Mesh( "cube.obj" ) ) );
-}
+// Game
+#include "testGame.h"
 
 int main( int argc, const char *argv[] ) {
     MessageBus *bus = MessageBus::GetInstance();
