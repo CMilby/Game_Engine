@@ -45,6 +45,12 @@ public:
 	inline Vector3<float> GetPosition() const { return m_transform.GetPosition(); }
 	inline Vector3<float> GetScale() const { return m_transform.GetScale(); }
 	inline Quaternion GetRotation() const { return m_transform.GetRotation(); }
+	
+	inline void Move( const Vector3<float> &direction, float amount ) { m_transform.Move( direction, amount ); }
+	inline void Rotate( const Quaternion &quat ) { m_transform.Rotate( quat ); }
+	inline void Rotate( const Vector3<float> &axis, float angle ) { m_transform.Rotate( axis, angle ); }
+	
+	inline Matrix4<float> GetModelMatrix() const { return m_transform.GetModelMatrix(); }
 };
 
 #endif /* entity_h */

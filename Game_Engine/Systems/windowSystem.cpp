@@ -8,6 +8,8 @@
 
 #include "windowSystem.h"
 
+#include "config.h"
+
 WindowSystem::WindowSystem() : System( SYSTEM_WINDOW ) {
     
 }
@@ -17,7 +19,10 @@ WindowSystem::WindowSystem( unsigned int width, unsigned int height, const std::
     m_heigt = height;
     m_title = title;
     m_fullscreen = false;
-    
+	
+	Config::SetScreenWidth( width );
+	Config::SetScreenHeight( height );
+	
     m_framework = new WindowFramework();
     m_framework->CreateWindow( width, height, title );
     m_framework->SetWindowFullscreen( false );

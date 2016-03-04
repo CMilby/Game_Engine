@@ -14,6 +14,8 @@ GameSystem::GameSystem() : System ( SYSTEM_GAME ) {
 
 void GameSystem::Init() {
     System::Init();
+	
+	m_callbacks[ MESSAGE_LOAD_GAME ] = std::bind( &GameSystem::HandleLoadGame, this, std::placeholders::_1 );
 }
 
 void GameSystem::AddToScene( Entity *entity ) {
@@ -30,4 +32,8 @@ void GameSystem::Input() {
 void GameSystem::Update() {
 	SendMessage( SYSTEM_CAMERA, Message( SYSTEM_GAME, MESSAGE_UPDATE ) );
     SendMessage( SYSTEM_ENTITY, Message( SYSTEM_GAME, MESSAGE_UPDATE ) );
+}
+
+void GameSystem::HandleLoadGame( const std::vector<MessagePayload> &payload ) {
+	LoadGame();
 }

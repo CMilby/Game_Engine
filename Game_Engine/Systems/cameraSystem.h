@@ -17,7 +17,7 @@
 class CameraSystem : public System {
     
 private:
-	Entity *m_cameraRoot;
+	static Camera *s_mainCamera;
     
 public:
     CameraSystem();
@@ -25,9 +25,13 @@ public:
     virtual ~CameraSystem();
     
     virtual void Init();
+	virtual void Input();
     virtual void Update();
 	
 	void AddCamera( Camera* camera );
+	
+	static Camera* GetMainCamera() { return s_mainCamera; }
+	static void SetMainCamera( Camera *mainCamera ) { s_mainCamera = mainCamera; }
 };
 
 #endif /* cameraSystem_h */

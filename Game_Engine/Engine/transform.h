@@ -14,6 +14,8 @@
 class Transform {
 	
 private:
+	static Matrix4<float> s_projection;
+	
 	Vector3<float> m_position;
 	Vector3<float> m_scale;
 	Quaternion m_rotation;
@@ -28,6 +30,16 @@ public:
 	inline void SetPosition( const Vector3<float> &position ) { m_position = position; }
 	inline void SetScale ( const Vector3<float> &scale ) { m_scale = scale; }
 	inline void SetRotation( const Quaternion &rotation ) { m_rotation = rotation; }
+	
+	Matrix4<float> GetModelMatrix() const;
+	
+	void Move( const Vector3<float> &direction, float amount );
+	void Rotate( const Quaternion &quat );
+	void Rotate( const Vector3<float> &axis, float angle );
+	
+	static void SetProjection( const Matrix4<float> &projection ) { s_projection = projection; }
+	static void SetProjection( float fov, float aspectRatio, float zNear, float zFar ) { SetProjection( Matrix4<float>().Perspective( fov, aspectRatio, zNear, zFar ) ); }
+	static Matrix4<float> GetProjection() { return s_projection; }
 };
 
 #endif /* transform_h */

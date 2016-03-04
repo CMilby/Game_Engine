@@ -27,6 +27,8 @@ void RenderingEngineSystem::Init() {
 	AddShader( SHADER_PHONG, new PhongShader() );
 	AddShader( SHADER_BASIC, new BasicShader() );
 	AddShader( SHADER_TEXT, new TextShader( "Courier_New.png" ) );
+	
+	InitShaders();
 }
 
 void RenderingEngineSystem::Render() {
@@ -37,6 +39,12 @@ void RenderingEngineSystem::Render() {
 
 void RenderingEngineSystem::AddShader( const ShaderType &type, Shader *shader ) {
 	s_shaders[ type ] = shader;
+}
+
+void RenderingEngineSystem::InitShaders() {
+	for ( auto const &s : s_shaders ) {
+		s.second->Init();
+	}
 }
 
 

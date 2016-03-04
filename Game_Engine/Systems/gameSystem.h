@@ -15,6 +15,7 @@
 class GameSystem : public System {
     
 private:
+	void HandleLoadGame( const std::vector<MessagePayload> &payload );
 	
 protected:
 	void AddToScene( Entity *entity );
@@ -25,6 +26,8 @@ public:
     virtual void Init();
 	virtual void Input();
     virtual void Update();
+	
+	virtual void LoadGame() {}
 };
 
 #endif /* gameSystem_h */

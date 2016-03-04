@@ -32,22 +32,28 @@ void CoreEngineSystem::HandleCoreEngineStart( const std::vector<MessagePayload>&
     
     m_isRunning = true;
  
-    float dt = 1.0f / ( float ) m_frameRate;
-    float currentTime = Timing::GetTimeMillis();
-    
+    // float dt = 1.0f / ( float ) m_frameRate;
+    // float currentTime = Timing::GetTimeMillis();
+	
+	SendMessage( SYSTEM_GAME, Message( SYSTEM_CORE_ENGINE, MESSAGE_LOAD_GAME ) );
+	
+	float lastTime = Timing::GetTimeMillis();
+	float currentTime = lastTime;
+	int frames = 0;
+	
     while ( m_isRunning ) {
-        float newTime = Timing::GetTimeMillis();
-        float frameTime = newTime = currentTime;
-        currentTime = newTime;
-        
-        while ( frameTime > 0.0f ) {
-            float deltaTime = Math3D::Min( frameTime, dt );
-            SendMessage( SYSTEM_INPUT, Message( SYSTEM_CORE_ENGINE, MESSAGE_UPDATE ) );
-			SendMessage( SYSTEM_GAME, Message( SYSTEM_CORE_ENGINE, MESSAGE_INPUT ) );
-            SendMessage( SYSTEM_GAME, Message( SYSTEM_CORE_ENGINE, MESSAGE_UPDATE ) );
-            frameTime -= deltaTime;
-        }
-        
+		currentTime = Timing::GetTimeMillis();
+		frames++;
+		
+		if ( currentTime - lastTime >= 1000.0f ) {
+			printf( "%i\n", frames );
+			frames = 0;
+			lastTime += 1000.0f;
+		}
+		
+		SendMessage( SYSTEM_INPUT, Message( SYSTEM_CORE_ENGINE, MESSAGE_UPDATE ) );
+		SendMessage( SYSTEM_GAME, Message( SYSTEM_CORE_ENGINE, MESSAGE_INPUT ) );
+		SendMessage( SYSTEM_GAME, Message( SYSTEM_CORE_ENGINE, MESSAGE_UPDATE ) );
         SendMessage( SYSTEM_RENDERING_ENGINE, Message( SYSTEM_CORE_ENGINE, MESSAGE_RENDER ) );
         SendMessage( SYSTEM_WINDOW, Message( SYSTEM_CORE_ENGINE, MESSAGE_UPDATE ) );
     }

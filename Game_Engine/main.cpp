@@ -8,6 +8,7 @@
 
 #include <cstdio>
 
+// Systems
 #include "cameraSystem.h"
 #include "coreEngineSystem.h"
 #include "entitySystem.h"
@@ -17,16 +18,33 @@
 #include "renderingEngineSystem.h"
 #include "windowSystem.h"
 
+// Game Components
+#include "renderableEntity.h"
+
+class TestGame : public GameSystem {
+	
+private:
+	
+public:
+	TestGame() {}
+	
+	virtual void LoadGame();
+};
+
+void TestGame::LoadGame() {
+	AddToScene( new RenderableEntity( new Mesh( "cube.obj" ) ) );
+}
+
 int main( int argc, const char *argv[] ) {
     MessageBus *bus = MessageBus::GetInstance();
     
     CoreEngineSystem *coreEngine = new CoreEngineSystem();
     RenderingEngineSystem *renderingEngine = new RenderingEngineSystem();
-    WindowSystem *window = new WindowSystem( 800, 768, "Game" );
+    WindowSystem *window = new WindowSystem( 800, 600, "Game" );
     InputSystem *input = InputSystem::GetInstance();
-    GameSystem *game = new GameSystem();
     EntitySystem *entity = new EntitySystem();
-    CameraSystem *camera = new CameraSystem( new Camera() );
+    CameraSystem *camera = new CameraSystem( new Camera( Vector3<float>( 0, 0, 10 ) ) );
+	GameSystem *game = new TestGame();
     
     bus->AddSystem( coreEngine );
     bus->AddSystem( renderingEngine );
@@ -35,7 +53,7 @@ int main( int argc, const char *argv[] ) {
     bus->AddSystem( game );
     bus->AddSystem( entity );
     bus->AddSystem( camera );
-    
+	
     bus->Init();
     bus->PostMessage( SYSTEM_CORE_ENGINE, Message( SYSTEM_MESSAGE_BUS, MESSAGE_CORE_ENGINE_START ) );
 }

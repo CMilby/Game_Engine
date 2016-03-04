@@ -20,6 +20,8 @@ class RenderingEngineSystem : public System {
 private:
 	static std::map<ShaderType, Shader*> s_shaders;
 	
+	void InitShaders();
+	
 public:
     RenderingEngineSystem();
     
