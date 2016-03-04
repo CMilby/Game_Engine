@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		440276501C8A2C8A00449791 /* phongShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4402764C1C8A2C8A00449791 /* phongShader.cpp */; };
+		440276511C8A2C8A00449791 /* textShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4402764E1C8A2C8A00449791 /* textShader.cpp */; };
 		4402CE001C28C95A00F11AA8 /* libSDL2-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 447B54141BF04A9600BB5977 /* libSDL2-2.0.0.dylib */; };
 		44040E461C18E3410058A84B /* libassimp.3.1.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 44040E451C18E3410058A84B /* libassimp.3.1.1.dylib */; };
 		440BD6FC1C889027001DB584 /* message.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 440BD6F41C889027001DB584 /* message.cpp */; };
@@ -58,6 +60,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4402764B1C8A2C8A00449791 /* lighting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lighting.h; path = Engine/lighting.h; sourceTree = "<group>"; };
+		4402764C1C8A2C8A00449791 /* phongShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = phongShader.cpp; path = Engine/phongShader.cpp; sourceTree = "<group>"; };
+		4402764D1C8A2C8A00449791 /* phongShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = phongShader.h; path = Engine/phongShader.h; sourceTree = "<group>"; };
+		4402764E1C8A2C8A00449791 /* textShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = textShader.cpp; path = Engine/textShader.cpp; sourceTree = "<group>"; };
+		4402764F1C8A2C8A00449791 /* textShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = textShader.h; path = Engine/textShader.h; sourceTree = "<group>"; };
 		44040E451C18E3410058A84B /* libassimp.3.1.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libassimp.3.1.1.dylib; path = ../../../../usr/local/Cellar/assimp/3.1.1/lib/libassimp.3.1.1.dylib; sourceTree = "<group>"; };
 		440BD6F41C889027001DB584 /* message.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = message.cpp; path = Messaging/message.cpp; sourceTree = "<group>"; };
 		440BD6F51C889027001DB584 /* message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = message.h; path = Messaging/message.h; sourceTree = "<group>"; };
@@ -251,6 +258,11 @@
 		44D3CD761BCBFAF40074E300 /* Engine */ = {
 			isa = PBXGroup;
 			children = (
+				4402764B1C8A2C8A00449791 /* lighting.h */,
+				4402764C1C8A2C8A00449791 /* phongShader.cpp */,
+				4402764D1C8A2C8A00449791 /* phongShader.h */,
+				4402764E1C8A2C8A00449791 /* textShader.cpp */,
+				4402764F1C8A2C8A00449791 /* textShader.h */,
 				440BD7551C88E4BF001DB584 /* stb_image.c */,
 				440BD7561C88E4BF001DB584 /* stb_image.h */,
 				440BD74C1C88E35B001DB584 /* material.h */,
@@ -348,6 +360,7 @@
 				440BD7161C88904F001DB584 /* system.cpp in Sources */,
 				440BD6FE1C889027001DB584 /* messagePayload.cpp in Sources */,
 				440BD7141C88904F001DB584 /* inputSystem.cpp in Sources */,
+				440276501C8A2C8A00449791 /* phongShader.cpp in Sources */,
 				440BD7111C88904F001DB584 /* coreEngineSystem.cpp in Sources */,
 				440BD7391C889064001DB584 /* dateTime.cpp in Sources */,
 				440BD6FD1C889027001DB584 /* messageBus.cpp in Sources */,
@@ -362,6 +375,7 @@
 				440BD73E1C889064001DB584 /* time.cpp in Sources */,
 				440BD71E1C889057001DB584 /* inputFramework.cpp in Sources */,
 				440BD7541C88E3EF001DB584 /* renderableEntity.cpp in Sources */,
+				440276511C8A2C8A00449791 /* textShader.cpp in Sources */,
 				440BD7401C889064001DB584 /* utility.cpp in Sources */,
 				440BD6FC1C889027001DB584 /* message.cpp in Sources */,
 				440BD74F1C88E35B001DB584 /* texture.cpp in Sources */,

@@ -41,7 +41,10 @@ public:
     
     void AttachShader( int shaderID ) const;
     void LinkProgram() const;
-    
+	
+	void EnableVertexAttribArray( unsigned int position ) const;
+	void DisableVertexAttribArray( unsigned int position ) const;
+	
     void Bind() const;
     
     void AddUniform( const std::string &name );

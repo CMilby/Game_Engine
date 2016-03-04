@@ -9,12 +9,16 @@
 #ifndef __GAME_SYSTEM_H__
 #define __GAME_SYSTEM_H__
 
+#include "entity.h"
 #include "system.h"
 
 class GameSystem : public System {
     
 private:
-    
+	
+protected:
+	void AddToScene( Entity *entity );
+	
 public:
     GameSystem();
     

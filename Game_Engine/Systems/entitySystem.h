@@ -17,6 +17,8 @@ class EntitySystem : public System {
 private:
 	Entity *m_root;
 	
+	void HandleAddEntity( const std::vector<MessagePayload> &payload );
+	
 public:
     EntitySystem();
 	EntitySystem( Entity* root );

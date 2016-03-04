@@ -16,6 +16,12 @@ void GameSystem::Init() {
     System::Init();
 }
 
+void GameSystem::AddToScene( Entity *entity ) {
+	std::vector<MessagePayload> payload;
+	payload.emplace_back( MessagePayload( PAYLOAD_ENTITY, entity ) );
+	SendMessage( SYSTEM_ENTITY, Message( SYSTEM_GAME, MESSAGE_ADD_ENTITY, payload ) );
+}
+
 void GameSystem::Input() {
 	SendMessage( SYSTEM_CAMERA, Message( SYSTEM_GAME, MESSAGE_INPUT ) );
 	SendMessage( SYSTEM_ENTITY, Message( SYSTEM_GAME, MESSAGE_INPUT ) );

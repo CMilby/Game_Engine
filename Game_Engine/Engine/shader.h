@@ -11,6 +11,8 @@
 
 #include <string>
 
+#include "camera.h"
+#include "material.h"
 #include "shadingFramework.h"
 
 class Shader {
@@ -28,10 +30,16 @@ public:
     
     void AttachShader( int shaderID ) const;
     void LinkProgram() const;
-    
+	
+	virtual void Enable() const {}
+	virtual void Disable() const {}
+	
+	void EnableVertexAttribArray( unsigned int position ) const;
+	void DisableVertexAttribArray( unsigned int position ) const;
+	
     void Bind() const;
     
-    // virtual void UpdateUniforms( const Matrix4<float> &world, const Matrix4<float> &projected, const Camera &camera, const Material &material );
+    virtual void UpdateUniforms( const Matrix4<float> &world, const Matrix4<float> &projected, const Camera &camera, const Material &material );
     
     void AddUniform( const std::string &name ) const;
     GLuint GetUniform( const std::string &name ) const;

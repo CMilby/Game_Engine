@@ -18,7 +18,7 @@ Message::Message( SystemType from, MessageType type, const std::vector<MessagePa
 std::string Message::ToString() const {
     std::string ret = m_time.ToString( "H:m.s" ) + " | " + MessageSystemToString( m_from ) + " | " + MessageTypeToString( m_type ) + " | ";
 	for ( unsigned int i = 0; i < m_payload.size(); i++ ) {
-		ret += m_payload[ i ].GetPayload() + " ";
+		ret += m_payload[ i ].GetPayloadString() + " ";
 	}
 	return ret;
 }

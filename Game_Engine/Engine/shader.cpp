@@ -8,10 +8,6 @@
 
 #include "shader.h"
 
-#include <cassert>
-#include <fstream>
-#include <vector>
-
 #include "utility.h"
 
 Shader::Shader() {
@@ -38,8 +34,20 @@ void Shader::LinkProgram() const {
     m_framework->LinkProgram();
 }
 
+void Shader::EnableVertexAttribArray( unsigned int position ) const {
+	m_framework->EnableVertexAttribArray( position );
+}
+
+void Shader::DisableVertexAttribArray( unsigned int position ) const {
+	m_framework->DisableVertexAttribArray( position );
+}
+
 void Shader::Bind() const {
     m_framework->Bind();
+}
+
+void Shader::UpdateUniforms( const Matrix4<float> &world, const Matrix4<float> &projected, const Camera &camera, const Material &material ) {
+	
 }
 
 void Shader::AddUniform( const std::string &name ) const {

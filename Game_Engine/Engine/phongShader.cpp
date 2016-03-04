@@ -70,19 +70,18 @@ void PhongShader::Init() {
 }
 
 void PhongShader::Enable() const {
-    glEnableVertexAttribArray( 0 );
-    glEnableVertexAttribArray( 1 );
-    glEnableVertexAttribArray( 2 );
+	EnableVertexAttribArray( 0 );
+	EnableVertexAttribArray( 1 );
+	EnableVertexAttribArray( 2 );
 }
 
 void PhongShader::Disable() const {
-    glDisableVertexAttribArray( 0 );
-    glDisableVertexAttribArray( 1 );
-    glDisableVertexAttribArray( 2 );
+	DisableVertexAttribArray( 0 );
+	DisableVertexAttribArray( 1 );
+	DisableVertexAttribArray( 2 );
 }
 
 void PhongShader::UpdateUniforms( const Matrix4<float> &world, const Matrix4<float> &projected, const Camera &camera, const Material &material ) {
-    
     material.m_texture->Bind();
     UniformVector3f( "baseColor", material.m_color );
     UniformVector3f( "eyePos", camera.GetPosition() );

@@ -24,6 +24,7 @@ enum MessageType {
 	MESSAGE_ERROR,
 	MESSAGE_WARNING,
 	MESSAGE_INPUT,
+	MESSAGE_ADD_ENTITY,
 	NUMBER_MESSAGES
 };
 
@@ -53,6 +54,8 @@ inline std::string MessageTypeToString( MessageType type ) {
 			return "WARNING";
 		case MESSAGE_INPUT:
 			return "INPUT";
+		case MESSAGE_ADD_ENTITY:
+			return "ADD_ENTITY";
 		case NUMBER_MESSAGES:
 			return std::to_string( NUMBER_MESSAGES );
 	}

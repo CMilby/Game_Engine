@@ -41,6 +41,14 @@ void ShadingFramework::LinkProgram() const {
     Bind();
 }
 
+void ShadingFramework::EnableVertexAttribArray( unsigned int position ) const {
+	glEnableVertexAttribArray( position );
+}
+
+void ShadingFramework::DisableVertexAttribArray( unsigned int position ) const {
+	glDisableVertexAttribArray( position );
+}
+
 void ShadingFramework::AddUniform( const std::string &name ) {
     int location = glGetUniformLocation( m_program, name.c_str() );
     

@@ -33,7 +33,7 @@ void InputSystem::Update() {
     
     for ( unsigned int i = 0; i < downKeys.size(); i++ ) {
         payload.clear();
-        payload.emplace_back( MessagePayload( PAYLOAD_INT, std::to_string( downKeys[ i ] ) ) );
+        payload.emplace_back( MessagePayload( PAYLOAD_INT, &downKeys[ i ] ) );
         SendMessage( SYSTEM_ALL, Message( SYSTEM_INPUT, MESSAGE_KEYSTROKE, payload ) );
     }
     
@@ -69,8 +69,12 @@ bool InputSystem::IsMouseUp( int button ) {
 
 void InputSystem::SetCursorPosition( const Vector2<int> &position ) {
     std::vector<MessagePayload> payload;
-    payload.emplace_back( MessagePayload( PAYLOAD_FLOAT, std::to_string( position.GetX() ) ) );
-	payload.emplace_back( MessagePayload( PAYLOAD_FLOAT, std::to_string( position.GetY() ) ) );
+	
+	int x = position.GetX();
+	int y = position.GetY();
+	
+    payload.emplace_back( MessagePayload( PAYLOAD_FLOAT, &x ) );
+	payload.emplace_back( MessagePayload( PAYLOAD_FLOAT, &y ) );
     SendMessage( SYSTEM_WINDOW, Message( SYSTEM_INPUT, MESSAGE_UPDATE_MOUSE_POSITION, payload ) );
 }
 

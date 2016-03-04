@@ -8,7 +8,10 @@
 
 #include "renderingEngineSystem.h"
 
+#include "basicShader.h"
+#include "phongShader.h"
 #include "renderFramework.h"
+#include "textShader.h"
 
 std::map<ShaderType, Shader*> RenderingEngineSystem::s_shaders = std::map<ShaderType, Shader*>();
 
@@ -20,6 +23,10 @@ void RenderingEngineSystem::Init() {
     System::Init();
     
     RenderFramework::InitRenderer();
+	
+	AddShader( SHADER_PHONG, new PhongShader() );
+	AddShader( SHADER_BASIC, new BasicShader() );
+	AddShader( SHADER_TEXT, new TextShader( "Courier_New.png" ) );
 }
 
 void RenderingEngineSystem::Render() {

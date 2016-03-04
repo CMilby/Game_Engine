@@ -8,7 +8,26 @@
 
 #include "messagePayload.h"
 
-MessagePayload::MessagePayload( const PayloadType &type, const std::string &payload ) {
+MessagePayload::MessagePayload( const PayloadType &type, void *payload ) {
 	m_type = type;
 	m_payload = payload;
+}
+
+std::string MessagePayload::GetPayloadString() const {
+	std::string *str = static_cast<std::string*>( m_payload );
+	std::string ret = *str;
+	delete str;
+	return ret;
+}
+
+int MessagePayload::GetPayloadInt() const {
+	return std::stoi( GetPayloadString() );
+}
+
+float MessagePayload::GetPayloadFloat() const {
+	return std::stof( GetPayloadString() );
+}
+
+Entity* MessagePayload::GetPayloadEntity() const {
+	return static_cast<Entity*>( m_payload );
 }
