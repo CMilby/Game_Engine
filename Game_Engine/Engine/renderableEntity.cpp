@@ -25,6 +25,13 @@ RenderableEntity::RenderableEntity( Mesh *mesh, Material *material ) {
 	m_isVisible = true;
 }
 
+RenderableEntity::RenderableEntity( const std::string &mesh, const std::string &texture ) {
+	m_mesh = new Mesh( mesh );
+	m_material = new Material( texture );
+	m_shaderType = SHADER_PHONG;
+	m_isVisible = true;
+}
+
 RenderableEntity::~RenderableEntity() {
 	if ( m_mesh ) delete m_mesh;
 	if ( m_material ) delete m_material;
@@ -35,12 +42,13 @@ void RenderableEntity::Render() {
 		Shader *shader = RenderingEngineSystem::GetShaders()[ m_shaderType ];
 		shader->Bind();
 		
-	
 		Matrix4<float> model = GetModelMatrix();
 		Camera *camera = CameraSystem::GetMainCamera();
 		
 		if ( m_shaderType == SHADER_BASIC ) {
-			
+			shader->Enable();
+			shader->UpdateUniforms( model, Transform::GetProjection() * CameraSystem::GetMainCamera()->GetView() * model, *camera, *m_material );
+			shader->Disable();
 		} else if ( m_shaderType == SHADER_PHONG ) {
 			shader->Enable();
 			shader->UpdateUniforms( model, Transform::GetProjection() * CameraSystem::GetMainCamera()->GetView() * model, *camera, *m_material );

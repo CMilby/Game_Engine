@@ -25,6 +25,13 @@ struct Material {
         m_specularIntensity = specularIntensity;
         m_specularPower = specularPower;
     }
+	
+	Material( const std::string &texture, const Vector3<float> &color = Vector3<float>( 1.0f, 1.0f, 1.0f ), float specularIntensity = 1.0f, float specularPower = 32.0f ) {
+		m_texture = new Texture( texture );
+		m_color = color;
+		m_specularIntensity = specularIntensity;
+		m_specularPower = specularPower;
+	}
 };
 
 #endif /* material_h */

@@ -28,6 +28,7 @@ protected:
 public:
 	RenderableEntity();
 	RenderableEntity( Mesh *mesh, Material *material = new Material() );
+	RenderableEntity( const std::string &mesh, const std::string &texture = "test.png" );
 	virtual ~RenderableEntity();
 	
 	inline void SetShaderType( const ShaderType &type ) { m_shaderType = type; }

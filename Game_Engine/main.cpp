@@ -29,7 +29,7 @@ int main( int argc, const char *argv[] ) {
     WindowSystem *window = new WindowSystem( 800, 600, "Game" );
     InputSystem *input = InputSystem::GetInstance();
     EntitySystem *entity = new EntitySystem();
-    CameraSystem *camera = new CameraSystem( new Camera( Vector3<float>( 0, 0, 10 ) ) );
+    CameraSystem *camera = new CameraSystem( new Camera( Vector3<float>( 0, 3, 10 ) ) );
 	GameSystem *game = new TestGame();
     
     bus->AddSystem( coreEngine );
