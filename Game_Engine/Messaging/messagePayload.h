@@ -13,7 +13,7 @@
 
 #include "entity.h"
 #include "payloadType.h"
-#include "../physicsBody.h"
+#include "physicsBody.h"
 
 class MessagePayload {
 	
