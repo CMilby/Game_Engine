@@ -17,6 +17,7 @@ enum SystemType {
 	SYSTEM_GAME,
 	SYSTEM_RENDERING_ENGINE,
 	SYSTEM_CORE_ENGINE,
+	SYSTEM_PHYSICS_ENGINE,
 	SYSTEM_INPUT,
 	SYSTEM_CAMERA,
     SYSTEM_WINDOW,
@@ -47,6 +48,8 @@ inline std::string MessageSystemToString( SystemType system ) {
             return "WINDOW";
         case SYSTEM_ENTITY:
             return "ENTITY";
+		case SYSTEM_PHYSICS_ENGINE:
+			return "PHYSICS_ENGINE";
 		case NUM_SYSTEMS:
 			return std::to_string( NUM_SYSTEMS );
 	}

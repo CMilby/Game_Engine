@@ -11,6 +11,7 @@
 
 #include <vector>
 
+#include "physicsBody.h"
 #include "transform.h"
 
 class Entity {
@@ -18,11 +19,12 @@ class Entity {
 private:
 	std::vector<Entity*> m_children;
 	Transform m_transform;
+	PhysicsBody *m_physicsBody;
 	
 protected:
 	virtual void Init() {}
 	virtual void Input() {}
-	virtual void Update() {}
+	virtual void Update();
 	virtual void Render() {}
 	
 public:
@@ -37,6 +39,8 @@ public:
 	void InputAll();
 	void UpdateAll();
 	void RenderAll();
+	
+	void SetPhysicsBody( PhysicsBody *pPhysicsBody );
 	
 	inline void SetPosition( const Vector3<float> &position ) { m_transform.SetPosition( position ); }
 	inline void SetScale( const Vector3<float> &scale ) { m_transform.SetScale( scale ); }

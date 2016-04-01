@@ -19,6 +19,7 @@ class RenderableEntity : public Entity {
 private:
 	Mesh *m_mesh;
 	Material *m_material;
+	
 	ShaderType m_shaderType;
 	bool m_isVisible;
 	

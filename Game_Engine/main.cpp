@@ -15,6 +15,7 @@
 #include "gameSystem.h"
 #include "inputSystem.h"
 #include "messageBus.h"
+#include "physicsEngineSystem.h"
 #include "renderingEngineSystem.h"
 #include "windowSystem.h"
 
@@ -26,6 +27,7 @@ int main( int argc, const char *argv[] ) {
     
     CoreEngineSystem *coreEngine = new CoreEngineSystem();
     RenderingEngineSystem *renderingEngine = new RenderingEngineSystem();
+	PhysicsEngineSystem *physicsEngine = new PhysicsEngineSystem();
     WindowSystem *window = new WindowSystem( 800, 600, "Game" );
     InputSystem *input = InputSystem::GetInstance();
     EntitySystem *entity = new EntitySystem();
@@ -34,6 +36,7 @@ int main( int argc, const char *argv[] ) {
     
     bus->AddSystem( coreEngine );
     bus->AddSystem( renderingEngine );
+	bus->AddSystem( physicsEngine );
     bus->AddSystem( window );
     bus->AddSystem( input );
     bus->AddSystem( game );

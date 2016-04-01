@@ -45,19 +45,19 @@ void RenderableEntity::Render() {
 		Matrix4<float> model = GetModelMatrix();
 		Camera *camera = CameraSystem::GetMainCamera();
 		
+		shader->Enable();
+		
 		if ( m_shaderType == SHADER_BASIC ) {
-			shader->Enable();
 			shader->UpdateUniforms( model, Transform::GetProjection() * CameraSystem::GetMainCamera()->GetView() * model, *camera, *m_material );
-			shader->Disable();
 		} else if ( m_shaderType == SHADER_PHONG ) {
-			shader->Enable();
 			shader->UpdateUniforms( model, Transform::GetProjection() * CameraSystem::GetMainCamera()->GetView() * model, *camera, *m_material );
-			shader->Disable();
 		} else if ( m_shaderType == SHADER_SKYBOX ) {
 			
 		} else if ( m_shaderType == SHADER_TEXT ) {
 			
 		}
+		
+		shader->Disable();
 		
 		m_mesh->Render();
 	}

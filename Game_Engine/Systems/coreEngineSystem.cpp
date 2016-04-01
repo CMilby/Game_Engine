@@ -25,25 +25,33 @@ void CoreEngineSystem::Update() {
     HandleMessages();
 }
 
+#include "renderableEntity.h"
+
 void CoreEngineSystem::HandleCoreEngineStart( const std::vector<MessagePayload>& payload ) {
     if ( m_isRunning ) {
         return;
     }
     
     m_isRunning = true;
- 
-    // float dt = 1.0f / ( float ) m_frameRate;
-    // float currentTime = Timing::GetTimeMillis();
 	
 	SendMessage( SYSTEM_GAME, Message( SYSTEM_CORE_ENGINE, MESSAGE_LOAD_GAME ) );
 	
 	float lastTime = Timing::GetTimeMillis();
 	float currentTime = lastTime;
+	float lastMillis = currentTime;
 	int frames = 0;
+	
+	float myDelta = 0.0f;
+	
+	std::vector<MessagePayload> myPayload;
+	myPayload.emplace_back( MessagePayload( PAYLOAD_FLOAT, &myDelta ) );
 	
     while ( m_isRunning ) {
 		currentTime = Timing::GetTimeMillis();
 		frames++;
+		
+		myDelta = ( currentTime - lastMillis ) / 1000.0f;
+		myPayload[ 0 ] = MessagePayload( PAYLOAD_FLOAT, &myDelta );
 		
 		if ( currentTime - lastTime >= 1000.0f ) {
 			printf( "%i\n", frames );
@@ -54,8 +62,14 @@ void CoreEngineSystem::HandleCoreEngineStart( const std::vector<MessagePayload>&
 		SendMessage( SYSTEM_INPUT, Message( SYSTEM_CORE_ENGINE, MESSAGE_UPDATE ) );
 		SendMessage( SYSTEM_GAME, Message( SYSTEM_CORE_ENGINE, MESSAGE_INPUT ) );
 		SendMessage( SYSTEM_GAME, Message( SYSTEM_CORE_ENGINE, MESSAGE_UPDATE ) );
+		
+		SendMessage( SYSTEM_PHYSICS_ENGINE, Message( SYSTEM_CORE_ENGINE, MESSAGE_SIMULATE_PHYSICS, myPayload ) );
+		SendMessage( SYSTEM_PHYSICS_ENGINE, Message( SYSTEM_CORE_ENGINE, MESSAGE_HANDLE_COLLISIONS ) );
+		
         SendMessage( SYSTEM_RENDERING_ENGINE, Message( SYSTEM_CORE_ENGINE, MESSAGE_RENDER ) );
         SendMessage( SYSTEM_WINDOW, Message( SYSTEM_CORE_ENGINE, MESSAGE_UPDATE ) );
+		
+		lastMillis = currentTime;
     }
 }
 

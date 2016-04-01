@@ -60,6 +60,14 @@ public:
         }
         return max;
     }
+	
+	inline Vector<T, D> Max( const Vector<T, D> &pOther ) const {
+		Vector<T, D> myResult;
+		for ( unsigned int i = 0; i < D; i++ ) {
+			myResult[ i ] = m_values[ i ] > pOther[ i ] ? m_values[ i ] : pOther[ i ];
+		}
+		return myResult;
+	}
     
     inline T Min() const {
         T min = m_values[ 0 ];
@@ -70,7 +78,15 @@ public:
         }
         return min;
     }
-    
+	
+	inline Vector<T, D> Midpoint( const Vector<T, D> &pOther ) const {
+		Vector<T, D> myResult;
+		for ( unsigned int i = 0; i < D; i++ ) {
+			myResult[ i ] = ( m_values[ i ] + pOther[ i ] ) / T( 2 );
+		}
+		return myResult;
+	}
+	
     inline Vector<T, D> operator+( const Vector<T, D> &vect ) const {
         Vector<T, D> sum;
         for ( unsigned int i = 0; i < D; i++ ) {
@@ -78,6 +94,14 @@ public:
         }
         return sum;
     }
+	
+	inline Vector<T, D> operator+( const T &pScalar ) const {
+		Vector<T, D> mySum;
+		for ( unsigned int i = 0; i < D; i++ ) {
+			mySum[ i ] = m_values[ i ] + pScalar;
+		}
+		return mySum;
+	}
     
     inline Vector<T, D>& operator+=( const Vector<T, D> &vect ) {
         for ( unsigned int i = 0; i < D; i++ ) {
@@ -93,6 +117,14 @@ public:
         }
         return difference;
     }
+	
+	inline Vector<T, D> operator-( const T &pScalar ) const {
+		Vector<T, D> myDifferece;
+		for ( unsigned int i = 0; i < D; i++ ) {
+			myDifferece[ i ] = m_values[ i ] - pScalar;
+		}
+		return myDifferece;
+	}
     
     inline Vector<T, D>& operator-=( const Vector<T, D> &vect ) {
         for ( unsigned int i = 0; i < D; i++ ) {

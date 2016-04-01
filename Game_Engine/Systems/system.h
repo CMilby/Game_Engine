@@ -25,16 +25,16 @@ private:
 protected:
     std::map<MessageType, std::function<void( const std::vector<MessagePayload>& )>> m_callbacks;
     
-    void HandleCallback( const MessageType &type, const std::vector<MessagePayload> &payload );
-    virtual void HandleUpdate( const std::vector<MessagePayload> &payload );
-    virtual void HandleRender( const std::vector<MessagePayload> &payload );
-	virtual void HandleInput( const std::vector<MessagePayload> &payload );
+    void HandleCallback( const MessageType &type, const std::vector<MessagePayload> &pPayload );
+    virtual void HandleUpdate( const std::vector<MessagePayload> &pPayload );
+    virtual void HandleRender( const std::vector<MessagePayload> &pPayload );
+	virtual void HandleInput( const std::vector<MessagePayload> &pPayload );
     
 public:
 	System( const SystemType &system );
 	virtual ~System();
 	
-	static void SendMessage( const SystemType &system, const Message &message );
+	void SendMessage( const SystemType &system, const Message &message );
 	void ReceiveMessage( const Message &message );
 	
     virtual void Init();

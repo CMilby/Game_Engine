@@ -13,6 +13,7 @@
 
 #include "entity.h"
 #include "payloadType.h"
+#include "../physicsBody.h"
 
 class MessagePayload {
 	
@@ -29,6 +30,7 @@ public:
 	float GetPayloadFloat() const;
 	int GetPayloadInt() const;
 	Entity* GetPayloadEntity() const;
+	PhysicsBody* GetPayloadPhysicsBody() const;
 };
 
 #endif /* messagePayload_h */

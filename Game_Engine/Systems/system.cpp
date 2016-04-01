@@ -9,6 +9,7 @@
 #include "system.h"
 
 #include "messageBus.h"
+#include "messenger.h"
 
 System::System( const SystemType &system ) {
 	m_systemType = system;
@@ -29,24 +30,24 @@ void System::ReceiveMessage( const Message &message ) {
 }
 
 void System::SendMessage( const SystemType &system, const Message &message ) {
-	MessageBus::GetInstance()->PostMessage( system, message );
+	Messenger::SendMessage( system, message );
 }
 
-void System::HandleCallback( const MessageType &type, const std::vector<MessagePayload> &payload ) {
+void System::HandleCallback( const MessageType &type, const std::vector<MessagePayload> &pPayload ) {
     if ( m_callbacks.count( type ) ) {
-        m_callbacks[ type ]( payload );
+        m_callbacks[ type ]( pPayload );
     }
 }
 
-void System::HandleUpdate( const std::vector<MessagePayload> &payload ) {
+void System::HandleUpdate( const std::vector<MessagePayload> &pPayload ) {
     Update();
 }
 
-void System::HandleRender( const std::vector<MessagePayload> &payload ) {
+void System::HandleRender( const std::vector<MessagePayload> &pPayload ) {
     Render();
 }
 
-void System::HandleInput( const std::vector<MessagePayload> &payload ) {
+void System::HandleInput( const std::vector<MessagePayload> &pPayload ) {
 	Input();
 }
 

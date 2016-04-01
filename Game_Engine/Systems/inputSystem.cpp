@@ -75,7 +75,7 @@ void InputSystem::SetCursorPosition( const Vector2<int> &position ) {
 	
     payload.emplace_back( MessagePayload( PAYLOAD_FLOAT, &x ) );
 	payload.emplace_back( MessagePayload( PAYLOAD_FLOAT, &y ) );
-    SendMessage( SYSTEM_WINDOW, Message( SYSTEM_INPUT, MESSAGE_UPDATE_MOUSE_POSITION, payload ) );
+    s_instance->SendMessage( SYSTEM_WINDOW, Message( SYSTEM_INPUT, MESSAGE_UPDATE_MOUSE_POSITION, payload ) );
 }
 
 void InputSystem::SetDrawMode( const DrawMode &mode ) {

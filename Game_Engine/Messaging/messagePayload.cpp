@@ -21,13 +21,17 @@ std::string MessagePayload::GetPayloadString() const {
 }
 
 int MessagePayload::GetPayloadInt() const {
-	return std::stoi( GetPayloadString() );
+	return *static_cast<int*>( m_payload );
 }
 
 float MessagePayload::GetPayloadFloat() const {
-	return std::stof( GetPayloadString() );
+	return *static_cast<float*>( m_payload );
 }
 
 Entity* MessagePayload::GetPayloadEntity() const {
 	return static_cast<Entity*>( m_payload );
+}
+
+PhysicsBody* MessagePayload::GetPayloadPhysicsBody() const {
+	return static_cast<PhysicsBody*>( m_payload );
 }
