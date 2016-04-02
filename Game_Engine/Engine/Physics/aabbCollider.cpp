@@ -62,11 +62,12 @@ IntersectData AABBCollider::IntersectSphereCollider( const SphereCollider &pOthe
 }
 
 IntersectData AABBCollider::IntersectPlaneCollider( const PlaneCollider &pOther ) const {
-	Vector3<float> myMidpoint = ( GetMaxExtents() - GetMinExtents() ) / 2.0f;
-	Vector3<float> myCenter = GetMinExtents() + myMidpoint;
+	Vector3<float> myCenter = ( GetMaxExtents() + GetMinExtents() ) * 0.5f;
+	Vector3<float> myExtents = GetMaxExtents() - myCenter;
 	
-	float myRadius = fabsf( pOther.GetNormal().GetX() * myMidpoint.GetX() ) + fabsf( pOther.GetNormal().GetY() + myMidpoint.GetY() ) + fabsf( pOther.GetNormal().GetZ() + myMidpoint.GetZ() );
-	return PlaneCollider( pOther.GetNormal(), pOther.GetDistance() ).IntersectSphereCollider( SphereCollider( myCenter, myRadius ) );
+	float myRadius = myExtents.GetX() * fabsf( pOther.GetNormal().GetX() ) + myExtents.GetY() * fabsf( pOther.GetNormal().GetY() ) + myExtents.GetZ() * fabsf( pOther.GetNormal().GetZ() );
+	float myS = pOther.GetNormal().Dot( myCenter ) - pOther.GetDistance();
+	return IntersectData( fabsf( myS ) < myRadius, Vector3<float>( myS, myS, myS ) );
 }
 
 

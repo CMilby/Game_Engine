@@ -33,11 +33,12 @@ IntersectData PlaneCollider::IntersectSphereCollider( const SphereCollider &pCol
 }
 
 IntersectData PlaneCollider::IntersectAABBCollider( const AABBCollider &pCollider ) const {
-	Vector3<float> myMidpoint = ( pCollider.GetMaxExtents() - pCollider.GetMinExtents() ) / 2.0f;
-	Vector3<float> myCenter = pCollider.GetMinExtents() + myMidpoint;
+	Vector3<float> myCenter = ( pCollider.GetMaxExtents() + pCollider.GetMinExtents() ) * 0.5f;
+	Vector3<float> myExtents = pCollider.GetMaxExtents() - myCenter;
 
-	float myRadius = fabsf( GetNormal().GetX() * myMidpoint.GetX() ) + fabsf( GetNormal().GetY() + myMidpoint.GetY() ) + fabsf( GetNormal().GetZ() + myMidpoint.GetZ() );
-	return IntersectSphereCollider( SphereCollider( myCenter, myRadius ) );
+	float myRadius = myExtents.GetX() * fabsf( GetNormal().GetX() ) + myExtents.GetY() * fabsf( GetNormal().GetY() ) + myExtents.GetZ() * fabsf( GetNormal().GetZ() );
+	float myS = GetNormal().Dot( myCenter ) - GetDistance();
+	return IntersectData( fabsf( myS ) < myRadius, Vector3<float>( myS, myS, myS ) );
 }
 
 
