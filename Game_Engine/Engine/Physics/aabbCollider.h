@@ -12,6 +12,7 @@
 #include "collider.h"
 #include "math3d.h"
 
+class PlaneCollider;
 class SphereCollider;
 
 class AABBCollider : public Collider {
@@ -28,6 +29,7 @@ public:
 	
 	IntersectData IntersectAABBCollider( const AABBCollider &pOther ) const;
 	IntersectData IntersectSphereCollider( const SphereCollider &pOther ) const;
+	IntersectData IntersectPlaneCollider( const PlaneCollider &pOther ) const;
 	
 	inline Vector3<float> GetMinExtents() const { return m_minExtents; }
 	inline Vector3<float> GetMaxExtents() const { return m_maxExtents; }

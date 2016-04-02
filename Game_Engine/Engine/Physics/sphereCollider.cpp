@@ -9,6 +9,7 @@
 #include "sphereCollider.h"
 
 #include "aabbCollider.h"
+#include "planeCollider.h"
 
 SphereCollider::SphereCollider( const Vector3<float> &pCenter, float pRadius ) : Collider( ColliderType::COLLIDER_SPHERE ) {
 	m_center = pCenter;
@@ -54,3 +55,13 @@ IntersectData SphereCollider::IntersectAABBCollider( const AABBCollider &pOther 
 	
 	return IntersectData( ( myXMin + myYMin + myZMin ) < powf( GetRadius(), 2.0f ), Vector3<float>( myXMin, myYMin, myZMin) );
 }
+
+IntersectData SphereCollider::IntersectPlaneCollider( const PlaneCollider &pOther ) const {
+	float myDistanceFromSphereCenter = fabsf( pOther.GetNormal().Dot( GetCenter() ) + pOther.GetDistance() );
+	float myDistanceFromSphere = myDistanceFromSphereCenter - GetRadius();
+	
+	return IntersectData( myDistanceFromSphere < 0, pOther.GetNormal() * myDistanceFromSphere );
+}
+
+
+

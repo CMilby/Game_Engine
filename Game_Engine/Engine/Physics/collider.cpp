@@ -9,6 +9,7 @@
 #include "collider.h"
 
 #include "aabbCollider.h"
+#include "planeCollider.h"
 #include "sphereCollider.h"
 
 Collider::Collider( int pType ) {
@@ -16,26 +17,52 @@ Collider::Collider( int pType ) {
 }
 
 IntersectData Collider::Intersect( const Collider &pCollider ) const {
-	if ( m_type == ColliderType::COLLIDER_SPHERE && pCollider.GetType() == ColliderType::COLLIDER_SPHERE ) {
+	if ( m_type == ColliderType::COLLIDER_SPHERE ) {
 		SphereCollider *self = ( SphereCollider* ) this;
-		return self->IntersectSphereCollider( ( SphereCollider& ) pCollider );
+		if ( pCollider.GetType() == ColliderType::COLLIDER_SPHERE ) {
+			return self->IntersectSphereCollider( ( SphereCollider& ) pCollider );
+		}
+		
+		if ( pCollider.GetType() == ColliderType::COLLIDER_AABB ) {
+			return self->IntersectAABBCollider( ( AABBCollider& ) pCollider );
+		}
+		
+		if ( pCollider.GetType() == ColliderType::COLLIDER_PLANE ) {
+			return self->IntersectPlaneCollider( ( PlaneCollider& ) pCollider );
+		}
 	}
 	
-	if ( m_type == ColliderType::COLLIDER_SPHERE && pCollider.GetType() == ColliderType::COLLIDER_AABB ) {
-		SphereCollider *self = ( SphereCollider* ) this;
-		return self->IntersectAABBCollider( ( AABBCollider& ) pCollider );
-	}
-	
-	if ( m_type == ColliderType::COLLIDER_AABB && pCollider.GetType() == ColliderType::COLLIDER_AABB ) {
+	if ( m_type == ColliderType::COLLIDER_AABB ) {
 		AABBCollider *self = ( AABBCollider* ) this;
-		return self->IntersectAABBCollider( ( AABBCollider& ) pCollider );
+		if ( pCollider.GetType() == ColliderType::COLLIDER_AABB ) {
+			return self->IntersectAABBCollider( ( AABBCollider& ) pCollider );
+		}
+		
+		if ( pCollider.GetType() == ColliderType::COLLIDER_SPHERE ) {
+			return self->IntersectSphereCollider( ( SphereCollider& ) pCollider );
+		}
+		
+		if ( pCollider.GetType() == ColliderType::COLLIDER_PLANE ) {
+			return self->IntersectPlaneCollider( ( PlaneCollider& ) pCollider );
+		}
 	}
 	
-	if ( m_type == ColliderType::COLLIDER_AABB && pCollider.GetType() == ColliderType::COLLIDER_SPHERE ) {
-		AABBCollider *self = ( AABBCollider* ) this;
-		return self->IntersectSphereCollider( ( SphereCollider& ) pCollider );
+	if ( m_type == ColliderType::COLLIDER_PLANE ) {
+		PlaneCollider *self = ( PlaneCollider* ) this;
+		if ( pCollider.GetType() == ColliderType::COLLIDER_AABB ) {
+			return self->IntersectAABBCollider( ( AABBCollider& ) pCollider );
+		}
+		
+		if ( pCollider.GetType() == ColliderType::COLLIDER_SPHERE ) {
+			return self->IntersectSphereCollider( ( SphereCollider& ) pCollider );
+		}
 	}
 	
 	fprintf( stderr, "Collision type not implemented" );
 	return IntersectData( false, Vector3<float>( 0.0f, 0.0f, 0.0f ) );
 }
+
+
+
+
+

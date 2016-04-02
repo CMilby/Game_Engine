@@ -49,6 +49,7 @@
 		44394ED11CAF26B300212467 /* math3d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44394ECA1CAF26B300212467 /* math3d.cpp */; };
 		44394ED21CAF26B300212467 /* time.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44394ECC1CAF26B300212467 /* time.cpp */; };
 		44394ED31CAF26B300212467 /* transform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44394ECE1CAF26B300212467 /* transform.cpp */; };
+		44394ED61CAF27BE00212467 /* planeCollider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44394ED41CAF27BE00212467 /* planeCollider.cpp */; };
 		449D85F41BD6B6F300B72584 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 449D85F31BD6B6F300B72584 /* OpenGL.framework */; };
 		449D85F91BD6BB0900B72584 /* libGLEW.1.12.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 449D85F81BD6BB0900B72584 /* libGLEW.1.12.0.dylib */; };
 		44D3CD701BCBFAED0074E300 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44D3CD6F1BCBFAED0074E300 /* main.cpp */; };
@@ -164,6 +165,8 @@
 		44394ECD1CAF26B300212467 /* time.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = time.h; path = Engine/Core/time.h; sourceTree = "<group>"; };
 		44394ECE1CAF26B300212467 /* transform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = transform.cpp; path = Engine/Core/transform.cpp; sourceTree = "<group>"; };
 		44394ECF1CAF26B300212467 /* transform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = transform.h; path = Engine/Core/transform.h; sourceTree = "<group>"; };
+		44394ED41CAF27BE00212467 /* planeCollider.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = planeCollider.cpp; sourceTree = "<group>"; };
+		44394ED51CAF27BE00212467 /* planeCollider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = planeCollider.h; sourceTree = "<group>"; };
 		447B54141BF04A9600BB5977 /* libSDL2-2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libSDL2-2.0.0.dylib"; path = "../../../../usr/local/Cellar/sdl2/2.0.3/lib/libSDL2-2.0.0.dylib"; sourceTree = "<group>"; };
 		449D85F31BD6B6F300B72584 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		449D85F61BD6BACB00B72584 /* libglfw.3.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw.3.1.dylib; path = ../../../../usr/local/lib/libglfw.3.1.dylib; sourceTree = "<group>"; };
@@ -305,6 +308,8 @@
 				44394EA41CAF25C900212467 /* intersectData.h */,
 				44394EA51CAF25C900212467 /* physicsBody.cpp */,
 				44394EA61CAF25C900212467 /* physicsBody.h */,
+				44394ED41CAF27BE00212467 /* planeCollider.cpp */,
+				44394ED51CAF27BE00212467 /* planeCollider.h */,
 				44394EA71CAF25C900212467 /* sphereCollider.cpp */,
 				44394EA81CAF25C900212467 /* sphereCollider.h */,
 			);
@@ -467,6 +472,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44394ED61CAF27BE00212467 /* planeCollider.cpp in Sources */,
 				44394EC71CAF261500212467 /* messenger.cpp in Sources */,
 				44394EA91CAF25C900212467 /* aabbCollider.cpp in Sources */,
 				440BD7101C88904F001DB584 /* cameraSystem.cpp in Sources */,

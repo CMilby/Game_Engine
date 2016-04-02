@@ -13,6 +13,7 @@
 #include "math3d.h"
 
 class AABBCollider;
+class PlaneCollider;
 
 class SphereCollider : public Collider {
 	
@@ -28,6 +29,7 @@ public:
 	
 	IntersectData IntersectSphereCollider( const SphereCollider &pOther ) const;
 	IntersectData IntersectAABBCollider( const AABBCollider &pOther ) const;
+	IntersectData IntersectPlaneCollider( const PlaneCollider &pOther ) const;
 	
 	inline float GetRadius() const { return m_radius; }
 };

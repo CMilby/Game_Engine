@@ -17,6 +17,7 @@ namespace ColliderType {
 	enum {
 		COLLIDER_SPHERE,
 		COLLIDER_AABB,
+		COLLIDER_PLANE,
 		NUM_COLLIDERS
 	};
 }
