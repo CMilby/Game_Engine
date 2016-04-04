@@ -54,6 +54,8 @@ public:
 	inline void Rotate( const Quaternion &quat ) { m_transform.Rotate( quat ); }
 	inline void Rotate( const Vector3<float> &axis, float angle ) { m_transform.Rotate( axis, angle ); }
 	
+	inline void ClearChildren() { m_children.clear(); }
+	
 	inline Matrix4<float> GetModelMatrix() const { return m_transform.GetModelMatrix(); }
 };
 

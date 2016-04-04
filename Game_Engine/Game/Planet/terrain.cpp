@@ -10,6 +10,7 @@
 
 #include <thread>
 
+#include "cameraSystem.h"
 #include "simplexNoise.h"
 
 Terrain::Terrain( const std::string &file, float radius, unsigned int level, float direction, bool x, bool y, bool z, float xOffset, float yOffset, float zOffset, float scale, const TerrainLocation &location, float lastX, float lastY, float lastZ, Material *material ) {
@@ -68,13 +69,13 @@ Terrain::Terrain( const std::string &file, float radius, unsigned int level, flo
     SetMesh( terrain );
 	
 	m_location = location;
-	if ( location == TERRAIN_ROOT ) {
-		GenerateTexture( xOffset, yOffset, zOffset, direction );
-		SetMaterial( m_material );
+	/*if ( location == TERRAIN_ROOT ) {
+		// GenerateTexture( xOffset, yOffset, zOffset, direction );
+		// SetMaterial( m_material );
 	} else {
 		m_material = material;
-		SetMaterial( m_material );
-	}
+		// SetMaterial( m_material );
+	}*/
 	
 	SetIsVisible( true );
 	
@@ -87,21 +88,18 @@ Terrain::~Terrain() {
     
 }
 
-void Terrain::RenderAll( ) {
-    RenderableEntity::RenderAll( );
-   
-    float distance = Math3D::Distance( camera.GetPosition(), m_realPosition );
-    if ( !m_split ) {
-        if ( distance < SplitDistance( m_level ) ) {
-            Split();
-        }
-    } else {
-        if ( distance > SplitDistance( m_level ) ) {
-            Join();
-        }
-    }
+void Terrain::Update() {
+	float distance = Math3D::Distance( CameraSystem::GetMainCamera()->GetPosition(), m_realPosition );
+	if ( !m_split ) {
+		if ( distance < SplitDistance( m_level ) ) {
+			Split();
+		}
+	} else {
+		if ( distance > SplitDistance( m_level ) ) {
+			Join();
+		}
+	}
 }
-
 
 void Terrain::Split() {
     float scale = 1.0f / powf( 2, m_level );
@@ -164,7 +162,7 @@ float Terrain::SplitDistance( int level ) {
     return SplitDistance( level + 1 ) * 2.0f;
 }
 
-void Terrain::GenerateTexture( float xOffset, float yOffset, float zOffset, float direction ) {
+/*void Terrain::GenerateTexture( float xOffset, float yOffset, float zOffset, float direction ) {
 	int width = m_radius * 4.0f;
 	int height = width;
 	std::vector<float> values;
@@ -223,7 +221,7 @@ std::vector<float> Terrain::XProcedure( int width, int height, int i, int j, flo
 	Vector3<float> normal = Vector3<float>( dx, dy, dz ).Normalized();
 	Vector3<float> point = normal * m_radius;
 	
-	float noise = ScaledOctaveNoise3D( NOISE_OCTAVES, NOISE_PERSISTENCE, NOISE_SCALE, HEIGHT_MIN, HEIGHT_MAX, point.GetX(), point.GetY(), point.GetZ() );
+	float noise = SimplexNoise::ScaledOctaveNoise3D( NOISE_OCTAVES, NOISE_PERSISTENCE, NOISE_SCALE, HEIGHT_MIN, HEIGHT_MAX, point.GetX(), point.GetY(), point.GetZ() );
 	
 	if ( noise > 0.0f ) {
 		noise = Math3D::Scale( noise, 0.5f, 1.0f, 0.0f, HEIGHT_MAX );
@@ -283,7 +281,7 @@ std::vector<float> Terrain::YProcedure( int width, int height, int i, int j, flo
 	Vector3<float> normal = Vector3<float>( dx, dy, dz ).Normalized();
 	Vector3<float> point = normal * m_radius;
 	
-	float noise = ScaledOctaveNoise3D( NOISE_OCTAVES, NOISE_PERSISTENCE, NOISE_SCALE, HEIGHT_MIN, HEIGHT_MAX, point.GetX(), point.GetY(), point.GetZ() );
+	float noise = SimplexNoise::ScaledOctaveNoise3D( NOISE_OCTAVES, NOISE_PERSISTENCE, NOISE_SCALE, HEIGHT_MIN, HEIGHT_MAX, point.GetX(), point.GetY(), point.GetZ() );
 	
 	if ( noise > 0.0f ) {
 		noise = Math3D::Scale( noise, 0.5f, 1.0f, 0.0f, HEIGHT_MAX );
@@ -343,7 +341,7 @@ std::vector<float> Terrain::ZProcedure( int width, int height, int i, int j, flo
 	Vector3<float> normal = Vector3<float>( dx, dy, dz ).Normalized();
 	Vector3<float> point = normal * m_radius;
 	
-	float noise = ScaledOctaveNoise3D( NOISE_OCTAVES, NOISE_PERSISTENCE, NOISE_SCALE, HEIGHT_MIN, HEIGHT_MAX, point.GetX(), point.GetY(), point.GetZ() );
+	float noise = SimplexNoise::ScaledOctaveNoise3D( NOISE_OCTAVES, NOISE_PERSISTENCE, NOISE_SCALE, HEIGHT_MIN, HEIGHT_MAX, point.GetX(), point.GetY(), point.GetZ() );
 	
 	if ( noise > 0.0f ) {
 		noise = Math3D::Scale( noise, 0.5f, 1.0f, 0.0f, HEIGHT_MAX );
@@ -362,7 +360,7 @@ std::vector<float> Terrain::ZProcedure( int width, int height, int i, int j, flo
 	
 	return values;
 }
-
+*/
 
 
 

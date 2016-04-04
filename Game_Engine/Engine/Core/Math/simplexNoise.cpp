@@ -9,9 +9,9 @@
 #include "simplexNoise.h"
 
 #include "math3d.h"
-// #include "random.h"
+#include "random.h"
 
-float RawNoise3D( const float x, const float y, const float z ) {
+float SimplexNoise::RawNoise3D( const float x, const float y, const float z ) {
     float n0, n1, n2, n3;
     
     float F3 = 1.0 / 3.0;
@@ -34,19 +34,19 @@ float RawNoise3D( const float x, const float y, const float z ) {
     
     if ( x0 >= y0 ) {
         if (y0 >= z0 ) {
-            i1=1; j1=0; k1=0; i2=1; j2=1; k2=0;
+            i1 = 1; j1 = 0; k1 = 0; i2 = 1; j2 = 1; k2 = 0;
         } else if ( x0 >= z0 ) {
-            i1=1; j1=0; k1=0; i2=1; j2=0; k2=1;
+            i1 = 1; j1 = 0; k1 = 0; i2 = 1; j2 = 0; k2 = 1;
         } else {
-            i1=0; j1=0; k1=1; i2=1; j2=0; k2=1;
+            i1 = 0; j1 = 0; k1 = 1; i2 = 1; j2 = 0; k2 = 1;
         }
     } else {
         if ( y0 < z0 ) {
-            i1=0; j1=0; k1=1; i2=0; j2=1; k2=1;
+            i1 = 0; j1 = 0; k1 = 1; i2 = 0; j2 = 1; k2 = 1;
         } else if ( x0 < z0 ) {
-            i1=0; j1=1; k1=0; i2=0; j2=1; k2=1;
+            i1 = 0; j1 = 1; k1 =0 ; i2 = 0; j2 = 1; k2 = 1;
         } else {
-            i1=0; j1=1; k1=0; i2=1; j2=1; k2=0;
+            i1 = 0; j1 = 1; k1 = 0; i2 = 1; j2 = 1; k2 = 0;
         }
     }
     
@@ -103,7 +103,7 @@ float RawNoise3D( const float x, const float y, const float z ) {
     return 32.0 * ( n0 + n1 + n2 + n3 );
 }
 
-float OctaveNoise3D( const float octaves, const float persistence, const float scale, const float x, const float y, const float z ) {
+float SimplexNoise::OctaveNoise3D( const float octaves, const float persistence, const float scale, const float x, const float y, const float z ) {
     float total = 0;
     float frequency = scale;
     float amplitude = 1;
@@ -121,20 +121,18 @@ float OctaveNoise3D( const float octaves, const float persistence, const float s
     return total / maxAmplitude;
 }
 
-float ScaledOctaveNoise3D( const float octaves, const float persistence, const float scale, const float loBound, const float hiBound, const float x, const float y, const float z ) {
+float SimplexNoise::ScaledOctaveNoise3D( const float octaves, const float persistence, const float scale, const float loBound, const float hiBound, const float x, const float y, const float z ) {
     return OctaveNoise3D( octaves, persistence, scale, x, y, z ) * ( hiBound - loBound ) / 2 + ( hiBound + loBound ) / 2;
 }
 
-/*void SetSeed( unsigned int seed ) {
-    srand( seed );
-    
+void SimplexNoise::SetSeed( unsigned int seed ) {
     for ( int i = 0; i < 256; i++ ) {
         perm[ i ] = i;
     }
     
     for ( int i = 0; i < 256; i++ ) {
         int k = perm[ i ];
-        int j = ( int ) Random::InRangei( 0, 255 );
+        int j = ( int ) Random::InRange( 0, 255 );
         
         perm[ i ] = perm[ j ];
         perm[ j ] = k;
@@ -142,4 +140,4 @@ float ScaledOctaveNoise3D( const float octaves, const float persistence, const f
         perm[ 256 + i ] = perm[ j ];
         perm[ 256 + j ] = k;
     }
-}*/
+}

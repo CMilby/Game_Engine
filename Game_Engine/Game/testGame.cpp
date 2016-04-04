@@ -8,17 +8,24 @@
 
 #include "testGame.h"
 
-#include "aabbCollider.h"
-#include "planeCollider.h"
-#include "sphereCollider.h"
-#include "renderableEntity.h"
+#include "planet.h"
 
 TestGame::TestGame() {
 	
 }
 
 void TestGame::LoadGame() {
-	RenderableEntity *plane = new RenderableEntity( "plane.obj" );
+	// float x, y, z;
+	// RenderableEntity *test = new RenderableEntity( new TerrainMesh( "cube_front.obj", 10.0f, 0.0f, 0.0f, 0.0f, 1.0f, true, TERRAIN_ROOT, x, y,z, 1.0f ) );
+	// AddToScene( test );
+	
+	// RenderableEntity *terrain = new Terrain( "cube_front.obj", 256.0f, 1, 1.0f, true, true, false, 0.0f, 0.0f, 0.0f, 1.0f, TERRAIN_ROOT, 0.0f, 0.0f, 0.0f );
+	// AddToScene( terrain );
+	
+	Planet *planet = new Planet( 256.0f );
+	AddToScene( planet );
+	
+	/*RenderableEntity *plane = new RenderableEntity( "plane.obj" );
 	plane->SetPhysicsBody( new PhysicsBody( new PlaneCollider( Vector3<float>( 0.0f, 1.0f, 0.0f ), 0.0f ), Vector3<float>( 0.0f, 0.0f, 0.0f ) ) );
 	
 	RenderableEntity *jeep = new RenderableEntity( "jeep.obj", "jeep_army.png" );
@@ -55,5 +62,5 @@ void TestGame::LoadGame() {
 	AddToScene( cube3 );
 	
 	AddToScene( sphere1 );
-	AddToScene( sphere2 );
+	AddToScene( sphere2 );*/
 }

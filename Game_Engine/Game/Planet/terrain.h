@@ -58,11 +58,12 @@ private:
 	void GenerateZTexture( int width, int height, float direction, std::vector<float> &values );
 	std::vector<float> ZProcedure( int width, int height, int i, int j, float direction );
 	
+protected:
+	virtual void Update();
+	
 public:
 	Terrain( const std::string &file, float radius, unsigned int level, float direction, bool x, bool y, bool z, float xOffset, float yOffset, float zOffset, float scale, const TerrainLocation &location, float lastX, float lastY, float lastZ, Material *material = new Material() );
     virtual ~Terrain();
-	
-    virtual void RenderAll();
     
     void SetPosition( const Vector3<float> &position ) { m_position = position; }
 };

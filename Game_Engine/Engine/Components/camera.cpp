@@ -24,9 +24,13 @@ Camera::~Camera() {
 }
 
 void Camera::Input() {
-	float moveAmt = 0.1f;
+	float moveAmt = 1.0f;
 	float rotAmt = 2.0f;
 	Matrix4<float> rotation = GetRotation().ToRotationMatrix();
+	
+	if ( InputSystem::IsKeyDown( Key::KEY_TAB ) ) {
+		moveAmt *= 3.0f;
+	}
 	
 	if ( InputSystem::IsKeyDown( Key::KEY_O ) ) {
 		InputSystem::SetDrawMode( DRAW_MODE_SHADED );

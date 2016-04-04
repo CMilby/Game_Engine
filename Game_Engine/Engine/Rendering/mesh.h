@@ -19,12 +19,13 @@
 
 class Mesh {
     
-protected:
+private:
     GLuint m_vertexBuffer;
     GLuint m_uvBuffer;
     GLuint m_normalBuffer;
     GLuint m_elementBuffer;
-    
+	
+protected:
     std::vector<unsigned short> m_indices;
     std::vector<Vector3<float>> m_vertices;
     std::vector<Vector2<float>> m_uvs;

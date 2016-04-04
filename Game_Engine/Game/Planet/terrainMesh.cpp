@@ -17,7 +17,7 @@
 #include <assimp/postprocess.h>
 
 #include "inputFramework.h"
-// #include "random.h"
+#include "random.h"
 #include "simplexNoise.h"
 #include "utility.h"
 
@@ -92,36 +92,6 @@ TerrainMesh::TerrainMesh( const std::string &file, float radius, float xOffset, 
     }
 }
 
-TerrainMesh::~TerrainMesh() {
-    glDeleteBuffers( 1, &m_vertexBuffer );
-    glDeleteBuffers( 1, &m_colorBuffer );
-    glDeleteBuffers( 1, &m_normalBuffer );
-    glDeleteBuffers( 1, &m_elementBuffer );
-}
-
-
-void TerrainMesh::Render() const {
-    glBindBuffer( GL_ARRAY_BUFFER, m_vertexBuffer );
-    glVertexAttribPointer( 0, 3, GL_FLOAT, GL_FALSE, 0, ( void* ) 0 );
-    glEnableVertexAttribArray( 0 );
-    
-    glBindBuffer( GL_ARRAY_BUFFER, m_uvBuffer );
-    glVertexAttribPointer( 1, 2, GL_FLOAT, GL_FALSE, 0, ( void* ) 0 );
-    glEnableVertexAttribArray( 1 );
-    
-    glBindBuffer( GL_ARRAY_BUFFER, m_normalBuffer );
-    glVertexAttribPointer( 2, 3, GL_FLOAT, GL_FALSE, 0, ( void* ) 0 );
-    glEnableVertexAttribArray( 2 );
-    
-    glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, m_elementBuffer );
-    
-    glDrawElements( GL_TRIANGLES, ( unsigned int ) m_indices.size(), GL_UNSIGNED_SHORT, ( void* ) 0 );
-    
-    glDisableVertexAttribArray( 0 );
-    glDisableVertexAttribArray( 1 );
-    glDisableVertexAttribArray( 2 );
-}
-
 /*Vector3<float> TerrainMesh::CalculateHeight( const Vector3<float> &position, const Vector3<float> &normal ) {
 	static const float HEIGHT_MAX = 24.5f;
 	static const float HEIGHT_MIN = -31.0f;
@@ -129,7 +99,7 @@ void TerrainMesh::Render() const {
 	static const float NOISE_OCTAVES = 8.0f;
 	static const float NOISE_SCALE = 0.007f;
 	
-    float noise = ScaledOctaveNoise3D( NOISE_OCTAVES, NOISE_PERSISTENCE, NOISE_SCALE, HEIGHT_MIN, HEIGHT_MAX, position.GetX(), position.GetY(), position.GetZ() );
+    float noise = SimplexNoise::ScaledOctaveNoise3D( NOISE_OCTAVES, NOISE_PERSISTENCE, NOISE_SCALE, HEIGHT_MIN, HEIGHT_MAX, position.GetX(), position.GetY(), position.GetZ() );
 	if ( noise < 0.0f ){
 		noise = 0.0f;
 	}
