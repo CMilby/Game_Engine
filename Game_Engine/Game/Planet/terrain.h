@@ -12,7 +12,7 @@
 #include <vector>
 
 #include "camera.h"
-#include "entity.h"
+#include "renderableEntity.h"
 #include "shader.h"
 #include "terrainLocation.h"
 #include "terrainMesh.h"
@@ -62,7 +62,7 @@ public:
 	Terrain( const std::string &file, float radius, unsigned int level, float direction, bool x, bool y, bool z, float xOffset, float yOffset, float zOffset, float scale, const TerrainLocation &location, float lastX, float lastY, float lastZ, Material *material = new Material() );
     virtual ~Terrain();
 	
-    virtual void RenderAll( const std::vector<Shader*> &shaders, const Camera &camera );
+    virtual void RenderAll();
     
     void SetPosition( const Vector3<float> &position ) { m_position = position; }
 };

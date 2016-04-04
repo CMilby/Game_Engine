@@ -32,7 +32,7 @@ void TestGame::LoadGame() {
 	RenderableEntity *cube2 = new RenderableEntity( "cube.obj" );
 	cube2->SetPosition( Vector3<float>( 5.0f, 6.5f, 6.5f ) );
 	cube2->SetScale( Vector3<float>( 1.0f, 1.5f, 1.0f ) );
-	cube2->SetPhysicsBody( new PhysicsBody( new AABBCollider( cube2->GetPosition() - cube2->GetScale(), cube2->GetPosition() + cube2->GetScale() ), Vector3<float>( -1.0f, 0.0f, 0.0f ) ) );
+	cube2->SetPhysicsBody( new PhysicsBody( new AABBCollider( cube2->GetPosition() - cube2->GetScale(), cube2->GetPosition() + cube2->GetScale() ), Vector3<float>( 0.0f, 0.0f, 0.0f ) ) );
 	
 	RenderableEntity *cube3 = new RenderableEntity( "cube.obj" );
 	cube3->SetPosition( Vector3<float>( -4.0f, 5.0f, 4.0f ) );

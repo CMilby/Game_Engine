@@ -41,9 +41,11 @@ void PhysicsEngineSystem::HandleHandleCollisions( const std::vector<MessagePaylo
 		for ( unsigned int j = i + 1; j < m_objects.size(); j++ ) {
 			IntersectData myIntersect = m_objects[ i ]->GetCollider().Intersect( m_objects[ j ]->GetCollider() );
 			if ( myIntersect.DoesIntersect() ) {
-				m_objects[ i ]->SetVelocity( Vector3<float>( 0.0f, 0.0f, 0.0f ) );
-				m_objects[ j ]->SetVelocity( Vector3<float>( 0.0f, 0.0f, 0.0f ) );
-			}
+				Vector3<float> myDirection = myIntersect.GetDirection().Normalized();
+				Vector3<float> myOtherDirection = myDirection.Reflect( m_objects[ i ]->GetVelocity().Normalized() );
+				m_objects[ i ]->SetVelocity( m_objects[ i ]->GetVelocity().Reflect( myOtherDirection ) );
+				m_objects[ j ]->SetVelocity( m_objects[ j ]->GetVelocity().Reflect( myDirection ) );
+			} 
 		}
 	}
 }

@@ -38,7 +38,7 @@ IntersectData PlaneCollider::IntersectAABBCollider( const AABBCollider &pCollide
 
 	float myRadius = myExtents.GetX() * fabsf( GetNormal().GetX() ) + myExtents.GetY() * fabsf( GetNormal().GetY() ) + myExtents.GetZ() * fabsf( GetNormal().GetZ() );
 	float myS = GetNormal().Dot( myCenter ) - GetDistance();
-	return IntersectData( fabsf( myS ) < myRadius, Vector3<float>( myS, myS, myS ) );
+	return IntersectData( fabsf( myS ) < myRadius, m_normal * myS );
 }
 
 

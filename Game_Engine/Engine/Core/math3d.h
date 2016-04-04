@@ -79,6 +79,10 @@ public:
         return min;
     }
 	
+	inline Vector<T, D> Reflect( const Vector<T, D> &pNormal ) const {
+		return *this - ( pNormal * ( this->Dot( pNormal ) * 2 ) );
+	}
+	
 	inline Vector<T, D> Midpoint( const Vector<T, D> &pOther ) const {
 		Vector<T, D> myResult;
 		for ( unsigned int i = 0; i < D; i++ ) {

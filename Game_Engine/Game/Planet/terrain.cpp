@@ -76,7 +76,7 @@ Terrain::Terrain( const std::string &file, float radius, unsigned int level, flo
 		SetMaterial( m_material );
 	}
 	
-	SetVisible( true );
+	SetIsVisible( true );
 	
 	m_lastXOffset = lastX;
 	m_lastYOffset = lastY;
@@ -87,8 +87,8 @@ Terrain::~Terrain() {
     
 }
 
-void Terrain::RenderAll( const std::vector<Shader*> &shaders, const Camera &camera ) {
-    RenderableEntity::RenderAll( shaders, camera );
+void Terrain::RenderAll( ) {
+    RenderableEntity::RenderAll( );
    
     float distance = Math3D::Distance( camera.GetPosition(), m_realPosition );
     if ( !m_split ) {
@@ -142,13 +142,13 @@ void Terrain::Split() {
     AddChild( t3 );
     AddChild( t4 );
     
-    SetVisible( false );
+    SetIsVisible( false );
     m_split = true;
 }
 
 void Terrain::Join() {
     ClearChildren();
-    SetVisible( true );
+    SetIsVisible( true );
     m_split = false;
 }
 

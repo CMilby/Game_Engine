@@ -16,8 +16,8 @@
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
 
-#include "input.h"
-#include "random.h"
+#include "inputFramework.h"
+// #include "random.h"
 #include "simplexNoise.h"
 #include "utility.h"
 
@@ -50,7 +50,7 @@ TerrainMesh::TerrainMesh( const std::string &file, float radius, float xOffset, 
         
         m_normals[ i ] = Vector3<float>( dx, dy, dz ).Normalized();
         m_vertices[ i ] = m_normals[ i ] * radius;
-		m_vertices[ i ] = CalculateHeight( m_vertices[ i ], m_normals[ i ] );
+		// m_vertices[ i ] = CalculateHeight( m_vertices[ i ], m_normals[ i ] );
     }
 	
 	
@@ -122,7 +122,7 @@ void TerrainMesh::Render() const {
     glDisableVertexAttribArray( 2 );
 }
 
-Vector3<float> TerrainMesh::CalculateHeight( const Vector3<float> &position, const Vector3<float> &normal ) {
+/*Vector3<float> TerrainMesh::CalculateHeight( const Vector3<float> &position, const Vector3<float> &normal ) {
 	static const float HEIGHT_MAX = 24.5f;
 	static const float HEIGHT_MIN = -31.0f;
 	static const float NOISE_PERSISTENCE = 0.3f;
@@ -135,7 +135,7 @@ Vector3<float> TerrainMesh::CalculateHeight( const Vector3<float> &position, con
 	}
 	
     return position + normal * noise;
-}
+}*/
 
 void TerrainMesh::HandleTopRight( float scale, float &lastX, float &lastY, float &lastZ, float direction, float xOffset, float yOffset, float zOffset ) {
 	if ( xOffset == 0.0f ) {
