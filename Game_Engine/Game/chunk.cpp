@@ -1,8 +1,10 @@
 
 #include "chunk.h"
 
+#include "worldGenerator.h"
+
 Chunk::Chunk( int pX, int pY ) {
-	memset( m_map, 0, sizeof( m_map ) );
+	// memset( m_map, 0, sizeof( m_map ) );
 	m_x = pX;
 	m_y = pY;
 	m_z = 0;
@@ -25,11 +27,7 @@ void Chunk::Update() {
 	int i = 0;
 	for ( unsigned int x = 0; x < CHUNK_X; x++ ) {
 		for ( unsigned int y = 0; y < CHUNK_Y; y++ ) {
-			uint8_t myType = m_map[ x ][ y ];
-			
-			if ( !myType ) {
-				// continue;
-			}
+			int myType = WorldGenerator::GenerateTile( ( m_x * CHUNK_X ) + x, ( m_y * CHUNK_Y ) + y );
 			
 			vertex[ i++ ] = Vector4<GLbyte>( x,     y,     0, myType );
 			vertex[ i++ ] = Vector4<GLbyte>( x + 1, y,     0, myType );
@@ -61,14 +59,14 @@ void Chunk::Render() {
 	glDisableVertexAttribArray( 0 );
 }
 
-int Chunk::Get( int pX, int pY ) const {
+/*int Chunk::Get( int pX, int pY ) const {
 	return m_map[ pX ][ pY ];
 }
 
 void Chunk::Set( int pX, int pY, int pType ) {
 	m_map[ pX ][ pY ] = pType;
 	m_hasChanged = true;
-}
+}*/
 
 
 

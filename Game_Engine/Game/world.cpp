@@ -35,7 +35,7 @@ void World::Update() {
 	for ( int x = -m_drawDistance; x < m_drawDistance; x++ ) {
 		for ( int y = -m_drawDistance; y < m_drawDistance; y++ ) {
 			
-			if ( x * x + y * y <= m_drawDistance * m_drawDistance ) {
+			if ( x * x + y * y < m_drawDistance * m_drawDistance ) {
 				
 				int xPos = x + ( m_mainCamera->GetPosition().GetX() / CHUNK_X );
 				int yPos = y + ( m_mainCamera->GetPosition().GetY() / CHUNK_Y );

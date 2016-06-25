@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4402765B1C8A553800449791 /* testGame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 440276591C8A553800449791 /* testGame.cpp */; };
+		4402765B1C8A553800449791 /* game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 440276591C8A553800449791 /* game.cpp */; };
 		4402CE001C28C95A00F11AA8 /* libSDL2-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 447B54141BF04A9600BB5977 /* libSDL2-2.0.0.dylib */; };
 		44040E461C18E3410058A84B /* libassimp.3.1.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 44040E451C18E3410058A84B /* libassimp.3.1.1.dylib */; };
 		440BD6FC1C889027001DB584 /* message.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 440BD6F41C889027001DB584 /* message.cpp */; };
@@ -52,9 +52,6 @@
 		443F74511CB311EE00A0A939 /* math3d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 443F744D1CB311EE00A0A939 /* math3d.cpp */; };
 		443F74521CB311EE00A0A939 /* simplexNoise.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 443F744F1CB311EE00A0A939 /* simplexNoise.cpp */; };
 		443F74581CB314D700A0A939 /* random.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 443F74561CB314D700A0A939 /* random.cpp */; };
-		443F74621CB3167700A0A939 /* planet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 443F74591CB3167700A0A939 /* planet.cpp */; };
-		443F74641CB3167700A0A939 /* terrain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 443F745D1CB3167700A0A939 /* terrain.cpp */; };
-		443F74651CB3167700A0A939 /* terrainMesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 443F74601CB3167700A0A939 /* terrainMesh.cpp */; };
 		449D85F41BD6B6F300B72584 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 449D85F31BD6B6F300B72584 /* OpenGL.framework */; };
 		449D85F91BD6BB0900B72584 /* libGLEW.1.12.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 449D85F81BD6BB0900B72584 /* libGLEW.1.12.0.dylib */; };
 		44B9C3FB1D1B356D0043FF1D /* chunk.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44B9C3F51D1B356D0043FF1D /* chunk.cpp */; };
@@ -62,9 +59,7 @@
 		44B9C40A1D1F16950043FF1D /* lockedCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44B9C4081D1F16950043FF1D /* lockedCamera.cpp */; };
 		44B9C40D1D1F16A50043FF1D /* tileShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44B9C40B1D1F16A50043FF1D /* tileShader.cpp */; };
 		44B9C4101D1F16D00043FF1D /* renderableChunk.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44B9C40E1D1F16D00043FF1D /* renderableChunk.cpp */; };
-		44B9C4171D1F16F40043FF1D /* testMesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44B9C4111D1F16F40043FF1D /* testMesh.cpp */; };
-		44B9C4181D1F16F40043FF1D /* testPlanet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44B9C4131D1F16F40043FF1D /* testPlanet.cpp */; };
-		44B9C4191D1F16F40043FF1D /* testTerrain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44B9C4151D1F16F40043FF1D /* testTerrain.cpp */; };
+		44B9C41D1D1F226A0043FF1D /* worldGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44B9C41B1D1F226A0043FF1D /* worldGenerator.cpp */; };
 		44D3CD701BCBFAED0074E300 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44D3CD6F1BCBFAED0074E300 /* main.cpp */; };
 /* End PBXBuildFile section */
 
@@ -81,8 +76,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		440276591C8A553800449791 /* testGame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = testGame.cpp; path = Game/testGame.cpp; sourceTree = "<group>"; };
-		4402765A1C8A553800449791 /* testGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = testGame.h; path = Game/testGame.h; sourceTree = "<group>"; };
+		440276591C8A553800449791 /* game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = game.cpp; path = Game/game.cpp; sourceTree = "<group>"; };
+		4402765A1C8A553800449791 /* game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = game.h; path = Game/game.h; sourceTree = "<group>"; };
 		44040E451C18E3410058A84B /* libassimp.3.1.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libassimp.3.1.1.dylib; path = ../../../../usr/local/Cellar/assimp/3.1.1/lib/libassimp.3.1.1.dylib; sourceTree = "<group>"; };
 		440BD6F41C889027001DB584 /* message.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = message.cpp; path = Messaging/message.cpp; sourceTree = "<group>"; };
 		440BD6F51C889027001DB584 /* message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = message.h; path = Messaging/message.h; sourceTree = "<group>"; };
@@ -182,13 +177,6 @@
 		443F74501CB311EE00A0A939 /* simplexNoise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = simplexNoise.h; path = Engine/Core/Math/simplexNoise.h; sourceTree = "<group>"; };
 		443F74561CB314D700A0A939 /* random.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = random.cpp; path = Engine/Core/Math/random.cpp; sourceTree = "<group>"; };
 		443F74571CB314D700A0A939 /* random.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = random.h; path = Engine/Core/Math/random.h; sourceTree = "<group>"; };
-		443F74591CB3167700A0A939 /* planet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = planet.cpp; path = Game/Planet/planet.cpp; sourceTree = "<group>"; };
-		443F745A1CB3167700A0A939 /* planet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = planet.h; path = Game/Planet/planet.h; sourceTree = "<group>"; };
-		443F745D1CB3167700A0A939 /* terrain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = terrain.cpp; path = Game/Planet/terrain.cpp; sourceTree = "<group>"; };
-		443F745E1CB3167700A0A939 /* terrain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = terrain.h; path = Game/Planet/terrain.h; sourceTree = "<group>"; };
-		443F745F1CB3167700A0A939 /* terrainLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = terrainLocation.h; path = Game/Planet/terrainLocation.h; sourceTree = "<group>"; };
-		443F74601CB3167700A0A939 /* terrainMesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = terrainMesh.cpp; path = Game/Planet/terrainMesh.cpp; sourceTree = "<group>"; };
-		443F74611CB3167700A0A939 /* terrainMesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = terrainMesh.h; path = Game/Planet/terrainMesh.h; sourceTree = "<group>"; };
 		447B54141BF04A9600BB5977 /* libSDL2-2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libSDL2-2.0.0.dylib"; path = "../../../../usr/local/Cellar/sdl2/2.0.3/lib/libSDL2-2.0.0.dylib"; sourceTree = "<group>"; };
 		449D85F31BD6B6F300B72584 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		449D85F61BD6BACB00B72584 /* libglfw.3.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw.3.1.dylib; path = ../../../../usr/local/lib/libglfw.3.1.dylib; sourceTree = "<group>"; };
@@ -205,12 +193,9 @@
 		44B9C40C1D1F16A50043FF1D /* tileShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tileShader.h; path = Engine/Rendering/tileShader.h; sourceTree = "<group>"; };
 		44B9C40E1D1F16D00043FF1D /* renderableChunk.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = renderableChunk.cpp; path = Game/renderableChunk.cpp; sourceTree = "<group>"; };
 		44B9C40F1D1F16D00043FF1D /* renderableChunk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = renderableChunk.h; path = Game/renderableChunk.h; sourceTree = "<group>"; };
-		44B9C4111D1F16F40043FF1D /* testMesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = testMesh.cpp; path = Game/Planet/testMesh.cpp; sourceTree = "<group>"; };
-		44B9C4121D1F16F40043FF1D /* testMesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = testMesh.h; path = Game/Planet/testMesh.h; sourceTree = "<group>"; };
-		44B9C4131D1F16F40043FF1D /* testPlanet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = testPlanet.cpp; path = Game/Planet/testPlanet.cpp; sourceTree = "<group>"; };
-		44B9C4141D1F16F40043FF1D /* testPlanet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = testPlanet.h; path = Game/Planet/testPlanet.h; sourceTree = "<group>"; };
-		44B9C4151D1F16F40043FF1D /* testTerrain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = testTerrain.cpp; path = Game/Planet/testTerrain.cpp; sourceTree = "<group>"; };
-		44B9C4161D1F16F40043FF1D /* testTerrain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = testTerrain.h; path = Game/Planet/testTerrain.h; sourceTree = "<group>"; };
+		44B9C41B1D1F226A0043FF1D /* worldGenerator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = worldGenerator.cpp; sourceTree = "<group>"; };
+		44B9C41C1D1F226A0043FF1D /* worldGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = worldGenerator.h; sourceTree = "<group>"; };
+		44B9C41F1D1F339A0043FF1D /* tileMap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = tileMap.h; sourceTree = "<group>"; };
 		44D3CD6C1BCBFAED0074E300 /* Game_Engine */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Game_Engine; sourceTree = BUILT_PRODUCTS_DIR; };
 		44D3CD6F1BCBFAED0074E300 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -235,15 +220,9 @@
 		440276551C8A550D00449791 /* Game */ = {
 			isa = PBXGroup;
 			children = (
-				443F74481CB3113B00A0A939 /* Planets */,
-				440276591C8A553800449791 /* testGame.cpp */,
-				4402765A1C8A553800449791 /* testGame.h */,
-				44B9C3F51D1B356D0043FF1D /* chunk.cpp */,
-				44B9C3F61D1B356D0043FF1D /* chunk.h */,
-				44B9C40E1D1F16D00043FF1D /* renderableChunk.cpp */,
-				44B9C40F1D1F16D00043FF1D /* renderableChunk.h */,
-				44B9C3F91D1B356D0043FF1D /* world.cpp */,
-				44B9C3FA1D1B356D0043FF1D /* world.h */,
+				44B9C41A1D1F1B4B0043FF1D /* World */,
+				440276591C8A553800449791 /* game.cpp */,
+				4402765A1C8A553800449791 /* game.h */,
 			);
 			name = Game;
 			sourceTree = "<group>";
@@ -409,21 +388,6 @@
 			name = Shaders;
 			sourceTree = "<group>";
 		};
-		443F74481CB3113B00A0A939 /* Planets */ = {
-			isa = PBXGroup;
-			children = (
-				449B412B1D049C9100059F5F /* Test_Planets */,
-				443F74591CB3167700A0A939 /* planet.cpp */,
-				443F745A1CB3167700A0A939 /* planet.h */,
-				443F745D1CB3167700A0A939 /* terrain.cpp */,
-				443F745E1CB3167700A0A939 /* terrain.h */,
-				443F74601CB3167700A0A939 /* terrainMesh.cpp */,
-				443F74611CB3167700A0A939 /* terrainMesh.h */,
-				443F745F1CB3167700A0A939 /* terrainLocation.h */,
-			);
-			name = Planets;
-			sourceTree = "<group>";
-		};
 		443F74491CB3115800A0A939 /* Math */ = {
 			isa = PBXGroup;
 			children = (
@@ -435,19 +399,6 @@
 				443F74501CB311EE00A0A939 /* simplexNoise.h */,
 			);
 			name = Math;
-			sourceTree = "<group>";
-		};
-		449B412B1D049C9100059F5F /* Test_Planets */ = {
-			isa = PBXGroup;
-			children = (
-				44B9C4111D1F16F40043FF1D /* testMesh.cpp */,
-				44B9C4121D1F16F40043FF1D /* testMesh.h */,
-				44B9C4131D1F16F40043FF1D /* testPlanet.cpp */,
-				44B9C4141D1F16F40043FF1D /* testPlanet.h */,
-				44B9C4151D1F16F40043FF1D /* testTerrain.cpp */,
-				44B9C4161D1F16F40043FF1D /* testTerrain.h */,
-			);
-			name = Test_Planets;
 			sourceTree = "<group>";
 		};
 		449D85F51BD6B6F600B72584 /* Frameworks */ = {
@@ -462,6 +413,22 @@
 				449D85F31BD6B6F300B72584 /* OpenGL.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		44B9C41A1D1F1B4B0043FF1D /* World */ = {
+			isa = PBXGroup;
+			children = (
+				44B9C3F51D1B356D0043FF1D /* chunk.cpp */,
+				44B9C3F61D1B356D0043FF1D /* chunk.h */,
+				44B9C40E1D1F16D00043FF1D /* renderableChunk.cpp */,
+				44B9C40F1D1F16D00043FF1D /* renderableChunk.h */,
+				44B9C3F91D1B356D0043FF1D /* world.cpp */,
+				44B9C3FA1D1B356D0043FF1D /* world.h */,
+				44B9C41B1D1F226A0043FF1D /* worldGenerator.cpp */,
+				44B9C41C1D1F226A0043FF1D /* worldGenerator.h */,
+				44B9C41F1D1F339A0043FF1D /* tileMap.h */,
+			);
+			name = World;
 			sourceTree = "<group>";
 		};
 		44D3CD631BCBFAED0074E300 = {
@@ -582,35 +549,30 @@
 				44394EBD1CAF25DE00212467 /* mesh.cpp in Sources */,
 				443F74521CB311EE00A0A939 /* simplexNoise.cpp in Sources */,
 				44394EC01CAF25DE00212467 /* textShader.cpp in Sources */,
-				443F74641CB3167700A0A939 /* terrain.cpp in Sources */,
 				44394EBC1CAF25DE00212467 /* basicShader.cpp in Sources */,
 				44394EBE1CAF25DE00212467 /* phongShader.cpp in Sources */,
 				44394EC41CAF25F200212467 /* physicsEngineSystem.cpp in Sources */,
-				443F74651CB3167700A0A939 /* terrainMesh.cpp in Sources */,
 				443F74511CB311EE00A0A939 /* math3d.cpp in Sources */,
 				440BD7111C88904F001DB584 /* coreEngineSystem.cpp in Sources */,
 				440BD6FD1C889027001DB584 /* messageBus.cpp in Sources */,
 				44394EAC1CAF25C900212467 /* sphereCollider.cpp in Sources */,
 				44B9C40A1D1F16950043FF1D /* lockedCamera.cpp in Sources */,
 				44B9C4101D1F16D00043FF1D /* renderableChunk.cpp in Sources */,
-				44B9C4191D1F16F40043FF1D /* testTerrain.cpp in Sources */,
 				44B9C40D1D1F16A50043FF1D /* tileShader.cpp in Sources */,
 				44B9C3FC1D1B356D0043FF1D /* world.cpp in Sources */,
 				44394E8E1CAF25AB00212467 /* config.cpp in Sources */,
 				44394E9E1CAF25BE00212467 /* renderableEntity.cpp in Sources */,
 				44394E9D1CAF25BE00212467 /* entity.cpp in Sources */,
-				44B9C4181D1F16F40043FF1D /* testPlanet.cpp in Sources */,
 				440BD7131C88904F001DB584 /* gameSystem.cpp in Sources */,
+				44B9C41D1D1F226A0043FF1D /* worldGenerator.cpp in Sources */,
 				44394ED01CAF26B300212467 /* dateTime.cpp in Sources */,
 				440BD7441C88909D001DB584 /* windowFramework.cpp in Sources */,
 				440BD7201C889057001DB584 /* shadingFramework.cpp in Sources */,
 				44B9C3FB1D1B356D0043FF1D /* chunk.cpp in Sources */,
 				440BD71F1C889057001DB584 /* renderFramework.cpp in Sources */,
-				44B9C4171D1F16F40043FF1D /* testMesh.cpp in Sources */,
-				443F74621CB3167700A0A939 /* planet.cpp in Sources */,
 				440BD71E1C889057001DB584 /* inputFramework.cpp in Sources */,
 				44394ED21CAF26B300212467 /* time.cpp in Sources */,
-				4402765B1C8A553800449791 /* testGame.cpp in Sources */,
+				4402765B1C8A553800449791 /* game.cpp in Sources */,
 				44394EAA1CAF25C900212467 /* collider.cpp in Sources */,
 				440BD6FC1C889027001DB584 /* message.cpp in Sources */,
 				44394E911CAF25AB00212467 /* stb_image.c in Sources */,

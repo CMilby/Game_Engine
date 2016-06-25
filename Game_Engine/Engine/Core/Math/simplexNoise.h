@@ -11,18 +11,25 @@
 
 namespace SimplexNoise {
 
-	float RawNoise3D( const float x, const float y, const float z );
+	float RawNoise2D( const float pX, const float pY );
+	float RawNoise3D( const float pX, const float pY, const float pZ );
 	
-	float OctaveNoise3D( const float octaves, const float persistence, const float scale, const float x, const float y, const float z );
+	float OctaveNoise2D( const float pOctaves, const float pPersistence, const float pScale, const float pX, const float pY );
+	float OctaveNoise3D( const float pOctaves, const float pPersistence, const float pScale, const float pX, const float pY, const float pZ );
 	
-	float ScaledOctaveNoise3D( const float octaves, const float persistence, const float scale, const float loBound, const float hiBound, const float x, const float y, const float z );
+	float ScaledOctaveNoise2D( const float pOctaves, const float pPersistence, const float pScale, const float pLoBound, const float pHiBound, const float pX, const float pY );
+	float ScaledOctaveNoise3D( const float pOctaves, const float pPersistence, const float pScale, const float pLoBound, const float pHiBound, const float pX, const float pY, const float pZ );
 	
 	void SetSeed();
 	
+	static const int grad2[ 12 ][ 2 ] {
+		
+	};
+	
 	static const int grad3[ 12 ][ 3 ] = {
-		{ 1,1,0 }, { -1, 1,0 }, { 1,-1, 0 }, { -1,-1, 0 },
-		{ 1,0,1 }, { -1, 0,1 }, { 1, 0,-1 }, { -1, 0,-1 },
-		{ 0,1,1 }, {  0,-1,1 }, { 0, 1,-1 }, {  0,-1,-1 }
+		{ 1, 1, 0 }, { -1,  1, 0 }, { 1, -1,  0 }, { -1, -1,  0 },
+		{ 1, 0, 1 }, { -1,  0, 1 }, { 1,  0, -1 }, { -1,  0, -1 },
+		{ 0, 1, 1 }, {  0, -1, 1 }, { 0,  1, -1 }, {  0, -1, -1 }
 	};
 	
 	static int perm[ 512 ] = {

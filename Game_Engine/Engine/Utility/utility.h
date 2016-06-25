@@ -16,6 +16,7 @@ namespace Utility {
     std::string DirectoryPath();
 	
 	bool EndsWith( const std::string &pStr, const std::string &pEnding );
+	int LastIndexOf( const std::string &pStr, char pDelim );
 }
 
 #endif /* utility_h */

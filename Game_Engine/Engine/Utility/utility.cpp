@@ -25,3 +25,12 @@ bool Utility::EndsWith( const std::string &pStr, const std::string &pEnding ) {
 	}
 	return false;
 }
+
+int Utility::LastIndexOf( const std::string &pStr, char pDelim ) {
+	for ( int i = ( int ) pStr.size() - 1; i >= 0; i-- ) {
+		if ( pStr[ i ] == pDelim ) {
+			return i;
+		}
+	}
+	return -1;
+}

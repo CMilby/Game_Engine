@@ -128,8 +128,8 @@ void TestTerrain::Split() {
 	TestTerrain *t4;
 	
 	if ( m_splits.GetX() && m_splits.GetZ() ) {
-		float x = m_position.GetX();
-		float z = m_position.GetZ();
+		// float x = m_position.GetX();
+		// float z = m_position.GetZ();
 		
 		/*t1 = new TestTerrain( m_filename, m_radius, m_level + 1, m_direction, m_splitX, m_splitY, m_splitZ, x + scale, 0.0f, z + scale, scale, TERRAIN_TOP_RIGHT, m_lastXOffset, m_lastYOffset, m_lastZOffset, m_material );
 		t2 = new TestTerrain( m_file, m_radius, m_level + 1, m_direction, m_splitX, m_splitY, m_splitZ, x - scale, 0.0f, z + scale, scale, TERRAIN_TOP_LEFT, m_lastXOffset, m_lastYOffset, m_lastZOffset, m_material  );
@@ -144,8 +144,8 @@ void TestTerrain::Split() {
 		t3 = new TestTerrain( m_filename, m_radius, m_size, m_level + 1, m_splits, m_direction, Vector3<float>( x + scale, y - scale, 0.0f ), scale, m_lastOffset  );
 		t4 = new TestTerrain( m_filename, m_radius, m_size, m_level + 1, m_splits, m_direction, Vector3<float>( x - scale, y - scale, 0.0f ), scale, m_lastOffset  );
 	} else if ( m_splits.GetY() && m_splits.GetZ() ) {
-		float y = m_position.GetY();
-		float z = m_position.GetZ();
+		// float y = m_position.GetY();
+		// float z = m_position.GetZ();
 		
 		/*t1 = new TestTerrain( m_file, m_radius, m_level + 1, m_direction, m_splitX, m_splitY, m_splitZ, 0.0f, y + scale, z + scale, scale, TERRAIN_TOP_RIGHT, m_lastXOffset, m_lastYOffset, m_lastZOffset, m_material  );
 		t2 = new TestTerrain( m_file, m_radius, m_level + 1, m_direction, m_splitX, m_splitY, m_splitZ, 0.0f, y - scale, z + scale, scale, TERRAIN_TOP_LEFT, m_lastXOffset, m_lastYOffset, m_lastZOffset, m_material  );
@@ -305,8 +305,8 @@ std::vector<float> TestTerrain::TextureZProcedure( const unsigned int pSize, con
 	 
 	*/
 	
-	int myStart = pSize * pMultiplier;
-	int myEnd = pSize * pMultiplier;
+	// int myStart = pSize * pMultiplier;
+	// int myEnd = pSize * pMultiplier;
 	
 	if ( pDirection == 1.0f ) {
 		for ( int j = pSize * pMultiplier - 1; j >= 0; j -= pSplit ) {

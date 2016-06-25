@@ -4,7 +4,7 @@
 
 #include <vector>
 
-#include "../Systems/cameraSystem.h"
+#include "cameraSystem.h"
 #include "renderableChunk.h"
 
 class World : public RenderableEntity {

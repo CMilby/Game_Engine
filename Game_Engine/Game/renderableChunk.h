@@ -14,6 +14,10 @@
 #include "chunk.h"
 #include "renderableEntity.h"
 
+#define NUM_TILES 4
+#define TILE_SIZE 64
+#define TILE_PATH "tiles"
+
 class RenderableChunk : public RenderableEntity {
 	
 private:

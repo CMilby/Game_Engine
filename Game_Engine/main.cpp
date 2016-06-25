@@ -22,7 +22,7 @@
 // Game
 #include "lockedCamera.h"
 #include "random.h"
-#include "testGame.h"
+#include "game.h"
 
 int main( int argc, const char *argv[] ) {
 	Random::SetSeed( 0 );
@@ -37,7 +37,7 @@ int main( int argc, const char *argv[] ) {
     EntitySystem *entity = new EntitySystem();
     // CameraSystem *camera = new CameraSystem( new LockedCamera( Vector3<float>( 0.0f, 5.0f, 5.0f ), Quaternion( 0, 0, 0, 1 ) ) );
 	CameraSystem *camera = new CameraSystem( new Camera( Vector3<float>( 0, 0, 10 ) ) );
-	GameSystem *game = new TestGame();
+	GameSystem *game = new Game();
     
     bus->AddSystem( coreEngine );
     bus->AddSystem( renderingEngine );

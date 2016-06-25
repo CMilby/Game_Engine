@@ -886,16 +886,15 @@ namespace Math3D {
     inline T Distance( const Vector3<T> &vect1, const Vector3<T> &vect2 ) {
         return sqrtf( powf( vect2.GetX() - vect1.GetX(), 2.0f ) + powf( vect2.GetY() - vect1.GetY(), 2.0f ) + powf( vect2.GetZ() - vect1.GetZ(), 2.0f ) );
     }
-	
-	/*template<class T, class D>
-	inline T Distance( const Vector3<T> &pVect1, const Vector3<D> &pVect2 ) {
-		return sqrtf( powf( pVect2.GetX() - pVect1.GetX(), 2.0f ) + powf( pVect2.GetY() - pVect1.GetY(), 2.0f ) + powf( pVect2.GetZ() - pVect1.GetZ(), 2.0f ) );
-	}*/
     
     inline int FastFloor( const float x ) {
         return x > 0 ? ( int ) x : ( int ) x - 1 ;
     }
-    
+	
+	inline float Dot( const int *pG, const float pX, const float pY ) {
+		return pG[ 0 ] * pX + pG[ 1 ] * pY;
+	}
+	
     inline float Dot( const int *g, const float x, const float y, const float z ) {
         return g[ 0 ] * x + g[ 1 ] * y + g[ 2 ] * z;
     }

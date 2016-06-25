@@ -14,7 +14,7 @@ RenderableChunk::RenderableChunk( int pX, int pY ) {
 	
 	SetShaderType( ShaderType::SHADER_TILE );
 	SetMesh( m_chunk );
-	SetMaterial( new Material( new Texture( k_textureFile ) ) );
+	SetMaterial( new Material( new Texture( NUM_TILES, TILE_PATH, TILE_SIZE, TILE_SIZE ) ) );
 	SetIsVisible( true );
 }
 

@@ -24,6 +24,8 @@
  
  */
 
+#define MAX_TEXTURES 256
+
 class TextureAtlas {
     
 private:
@@ -56,6 +58,7 @@ private:
 public:
     Texture( const std::string &file );
     Texture( int width, int height, float data[] );
+	Texture( int pNumTextures, const std::string &pDirectory, int pWidth, int pHeight );
     virtual ~Texture();
     
     void Bind( GLenum textureUint = GL_TEXTURE0 ) const;

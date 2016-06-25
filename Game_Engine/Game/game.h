@@ -1,5 +1,5 @@
 //
-//  testGame.h
+//  game.h
 //  Game_Engine
 //
 //  Created by Craig Milby on 3/4/16.
@@ -11,14 +11,14 @@
 
 #include "gameSystem.h"
 
-class TestGame : public GameSystem {
+class Game : public GameSystem {
 	
 private:
 	
 public:
-	TestGame();
+	Game();
 	
 	virtual void LoadGame();
 };
 
-#endif /* testGame_h */
+#endif /* game_h */
