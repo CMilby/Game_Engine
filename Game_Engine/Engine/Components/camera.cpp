@@ -8,8 +8,6 @@
 
 #include "camera.h"
 
-#include "inputSystem.h"
-
 Camera::Camera() {
 	m_view = GetRotation().ToRotationMatrix() * Matrix4<float>().Transform( GetPosition() * -1 );
 }
@@ -19,12 +17,18 @@ Camera::Camera( const Vector3<float> &position ) {
 	m_view = GetRotation().ToRotationMatrix() * Matrix4<float>().Transform( GetPosition() * -1 );
 }
 
+Camera::Camera( const Vector3<float> &pPosition, const Quaternion &pRotation ) {
+	SetPosition( pPosition );
+	SetRotation( pRotation );
+	m_view = GetRotation().ToRotationMatrix() * Matrix4<float>().Transform( GetPosition() * -1 );
+}
+
 Camera::~Camera() {
 	
 }
 
 void Camera::Input() {
-	float moveAmt = 1.0f;
+	float moveAmt = 0.3f;
 	float rotAmt = 2.0f;
 	Matrix4<float> rotation = GetRotation().ToRotationMatrix();
 	
@@ -60,7 +64,7 @@ void Camera::Input() {
 		Move( GetRotation().GetUp( rotation ), moveAmt );
 	}
 	
-	if ( InputSystem::IsKeyDown( Key::KEY_LEFT_SHIFT ) ) {
+	if ( InputSystem::IsKeyDown( Key::KEY_LEFT_ALT ) ) {
 		Move( GetRotation().GetDown( rotation ), moveAmt );
 	}
 	

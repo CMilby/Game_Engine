@@ -15,9 +15,6 @@ class CoreEngineSystem : public System {
     
 private:
     bool m_isRunning;
-    int m_ticks;
-    int m_gameTime;
-    int m_frameRate;
     
     void HandleCoreEngineStart( const std::vector<MessagePayload>& payload );
     void HandleCoreEngineStop( const std::vector<MessagePayload>& payload );

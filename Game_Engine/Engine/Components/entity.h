@@ -18,6 +18,8 @@ class Entity {
 	
 private:
 	std::vector<Entity*> m_children;
+	Entity *m_parent;
+	
 	Transform m_transform;
 	PhysicsBody *m_physicsBody;
 	
@@ -41,6 +43,8 @@ public:
 	void RenderAll();
 	
 	void SetPhysicsBody( PhysicsBody *pPhysicsBody );
+	void RemoveChild( Entity* pEntity );
+	void RemoveChild( int pIndex );
 	
 	inline void SetPosition( const Vector3<float> &position ) { m_transform.SetPosition( position ); }
 	inline void SetScale( const Vector3<float> &scale ) { m_transform.SetScale( scale ); }
@@ -55,6 +59,10 @@ public:
 	inline void Rotate( const Vector3<float> &axis, float angle ) { m_transform.Rotate( axis, angle ); }
 	
 	inline void ClearChildren() { m_children.clear(); }
+	inline std::vector<Entity*> GetChildren() const { return m_children; }
+	
+	inline Entity* GetParent() const { return m_parent; }
+	inline void SetParent( Entity* pParent ) { m_parent = pParent; }
 	
 	inline Matrix4<float> GetModelMatrix() const { return m_transform.GetModelMatrix(); }
 };

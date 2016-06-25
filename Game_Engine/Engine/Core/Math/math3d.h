@@ -306,11 +306,56 @@ public:
     inline void SetZ( T z ) { ( *this )[ 2 ] = z; }
 };
 
+template<class T> class Vector4 : public Vector<T, 4> {
+	
+private:
+	
+public:
+	Vector4() {
+		( *this )[ 0 ] = T( 0 );
+		( *this )[ 1 ] = T( 0 );
+		( *this )[ 2 ] = T( 0 );
+		( *this )[ 3 ] = T( 0 );
+	}
+	
+	Vector4( const Vector<T, 4> &pVect ) {
+		( *this )[ 0 ] = pVect[ 0 ];
+		( *this )[ 1 ] = pVect[ 1 ];
+		( *this )[ 2 ] = pVect[ 2 ];
+		( *this )[ 3 ] = pVect[ 3 ];
+	}
+	
+	Vector4( const Vector4<T> &pVect ) {
+		( *this )[ 0 ] = pVect[ 0 ];
+		( *this )[ 1 ] = pVect[ 1 ];
+		( *this )[ 2 ] = pVect[ 2 ];
+		( *this )[ 3 ] = pVect[ 3 ];
+	}
+	
+	Vector4( const T &pX, const T &pY, const T &pZ, const T &pW ) {
+		( *this )[ 0 ] = pX;
+		( *this )[ 1 ] = pY;
+		( *this )[ 2 ] = pZ;
+		( *this )[ 3 ] = pW;
+	}
+	
+	inline void SetX( const T &pX ) { ( *this )[ 0 ] = pX; }
+	inline void SetY( const T &pY ) { ( *this )[ 1 ] = pY; }
+	inline void SetZ( const T &pZ ) { ( *this )[ 2 ] = pZ; }
+	inline void SetW( const T &pW ) { ( *this )[ 3 ] = pW; }
+	
+	inline T GetX() const { return ( *this )[ 0 ]; }
+	inline T GetY() const { return ( *this )[ 1 ]; }
+	inline T GetZ() const { return ( *this )[ 2 ]; }
+	inline T GetW() const { return ( *this )[ 3 ]; }
+};
+
 class Quaternion;
 Vector3<float> Rotate( const Vector3<float> &vect, const Quaternion &quat );
 Vector3<float> Rotate( const Vector3<float> &vect, float angle, const Vector3<float> &axis );
 
-template<class T, unsigned int D> class Matrix {
+template<class T, unsigned int D>
+class Matrix {
     
 private:
     T m_values[ D ][ D ];
@@ -841,6 +886,11 @@ namespace Math3D {
     inline T Distance( const Vector3<T> &vect1, const Vector3<T> &vect2 ) {
         return sqrtf( powf( vect2.GetX() - vect1.GetX(), 2.0f ) + powf( vect2.GetY() - vect1.GetY(), 2.0f ) + powf( vect2.GetZ() - vect1.GetZ(), 2.0f ) );
     }
+	
+	/*template<class T, class D>
+	inline T Distance( const Vector3<T> &pVect1, const Vector3<D> &pVect2 ) {
+		return sqrtf( powf( pVect2.GetX() - pVect1.GetX(), 2.0f ) + powf( pVect2.GetY() - pVect1.GetY(), 2.0f ) + powf( pVect2.GetZ() - pVect1.GetZ(), 2.0f ) );
+	}*/
     
     inline int FastFloor( const float x ) {
         return x > 0 ? ( int ) x : ( int ) x - 1 ;
@@ -859,6 +909,13 @@ namespace Math3D {
             return x;
         return y;
     }
+	
+	inline bool IsPointWithinCone( const Vector3<float> &pConeTipPosition, const Vector3<float> &pConeCenterLine, const Vector3<float> &pPoint, const float pFOVRadians ) {
+		Vector3<float> myDifferenceVector = pPoint - pConeTipPosition;
+		myDifferenceVector = myDifferenceVector.Normalized();
+		
+		return ( pConeCenterLine.Dot( myDifferenceVector ) >= cos( pFOVRadians ) );
+	}
 }
 
 #endif /* math3d_hpp */

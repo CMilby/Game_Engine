@@ -29,6 +29,7 @@ enum MessageType {
 	MESSAGE_SIMULATE_PHYSICS,
 	MESSAGE_HANDLE_COLLISIONS,
 	MESSAGE_ADD_PHYSICS_BODY,
+	MESSAGE_INIT,
 	NUMBER_MESSAGES
 };
 
@@ -68,6 +69,8 @@ inline std::string MessageTypeToString( MessageType type ) {
 			return "HANDLE_COLLISIONS";
 		case MESSAGE_ADD_PHYSICS_BODY:
 			return "ADD_PHYSICS_BODY";
+		case MESSAGE_INIT:
+			return "INIT";
 		case NUMBER_MESSAGES:
 			return std::to_string( NUMBER_MESSAGES );
 	}

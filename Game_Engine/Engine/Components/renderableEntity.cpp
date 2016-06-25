@@ -12,8 +12,8 @@
 #include "renderingEngineSystem.h"
 
 RenderableEntity::RenderableEntity() {
-	m_mesh = new Mesh( "cube.obj" );
-	m_material = new Material();
+	// m_mesh = new Mesh( "cube.obj" );
+	// m_material = new Material();
 	m_shaderType = SHADER_PHONG;
 	m_isVisible = false;
 }
@@ -55,6 +55,8 @@ void RenderableEntity::Render() {
 			
 		} else if ( m_shaderType == SHADER_TEXT ) {
 			
+		} else if ( m_shaderType == SHADER_TILE ) {
+			shader->UpdateUniforms( Transform::GetProjection() * camera->GetView() * model, *m_material );
 		}
 		
 		shader->Disable();

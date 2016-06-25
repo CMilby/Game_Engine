@@ -14,6 +14,8 @@
 namespace Utility {
     
     std::string DirectoryPath();
+	
+	bool EndsWith( const std::string &pStr, const std::string &pEnding );
 }
 
 #endif /* utility_h */

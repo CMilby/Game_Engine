@@ -125,19 +125,19 @@ float SimplexNoise::ScaledOctaveNoise3D( const float octaves, const float persis
     return OctaveNoise3D( octaves, persistence, scale, x, y, z ) * ( hiBound - loBound ) / 2 + ( hiBound + loBound ) / 2;
 }
 
-void SimplexNoise::SetSeed( unsigned int seed ) {
-    for ( int i = 0; i < 256; i++ ) {
-        perm[ i ] = i;
-    }
-    
-    for ( int i = 0; i < 256; i++ ) {
-        int k = perm[ i ];
-        int j = ( int ) Random::InRange( 0, 255 );
-        
-        perm[ i ] = perm[ j ];
-        perm[ j ] = k;
-        
-        perm[ 256 + i ] = perm[ j ];
-        perm[ 256 + j ] = k;
-    }
+void SimplexNoise::SetSeed() {
+	for ( int i = 0; i < 256; i++ ) {
+		perm[ i ] = i;
+	}
+	
+	for ( int i = 0; i < 256; i++ ) {
+		int k = perm[ i ];
+		int j = ( int ) Random::InRange( 0, 255 );
+		
+		perm[ i ] = perm[ j ];
+		perm[ j ] = k;
+		
+		perm[ 256 + i ] = perm[ j ];
+		perm[ 256 + j ] = k;
+	}
 }

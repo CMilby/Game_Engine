@@ -18,3 +18,10 @@ std::string Utility::DirectoryPath() {
 #endif
     return "";
 }
+
+bool Utility::EndsWith( const std::string &pStr, const std::string &pEnding ) {
+	if ( pStr.length() >= pEnding.length() ) {
+		return ( 0 == pStr.compare( pStr.length() - pEnding.length(), pEnding.length(), pEnding ) );
+	}
+	return false;
+}

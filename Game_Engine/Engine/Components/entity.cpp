@@ -32,6 +32,7 @@ Entity::~Entity() {
 }
 
 Entity* Entity::AddChild( Entity *child ) {
+	child->SetParent( this );
 	m_children.emplace_back( child );
 	return this;
 }
@@ -77,6 +78,16 @@ void Entity::SetPhysicsBody( PhysicsBody *pPhysicsBody ) {
 	Messenger::SendMessage( SYSTEM_PHYSICS_ENGINE, Message( SYSTEM_ENTITY, MESSAGE_ADD_PHYSICS_BODY, myPayload ) );
 }
 
+void Entity::RemoveChild( Entity *pEntity ) {
+	auto myIter = std::find( m_children.begin(), m_children.end(), pEntity );
+	if ( myIter != m_children.end() ) {
+		m_children.erase( m_children.begin() + std::distance( m_children.begin(), myIter ) );
+	}
+}
+
+void Entity::RemoveChild( int pIndex ) {
+	m_children.erase( m_children.begin() + pIndex );
+}
 
 
 

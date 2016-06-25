@@ -11,7 +11,7 @@
 #include "math3d.h"
 
 CoreEngineSystem::CoreEngineSystem() : System( SYSTEM_CORE_ENGINE ) {
-    m_frameRate = 60;
+	m_isRunning = false;
 }
 
 void CoreEngineSystem::Init() {

@@ -137,7 +137,7 @@ void main()
             totalLight += CalcSpotLight( spotLights[ i ], normal );
         }
     }
-    
+	
     fragColor = color * totalLight;
 }
 

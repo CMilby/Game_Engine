@@ -17,7 +17,7 @@ namespace SimplexNoise {
 	
 	float ScaledOctaveNoise3D( const float octaves, const float persistence, const float scale, const float loBound, const float hiBound, const float x, const float y, const float z );
 	
-	void SetSeed( unsigned int seed );
+	void SetSeed();
 	
 	static const int grad3[ 12 ][ 3 ] = {
 		{ 1,1,0 }, { -1, 1,0 }, { 1,-1, 0 }, { -1,-1, 0 },

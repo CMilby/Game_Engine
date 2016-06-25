@@ -10,14 +10,21 @@
 
 #include <stdlib.h>
 
+#include "simplexNoise.h"
+
 void Random::SetSeed( unsigned int pSeed ) {
 	srand( pSeed );
+	
+	SimplexNoise::SetSeed();
 }
 
 int Random::InRange( int pMin, int pMax ) {
-	return pMin + ( rand() % ( int ) ( pMax - pMin + 1 ) );
+	return rand() % ( pMax - pMin + 1 ) + pMin;
 }
 
 float Random::InRange( float pMin, float pMax ) {
-	return  ( pMax - pMin ) * ( ( ( ( float ) rand() ) / ( float ) RAND_MAX ) ) + pMin ;
+	float random = ( (float ) rand() ) / ( float ) RAND_MAX;
+	float diff = pMax - pMin;
+	float r = random * diff;
+	return pMin + r;
 }

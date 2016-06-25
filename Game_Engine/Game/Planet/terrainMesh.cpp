@@ -16,28 +16,29 @@
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
 
-#include "inputFramework.h"
 #include "random.h"
 #include "simplexNoise.h"
 #include "utility.h"
 
-TerrainMesh::TerrainMesh( const std::string &file, float radius, float xOffset, float yOffset, float zOffset, float scale, bool generateBuffers, const TerrainLocation &location, float &lastX, float &lastY, float &lastZ, float direction ) {
-    LoadOBJ( Utility::DirectoryPath() + "models/" + file );
+// file, radius, offset, scale, 
+
+TerrainMesh::TerrainMesh( const std::string &file, float radius, const Vector3<float> &pOffset, float scale, const TerrainLocation &location, float &lastX, float &lastY, float &lastZ, float direction ) {
+    /*LoadOBJ( Utility::DirectoryPath() + "models/" + file );
     
     for ( unsigned int i = 0; i < m_vertices.size(); i++ ) {
-        if ( xOffset != 0.0f ) {
+        if ( pOffset.GetX() != 0.0f ) {
             m_vertices[ i ].SetX( m_vertices[ i ].GetX() * scale );
         }
         
-        if ( yOffset != 0.0f ) {
+        if ( pOffset.GetY() != 0.0f ) {
             m_vertices[ i ].SetY( m_vertices[ i ].GetY() * scale );
         }
         
-        if ( zOffset != 0.0f ) {
+        if ( pOffset.GetZ() != 0.0f ) {
             m_vertices[ i ].SetZ( m_vertices[ i ].GetZ() * scale );
         }
         
-        m_vertices[ i ] += Vector3<float>( xOffset, yOffset, zOffset );
+        m_vertices[ i ] += pOffset;
         Vector3<float> position = m_vertices[ i ];
         
         float x2 = position.GetX() * position.GetX();
@@ -50,11 +51,8 @@ TerrainMesh::TerrainMesh( const std::string &file, float radius, float xOffset, 
         
         m_normals[ i ] = Vector3<float>( dx, dy, dz ).Normalized();
         m_vertices[ i ] = m_normals[ i ] * radius;
-		// m_vertices[ i ] = CalculateHeight( m_vertices[ i ], m_normals[ i ] );
+		m_vertices[ i ] = CalculateHeight( m_vertices[ i ], m_normals[ i ] );
     }
-	
-	
-	/*
 	 
 	 Quadtree Example
 	 +---------------+-------+---+---+
@@ -77,38 +75,33 @@ TerrainMesh::TerrainMesh( const std::string &file, float radius, float xOffset, 
 	 
 	*/
 	
-	if ( location == TERRAIN_TOP_RIGHT ) {
-		HandleTopRight( scale, lastX, lastY, lastZ, direction, xOffset, yOffset, zOffset );
+	/*if ( location == TERRAIN_TOP_RIGHT ) {
+		HandleTopRight( scale, lastX, lastY, lastZ, direction, pOffset.GetX(), pOffset.GetY(), pOffset.GetZ() );
 	} else if ( location == TERRAIN_TOP_LEFT ) {
-		HandleTopLeft( scale, lastX, lastY, lastZ, direction, xOffset, yOffset, zOffset );
+		HandleTopLeft( scale, lastX, lastY, lastZ, direction, pOffset.GetX(), pOffset.GetY(), pOffset.GetZ()  );
 	} else if ( location == TERRAIN_BOTTOM_RIGHT ) {
-		HandleBottomRight( scale, lastX, lastY, lastZ, direction, xOffset, yOffset, zOffset );
+		HandleBottomRight( scale, lastX, lastY, lastZ, direction, pOffset.GetX(), pOffset.GetY(), pOffset.GetZ()  );
 	} else if ( location == TERRAIN_BOTTOM_LEFT ) {
-		HandleBottomLeft( scale, lastX, lastY, lastZ, direction, xOffset, yOffset, zOffset );
+		HandleBottomLeft( scale, lastX, lastY, lastZ, direction, pOffset.GetX(), pOffset.GetY(), pOffset.GetZ()  );
 	}
-    
-    if ( generateBuffers ) {
-        GenerateBuffers();
-    }
+	
+	GenerateBuffers( false );*/
 }
 
-/*Vector3<float> TerrainMesh::CalculateHeight( const Vector3<float> &position, const Vector3<float> &normal ) {
-	static const float HEIGHT_MAX = 24.5f;
+Vector3<float> TerrainMesh::CalculateHeight( const Vector3<float> &position, const Vector3<float> &normal ) {
+	/*static const float HEIGHT_MAX = 24.5f;
 	static const float HEIGHT_MIN = -31.0f;
 	static const float NOISE_PERSISTENCE = 0.3f;
 	static const float NOISE_OCTAVES = 8.0f;
 	static const float NOISE_SCALE = 0.007f;
 	
     float noise = SimplexNoise::ScaledOctaveNoise3D( NOISE_OCTAVES, NOISE_PERSISTENCE, NOISE_SCALE, HEIGHT_MIN, HEIGHT_MAX, position.GetX(), position.GetY(), position.GetZ() );
-	if ( noise < 0.0f ){
-		noise = 0.0f;
-	}
-	
-    return position + normal * noise;
-}*/
+    return position + normal * noise;*/
+	return position + normal;
+}
 
 void TerrainMesh::HandleTopRight( float scale, float &lastX, float &lastY, float &lastZ, float direction, float xOffset, float yOffset, float zOffset ) {
-	if ( xOffset == 0.0f ) {
+	/*if ( xOffset == 0.0f ) {
 		lastY += scale;
 		lastZ += scale;
 		if ( direction < 0.0f ) {
@@ -148,11 +141,11 @@ void TerrainMesh::HandleTopRight( float scale, float &lastX, float &lastY, float
 				m_uvs[ i ].SetY( -Math3D::Scale( m_uvs[ i ].GetY(), lastY, lastY + scale, 1.0f, 0.0f ) );
 			}
 		}
-	}
+	}*/
 }
 
 void TerrainMesh::HandleTopLeft( float scale, float &lastX, float &lastY, float &lastZ, float direction, float xOffset, float yOffset, float zOffset ) {
-	if ( xOffset == 0.0f ) {
+	/*if ( xOffset == 0.0f ) {
 		lastZ += scale;
 		if ( direction < 0.0f ) {
 			for ( unsigned int i = 0; i < m_uvs.size(); i++ ) {
@@ -191,11 +184,11 @@ void TerrainMesh::HandleTopLeft( float scale, float &lastX, float &lastY, float 
 				m_uvs[ i ].SetY( -Math3D::Scale( m_uvs[ i ].GetY(), lastY, lastY + scale, 1.0f, 0.0f ) );
 			}
 		}
-	}
+	}*/
 }
 
 void TerrainMesh::HandleBottomRight( float scale, float &lastX, float &lastY, float &lastZ, float direction, float xOffset, float yOffset, float zOffset ) {
-	if ( xOffset == 0.0f ) {
+	/*if ( xOffset == 0.0f ) {
 		lastY += scale;
 		if ( direction < 0.0f ) {
 			for ( unsigned int i = 0; i < m_uvs.size(); i++ ) {
@@ -234,12 +227,12 @@ void TerrainMesh::HandleBottomRight( float scale, float &lastX, float &lastY, fl
 				m_uvs[ i ].SetY( -Math3D::Scale( m_uvs[ i ].GetY(), lastY, lastY + scale, 1.0f, 0.0f ) );
 			}
 		}
-	}
+	}*/
 }
 
 
 void TerrainMesh::HandleBottomLeft( float scale, float &lastX, float &lastY, float &lastZ, float direction, float xOffset, float yOffset, float zOffset ) {
-	if ( xOffset == 0.0f ) {
+	/*if ( xOffset == 0.0f ) {
 		if ( direction < 0.0f ) {
 			for ( unsigned int i = 0; i < m_uvs.size(); i++ ) {
 				m_uvs[ i ].SetX(  Math3D::Scale( m_uvs[ i ].GetX(), lastZ, lastZ + scale, 0.0f, 1.0f ) );
@@ -277,7 +270,7 @@ void TerrainMesh::HandleBottomLeft( float scale, float &lastX, float &lastY, flo
 				m_uvs[ i ].SetY( -Math3D::Scale( m_uvs[ i ].GetY(), lastY, lastY + scale, 1.0f, 0.0f ) );
 			}
 		}
-	}
+	}*/
 }
 
 

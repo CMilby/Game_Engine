@@ -21,7 +21,7 @@ Terrain::Terrain( const std::string &file, float radius, unsigned int level, flo
     
     m_maxLevel  = ( int ) log2f( radius * 2.0f );
     m_maxLevel -= ( int ) log2f( GRID_SIZE );
-    
+	
     m_splitX = x;
     m_splitY = y;
     m_splitZ = z;
@@ -64,18 +64,18 @@ Terrain::Terrain( const std::string &file, float radius, unsigned int level, flo
     }
     
     m_realPosition = Vector3<float>( dx, dy, dz ).Normalized() * m_radius;
-    
-    TerrainMesh *terrain = new TerrainMesh( m_file, radius, xOffset, yOffset, zOffset, scale, true, location, lastX, lastY, lastZ, direction );
-    SetMesh( terrain );
 	
 	m_location = location;
-	/*if ( location == TERRAIN_ROOT ) {
-		// GenerateTexture( xOffset, yOffset, zOffset, direction );
-		// SetMaterial( m_material );
+	if ( location == TERRAIN_ROOT ) {
+		GenerateTexture( direction, x, y, z );
+		SetMaterial( m_material );
 	} else {
+		// m_texture = pTexture;
 		m_material = material;
-		// SetMaterial( m_material );
-	}*/
+		SetMaterial( m_material );
+	}
+	
+	SetMesh( new TerrainMesh( m_file, radius, Vector3<float>( xOffset, yOffset, zOffset ), scale, location, lastX, lastY, lastZ, direction ) );
 	
 	SetIsVisible( true );
 	
@@ -114,25 +114,25 @@ void Terrain::Split() {
         float z = m_position.GetZ();
         
         t1 = new Terrain( m_file, m_radius, m_level + 1, m_direction, m_splitX, m_splitY, m_splitZ, x + scale, 0.0f, z + scale, scale, TERRAIN_TOP_RIGHT, m_lastXOffset, m_lastYOffset, m_lastZOffset, m_material );
-        t2 = new Terrain( m_file, m_radius, m_level + 1, m_direction, m_splitX, m_splitY, m_splitZ, x - scale, 0.0f, z + scale, scale, TERRAIN_TOP_LEFT, m_lastXOffset, m_lastYOffset, m_lastZOffset, m_material );
-        t3 = new Terrain( m_file, m_radius, m_level + 1, m_direction, m_splitX, m_splitY, m_splitZ, x + scale, 0.0f, z - scale, scale, TERRAIN_BOTTOM_RIGHT, m_lastXOffset, m_lastYOffset, m_lastZOffset, m_material );
-        t4 = new Terrain( m_file, m_radius, m_level + 1, m_direction, m_splitX, m_splitY, m_splitZ, x - scale, 0.0f, z - scale, scale, TERRAIN_BOTTOM_LEFT, m_lastXOffset, m_lastYOffset, m_lastZOffset, m_material );
+        t2 = new Terrain( m_file, m_radius, m_level + 1, m_direction, m_splitX, m_splitY, m_splitZ, x - scale, 0.0f, z + scale, scale, TERRAIN_TOP_LEFT, m_lastXOffset, m_lastYOffset, m_lastZOffset, m_material  );
+        t3 = new Terrain( m_file, m_radius, m_level + 1, m_direction, m_splitX, m_splitY, m_splitZ, x + scale, 0.0f, z - scale, scale, TERRAIN_BOTTOM_RIGHT, m_lastXOffset, m_lastYOffset, m_lastZOffset, m_material  );
+        t4 = new Terrain( m_file, m_radius, m_level + 1, m_direction, m_splitX, m_splitY, m_splitZ, x - scale, 0.0f, z - scale, scale, TERRAIN_BOTTOM_LEFT, m_lastXOffset, m_lastYOffset, m_lastZOffset, m_material  );
     } else if ( m_splitX && m_splitY ) {
         float x = m_position.GetX();
         float y = m_position.GetY();
         
-        t1 = new Terrain( m_file, m_radius, m_level + 1, m_direction, m_splitX, m_splitY, m_splitZ, x + scale, y + scale, 0.0f, scale, TERRAIN_TOP_RIGHT, m_lastXOffset, m_lastYOffset, m_lastZOffset, m_material );
-        t2 = new Terrain( m_file, m_radius, m_level + 1, m_direction, m_splitX, m_splitY, m_splitZ, x - scale, y + scale, 0.0f, scale, TERRAIN_TOP_LEFT, m_lastXOffset, m_lastYOffset, m_lastZOffset, m_material );
-        t3 = new Terrain( m_file, m_radius, m_level + 1, m_direction, m_splitX, m_splitY, m_splitZ, x + scale, y - scale, 0.0f, scale, TERRAIN_BOTTOM_RIGHT, m_lastXOffset, m_lastYOffset, m_lastZOffset, m_material );
-        t4 = new Terrain( m_file, m_radius, m_level + 1, m_direction, m_splitX, m_splitY, m_splitZ, x - scale, y - scale, 0.0f, scale, TERRAIN_BOTTOM_LEFT, m_lastXOffset, m_lastYOffset, m_lastZOffset, m_material );
+        t1 = new Terrain( m_file, m_radius, m_level + 1, m_direction, m_splitX, m_splitY, m_splitZ, x + scale, y + scale, 0.0f, scale, TERRAIN_TOP_RIGHT, m_lastXOffset, m_lastYOffset, m_lastZOffset, m_material  );
+        t2 = new Terrain( m_file, m_radius, m_level + 1, m_direction, m_splitX, m_splitY, m_splitZ, x - scale, y + scale, 0.0f, scale, TERRAIN_TOP_LEFT, m_lastXOffset, m_lastYOffset, m_lastZOffset, m_material  );
+        t3 = new Terrain( m_file, m_radius, m_level + 1, m_direction, m_splitX, m_splitY, m_splitZ, x + scale, y - scale, 0.0f, scale, TERRAIN_BOTTOM_RIGHT, m_lastXOffset, m_lastYOffset, m_lastZOffset, m_material  );
+        t4 = new Terrain( m_file, m_radius, m_level + 1, m_direction, m_splitX, m_splitY, m_splitZ, x - scale, y - scale, 0.0f, scale, TERRAIN_BOTTOM_LEFT, m_lastXOffset, m_lastYOffset, m_lastZOffset, m_material  );
     } else if ( m_splitY && m_splitZ ) {
         float y = m_position.GetY();
         float z = m_position.GetZ();
         
-        t1 = new Terrain( m_file, m_radius, m_level + 1, m_direction, m_splitX, m_splitY, m_splitZ, 0.0f, y + scale, z + scale, scale, TERRAIN_TOP_RIGHT, m_lastXOffset, m_lastYOffset, m_lastZOffset, m_material );
-        t2 = new Terrain( m_file, m_radius, m_level + 1, m_direction, m_splitX, m_splitY, m_splitZ, 0.0f, y - scale, z + scale, scale, TERRAIN_TOP_LEFT, m_lastXOffset, m_lastYOffset, m_lastZOffset, m_material );
-        t3 = new Terrain( m_file, m_radius, m_level + 1, m_direction, m_splitX, m_splitY, m_splitZ, 0.0f, y + scale, z - scale, scale, TERRAIN_BOTTOM_RIGHT, m_lastXOffset, m_lastYOffset, m_lastZOffset, m_material );
-        t4 = new Terrain( m_file, m_radius, m_level + 1, m_direction, m_splitX, m_splitY, m_splitZ, 0.0f, y - scale, z - scale, scale, TERRAIN_BOTTOM_LEFT, m_lastXOffset, m_lastYOffset, m_lastZOffset, m_material );
+        t1 = new Terrain( m_file, m_radius, m_level + 1, m_direction, m_splitX, m_splitY, m_splitZ, 0.0f, y + scale, z + scale, scale, TERRAIN_TOP_RIGHT, m_lastXOffset, m_lastYOffset, m_lastZOffset, m_material  );
+        t2 = new Terrain( m_file, m_radius, m_level + 1, m_direction, m_splitX, m_splitY, m_splitZ, 0.0f, y - scale, z + scale, scale, TERRAIN_TOP_LEFT, m_lastXOffset, m_lastYOffset, m_lastZOffset, m_material  );
+        t3 = new Terrain( m_file, m_radius, m_level + 1, m_direction, m_splitX, m_splitY, m_splitZ, 0.0f, y + scale, z - scale, scale, TERRAIN_BOTTOM_RIGHT, m_lastXOffset, m_lastYOffset, m_lastZOffset, m_material  );
+        t4 = new Terrain( m_file, m_radius, m_level + 1, m_direction, m_splitX, m_splitY, m_splitZ, 0.0f, y - scale, z - scale, scale, TERRAIN_BOTTOM_LEFT, m_lastXOffset, m_lastYOffset, m_lastZOffset, m_material  );
     }
     
     AddChild( t1 );
@@ -162,10 +162,71 @@ float Terrain::SplitDistance( int level ) {
     return SplitDistance( level + 1 ) * 2.0f;
 }
 
-/*void Terrain::GenerateTexture( float xOffset, float yOffset, float zOffset, float direction ) {
-	int width = m_radius * 4.0f;
-	int height = width;
-	std::vector<float> values;
+void Terrain::GenerateTexture( float pDirection, bool pSplitX, bool pSplitY, bool pSplitZ ) {
+	float mySize = m_radius * 4.0f;
+	
+	static const float HEIGHT_MAX = 24.5f;
+	static const float HEIGHT_MIN = -31.0f;
+	static const float NOISE_PERSISTENCE = 0.3f;
+	static const float NOISE_OCTAVES = 8.0f;
+	static const float NOISE_SCALE = 0.007f;
+	
+	if ( pSplitX && pSplitY ) {
+		for ( unsigned int i = 0; i < mySize; i++ ) {
+			for ( int j = mySize - 1; j >= 0; j-- ) {
+				float myNoise = SimplexNoise::ScaledOctaveNoise3D( NOISE_OCTAVES, NOISE_PERSISTENCE, NOISE_SCALE, HEIGHT_MIN, HEIGHT_MAX, j, i, pDirection );
+				myNoise = Math3D::Scale( myNoise, 0.0f, 1.0f, HEIGHT_MIN, HEIGHT_MAX );
+				
+				m_texture.emplace_back( myNoise );
+				m_texture.emplace_back( myNoise );
+				m_texture.emplace_back( myNoise );
+				m_texture.emplace_back( 1.0f );
+			}
+		}
+	} else if ( pSplitY && pSplitZ ) {
+		for ( int i = 0; i < mySize; i++ ) {
+			for ( int j = 0; j < mySize; j++ ) {
+				float myNoise = SimplexNoise::ScaledOctaveNoise3D( NOISE_OCTAVES, NOISE_PERSISTENCE, NOISE_SCALE, HEIGHT_MIN, HEIGHT_MAX, 1.0f, j, i );
+				myNoise = Math3D::Scale( myNoise, 0.0f, 1.0f, HEIGHT_MIN, HEIGHT_MAX );
+				
+				m_texture.emplace_back( myNoise );
+				m_texture.emplace_back( myNoise );
+				m_texture.emplace_back( myNoise );
+				m_texture.emplace_back( 1.0f );
+			}
+		}
+	}
+	
+	m_material = new Material( new Texture( mySize, mySize, &m_texture[ 0 ] ) );
+}
+
+void Terrain::GenerateTexture( float xOffset, float yOffset, float zOffset, float direction ) {
+	int mySize = m_radius * 4.0f;
+	// int height = width;
+	
+	if ( zOffset == 1.0f ) {
+		for ( unsigned int i = 0; i < mySize; i++ ) {
+			for ( unsigned int j = 0; j < mySize; j++ ) {
+				static const float HEIGHT_MAX = 24.5f;
+				static const float HEIGHT_MIN = -31.0f;
+				static const float NOISE_PERSISTENCE = 0.3f;
+				static const float NOISE_OCTAVES = 8.0f;
+				static const float NOISE_SCALE = 0.007f;
+			
+				float myNoise = SimplexNoise::ScaledOctaveNoise3D( NOISE_OCTAVES, NOISE_PERSISTENCE, NOISE_SCALE, HEIGHT_MIN, HEIGHT_MAX, j, i, 1.0f );
+				myNoise = Math3D::Scale( myNoise, 0.0f, 1.0f, HEIGHT_MIN, HEIGHT_MAX );
+			
+				m_texture.emplace_back( myNoise );
+				m_texture.emplace_back( myNoise );
+				m_texture.emplace_back( myNoise );
+				m_texture.emplace_back( 1.0f );
+			}
+		}
+	}
+	
+	m_material = new Material( new Texture( mySize, mySize, &m_texture[ 0 ] ) );
+	
+	/*std::vector<float> values;
 	
 	if ( !m_splitZ ) {
 		std::thread texThread( &Terrain::GenerateXTexture, this, width, height, direction, std::ref( values ) );
@@ -178,7 +239,7 @@ float Terrain::SplitDistance( int level ) {
 		texThread.join();
 	}
 	
-	m_material = new Material( new Texture( width, height, &values[ 0 ] ) );
+	m_material = new Material( new Texture( width, height, &values[ 0 ] ) );*/
 }
 
 void Terrain::GenerateXTexture( int width, int height, float direction, std::vector<float> &values ) {
@@ -360,7 +421,7 @@ std::vector<float> Terrain::ZProcedure( int width, int height, int i, int j, flo
 	
 	return values;
 }
-*/
+
 
 
 

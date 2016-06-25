@@ -35,6 +35,8 @@ public:
 	inline void SetMaterial( Material *pMaterial ) { m_material = pMaterial; }
 	inline void SetMesh( Mesh *pMesh ) { m_mesh = pMesh; }
 	
+	inline Material* GetMaterial() const { return m_material; }
+	
 	inline void SetShaderType( const ShaderType &type ) { m_shaderType = type; }
 	inline ShaderType GetShaderType() const { return m_shaderType; }
 	

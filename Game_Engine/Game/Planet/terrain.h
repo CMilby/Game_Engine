@@ -45,11 +45,14 @@ private:
 	Material *m_material;
 	TerrainLocation m_location;
 	
+	std::vector<float> m_texture;
+	
 	void Split();
 	void Join();
 	
 	float SplitDistance( int level );
 	
+	void GenerateTexture( float pDirection, bool pSplitX, bool pSplitY, bool pSplitZ );
 	void GenerateTexture( float xOffset, float yOffset, float zOffset, float direction );
 	void GenerateXTexture( int width, int height, float direction, std::vector<float> &values );
 	std::vector<float> XProcedure( int width, int height, int i, int j, float direction );

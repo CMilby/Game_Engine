@@ -11,6 +11,7 @@
 #include "config.h"
 
 Matrix4<float> Transform::s_projection = Matrix4<float>().Perspective( Config::GetFieldOfView(), Config::GetAspectRatio(), Config::GetZNear(), Config::GetZFar() );
+Matrix4<float> Transform::s_ortho = Matrix4<float>().Ortho( 0.0f, Config::GetScreenWidth(), 0.0f, Config::GetScreenHeight(), Config::GetZNear(), Config::GetZFar() );
 
 Transform::Transform( const Vector3<float> &position, const Vector3<float> &scale, const Quaternion &rotation ) {
 	m_position = position;

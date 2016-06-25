@@ -50,6 +50,10 @@ void Shader::UpdateUniforms( const Matrix4<float> &world, const Matrix4<float> &
 	
 }
 
+void Shader::UpdateUniforms( const Matrix4<float> &pMVP, const Material &pMaterial ) {
+	
+}
+
 void Shader::AddUniform( const std::string &name ) const {
     m_framework->AddUniform( name );
 }

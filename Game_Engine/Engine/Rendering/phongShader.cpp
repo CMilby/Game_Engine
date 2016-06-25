@@ -65,8 +65,8 @@ void PhongShader::Init() {
         AddUniform( name + ".cutoff" );
     }
     
-    m_ambientLight = Vector3<float>( 0.3f, 0.3f, 0.3f );
-    m_directionalLight = DirectionalLight( BaseLight( Vector3<float>( 1.0f, 1.0f, 1.0f ), 0.5f ), Vector3<float>( 1.0f, 1.0f, 0.5f ).Normalized() );
+    m_ambientLight = Vector3<float>( 0.9f, 0.9f, 0.9f );
+    m_directionalLight = DirectionalLight( BaseLight( Vector3<float>( 1.0f, 1.0f, 1.0f ), 0.5f ), Vector3<float>( 1.0f, 1.0f, 1.0f ).Normalized() );
 }
 
 void PhongShader::Enable() const {
@@ -83,6 +83,7 @@ void PhongShader::Disable() const {
 
 void PhongShader::UpdateUniforms( const Matrix4<float> &world, const Matrix4<float> &projected, const Camera &camera, const Material &material ) {
     material.m_texture->Bind();
+	
     UniformVector3f( "baseColor", material.m_color );
     UniformVector3f( "eyePos", camera.GetPosition() );
     
@@ -96,8 +97,8 @@ void PhongShader::UpdateUniforms( const Matrix4<float> &world, const Matrix4<flo
     UniformVector3f( "directionalLight.base.color", m_directionalLight.m_baseLight.m_color );
     Uniform1f( "directionalLight.base.intensity", m_directionalLight.m_baseLight.m_intensity );
     UniformVector3f( "directionalLight.direction", m_directionalLight.m_direction );
-    
-    for ( int i = 0; i < m_pointLights.size() && i < MAX_POINT_LIGHTS; i++ ) {
+	
+    /*for ( int i = 0; i < m_pointLights.size() && i < MAX_POINT_LIGHTS; i++ ) {
         std::string name = "pointLights[" + std::to_string( i ) + "]";
         
         UniformVector3f( name + ".base.color", m_pointLights[ i ].m_baseLight.m_color );
@@ -121,7 +122,7 @@ void PhongShader::UpdateUniforms( const Matrix4<float> &world, const Matrix4<flo
         Uniform1f( name + ".pointLight.range", m_spotLights[ i ].m_pointLight.m_range );
         UniformVector3f( name + ".direction", m_spotLights[ i ].m_direction );
         Uniform1f( name + ".cutoff", m_spotLights[ i ].m_cutoff );
-    }
+    }*/
 }
 
 

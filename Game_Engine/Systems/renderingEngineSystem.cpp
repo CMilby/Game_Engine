@@ -12,6 +12,7 @@
 #include "phongShader.h"
 #include "renderFramework.h"
 #include "textShader.h"
+#include "tileShader.h"
 
 std::map<ShaderType, Shader*> RenderingEngineSystem::s_shaders = std::map<ShaderType, Shader*>();
 
@@ -27,6 +28,7 @@ void RenderingEngineSystem::Init() {
 	AddShader( SHADER_PHONG, new PhongShader() );
 	AddShader( SHADER_BASIC, new BasicShader() );
 	AddShader( SHADER_TEXT, new TextShader( "Courier_New.png" ) );
+	AddShader( SHADER_TILE, new TileShader() );
 	
 	InitShaders();
 }

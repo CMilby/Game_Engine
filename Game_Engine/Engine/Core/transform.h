@@ -15,6 +15,7 @@ class Transform {
 	
 private:
 	static Matrix4<float> s_projection;
+	static Matrix4<float> s_ortho;
 	
 	Vector3<float> m_position;
 	Vector3<float> m_scale;

@@ -8,9 +8,15 @@
 
 #include "texture.h"
 
+#include <fstream>
 #include <iostream>
-// #include <cstdio>
-// #include <cstdlib>
+#include <vector>
+
+#include <dirent.h>
+#include <unistd.h>
+
+#include <sys/stat.h>
+#include <sys/types.h>
 
 #include <GLFW/glfw3.h>
 
@@ -27,7 +33,7 @@ TextureAtlas::TextureAtlas() {
 }
 
 TextureAtlas::~TextureAtlas() {
-    
+	
 }
 
 void TextureAtlas::Add( const std::string &name, GLuint value ) {
@@ -52,7 +58,7 @@ Texture::Texture( int width, int height, unsigned char *data, GLenum textureTarg
 
 Texture::Texture( const std::string &file ) {
     if ( s_textureAtlas->Contains( file ) ) {
-        m_freeTexture = true;
+        m_freeTexture = false;
         m_textureID = s_textureAtlas->Get( file );
     } else {
         int x;
@@ -65,7 +71,7 @@ Texture::Texture( const std::string &file ) {
             return;
         }
         
-        InitTexture( x, y, data, GL_TEXTURE_2D, GL_LINEAR );
+        InitTexture( x, y, data, GL_TEXTURE_2D, GL_NEAREST );
         stbi_image_free( data );
         
         s_textureAtlas->Add( file, m_textureID );
@@ -75,8 +81,8 @@ Texture::Texture( const std::string &file ) {
 Texture::Texture( int width, int height, float data[] ) {
     glGenTextures( 1, &m_textureID );
     glBindTexture( GL_TEXTURE_2D, m_textureID );
-    glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR );
-    glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
+    glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST );
+    glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST );
     glTexImage2D( GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_FLOAT, data );
 }
 

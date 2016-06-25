@@ -16,8 +16,9 @@ void RenderFramework::InitRenderer() {
     glFrontFace( GL_CCW );
     glCullFace( GL_BACK );
     glEnable( GL_CULL_FACE );
-    glEnable( GL_DEPTH_TEST );
-    glEnable( GL_DEPTH_CLAMP );
+	glEnable( GL_TEXTURE_3D );
+    // glEnable( GL_DEPTH_TEST );
+    // glEnable( GL_DEPTH_CLAMP );
 }
 
 void RenderFramework::ClearScreen() {

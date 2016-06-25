@@ -10,6 +10,7 @@
 #define __CAMERA_H__
 
 #include "entity.h"
+#include "inputSystem.h"
 
 class Camera : public Entity {
     
@@ -22,6 +23,7 @@ protected:
 public:
 	Camera();
 	Camera( const Vector3<float> &position );
+	Camera( const Vector3<float> &pPosition, const Quaternion &pRotation );
 	virtual ~Camera();
 
 	inline void SetPosition( const Vector3<float> &position ) { Entity::SetPosition( position ); }

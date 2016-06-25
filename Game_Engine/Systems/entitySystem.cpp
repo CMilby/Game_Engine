@@ -24,10 +24,11 @@ void EntitySystem::Init() {
 	System::Init();
 	
 	m_callbacks[ MESSAGE_ADD_ENTITY ] = std::bind( &EntitySystem::HandleAddEntity, this, std::placeholders::_1 );
+	m_callbacks[ MESSAGE_INIT ] = std::bind( &EntitySystem::HandleInit, this, std::placeholders::_1 );
 }
 
 void EntitySystem::Input() {
-	m_root->InitAll();
+	m_root->InputAll();
 }
 
 void EntitySystem::Update() {
@@ -41,3 +42,8 @@ void EntitySystem::Render() {
 void EntitySystem::HandleAddEntity( const std::vector<MessagePayload> &payload ) {
 	m_root->AddChild( payload[ 0 ].GetPayloadEntity() );
 }
+
+void EntitySystem::HandleInit( const std::vector<MessagePayload> &pPayload ) {
+	m_root->InitAll();
+}
+
