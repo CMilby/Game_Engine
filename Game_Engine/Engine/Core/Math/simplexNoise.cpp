@@ -193,7 +193,7 @@ float SimplexNoise::OctaveNoise2D( const float pOctaves, const float pPersistenc
 		
 		frequency *= 2;
 		maxAmplitude += amplitude;
-		amplitude += pPersistence;
+		amplitude *= pPersistence;
 	}
 	
 	return total / maxAmplitude;

@@ -902,6 +902,13 @@ namespace Math3D {
     inline float Scale( const float x, const float a, const float b, const float min, const float max ) {
 		return ( ( ( b - a ) * ( x - min ) ) / ( max - min ) ) + a;
     }
+	
+	inline float Max( const float pX, const float pY ) {
+		if ( pX > pY ) {
+			return pX;
+		}
+		return pY;
+	}
     
     inline float Min( const float x, const float y ) {
         if ( x < y )

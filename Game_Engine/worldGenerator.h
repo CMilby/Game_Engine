@@ -18,7 +18,7 @@ class WorldGenerator {
 private:
 	static WorldGenerator *s_instance;
 	
-	SimplexNoise m_land;
+	SimplexNoise m_elevation;
 	SimplexNoise m_temperature;
 	SimplexNoise m_rainfall;
 	

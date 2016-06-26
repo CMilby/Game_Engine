@@ -14,7 +14,7 @@
 #include "chunk.h"
 #include "renderableEntity.h"
 
-#define NUM_TILES 4
+#define NUM_TILES 9
 #define TILE_SIZE 64
 #define TILE_PATH "tiles"
 

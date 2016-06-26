@@ -25,10 +25,14 @@ private:
 protected:
 	static void PopulateTileTypeMap() {
 		s_tileTypeMap.insert( std::pair<TileType, std::string>( TileType::TILE_GRASS, "GRASS" ) );
+		s_tileTypeMap.insert( std::pair<TileType, std::string>( TileType::TILE_RAINFOREST, "RAINFOREST" ) );
+		s_tileTypeMap.insert( std::pair<TileType, std::string>( TileType::TILE_SAND, "SAND" ) );
+		s_tileTypeMap.insert( std::pair<TileType, std::string>( TileType::TILE_SAVANAH, "SAVANAH" ) );
 		s_tileTypeMap.insert( std::pair<TileType, std::string>( TileType::TILE_SNOW, "SNOW" ) );
 		s_tileTypeMap.insert( std::pair<TileType, std::string>( TileType::TILE_STONE, "STONE" ) );
+		s_tileTypeMap.insert( std::pair<TileType, std::string>( TileType::TILE_SWAMP, "SWAMP" ) );
+		s_tileTypeMap.insert( std::pair<TileType, std::string>( TileType::TILE_TAIGA, "TAIGA" ) );
 		s_tileTypeMap.insert( std::pair<TileType, std::string>( TileType::TILE_WATER, "WATER" ) );
-		s_tileTypeMap.insert( std::pair<TileType, std::string>( TileType::TILE_SAND, "SAND" ) );
 	}
 	
 public:
@@ -37,7 +41,7 @@ public:
 	}
 	
 	static void AddTile( const std::string &pKey, int pValue ) {
-		s_tileMap[ pKey ] = pValue;
+		s_tileMap.insert( std::pair<std::string, int>( pKey, pValue ) );
 	}
 	
 	static int GetTile( const std::string &pKey ) {
