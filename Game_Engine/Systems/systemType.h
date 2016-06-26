@@ -1,5 +1,5 @@
 //
-//  SYSTEMType.h
+//  systemType.h
 //  Game_Engine
 //
 //  Created by Craig Milby on 2/18/16.
@@ -56,4 +56,4 @@ inline std::string MessageSystemToString( SystemType system ) {
 	return "NO_SYSTEM";
 }
 
-#endif /* SYSTEMType_h */
+#endif /* systemType_h */

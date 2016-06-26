@@ -4,6 +4,7 @@
 #include <map>
 
 #include "cameraSystem.h"
+#include "worldGenerator.h"
 
 World::World() {
 	m_mainCamera = CameraSystem::GetMainCamera();
@@ -12,6 +13,10 @@ World::World() {
 
 World::~World() {
 	
+}
+
+void World::Init() {
+	WorldGenerator::GetInstance()->Init();
 }
 
 void World::Update() {

@@ -21,13 +21,12 @@
 
 // Game
 #include "lockedCamera.h"
-#include "random.h"
 #include "game.h"
 
 int main( int argc, const char *argv[] ) {
-	Random::SetSeed( 0 );
+	srand( 100 );
 	
-    MessageBus *bus = MessageBus::GetInstance();
+	MessageBus *bus = MessageBus::GetInstance();
     
     CoreEngineSystem *coreEngine = new CoreEngineSystem();
     RenderingEngineSystem *renderingEngine = new RenderingEngineSystem();

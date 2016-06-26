@@ -9,7 +9,20 @@
 #include "simplexNoise.h"
 
 #include "math3d.h"
-#include "random.h"
+
+SimplexNoise::SimplexNoise() {
+	m_random = new Random( 4357 );
+}
+
+SimplexNoise::SimplexNoise( int pSeed ) {
+	m_random = new Random( pSeed );
+}
+
+SimplexNoise::~SimplexNoise() {
+	if ( m_random != 0 ) {
+		delete m_random;
+	}
+}
 
 float SimplexNoise::RawNoise2D( const float pX, const float pY ) {
 	float n0, n1, n2;
@@ -212,6 +225,11 @@ float SimplexNoise::ScaledOctaveNoise3D( const float octaves, const float persis
     return OctaveNoise3D( octaves, persistence, scale, x, y, z ) * ( hiBound - loBound ) / 2 + ( hiBound + loBound ) / 2;
 }
 
+void SimplexNoise::SetSeed( int pSeed ) {
+	m_random->SetSeed( pSeed );
+	SetSeed();
+}
+
 void SimplexNoise::SetSeed() {
 	for ( int i = 0; i < 256; i++ ) {
 		perm[ i ] = i;
@@ -219,7 +237,7 @@ void SimplexNoise::SetSeed() {
 	
 	for ( int i = 0; i < 256; i++ ) {
 		int k = perm[ i ];
-		int j = ( int ) Random::InRange( 0, 255 );
+		int j = ( int ) m_random->InRange( 0, 255 );
 		
 		perm[ i ] = perm[ j ];
 		perm[ j ] = k;

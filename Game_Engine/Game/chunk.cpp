@@ -27,7 +27,7 @@ void Chunk::Update() {
 	int i = 0;
 	for ( unsigned int x = 0; x < CHUNK_X; x++ ) {
 		for ( unsigned int y = 0; y < CHUNK_Y; y++ ) {
-			int myType = WorldGenerator::GenerateTile( ( m_x * CHUNK_X ) + x, ( m_y * CHUNK_Y ) + y );
+			int myType = WorldGenerator::GetInstance()->GenerateTile( ( m_x * CHUNK_X ) + x, ( m_y * CHUNK_Y ) + y );
 			
 			vertex[ i++ ] = Vector4<GLbyte>( x,     y,     0, myType );
 			vertex[ i++ ] = Vector4<GLbyte>( x + 1, y,     0, myType );

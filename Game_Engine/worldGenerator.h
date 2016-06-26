@@ -11,9 +11,30 @@
 
 #include <map>
 
-namespace WorldGenerator {
+#include "simplexNoise.h"
+
+class WorldGenerator {
+	
+private:
+	static WorldGenerator *s_instance;
+	
+	SimplexNoise m_land;
+	SimplexNoise m_temperature;
+	SimplexNoise m_rainfall;
+	
+	WorldGenerator() {}
+	
+public:
+	static WorldGenerator* GetInstance() {
+		if ( !s_instance ) {
+			s_instance = new WorldGenerator();
+		}
+		return s_instance;
+	}
+	
+	void Init();
 	
 	int GenerateTile( int pX, int pY );
-}
+};
 
 #endif /* worldGenerator_h */

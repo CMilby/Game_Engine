@@ -138,12 +138,12 @@ Texture::Texture( int pNumTextures, const std::string &pDirectory, int pWidth, i
 		}
 		
 		data = stbi_load( filepath.c_str(), &x, &y, &numComponenets, 4 );
-		
-		// std::string myName = filepath.substr( filepath. );
-		
 		glTexSubImage3D( GL_TEXTURE_2D_ARRAY, 0, 0, 0, i, pWidth, pHeight, 1, GL_RGBA, GL_UNSIGNED_BYTE, data );
-		
 		stbi_image_free( data );
+		
+		std::string myName = filepath.substr( Utility::LastIndexOf( filepath, '/' ) + 1 );
+		myName = Utility::ToUpper( myName.substr( 0, myName.length() - 4 ) );
+		TileMap::AddTile( myName, i );
 		
 		i++;
 	}

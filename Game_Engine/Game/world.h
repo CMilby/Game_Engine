@@ -16,6 +16,7 @@ private:
 	std::vector<Vector3<int>> m_drawnPoints;
 	
 protected:
+	virtual void Init();
 	virtual void Update();
 	
 public:

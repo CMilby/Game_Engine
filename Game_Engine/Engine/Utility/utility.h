@@ -17,6 +17,8 @@ namespace Utility {
 	
 	bool EndsWith( const std::string &pStr, const std::string &pEnding );
 	int LastIndexOf( const std::string &pStr, char pDelim );
+	
+	std::string ToUpper( const std::string &pStr );
 }
 
 #endif /* utility_h */

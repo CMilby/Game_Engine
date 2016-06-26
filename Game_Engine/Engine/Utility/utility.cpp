@@ -34,3 +34,18 @@ int Utility::LastIndexOf( const std::string &pStr, char pDelim ) {
 	}
 	return -1;
 }
+
+std::string Utility::ToUpper( const std::string &pStr ) {
+	std::string ret = "";
+	for ( unsigned int i = 0; i < pStr.size(); i++ ) {
+		ret += toupper( pStr[ i ] );
+	}
+	return ret;
+}
+
+
+
+
+
+
+
