@@ -25,7 +25,7 @@ void InputSystem::Init() {
     System::Init();
 }
 
-void InputSystem::Update() {
+void InputSystem::Update( float pDelta ) {
     s_framework->Update();
     
     std::vector<int> downKeys = s_framework->GetDownKeys();

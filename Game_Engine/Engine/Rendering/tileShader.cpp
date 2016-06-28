@@ -35,6 +35,7 @@ void TileShader::Disable() const {
 }
 
 void TileShader::UpdateUniforms( const Matrix4<float> &pMVP, const Material &pMaterial ) {
-	pMaterial.m_texture->Bind();
+	pMaterial.m_texture->Bind( GL_TEXTURE0, GL_TEXTURE_2D_ARRAY );
+	Uniform1i( "sampler", 0 );
 	UniformMatrix4f( "mvp", pMVP );
 }

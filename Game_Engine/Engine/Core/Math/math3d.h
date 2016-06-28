@@ -743,17 +743,18 @@ public:
         inverse /= determinant;
         return inverse;
     }
-    
-    inline Matrix4<T> Ortho( const T &left, const T &right, const T &top, const T &bottom, const T &far, const T &near ) {
+
+    inline Matrix4<T> Ortho( const T &left, const T &right, const T &top, const T &bottom, const T &near, const T &far ) {
         Matrix4<float> ret = Matrix4<float>().InitIdentity();
-        
-        ret[ 0 ][ 0 ] = 2 / ( right - left );
-        ret[ 1 ][ 1 ] = 2 / ( top - bottom );
-        ret[ 2 ][ 2 ] = -2 / ( far - near );
-        ret[ 0 ][ 3 ] = -( ( right + left ) / ( right - left ) );
-        ret[ 1 ][ 3 ] = -( ( top + bottom ) / ( top - bottom ) );
-        ret[ 2 ][ 3 ] = -( ( far + near ) / ( far - near ) );
-        
+		
+        ret[ 0 ][ 0 ] =  T( 2 ) / ( right - left );
+        ret[ 1 ][ 1 ] =  T( 2 ) / ( top - bottom );
+        ret[ 2 ][ 2 ] = - T( 2 ) / ( far - near );
+		
+        ret[ 3 ][ 0 ] = - ( right + left ) / ( right - left );
+        ret[ 3 ][ 1 ] = - ( top + bottom ) / ( top - bottom );
+        ret[ 3 ][ 2 ] = - ( far + near ) / ( far - near );
+		
         return ret;
     }
 };

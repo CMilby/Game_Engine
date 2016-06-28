@@ -56,12 +56,13 @@ private:
     void InitTexture( int width, int height, unsigned char *data, GLenum textureTarget, GLfloat filter );
     
 public:
+	Texture();
     Texture( const std::string &file );
     Texture( int width, int height, float data[] );
 	Texture( int pNumTextures, const std::string &pDirectory, int pWidth, int pHeight );
     virtual ~Texture();
     
-    void Bind( GLenum textureUint = GL_TEXTURE0 ) const;
+    void Bind( GLenum textureUint = GL_TEXTURE0, GLenum pTextureType = GL_TEXTURE_2D ) const;
     Texture( Texture &texture );
     void operator=( Texture &texture );
     

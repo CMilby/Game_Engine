@@ -40,7 +40,7 @@ void System::HandleCallback( const MessageType &type, const std::vector<MessageP
 }
 
 void System::HandleUpdate( const std::vector<MessagePayload> &pPayload ) {
-    Update();
+    Update( pPayload[ 0 ].GetPayloadFloat() );
 }
 
 void System::HandleRender( const std::vector<MessagePayload> &pPayload ) {
@@ -48,7 +48,7 @@ void System::HandleRender( const std::vector<MessagePayload> &pPayload ) {
 }
 
 void System::HandleInput( const std::vector<MessagePayload> &pPayload ) {
-	Input();
+	Input( pPayload[ 0 ].GetPayloadFloat() );
 }
 
 

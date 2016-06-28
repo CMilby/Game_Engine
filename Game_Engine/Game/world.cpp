@@ -4,6 +4,7 @@
 #include <map>
 
 #include "cameraSystem.h"
+#include "renderableChunk.h"
 #include "worldGenerator.h"
 
 World::World() {
@@ -19,7 +20,7 @@ void World::Init() {
 	WorldGenerator::GetInstance()->Init();
 }
 
-void World::Update() {
+void World::Update( float pDelta ) {
 	for ( unsigned int i = 0; i < GetChildren().size(); i++ ) {
 		RenderableChunk *chunk = ( RenderableChunk* ) GetChildren()[ i ];
 		Vector3<float> cameraPos( m_mainCamera->GetPosition().GetX() / CHUNK_X, m_mainCamera->GetPosition().GetY() / CHUNK_Y, 0.0f );

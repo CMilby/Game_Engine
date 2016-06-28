@@ -59,10 +59,13 @@
 		44B9C40A1D1F16950043FF1D /* lockedCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44B9C4081D1F16950043FF1D /* lockedCamera.cpp */; };
 		44B9C40D1D1F16A50043FF1D /* tileShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44B9C40B1D1F16A50043FF1D /* tileShader.cpp */; };
 		44B9C4101D1F16D00043FF1D /* renderableChunk.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44B9C40E1D1F16D00043FF1D /* renderableChunk.cpp */; };
-		44B9C41D1D1F226A0043FF1D /* worldGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44B9C41B1D1F226A0043FF1D /* worldGenerator.cpp */; };
-		44B9C4221D1F4A7D0043FF1D /* tileMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44B9C4211D1F4A7D0043FF1D /* tileMap.cpp */; };
-		44B9C4251D1F4E150043FF1D /* biome.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44B9C4231D1F4E150043FF1D /* biome.cpp */; };
-		44B9C4281D1F63C90043FF1D /* mersenneTwister.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44B9C4261D1F63C90043FF1D /* mersenneTwister.cpp */; };
+		44B9C42E1D21D7400043FF1D /* mersenneTwister.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44B9C42C1D21D7400043FF1D /* mersenneTwister.cpp */; };
+		44B9C43E1D21D7650043FF1D /* biome.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44B9C4301D21D7650043FF1D /* biome.cpp */; };
+		44B9C43F1D21D7650043FF1D /* item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44B9C4321D21D7650043FF1D /* item.cpp */; };
+		44B9C4401D21D7650043FF1D /* npc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44B9C4341D21D7650043FF1D /* npc.cpp */; };
+		44B9C4421D21D7650043FF1D /* player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44B9C4381D21D7650043FF1D /* player.cpp */; };
+		44B9C4431D21D7650043FF1D /* tileMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44B9C43A1D21D7650043FF1D /* tileMap.cpp */; };
+		44B9C4441D21D7650043FF1D /* worldGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44B9C43C1D21D7650043FF1D /* worldGenerator.cpp */; };
 		44D3CD701BCBFAED0074E300 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44D3CD6F1BCBFAED0074E300 /* main.cpp */; };
 /* End PBXBuildFile section */
 
@@ -196,15 +199,22 @@
 		44B9C40C1D1F16A50043FF1D /* tileShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tileShader.h; path = Engine/Rendering/tileShader.h; sourceTree = "<group>"; };
 		44B9C40E1D1F16D00043FF1D /* renderableChunk.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = renderableChunk.cpp; path = Game/renderableChunk.cpp; sourceTree = "<group>"; };
 		44B9C40F1D1F16D00043FF1D /* renderableChunk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = renderableChunk.h; path = Game/renderableChunk.h; sourceTree = "<group>"; };
-		44B9C41B1D1F226A0043FF1D /* worldGenerator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = worldGenerator.cpp; sourceTree = "<group>"; };
-		44B9C41C1D1F226A0043FF1D /* worldGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = worldGenerator.h; sourceTree = "<group>"; };
-		44B9C41F1D1F339A0043FF1D /* tileMap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = tileMap.h; sourceTree = "<group>"; };
 		44B9C4201D1F49ED0043FF1D /* tileType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = tileType.h; path = Game/tileType.h; sourceTree = "<group>"; };
-		44B9C4211D1F4A7D0043FF1D /* tileMap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tileMap.cpp; sourceTree = "<group>"; };
-		44B9C4231D1F4E150043FF1D /* biome.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = biome.cpp; sourceTree = "<group>"; };
-		44B9C4241D1F4E150043FF1D /* biome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = biome.h; sourceTree = "<group>"; };
-		44B9C4261D1F63C90043FF1D /* mersenneTwister.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mersenneTwister.cpp; sourceTree = "<group>"; };
-		44B9C4271D1F63C90043FF1D /* mersenneTwister.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mersenneTwister.h; sourceTree = "<group>"; };
+		44B9C42C1D21D7400043FF1D /* mersenneTwister.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mersenneTwister.cpp; path = Engine/Core/Math/mersenneTwister.cpp; sourceTree = "<group>"; };
+		44B9C42D1D21D7400043FF1D /* mersenneTwister.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mersenneTwister.h; path = Engine/Core/Math/mersenneTwister.h; sourceTree = "<group>"; };
+		44B9C42F1D21D74B0043FF1D /* system.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = system.h; path = Engine/Core/system.h; sourceTree = "<group>"; };
+		44B9C4301D21D7650043FF1D /* biome.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = biome.cpp; path = Game/biome.cpp; sourceTree = "<group>"; };
+		44B9C4311D21D7650043FF1D /* biome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = biome.h; path = Game/biome.h; sourceTree = "<group>"; };
+		44B9C4321D21D7650043FF1D /* item.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = item.cpp; path = Game/item.cpp; sourceTree = "<group>"; };
+		44B9C4331D21D7650043FF1D /* item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = item.h; path = Game/item.h; sourceTree = "<group>"; };
+		44B9C4341D21D7650043FF1D /* npc.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = npc.cpp; path = Game/npc.cpp; sourceTree = "<group>"; };
+		44B9C4351D21D7650043FF1D /* npc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = npc.h; path = Game/npc.h; sourceTree = "<group>"; };
+		44B9C4381D21D7650043FF1D /* player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = player.cpp; path = Game/player.cpp; sourceTree = "<group>"; };
+		44B9C4391D21D7650043FF1D /* player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = player.h; path = Game/player.h; sourceTree = "<group>"; };
+		44B9C43A1D21D7650043FF1D /* tileMap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = tileMap.cpp; path = Game/tileMap.cpp; sourceTree = "<group>"; };
+		44B9C43B1D21D7650043FF1D /* tileMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tileMap.h; path = Game/tileMap.h; sourceTree = "<group>"; };
+		44B9C43C1D21D7650043FF1D /* worldGenerator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = worldGenerator.cpp; path = Game/worldGenerator.cpp; sourceTree = "<group>"; };
+		44B9C43D1D21D7650043FF1D /* worldGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = worldGenerator.h; path = Game/worldGenerator.h; sourceTree = "<group>"; };
 		44D3CD6C1BCBFAED0074E300 /* Game_Engine */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Game_Engine; sourceTree = BUILT_PRODUCTS_DIR; };
 		44D3CD6F1BCBFAED0074E300 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -229,6 +239,8 @@
 		440276551C8A550D00449791 /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				44B9C4461D21DA700043FF1D /* Items */,
+				44B9C4451D21DA650043FF1D /* Entities */,
 				44B9C41A1D1F1B4B0043FF1D /* World */,
 				440276591C8A553800449791 /* game.cpp */,
 				4402765A1C8A553800449791 /* game.h */,
@@ -305,6 +317,7 @@
 				44394ECD1CAF26B300212467 /* time.h */,
 				44394ECE1CAF26B300212467 /* transform.cpp */,
 				44394ECF1CAF26B300212467 /* transform.h */,
+				44B9C42F1D21D74B0043FF1D /* system.h */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -315,10 +328,6 @@
 				44394E631CAC92EA00212467 /* Shaders */,
 				44394EAD1CAF25DE00212467 /* basicShader.cpp */,
 				44394EAE1CAF25DE00212467 /* basicShader.h */,
-				44394EAF1CAF25DE00212467 /* lighting.h */,
-				44394EB01CAF25DE00212467 /* material.h */,
-				44394EB11CAF25DE00212467 /* mesh.cpp */,
-				44394EB21CAF25DE00212467 /* mesh.h */,
 				44394EB31CAF25DE00212467 /* phongShader.cpp */,
 				44394EB41CAF25DE00212467 /* phongShader.h */,
 				44394EB51CAF25DE00212467 /* shader.cpp */,
@@ -326,10 +335,14 @@
 				44394EB71CAF25DE00212467 /* shaderType.h */,
 				44394EB81CAF25DE00212467 /* textShader.cpp */,
 				44394EB91CAF25DE00212467 /* textShader.h */,
-				44394EBA1CAF25DE00212467 /* texture.cpp */,
-				44394EBB1CAF25DE00212467 /* texture.h */,
 				44B9C40B1D1F16A50043FF1D /* tileShader.cpp */,
 				44B9C40C1D1F16A50043FF1D /* tileShader.h */,
+				44394EAF1CAF25DE00212467 /* lighting.h */,
+				44394EB01CAF25DE00212467 /* material.h */,
+				44394EB11CAF25DE00212467 /* mesh.cpp */,
+				44394EB21CAF25DE00212467 /* mesh.h */,
+				44394EBA1CAF25DE00212467 /* texture.cpp */,
+				44394EBB1CAF25DE00212467 /* texture.h */,
 			);
 			name = Rendering;
 			sourceTree = "<group>";
@@ -406,8 +419,8 @@
 				443F74571CB314D700A0A939 /* random.h */,
 				443F744F1CB311EE00A0A939 /* simplexNoise.cpp */,
 				443F74501CB311EE00A0A939 /* simplexNoise.h */,
-				44B9C4261D1F63C90043FF1D /* mersenneTwister.cpp */,
-				44B9C4271D1F63C90043FF1D /* mersenneTwister.h */,
+				44B9C42C1D21D7400043FF1D /* mersenneTwister.cpp */,
+				44B9C42D1D21D7400043FF1D /* mersenneTwister.h */,
 			);
 			name = Math;
 			sourceTree = "<group>";
@@ -435,15 +448,35 @@
 				44B9C40F1D1F16D00043FF1D /* renderableChunk.h */,
 				44B9C3F91D1B356D0043FF1D /* world.cpp */,
 				44B9C3FA1D1B356D0043FF1D /* world.h */,
-				44B9C41B1D1F226A0043FF1D /* worldGenerator.cpp */,
-				44B9C41C1D1F226A0043FF1D /* worldGenerator.h */,
-				44B9C4211D1F4A7D0043FF1D /* tileMap.cpp */,
-				44B9C41F1D1F339A0043FF1D /* tileMap.h */,
+				44B9C4301D21D7650043FF1D /* biome.cpp */,
+				44B9C4311D21D7650043FF1D /* biome.h */,
+				44B9C43A1D21D7650043FF1D /* tileMap.cpp */,
+				44B9C43B1D21D7650043FF1D /* tileMap.h */,
+				44B9C43C1D21D7650043FF1D /* worldGenerator.cpp */,
+				44B9C43D1D21D7650043FF1D /* worldGenerator.h */,
 				44B9C4201D1F49ED0043FF1D /* tileType.h */,
-				44B9C4231D1F4E150043FF1D /* biome.cpp */,
-				44B9C4241D1F4E150043FF1D /* biome.h */,
 			);
 			name = World;
+			sourceTree = "<group>";
+		};
+		44B9C4451D21DA650043FF1D /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				44B9C4341D21D7650043FF1D /* npc.cpp */,
+				44B9C4351D21D7650043FF1D /* npc.h */,
+				44B9C4381D21D7650043FF1D /* player.cpp */,
+				44B9C4391D21D7650043FF1D /* player.h */,
+			);
+			name = Entities;
+			sourceTree = "<group>";
+		};
+		44B9C4461D21DA700043FF1D /* Items */ = {
+			isa = PBXGroup;
+			children = (
+				44B9C4321D21D7650043FF1D /* item.cpp */,
+				44B9C4331D21D7650043FF1D /* item.h */,
+			);
+			name = Items;
 			sourceTree = "<group>";
 		};
 		44D3CD631BCBFAED0074E300 = {
@@ -545,12 +578,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44B9C43E1D21D7650043FF1D /* biome.cpp in Sources */,
 				443F744C1CB311AE00A0A939 /* planeCollider.cpp in Sources */,
 				44394EC71CAF261500212467 /* messenger.cpp in Sources */,
 				443F74581CB314D700A0A939 /* random.cpp in Sources */,
 				44394EA91CAF25C900212467 /* aabbCollider.cpp in Sources */,
-				44B9C4251D1F4E150043FF1D /* biome.cpp in Sources */,
 				440BD7101C88904F001DB584 /* cameraSystem.cpp in Sources */,
+				44B9C4401D21D7650043FF1D /* npc.cpp in Sources */,
 				44394EC11CAF25DE00212467 /* texture.cpp in Sources */,
 				44D3CD701BCBFAED0074E300 /* main.cpp in Sources */,
 				44394E9C1CAF25BE00212467 /* camera.cpp in Sources */,
@@ -563,37 +597,39 @@
 				44394EBF1CAF25DE00212467 /* shader.cpp in Sources */,
 				440BD7141C88904F001DB584 /* inputSystem.cpp in Sources */,
 				44394EBD1CAF25DE00212467 /* mesh.cpp in Sources */,
-				44B9C4281D1F63C90043FF1D /* mersenneTwister.cpp in Sources */,
+				44B9C43F1D21D7650043FF1D /* item.cpp in Sources */,
+				44B9C42E1D21D7400043FF1D /* mersenneTwister.cpp in Sources */,
 				443F74521CB311EE00A0A939 /* simplexNoise.cpp in Sources */,
 				44394EC01CAF25DE00212467 /* textShader.cpp in Sources */,
 				44394EBC1CAF25DE00212467 /* basicShader.cpp in Sources */,
 				44394EBE1CAF25DE00212467 /* phongShader.cpp in Sources */,
 				44394EC41CAF25F200212467 /* physicsEngineSystem.cpp in Sources */,
 				443F74511CB311EE00A0A939 /* math3d.cpp in Sources */,
+				44B9C4441D21D7650043FF1D /* worldGenerator.cpp in Sources */,
 				440BD7111C88904F001DB584 /* coreEngineSystem.cpp in Sources */,
 				440BD6FD1C889027001DB584 /* messageBus.cpp in Sources */,
 				44394EAC1CAF25C900212467 /* sphereCollider.cpp in Sources */,
 				44B9C40A1D1F16950043FF1D /* lockedCamera.cpp in Sources */,
 				44B9C4101D1F16D00043FF1D /* renderableChunk.cpp in Sources */,
 				44B9C40D1D1F16A50043FF1D /* tileShader.cpp in Sources */,
+				44B9C4431D21D7650043FF1D /* tileMap.cpp in Sources */,
 				44B9C3FC1D1B356D0043FF1D /* world.cpp in Sources */,
 				44394E8E1CAF25AB00212467 /* config.cpp in Sources */,
 				44394E9E1CAF25BE00212467 /* renderableEntity.cpp in Sources */,
 				44394E9D1CAF25BE00212467 /* entity.cpp in Sources */,
 				440BD7131C88904F001DB584 /* gameSystem.cpp in Sources */,
-				44B9C41D1D1F226A0043FF1D /* worldGenerator.cpp in Sources */,
 				44394ED01CAF26B300212467 /* dateTime.cpp in Sources */,
 				440BD7441C88909D001DB584 /* windowFramework.cpp in Sources */,
 				440BD7201C889057001DB584 /* shadingFramework.cpp in Sources */,
 				44B9C3FB1D1B356D0043FF1D /* chunk.cpp in Sources */,
 				440BD71F1C889057001DB584 /* renderFramework.cpp in Sources */,
-				44B9C4221D1F4A7D0043FF1D /* tileMap.cpp in Sources */,
 				440BD71E1C889057001DB584 /* inputFramework.cpp in Sources */,
 				44394ED21CAF26B300212467 /* time.cpp in Sources */,
 				4402765B1C8A553800449791 /* game.cpp in Sources */,
 				44394EAA1CAF25C900212467 /* collider.cpp in Sources */,
 				440BD6FC1C889027001DB584 /* message.cpp in Sources */,
 				44394E911CAF25AB00212467 /* stb_image.c in Sources */,
+				44B9C4421D21D7650043FF1D /* player.cpp in Sources */,
 				440BD7151C88904F001DB584 /* renderingEngineSystem.cpp in Sources */,
 				44394ED31CAF26B300212467 /* transform.cpp in Sources */,
 			);

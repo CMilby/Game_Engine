@@ -25,8 +25,8 @@ public:
     virtual ~CameraSystem();
     
     virtual void Init();
-	virtual void Input();
-    virtual void Update();
+	virtual void Input( float pDelta );
+    virtual void Update( float pDelta );
 	
 	void AddCamera( Camera* camera );
 	

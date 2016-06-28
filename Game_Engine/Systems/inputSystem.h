@@ -33,8 +33,8 @@ public:
 	}
 	
     virtual void Init();
-    virtual void Update();
-    
+	virtual void Update( float pDelta );
+	
 	static bool IsKeyDown( int key );
 	static bool IsKeyUp( int key );
 	

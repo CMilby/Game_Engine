@@ -178,10 +178,10 @@ Texture::~Texture() {
     }
 }
 
-void Texture::Bind( GLenum textureUnit ) const {
+void Texture::Bind( GLenum pTextureUnit, GLenum pTextureType ) const {
     if ( s_lastBind != m_textureID ) {
-        glActiveTexture( textureUnit );
-        glBindTexture( GL_TEXTURE_2D, m_textureID );
+        glActiveTexture( pTextureUnit );
+        glBindTexture( pTextureType, m_textureID );
         s_lastBind = m_textureID;
     }
 }

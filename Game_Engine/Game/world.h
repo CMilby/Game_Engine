@@ -5,9 +5,9 @@
 #include <vector>
 
 #include "cameraSystem.h"
-#include "renderableChunk.h"
+#include "entity.h"
 
-class World : public RenderableEntity {
+class World : public Entity {
 
 private:
 	Camera *m_mainCamera;
@@ -17,7 +17,7 @@ private:
 	
 protected:
 	virtual void Init();
-	virtual void Update();
+	virtual void Update( float pDelta );
 	
 public:
 	World();

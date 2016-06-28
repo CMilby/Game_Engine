@@ -39,7 +39,7 @@ void WindowSystem::Init() {
     m_callbacks[ MESSAGE_UPDATE_MOUSE_POSITION ] = std::bind( &WindowSystem::HandleUpdateMousePosition, this, std::placeholders::_1 );
 }
 
-void WindowSystem::Update() {
+void WindowSystem::Update( float pDelta ) {
     m_framework->Update();
 }
 

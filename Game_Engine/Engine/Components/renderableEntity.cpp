@@ -14,21 +14,21 @@
 RenderableEntity::RenderableEntity() {
 	// m_mesh = new Mesh( "cube.obj" );
 	// m_material = new Material();
-	m_shaderType = SHADER_PHONG;
+	m_shaderType = SHADER_BASIC;
 	m_isVisible = false;
 }
 
 RenderableEntity::RenderableEntity( Mesh *mesh, Material *material ) {
 	m_mesh = mesh;
 	m_material = material;
-	m_shaderType = SHADER_PHONG;
+	m_shaderType = SHADER_BASIC;
 	m_isVisible = true;
 }
 
 RenderableEntity::RenderableEntity( const std::string &mesh, const std::string &texture ) {
 	m_mesh = new Mesh( mesh );
 	m_material = new Material( texture );
-	m_shaderType = SHADER_PHONG;
+	m_shaderType = SHADER_BASIC;
 	m_isVisible = true;
 }
 
@@ -48,7 +48,7 @@ void RenderableEntity::Render() {
 		shader->Enable();
 		
 		if ( m_shaderType == SHADER_BASIC ) {
-			shader->UpdateUniforms( model, Transform::GetProjection() * CameraSystem::GetMainCamera()->GetView() * model, *camera, *m_material );
+			shader->UpdateUniforms( Transform::GetProjection() * CameraSystem::GetMainCamera()->GetView() * model, *m_material );
 		} else if ( m_shaderType == SHADER_PHONG ) {
 			shader->UpdateUniforms( model, Transform::GetProjection() * CameraSystem::GetMainCamera()->GetView() * model, *camera, *m_material );
 		} else if ( m_shaderType == SHADER_SKYBOX ) {

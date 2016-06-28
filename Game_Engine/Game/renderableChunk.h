@@ -21,8 +21,6 @@
 class RenderableChunk : public RenderableEntity {
 	
 private:
-	const std::string k_textureFile = "TexAtlas.png";
-	
 	Chunk *m_chunk;
 	
 public:

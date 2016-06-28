@@ -27,7 +27,7 @@ Camera::~Camera() {
 	
 }
 
-void Camera::Input() {
+void Camera::Input( float pDelta ) {
 	float moveAmt = 0.3f;
 	float rotAmt = 2.0f;
 	Matrix4<float> rotation = GetRotation().ToRotationMatrix();

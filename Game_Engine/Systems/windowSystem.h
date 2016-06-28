@@ -34,7 +34,7 @@ public:
     virtual ~WindowSystem();
     
     virtual void Init();
-    virtual void Update();
+    virtual void Update( float pDelta );
     
     bool ShouldClose() const;
     void SetShouldClose( bool value );

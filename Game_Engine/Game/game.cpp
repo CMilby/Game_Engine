@@ -8,6 +8,7 @@
 
 #include "game.h"
 
+#include "player.h"
 #include "world.h"
 
 Game::Game() {
@@ -15,11 +16,23 @@ Game::Game() {
 }
 
 void Game::LoadGame() {
+	Player *player = new Player( Vector2<float>( 0, 0 ) );
+	AddToScene( player );
+	
 	World *world = new World();
 	AddToScene( world );
 	
-	// RenderableChunk *chunk = new RenderableChunk( 0, 0 );
-	// AddToScene( chunk );
+	// Player *player = new Player();
+	// AddToScene( player );
+	
+	/*RenderableEntity *cube = new RenderableEntity( "cube.obj" );
+	cube->SetShaderType( SHADER_TILE );
+	AddToScene( cube );
+	
+	RenderableEntity *cube1 = new RenderableEntity( "cube.obj" );
+	cube->SetShaderType( SHADER_TILE );
+	cube1->SetPosition( Vector3<float>(5,5,-5));
+	AddToScene( cube1 );*/
 	
 	SendMessage( SYSTEM_ENTITY, Message( SYSTEM_GAME, MESSAGE_INIT ) );
 }

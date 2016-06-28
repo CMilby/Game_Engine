@@ -18,7 +18,7 @@ private:
 	Matrix4<float> m_view;
 	
 protected:
-	virtual void Input();
+	virtual void Input( float pDelta );
 	
 public:
 	Camera();

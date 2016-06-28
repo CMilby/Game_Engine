@@ -29,6 +29,7 @@ public:
     inline static void SetScreenWidth( unsigned int screenWidth ) {
         s_screenWidth = screenWidth;
         SetAspectRatio( s_screenWidth, s_screenHeight );
+		Transform::SetOrthographicProjection( 0.0f, GetScreenWidth(), GetScreenHeight(), 0.0f, GetZNear(), GetZFar() );
     }
     
     inline static unsigned int GetScreenWidth() { return s_screenWidth; }
@@ -36,39 +37,42 @@ public:
     inline static void SetScreenHeight( unsigned int screenHeight ) {
         s_screenHeight = screenHeight;
         SetAspectRatio( s_screenWidth, s_screenHeight );
+		Transform::SetOrthographicProjection( 0.0f, GetScreenWidth(), GetScreenHeight(), 0.0f, GetZNear(), GetZFar() );
     }
     
     inline static unsigned int GetScreenHeight() { return s_screenHeight; }
     
     inline static void SetFieldOfView( float fov ) {
         s_fieldOfView = fov;
-        Transform::SetProjection( s_fieldOfView, s_aspectRatio, s_zNear, s_zFar );
+        Transform::SetPerspectiveProjection( s_fieldOfView, s_aspectRatio, s_zNear, s_zFar );
     }
     
     inline static float GetFieldOfView() { return s_fieldOfView; }
     
     inline static void SetAspectRatio( float aspectRatio ) {
         s_aspectRatio = aspectRatio;
-        Transform::SetProjection( s_fieldOfView, s_aspectRatio, s_zNear, s_zFar );
+        Transform::SetPerspectiveProjection( s_fieldOfView, s_aspectRatio, s_zNear, s_zFar );
     }
     
     inline static void SetAspectRatio( float width, float height ) {
         s_aspectRatio = width / height;
-        Transform::SetProjection( s_fieldOfView, s_aspectRatio, s_zNear, s_zFar );
+        Transform::SetPerspectiveProjection( s_fieldOfView, s_aspectRatio, s_zNear, s_zFar );
     }
     
     inline static float GetAspectRatio() { return s_aspectRatio; }
     
     inline static void SetZNear( float zNear ) {
         s_zNear = zNear;
-        Transform::SetProjection( s_fieldOfView, s_aspectRatio, s_zNear, s_zFar );
+        Transform::SetPerspectiveProjection( s_fieldOfView, s_aspectRatio, s_zNear, s_zFar );
+		Transform::SetOrthographicProjection( 0.0f, GetScreenWidth(), GetScreenHeight(), 0.0f, GetZNear(), GetZFar() );
     }
     
     inline static float GetZNear() { return s_zNear; }
     
     inline static void SetZFar( float zFar ) {
         s_zFar = zFar;
-        Transform::SetProjection( s_fieldOfView, s_aspectRatio, s_zNear, s_zFar );
+        Transform::SetPerspectiveProjection( s_fieldOfView, s_aspectRatio, s_zNear, s_zFar );
+		Transform::SetOrthographicProjection( 0.0f, GetScreenWidth(), GetScreenHeight(), 0.0f, GetZNear(), GetZFar() );
     }
     
     inline static float GetZFar() { return s_zFar; }

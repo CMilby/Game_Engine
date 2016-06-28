@@ -25,7 +25,7 @@ LockedCamera::~LockedCamera() {
 	
 }
 
-void LockedCamera::Input() {
+void LockedCamera::Input( float pDelta ) {
 	float moveAmt = 0.1f;
 
 	Matrix4<float> rotation = GetRotation().ToRotationMatrix();

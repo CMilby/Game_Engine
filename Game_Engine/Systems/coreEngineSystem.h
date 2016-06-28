@@ -23,7 +23,7 @@ public:
     CoreEngineSystem();
     
     virtual void Init();
-    virtual void Update();
+    virtual void Update( float pDelta );
 };
 
 #endif /* coreEngineSystem_h */

@@ -25,8 +25,8 @@ private:
 	
 protected:
 	virtual void Init() {}
-	virtual void Input() {}
-	virtual void Update();
+	virtual void Input( float pDelta ) {}
+	virtual void Update( float pDelta );
 	virtual void Render() {}
 	
 public:
@@ -38,8 +38,8 @@ public:
 	Entity* AddChild( Entity *child );
 	
 	void InitAll();
-	void InputAll();
-	void UpdateAll();
+	void InputAll( float pDelta );
+	void UpdateAll( float pDelta );
 	void RenderAll();
 	
 	void SetPhysicsBody( PhysicsBody *pPhysicsBody );

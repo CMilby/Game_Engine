@@ -37,7 +37,7 @@ Entity* Entity::AddChild( Entity *child ) {
 	return this;
 }
 
-void Entity::Update() {
+void Entity::Update( float pDelta ) {
 	if ( m_physicsBody != NULL ) {
 		SetPosition( m_physicsBody->GetPosition() );
 	}
@@ -50,17 +50,17 @@ void Entity::InitAll() {
 	}
 }
 
-void Entity::InputAll() {
-	Input();
+void Entity::InputAll( float pDelta ) {
+	Input( pDelta );
 	for ( unsigned int i = 0; i < m_children.size(); i++ ) {
-		m_children[ i ]->InputAll();
+		m_children[ i ]->InputAll( pDelta );
 	}
 }
 
-void Entity::UpdateAll() {
-	Update();
+void Entity::UpdateAll( float pDelta ) {
+	Update( pDelta );
 	for ( unsigned int i = 0; i < m_children.size(); i++ ) {
-		m_children[ i ]->UpdateAll();
+		m_children[ i ]->UpdateAll( pDelta );
 	}
 }
 

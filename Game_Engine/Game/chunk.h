@@ -11,7 +11,6 @@
 class Chunk : public Mesh {
 
 private:
-	// uint8_t m_map[ CHUNK_X ][ CHUNK_Y ];
 	int m_x;
 	int m_y;
 	int m_z;
@@ -28,9 +27,6 @@ public:
 	virtual ~Chunk();
 	
 	virtual void Render();
-	
-	// int Get( int pX, int pY ) const;
-	// void Set( int pX, int pY, int pType );
 	
 	inline int GetX() const { return m_x;; }
 	inline int GetY() const { return m_y; }

@@ -22,7 +22,7 @@ private:
 	int m_keyDown;
 	
 protected:
-	virtual void Input();
+	virtual void Input( float pDelta );
 	
 public:
 	LockedCamera( const Vector3<float> &pPosition, const Quaternion &pRotation );

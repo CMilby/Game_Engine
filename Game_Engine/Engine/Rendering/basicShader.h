@@ -20,7 +20,7 @@ public:
     virtual ~BasicShader();
     virtual void Init();
     
-    // virtual void UpdateUniforms( const Matrix4<float> &world, const Matrix4<float> &projected, const Camera &camera, const Material &material );
+    virtual void UpdateUniforms( const Matrix4<float> &pMVP, const Material &pMaterial );
 };
 
 #endif /* basicShader_h */

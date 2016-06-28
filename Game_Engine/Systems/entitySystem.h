@@ -26,8 +26,8 @@ public:
     virtual ~EntitySystem();
     
     virtual void Init();
-	virtual void Input();
-    virtual void Update();
+	virtual void Input( float pDelta );
+    virtual void Update( float pDelta );
     virtual void Render();
 };
 

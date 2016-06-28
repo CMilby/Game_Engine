@@ -10,7 +10,7 @@
 
 #include <limits.h>
 
-#include "math3d.h"
+#include "system.h"
 
 Random::Random() {
 	m_twister = new MersenneTwister( 4357 );
@@ -31,19 +31,41 @@ void Random::SetSeed( int pSeed ) {
 }
 
 double Random::Randomd() {
-	double value = ( ( double ) m_twister->Random() / ( double ) ULONG_MAX ) * 10000000000.0;
+	double value = 0;
+	
+#if OS == MAC
+	value = ( ( double ) m_twister->Random() / ( double ) ULONG_MAX ) * 10000000000.0;
 	while ( value > 1 ) {
 		value -= 1.0;
 	}
+#elif OS == WINDOWS
+	value = ( ( double ) m_twister->Random() / ( double ) ULONG_MAX );
+	while ( value > 1 ) {
+		value -= 1.0;
+	}
+#else
+	
+#endif
 	
 	return value;
 }
 
 float Random::Randomf() {
-	float value = ( ( float ) m_twister->Random() / ( float ) ULONG_MAX ) * 10000000000.0;
+	float value = 0;
+	
+#if OS == MAC
+	value = ( ( float ) m_twister->Random() / ( float ) ULONG_MAX ) * 10000000000.0;
 	while ( value > 1 ) {
-		value -= 1.0f;
+		value -= 1.0;
 	}
+#elif OS == WINDOWS
+	value = ( ( float ) m_twister->Random() / ( float ) ULONG_MAX );
+	while ( value > 1 ) {
+		value -= 1.0;
+	}
+#else
+	
+#endif
 	
 	return value;
 }

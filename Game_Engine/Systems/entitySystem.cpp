@@ -27,12 +27,12 @@ void EntitySystem::Init() {
 	m_callbacks[ MESSAGE_INIT ] = std::bind( &EntitySystem::HandleInit, this, std::placeholders::_1 );
 }
 
-void EntitySystem::Input() {
-	m_root->InputAll();
+void EntitySystem::Input( float pDelta ) {
+	m_root->InputAll( pDelta );
 }
 
-void EntitySystem::Update() {
-	m_root->UpdateAll();
+void EntitySystem::Update( float pDelta ) {
+	m_root->UpdateAll( pDelta );
 }
 
 void EntitySystem::Render() {

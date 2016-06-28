@@ -38,9 +38,25 @@ public:
 	void Rotate( const Quaternion &quat );
 	void Rotate( const Vector3<float> &axis, float angle );
 	
-	static void SetProjection( const Matrix4<float> &projection ) { s_projection = projection; }
-	static void SetProjection( float fov, float aspectRatio, float zNear, float zFar ) { SetProjection( Matrix4<float>().Perspective( fov, aspectRatio, zNear, zFar ) ); }
+	static void SetPerspectiveProjection( const Matrix4<float> &projection ) { s_projection = projection; }
+	static void SetPerspectiveProjection( float fov, float aspectRatio, float zNear, float zFar ) { SetPerspectiveProjection( Matrix4<float>().Perspective( fov, aspectRatio, zNear, zFar ) );
+	}
+	
+	static void SetOrthographicProjection( const Matrix4<float> &pOrtho ) { s_ortho = pOrtho; }
+	static void SetOrthographicProjection( const float pLeft, const float pRight, const float pTop, const float pBottom, const float pZNear, const float pZFar ) {
+		SetOrthographicProjection( Matrix4<float>().Ortho( pLeft, pRight, pTop, pBottom, pZNear, pZFar ) );
+	}
+	
 	static Matrix4<float> GetProjection() { return s_projection; }
 };
 
 #endif /* transform_h */
+
+
+
+
+
+
+
+
+

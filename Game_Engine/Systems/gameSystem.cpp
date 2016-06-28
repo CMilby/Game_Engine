@@ -24,14 +24,20 @@ void GameSystem::AddToScene( Entity *entity ) {
 	SendMessage( SYSTEM_ENTITY, Message( SYSTEM_GAME, MESSAGE_ADD_ENTITY, payload ) );
 }
 
-void GameSystem::Input() {
-	SendMessage( SYSTEM_CAMERA, Message( SYSTEM_GAME, MESSAGE_INPUT ) );
-	SendMessage( SYSTEM_ENTITY, Message( SYSTEM_GAME, MESSAGE_INPUT ) );
+void GameSystem::Input( float pDelta ) {
+	std::vector<MessagePayload> myPayload;
+	myPayload.emplace_back( MessagePayload( PAYLOAD_FLOAT, &pDelta ) );
+	
+	SendMessage( SYSTEM_CAMERA, Message( SYSTEM_GAME, MESSAGE_INPUT, myPayload ) );
+	SendMessage( SYSTEM_ENTITY, Message( SYSTEM_GAME, MESSAGE_INPUT, myPayload ) );
 }
 
-void GameSystem::Update() {
-	SendMessage( SYSTEM_CAMERA, Message( SYSTEM_GAME, MESSAGE_UPDATE ) );
-    SendMessage( SYSTEM_ENTITY, Message( SYSTEM_GAME, MESSAGE_UPDATE ) );
+void GameSystem::Update( float pDelta ) {
+	std::vector<MessagePayload> myPayload;
+	myPayload.emplace_back( MessagePayload( PAYLOAD_FLOAT, &pDelta ) );
+	
+	SendMessage( SYSTEM_CAMERA, Message( SYSTEM_GAME, MESSAGE_UPDATE, myPayload ) );
+    SendMessage( SYSTEM_ENTITY, Message( SYSTEM_GAME, MESSAGE_UPDATE, myPayload ) );
 }
 
 void GameSystem::HandleLoadGame( const std::vector<MessagePayload> &payload ) {

@@ -11,18 +11,14 @@
 Camera* CameraSystem::s_mainCamera = 0;
 
 CameraSystem::CameraSystem() : System( SYSTEM_CAMERA ) {
-	// m_cameraRoot = new Entity();
 	s_mainCamera = new Camera();
 }
 
 CameraSystem::CameraSystem( Camera *camera ) : System( SYSTEM_CAMERA ) {
-	// m_cameraRoot = new Entity();
-	// AddCamera( camera );
 	s_mainCamera = camera;
 }
 
 CameraSystem::~CameraSystem() {
-	// if ( m_cameraRoot ) delete m_cameraRoot;
 	if ( s_mainCamera ) delete s_mainCamera;
 }
 
@@ -30,13 +26,12 @@ void CameraSystem::Init() {
 	System::Init();
 }
 
-void CameraSystem::Input() {
-	s_mainCamera->InputAll();
+void CameraSystem::Input( float pDelta ) {
+	s_mainCamera->InputAll( pDelta );
 }
 
-void CameraSystem::Update() {
-	// m_cameraRoot->InputAll();
-	s_mainCamera->UpdateAll();
+void CameraSystem::Update( float pDelta ) {
+	s_mainCamera->UpdateAll( pDelta );
 }
 
 void CameraSystem::AddCamera( Camera *camera ) {
