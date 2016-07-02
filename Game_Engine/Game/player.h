@@ -9,17 +9,15 @@
 #ifndef __PLAYER_H__
 #define __PLAYER_H__
 
-// #include "npc.h"
-#include "renderableEntity.h"
+#include "npc.h"
+// #include "renderableEntity.h"
 
-class Player : public RenderableEntity {
+class Player : public NPC {
 
 private:
 	
 protected:
-	// virtual void Init();
 	virtual void Input( float pDelta );
-	virtual void Update( float pDelta );
 
 public:
 	Player();

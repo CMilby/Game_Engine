@@ -42,6 +42,7 @@ public:
 	static bool IsMouseUp( int button );
     
 	static void SetCursorPosition( const Vector2<int> &position );
+	static Vector2<int> GetCursorPosition();
     
 	static void SetDrawMode( const DrawMode &mode );
 	static DrawMode GetDrawMode();

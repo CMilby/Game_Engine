@@ -9,23 +9,26 @@
 #include "item.h"
 
 Item::Item() {
-
+	m_cooldown = 50;
+	m_currentCooldown = 0;
+	m_isCoolingDown = false;
 }
 
 void Item::Update() {
 	if ( m_isCoolingDown ) {
-		m_cooldown--;
-		if ( m_cooldown == 0 ) {
+		m_currentCooldown--;
+		if ( m_currentCooldown == 0 ) {
 			m_isCoolingDown = false;
 		}
 	}
 } 
 
-void Item::Use() {
+bool Item::Use() {
 	if ( m_isCoolingDown ) {
-		return;
+		return false;
 	}
 	
 	m_isCoolingDown = true;
 	m_currentCooldown = m_cooldown;
+	return true;
 }

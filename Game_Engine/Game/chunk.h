@@ -15,6 +15,7 @@ private:
 	int m_y;
 	int m_z;
 	
+	GLuint m_vao;
 	GLuint m_vbo;
 	
 	int m_elements;

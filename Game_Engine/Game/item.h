@@ -11,7 +11,7 @@
 
 class Item {
 	
-private:
+protected:
 	int m_cooldown;
 	int m_currentCooldown;
 	bool m_isCoolingDown;
@@ -20,7 +20,7 @@ public:
 	Item();
 	
 	virtual void Update();
-	virtual void Use();
+	virtual bool Use();
 };
 
 #endif

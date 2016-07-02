@@ -28,7 +28,7 @@ Camera::~Camera() {
 }
 
 void Camera::Input( float pDelta ) {
-	float moveAmt = 0.3f;
+	/*float moveAmt = 0.3f;
 	float rotAmt = 2.0f;
 	Matrix4<float> rotation = GetRotation().ToRotationMatrix();
 	
@@ -82,7 +82,7 @@ void Camera::Input( float pDelta ) {
 	
 	if ( InputSystem::IsKeyDown( Key::KEY_RIGHT_ARROW ) ) {
 		Rotate( Vector3<float>( 0, 1, 0 ), rotAmt );
-	}
+	}*/
 	
 	SetView( GetRotation().ToRotationMatrix() * Matrix4<float>().Transform( GetPosition() * -1 ) );
 }

@@ -25,6 +25,10 @@ private:
 	int m_currentMana;
 	int m_currentStamina;
 	
+	// Moving
+	float m_moveSpeed;
+	float m_sprintSpeed;
+	
 	Item *m_leftHand;
 	Item *m_rightHand;
 	
@@ -34,6 +38,7 @@ protected:
 public:
 	NPC();
 	NPC( const Vector2<float> &pPosition );
+	virtual ~NPC();
 	
 	inline void SetMaxHealth( int pHealth ) { m_maxHealth = pHealth; }
 	inline void SetMaxMana( int pMana ) { m_maxMana = pMana; }
@@ -53,6 +58,12 @@ public:
 	
 	inline void SetLeftHandItem( Item *pItem ) { m_leftHand = pItem; }
 	inline void SetRightHandItem( Item *pItem ) { m_rightHand = pItem; }
+	
+	inline float GetMoveSpeed() const { return m_moveSpeed; }
+	inline float GetSprintSpeed() const { return m_sprintSpeed; }
+	
+	inline void SetMoveSpeed( float pSpeed ) { m_moveSpeed = pSpeed; }
+	inline void SetSprintSpeed( float pSpeed ) { m_sprintSpeed = pSpeed; }
 	
 	inline Item* GetLeftHandItem() const { return m_leftHand; }
 	inline Item* GetRightHandItem() const { return m_rightHand; }

@@ -78,6 +78,10 @@ void InputSystem::SetCursorPosition( const Vector2<int> &position ) {
     s_instance->SendMessage( SYSTEM_WINDOW, Message( SYSTEM_INPUT, MESSAGE_UPDATE_MOUSE_POSITION, payload ) );
 }
 
+Vector2<int> InputSystem::GetCursorPosition() {
+	return s_framework->GetCursorPosition();
+}
+
 void InputSystem::SetDrawMode( const DrawMode &mode ) {
     s_drawMode = mode;
 	s_framework->SetDrawMode( mode );

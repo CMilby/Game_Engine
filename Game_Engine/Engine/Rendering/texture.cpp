@@ -72,7 +72,7 @@ Texture::Texture( const std::string &file ) {
             return;
         }
         
-        InitTexture( x, y, data, GL_TEXTURE_2D, GL_NEAREST );
+        InitTexture( x, y, data, GL_TEXTURE_2D, GL_LINEAR );
         stbi_image_free( data );
         
         s_textureAtlas->Add( file, m_textureID );

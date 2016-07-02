@@ -12,10 +12,12 @@ Chunk::Chunk( int pX, int pY ) {
 	m_elements = 0;
 	m_hasChanged = true;
 	
-	glGenBuffers( 1, &m_vbo );
+	glGenVertexArrays( 1, &m_vao );
+	// glGenBuffers( 1, &m_vbo );
 }
 
 Chunk::~Chunk() {
+	glDeleteVertexArrays( 1, &m_vao );
 	glDeleteBuffers( 1, &m_vbo );
 }
 
@@ -39,10 +41,21 @@ void Chunk::Update() {
 	}
 	
 	m_elements = i;
+	
+	
+	if ( m_vbo != 0 ) {
+		glDeleteBuffers( 1, &m_vbo );
+	}
+	
+	glBindVertexArray( m_vao );
+	glGenBuffers( 1, &m_vbo );
+	
 	glBindBuffer( GL_ARRAY_BUFFER, m_vbo );
 	glBufferData( GL_ARRAY_BUFFER, m_elements * sizeof *vertex, vertex, GL_STATIC_DRAW );
 	glVertexAttribPointer( 0, 4, GL_BYTE, GL_FALSE, 0, 0 );
 	glEnableVertexAttribArray( 0 );
+	
+	glBindVertexArray( 0 );
 }
 
 void Chunk::Render() {
@@ -50,13 +63,17 @@ void Chunk::Render() {
 		Update();
 	}
 	
-	glEnableVertexAttribArray( 0 );
+	/*glEnableVertexAttribArray( 0 );
 	
 	glBindBuffer( GL_ARRAY_BUFFER, m_vbo );
 	glVertexAttribPointer( 0, 4, GL_BYTE, GL_FALSE, 0, 0 );
 	glDrawArrays( GL_TRIANGLES, 0, m_elements );
 	
-	glDisableVertexAttribArray( 0 );
+	glDisableVertexAttribArray( 0 );*/
+	
+	glBindVertexArray( m_vao );
+	glDrawArrays( GL_TRIANGLES, 0, m_elements );
+	glBindVertexArray( 0 );
 }
 
 /*int Chunk::Get( int pX, int pY ) const {

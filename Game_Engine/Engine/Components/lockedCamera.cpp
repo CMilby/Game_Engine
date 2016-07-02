@@ -26,7 +26,7 @@ LockedCamera::~LockedCamera() {
 }
 
 void LockedCamera::Input( float pDelta ) {
-	float moveAmt = 0.1f;
+	/*float moveAmt = 0.1f;
 
 	Matrix4<float> rotation = GetRotation().ToRotationMatrix();
 	
@@ -64,7 +64,7 @@ void LockedCamera::Input( float pDelta ) {
 	
 	if ( InputSystem::IsKeyDown( m_keyDown ) ) {
 		Move( GetRotation().GetDown( rotation ), moveAmt );
-	}
+	}*/
 	
 	SetView( GetRotation().ToRotationMatrix() * Matrix4<float>().Transform( GetPosition() * -1 ) );
 }

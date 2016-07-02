@@ -1,13 +1,13 @@
 //
-//  ( *this )ath3d.hpp
+//  math3d.h
 //  Game_Engine
 //
 //  Created by Craig Milby on 10/12/15.
 //  Copyright © 2015 Craig Milby. All rights reserved.
 //
 
-#ifndef math3d_hpp
-#define math3d_hpp
+#ifndef __MATH_3D_H__
+#define __MATH_3D_H__
 
 #include <iostream>
 #include <cmath>
@@ -847,15 +847,17 @@ public:
         
         return Matrix4<float>().InitRotationFromVectors( forward, up, right );
     }
-    
-    inline Vector3<float> ZDirection() {
+	
+	// What do I even use this for?
+	inline Vector3<float> ZDirection() {
         Vector3<float> vect( 0.0f, 0.0f, 0.0f );
         vect.SetX( 2 * GetW() * GetY() + 2 * GetX() * GetZ() );
         vect.SetY( 2 * GetY() * GetZ() - 2 * GetX() * GetW() );
         vect.SetZ( GetW() * GetW() + GetZ() * GetZ() - GetX() * GetX() - GetY() * GetY() );
         return vect;
     }
-    
+
+	
     inline float GetX() const { return ( *this )[ 0 ]; }
     inline float GetY() const { return ( *this )[ 1 ]; }
     inline float GetZ() const { return ( *this )[ 2 ]; }
@@ -922,6 +924,23 @@ namespace Math3D {
 		myDifferenceVector = myDifferenceVector.Normalized();
 		
 		return ( pConeCenterLine.Dot( myDifferenceVector ) >= cos( pFOVRadians ) );
+	}
+	
+	inline Quaternion LookAt( const Vector3<float> &pSourcePoint, const Vector3<float> &pDestPoint ) {
+		Vector3<float> forwardVector = ( pDestPoint - pSourcePoint ).Normalized();
+		float dot = Vector3<float>( 0.0f, 0.0f, -1.0f ).Dot( forwardVector );
+		
+		if ( fabsf( dot - ( -1.0f ) ) < 0.000001f ) {
+			return Quaternion( Vector3<float>( 0.0f, 1.0f, 0.0f ), M_PI);
+		}
+		if ( fabsf( dot - ( 1.0f ) ) < 0.000001f ) {
+			return Quaternion( 0.0f, 0.0f, 0.0f, 1.0f );
+		}
+		
+		float rotAngle = ( float ) acosf(dot);
+		Vector3<float> rotAxis = Vector3<float>( 0.0f, 0.0f, -1.0f ).Cross( forwardVector );
+		rotAxis = rotAxis.Normalized();
+		return Quaternion( rotAxis, rotAngle );
 	}
 }
 

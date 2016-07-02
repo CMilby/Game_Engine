@@ -8,7 +8,10 @@
 
 #include "player.h"
 
+#include "cameraSystem.h"
+#include "config.h"
 #include "inputSystem.h"
+#include "logger.h"
 
 Player::Player() {
 	/*SetPosition( Vector3<float>( 0.0f, 0.0f, 0.0f ) );
@@ -30,10 +33,12 @@ Player::Player() {
 }
 
 Player::Player( const Vector2<float> &pPosition ) {
-	SetPosition( Vector3<float>( pPosition.GetX(), pPosition.GetY(), 0.0f ) );
-	SetRotation( Quaternion( Vector3<float>( 1.0f, 0.0f, 0.0f ), 90.0f ) );
-	SetScale( Vector3<float>( 0.5f, 0.5f, 0.5f ) );
+	SetPosition( Vector3<float>( pPosition.GetX(), pPosition.GetY(), 1.0f ) );
+	// SetRotation( Quaternion( Vector3<float>( 1.0f, 0.0f, 0.0f ), 90.0f ) );
+	// SetScale( Vector3<float>( 0.5f, 0.5f, 0.5f ) );
 	
+	
+	SetMoveSpeed( 2.5f );
 	/*SetMaxHealth( 200 );
 	SetMaxMana( 100 );
 	SetMaxStamina( 100 );
@@ -42,49 +47,79 @@ Player::Player( const Vector2<float> &pPosition ) {
 	SetCurrentMana( GetMaxMana() );
 	SetCurrentStamina( GetCurrentStamina() );*/
 	
-	SetMesh( new Mesh( "plane.obj" ) );
-	SetMaterial( new Material( new Texture( "plain.png" ) ) );
+	SetMesh( new Mesh( "player_plane.obj" ) );
+	SetMaterial( new Material( new Texture( "character.png" ) ) );
 	SetShaderType( ShaderType::SHADER_BASIC );
 	SetIsVisible( true );
 }
 
-/*void Player::Init() {
-	
-}*/
-
 void Player::Input( float pDelta ) {
-	float moveAmt = 0.1f;
-	Matrix4<float> rotation = GetRotation().ToRotationMatrix();
+	Vector2<int> mousePos = InputSystem::GetCursorPosition();
+	Vector2<int> screenCenter( Config::GetScreenWidth() / 2, Config::GetScreenHeight() / 2 );
+	SetRotation( Quaternion( Vector3<float>( 0.0f, 0.0f, -1.0f ), ToDegree( atan2f( screenCenter.GetY() - mousePos.GetY(), screenCenter.GetX() - mousePos.GetX() ) ) - 90.0f ) );
 	
-	if ( InputSystem::IsKeyDown( Key::KEY_TAB ) ) {
-		moveAmt *= 3.0f;
+	float moveAmt = GetMoveSpeed() * pDelta;
+	// Matrix4<float> rotation = GetRotation().ToRotationMatrix();
+	
+	if ( InputSystem::IsKeyDown( Config::GetKeySprint()) ) {
+		moveAmt *= 1.75f;
 	}
 	
-	if ( InputSystem::IsKeyDown( Key::KEY_W ) ) {
-		Move( GetRotation().GetUp( rotation ), moveAmt );
+	if ( InputSystem::IsKeyDown( Config::GetKeyUp() ) ) {
+		// Vector3<float> direction = GetRotation().GetUp( rotation );
+		// Move( Vector3<float>( direction.GetX() * -1, direction.GetY(), direction.GetZ() ), moveAmt );
+		Move( Vector3<float>( 0.0f, 1.0f, 0.0f ), moveAmt );
 	}
 	
-	if ( InputSystem::IsKeyDown( Key::KEY_A ) ) {
-		Move( GetRotation().GetLeft( rotation ), moveAmt );
+	if ( InputSystem::IsKeyDown( Config::GetKeyLeft() ) ) {
+		// Vector3<float> direction = GetRotation().GetLeft( rotation );
+		// Move( Vector3<float>( direction.GetX(), direction.GetY() * -1, direction.GetZ() ), moveAmt );
+		Move( Vector3<float>( -1.0f, 0.0f, 0.0f ), moveAmt );
 	}
 	
-	if ( InputSystem::IsKeyDown( Key::KEY_S ) ) {
-		Move( GetRotation().GetDown( rotation ), moveAmt );
+	if ( InputSystem::IsKeyDown( Config::GetKeyDown() ) ) {
+		// Vector3<float> direction = GetRotation().GetDown( rotation );
+		// Move( Vector3<float>( direction.GetX() * -1, direction.GetY(), direction.GetZ() ), moveAmt );
+		Move( Vector3<float>( 0.0f, -1.0f, 0.0f ), moveAmt );
 	}
 	
-	if ( InputSystem::IsKeyDown( Key::KEY_D ) ) {
-		Move( GetRotation().GetRight( rotation ), moveAmt );
+	if ( InputSystem::IsKeyDown( Config::GetKeyRight() ) ) {
+		// Vector3<float> direction = GetRotation().GetRight( rotation );
+		// Move( Vector3<float>( direction.GetX(), direction.GetY() * -1, direction.GetZ() ), moveAmt );
+		Move( Vector3<float>( 1.0f, 0.0f, 0.0f ), moveAmt );
 	}
 	
-	if ( InputSystem::IsMouseDown( MouseButton::MOUSE_BUTTON_LEFT ) ) {
-		// GetRightHandItem()->Use();
+	if ( InputSystem::IsKeyDown( Config::GetKeyNext() ) ) {
+		// No inventory yet
 	}
 	
-	if ( InputSystem::IsMouseDown( MouseButton::MOUSE_BUTTON_RIGHT ) ) {
-		// GetLeftHandItem()->Use();
+	if ( InputSystem::IsKeyDown( Config::GetKeyLast() ) ) {
+		// No inventory yet
 	}
+	
+	if ( InputSystem::IsKeyDown( Config::GetKeyInventory() ) ) {
+		// No inventory yet
+	}
+	
+	if ( InputSystem::IsMouseDown( Config::GetButtonUseRight() ) ) {
+		if ( GetRightHandItem()->Use() ) {
+			// Draw something?
+			
+			Logger::LogDebug( "Player - Input", "Use Right Hand" );
+		}
+	}
+	
+	if ( InputSystem::IsMouseDown( Config::GetButtonUseLeft() ) ) {
+		if ( GetLeftHandItem()->Use() ) {
+			// Draw something?
+			
+			Logger::LogDebug( "Player - Input", "Use Left Hand" );
+		}
+	}
+
+	CameraSystem::GetMainCamera()->SetPosition( Vector3<float>( GetPosition().GetX(), GetPosition().GetY(), CameraSystem::GetMainCamera()->GetPosition().GetZ() ) );
 }
 
-void Player::Update( float pDelta ) {
-	
-}
+
+
+

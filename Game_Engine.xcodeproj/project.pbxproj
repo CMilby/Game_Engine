@@ -48,6 +48,9 @@
 		44394ED01CAF26B300212467 /* dateTime.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44394EC81CAF26B300212467 /* dateTime.cpp */; };
 		44394ED21CAF26B300212467 /* time.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44394ECC1CAF26B300212467 /* time.cpp */; };
 		44394ED31CAF26B300212467 /* transform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44394ECE1CAF26B300212467 /* transform.cpp */; };
+		443C92FC1D274979009F1FDC /* configLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 443C92F81D274979009F1FDC /* configLoader.cpp */; };
+		443C92FD1D274979009F1FDC /* logger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 443C92FA1D274979009F1FDC /* logger.cpp */; };
+		443C93071D276A5E009F1FDC /* handItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 443C93051D276A5E009F1FDC /* handItem.cpp */; };
 		443F744C1CB311AE00A0A939 /* planeCollider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 443F744A1CB311AE00A0A939 /* planeCollider.cpp */; };
 		443F74511CB311EE00A0A939 /* math3d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 443F744D1CB311EE00A0A939 /* math3d.cpp */; };
 		443F74521CB311EE00A0A939 /* simplexNoise.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 443F744F1CB311EE00A0A939 /* simplexNoise.cpp */; };
@@ -175,6 +178,13 @@
 		44394ECD1CAF26B300212467 /* time.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = time.h; path = Engine/Core/time.h; sourceTree = "<group>"; };
 		44394ECE1CAF26B300212467 /* transform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = transform.cpp; path = Engine/Core/transform.cpp; sourceTree = "<group>"; };
 		44394ECF1CAF26B300212467 /* transform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = transform.h; path = Engine/Core/transform.h; sourceTree = "<group>"; };
+		443C92F81D274979009F1FDC /* configLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = configLoader.cpp; path = Engine/Utility/configLoader.cpp; sourceTree = "<group>"; };
+		443C92F91D274979009F1FDC /* configLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = configLoader.h; path = Engine/Utility/configLoader.h; sourceTree = "<group>"; };
+		443C92FA1D274979009F1FDC /* logger.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = logger.cpp; path = Engine/Utility/logger.cpp; sourceTree = "<group>"; };
+		443C92FB1D274979009F1FDC /* logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = logger.h; path = Engine/Utility/logger.h; sourceTree = "<group>"; };
+		443C93001D274F51009F1FDC /* config.ini */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = config.ini; path = Resources/config/config.ini; sourceTree = "<group>"; };
+		443C93051D276A5E009F1FDC /* handItem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = handItem.cpp; path = Game/handItem.cpp; sourceTree = "<group>"; };
+		443C93061D276A5E009F1FDC /* handItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = handItem.h; path = Game/handItem.h; sourceTree = "<group>"; };
 		443F744A1CB311AE00A0A939 /* planeCollider.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = planeCollider.cpp; path = Engine/Physics/planeCollider.cpp; sourceTree = "<group>"; };
 		443F744B1CB311AE00A0A939 /* planeCollider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = planeCollider.h; path = Engine/Physics/planeCollider.h; sourceTree = "<group>"; };
 		443F744D1CB311EE00A0A939 /* math3d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = math3d.cpp; path = Engine/Core/Math/math3d.cpp; sourceTree = "<group>"; };
@@ -325,7 +335,6 @@
 		44394E5C1CAC923000212467 /* Rendering */ = {
 			isa = PBXGroup;
 			children = (
-				44394E631CAC92EA00212467 /* Shaders */,
 				44394EAD1CAF25DE00212467 /* basicShader.cpp */,
 				44394EAE1CAF25DE00212467 /* basicShader.h */,
 				44394EB31CAF25DE00212467 /* phongShader.cpp */,
@@ -383,17 +392,38 @@
 		44394E5F1CAC924A00212467 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				443C92F81D274979009F1FDC /* configLoader.cpp */,
+				443C92F91D274979009F1FDC /* configLoader.h */,
+				443C92FA1D274979009F1FDC /* logger.cpp */,
+				443C92FB1D274979009F1FDC /* logger.h */,
 				44394E821CAF25AB00212467 /* config.cpp */,
 				44394E831CAF25AB00212467 /* config.h */,
-				44394E881CAF25AB00212467 /* stb_image.c */,
-				44394E891CAF25AB00212467 /* stb_image.h */,
 				44394E8C1CAF25AB00212467 /* utility.cpp */,
 				44394E8D1CAF25AB00212467 /* utility.h */,
+				44394E881CAF25AB00212467 /* stb_image.c */,
+				44394E891CAF25AB00212467 /* stb_image.h */,
 			);
 			name = Utility;
 			sourceTree = "<group>";
 		};
-		44394E631CAC92EA00212467 /* Shaders */ = {
+		443C92FE1D274F3A009F1FDC /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				443C93011D274F56009F1FDC /* Shaders */,
+				443C92FF1D274F46009F1FDC /* Config */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		443C92FF1D274F46009F1FDC /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				443C93001D274F51009F1FDC /* config.ini */,
+			);
+			name = Config;
+			sourceTree = "<group>";
+		};
+		443C93011D274F56009F1FDC /* Shaders */ = {
 			isa = PBXGroup;
 			children = (
 				44B9C3FD1D1B35A10043FF1D /* TileShader.fs */,
@@ -475,6 +505,8 @@
 			children = (
 				44B9C4321D21D7650043FF1D /* item.cpp */,
 				44B9C4331D21D7650043FF1D /* item.h */,
+				443C93051D276A5E009F1FDC /* handItem.cpp */,
+				443C93061D276A5E009F1FDC /* handItem.h */,
 			);
 			name = Items;
 			sourceTree = "<group>";
@@ -500,6 +532,7 @@
 		44D3CD6E1BCBFAED0074E300 /* Game_Engine */ = {
 			isa = PBXGroup;
 			children = (
+				443C92FE1D274F3A009F1FDC /* Resources */,
 				4405747D1C76AC3400F1CE5B /* Messaging */,
 				440574781C76A97300F1CE5B /* Systems */,
 				440574661C767D1000F1CE5B /* Framework */,
@@ -589,7 +622,9 @@
 				44D3CD701BCBFAED0074E300 /* main.cpp in Sources */,
 				44394E9C1CAF25BE00212467 /* camera.cpp in Sources */,
 				440BD7171C88904F001DB584 /* windowSystem.cpp in Sources */,
+				443C92FD1D274979009F1FDC /* logger.cpp in Sources */,
 				44394E931CAF25AB00212467 /* utility.cpp in Sources */,
+				443C92FC1D274979009F1FDC /* configLoader.cpp in Sources */,
 				440BD7121C88904F001DB584 /* entitySystem.cpp in Sources */,
 				440BD7161C88904F001DB584 /* system.cpp in Sources */,
 				440BD6FE1C889027001DB584 /* messagePayload.cpp in Sources */,
@@ -628,6 +663,7 @@
 				4402765B1C8A553800449791 /* game.cpp in Sources */,
 				44394EAA1CAF25C900212467 /* collider.cpp in Sources */,
 				440BD6FC1C889027001DB584 /* message.cpp in Sources */,
+				443C93071D276A5E009F1FDC /* handItem.cpp in Sources */,
 				44394E911CAF25AB00212467 /* stb_image.c in Sources */,
 				44B9C4421D21D7650043FF1D /* player.cpp in Sources */,
 				440BD7151C88904F001DB584 /* renderingEngineSystem.cpp in Sources */,

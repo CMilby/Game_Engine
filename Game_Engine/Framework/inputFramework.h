@@ -163,7 +163,7 @@ namespace Key{
 		KEY_FIND = 126,
 		KEY_MUTE = 127,
 		KEY_VOLUME_UP = 128,
-		KEY_COLUME_DOWN = 129,
+		KEY_VOLUME_DOWN = 129,
 		
 		KEY_KP_COMMA = 133,
 		

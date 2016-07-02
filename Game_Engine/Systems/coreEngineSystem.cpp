@@ -8,7 +8,10 @@
 
 #include "coreEngineSystem.h"
 
-#include "math3d.h"
+// #include "math3d.h"
+// #include "renderableEntity.h"
+
+#include "logger.h"
 
 CoreEngineSystem::CoreEngineSystem() : System( SYSTEM_CORE_ENGINE ) {
 	m_isRunning = false;
@@ -25,10 +28,10 @@ void CoreEngineSystem::Update( float pDelta ) {
     HandleMessages();
 }
 
-#include "renderableEntity.h"
-
 void CoreEngineSystem::HandleCoreEngineStart( const std::vector<MessagePayload>& payload ) {
-    if ( m_isRunning ) {
+	const std::string kFunction = "HandleCoreEngineStart";
+	
+	if ( m_isRunning ) {
         return;
     }
     
@@ -54,7 +57,7 @@ void CoreEngineSystem::HandleCoreEngineStart( const std::vector<MessagePayload>&
 		myPayload[ 0 ] = MessagePayload( PAYLOAD_FLOAT, &myDelta );
 		
 		if ( currentTime - lastTime >= 1000.0f ) {
-			printf( "%i\n", frames );
+			Logger::LogInfo( kFunction, std::to_string( frames ) );
 			frames = 0;
 			lastTime += 1000.0f;
 		}

@@ -11,21 +11,37 @@
 #include "config.h"
 
 WindowSystem::WindowSystem() : System( SYSTEM_WINDOW ) {
-    
+	m_width = Config::GetScreenWidth();
+	m_height = Config::GetScreenHeight();
+	m_title = "Craig!";
+	m_fullscreen = Config::GetFullscreen();
+	
+	m_framework = new WindowFramework();
+	m_framework->CreateWindow( m_width, m_height, m_title );
+	m_framework->SetWindowFullscreen( m_fullscreen );
+}
+
+WindowSystem::WindowSystem( const std::string &pTitle ) : System( SYSTEM_WINDOW ) {
+	m_width = Config::GetScreenWidth();
+	m_height = Config::GetScreenHeight();
+	m_title = pTitle;
+	m_fullscreen = Config::GetFullscreen();
+	
+	m_framework = new WindowFramework();
+	m_framework->CreateWindow( m_width, m_height, m_title );
+	m_framework->SetWindowFullscreen( m_fullscreen );
+	
 }
 
 WindowSystem::WindowSystem( unsigned int width, unsigned int height, const std::string &title ) : System( SYSTEM_WINDOW ) {
     m_width = width;
-    m_heigt = height;
+    m_height = height;
     m_title = title;
     m_fullscreen = false;
 	
-	Config::SetScreenWidth( width );
-	Config::SetScreenHeight( height );
-	
     m_framework = new WindowFramework();
     m_framework->CreateWindow( width, height, title );
-    m_framework->SetWindowFullscreen( false );
+    m_framework->SetWindowFullscreen( m_fullscreen );
 }
 
 WindowSystem::~WindowSystem() {

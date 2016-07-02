@@ -21,7 +21,7 @@ private:
     WindowFramework *m_framework;
     
     unsigned int m_width;
-    unsigned int m_heigt;
+    unsigned int m_height;
     std::string m_title;
 	bool m_fullscreen;
     
@@ -30,6 +30,7 @@ private:
     
 public:
     WindowSystem();
+	WindowSystem( const std::string &pTitle );
     WindowSystem( unsigned int width, unsigned int height, const std::string &title );
     virtual ~WindowSystem();
     

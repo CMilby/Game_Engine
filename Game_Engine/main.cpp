@@ -19,21 +19,25 @@
 #include "renderingEngineSystem.h"
 #include "windowSystem.h"
 
+// Load Systems
+#include "config.h"
+#include "configLoader.h"
+
 // Game
 #include "lockedCamera.h"
 #include "game.h"
 
 int main( int argc, const char *argv[] ) {
+	ConfigLoader::GetInstance().LoadConfigFile();
 	MessageBus *bus = MessageBus::GetInstance();
     
     CoreEngineSystem *coreEngine = new CoreEngineSystem();
     RenderingEngineSystem *renderingEngine = new RenderingEngineSystem();
 	PhysicsEngineSystem *physicsEngine = new PhysicsEngineSystem();
-    WindowSystem *window = new WindowSystem( 800, 600, "Game" );
+	WindowSystem *window = new WindowSystem( "Game" );
     InputSystem *input = InputSystem::GetInstance();
     EntitySystem *entity = new EntitySystem();
-    // CameraSystem *camera = new CameraSystem( new LockedCamera( Vector3<float>( 0.0f, 0.0f, 10.0f ), Quaternion( 0, 0, 0, 1 ) ) );
-	CameraSystem *camera = new CameraSystem( new Camera( Vector3<float>( 0, 0, 10 ) ) );
+	CameraSystem *camera = new CameraSystem( new Camera( Vector3<float>( 0, 0, 20 ) ) );
 	GameSystem *game = new Game();
     
     bus->AddSystem( coreEngine );
