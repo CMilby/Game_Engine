@@ -10,6 +10,7 @@
 
 #include <SDL2/SDL.h>
 
+#include "logger.h"
 #include "renderFramework.h"
 
 InputFramework* InputFramework::s_instance = 0;
@@ -64,6 +65,11 @@ void InputFramework::Update() {
             int button = event.button.button;
 			s_mouse[ button ] = false;
             s_downButtons.erase( std::remove( s_downButtons.begin(), s_downButtons.end(), button ), s_downButtons.end() );
+		}
+		
+		if ( event.type == SDL_MULTIGESTURE ) {
+			// This is how we will handle zooming in and out
+			Logger::LogInfo( "Input Framework - Update", "Handle Multigesture" );
 		}
 	}
 }

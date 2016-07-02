@@ -32,25 +32,19 @@ Player::Player() {
 	SetIsVisible( true );*/
 }
 
-Player::Player( const Vector2<float> &pPosition ) {
-	SetPosition( Vector3<float>( pPosition.GetX(), pPosition.GetY(), 1.0f ) );
-	// SetRotation( Quaternion( Vector3<float>( 1.0f, 0.0f, 0.0f ), 90.0f ) );
-	// SetScale( Vector3<float>( 0.5f, 0.5f, 0.5f ) );
-	
-	
+Player::Player( const Vector2<float> &pPosition ) : NPC( pPosition ) {
 	SetMoveSpeed( 2.5f );
-	/*SetMaxHealth( 200 );
+	SetSprintSpeed( 2.5f );
+	
+	SetMaxHealth( 200 );
 	SetMaxMana( 100 );
 	SetMaxStamina( 100 );
 	
 	SetCurrentHealth( GetMaxHealth() );
 	SetCurrentMana( GetMaxMana() );
-	SetCurrentStamina( GetCurrentStamina() );*/
+	SetCurrentStamina( GetCurrentStamina() );
 	
-	SetMesh( new Mesh( "player_plane.obj" ) );
 	SetMaterial( new Material( new Texture( "character.png" ) ) );
-	SetShaderType( ShaderType::SHADER_BASIC );
-	SetIsVisible( true );
 }
 
 void Player::Input( float pDelta ) {
@@ -62,7 +56,7 @@ void Player::Input( float pDelta ) {
 	// Matrix4<float> rotation = GetRotation().ToRotationMatrix();
 	
 	if ( InputSystem::IsKeyDown( Config::GetKeySprint()) ) {
-		moveAmt *= 1.75f;
+		moveAmt *= GetSprintSpeed();
 	}
 	
 	if ( InputSystem::IsKeyDown( Config::GetKeyUp() ) ) {

@@ -8,6 +8,9 @@
 
 #include "handItem.h"
 
-HandItem::HandItem() {
-	
+HandItem::HandItem( const Vector3<float> &pPosition ) : Item( pPosition, "Hand" ) {
+	SetMesh( new Mesh( "player_plane.obj" ) );
+	SetMaterial( new Material( new Texture( "hand.png" ) ) );
+	SetShaderType( ShaderType::SHADER_BASIC );
+	SetIsVisible( true );
 }

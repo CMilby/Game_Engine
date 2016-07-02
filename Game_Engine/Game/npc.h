@@ -12,9 +12,14 @@
 #include "item.h"
 #include "renderableEntity.h"
 
+#define NPC_HEIGHT 1.0f
+
 class NPC : public RenderableEntity {
 
 private:
+	static Vector3<float> s_leftHandOffset;
+	static Vector3<float> s_rightHandOffset;
+	
 	// Base Powers
 	int m_maxHealth;
 	int m_maxMana;

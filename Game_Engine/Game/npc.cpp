@@ -10,16 +10,33 @@
 
 #include "handItem.h"
 
+Vector3<float> NPC::s_leftHandOffset = Vector3<float>( -0.25f, 0.25f, 0.0f );
+Vector3<float> NPC::s_rightHandOffset = Vector3<float>( 0.25f, 0.25f, 0.0f );
+
 NPC::NPC() {
-	m_leftHand = new HandItem();
-	m_rightHand = new HandItem();
+	m_leftHand = new HandItem( Vector3<float>( 0.0f, 0.0f, NPC_HEIGHT ) );
+	m_rightHand = new HandItem( Vector3<float>( 0.0f, 0.0f, NPC_HEIGHT ) );
+	
+	AddChild( m_leftHand );
+	AddChild( m_rightHand );
+	
+	SetMesh( new Mesh( "player_plane.obj" ) );
+	SetShaderType( ShaderType::SHADER_BASIC );
+	SetIsVisible( true );
 }
 
 NPC::NPC( const Vector2<float> &pPosition ) {
-	SetPosition( Vector3<float>( pPosition.GetY(), pPosition.GetY(), 1.0f ) );
+	SetPosition( Vector3<float>( pPosition.GetY(), pPosition.GetY(), NPC_HEIGHT ) );
 	
-	m_leftHand = new HandItem();
-	m_rightHand = new HandItem();
+	m_leftHand = new HandItem( GetPosition() + s_leftHandOffset );
+	m_rightHand = new HandItem( GetPosition() + s_rightHandOffset );
+	
+	AddChild( m_leftHand );
+	AddChild( m_rightHand );
+	
+	SetMesh( new Mesh( "player_plane.obj" ) );
+	SetShaderType( ShaderType::SHADER_BASIC );
+	SetIsVisible( true );
 }
 
 NPC::~NPC() {
@@ -33,6 +50,12 @@ NPC::~NPC() {
 }
 
 void NPC::Update( float pDelta ) {
-	m_leftHand->Update();
-	m_rightHand->Update();
+	m_leftHand->SetPosition( GetPosition() + s_leftHandOffset );
+	m_rightHand->SetPosition( GetPosition() + s_rightHandOffset );
 }
+
+
+
+
+
+

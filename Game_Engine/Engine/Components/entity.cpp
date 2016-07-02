@@ -65,10 +65,10 @@ void Entity::UpdateAll( float pDelta ) {
 }
 
 void Entity::RenderAll() {
-	Render();
 	for ( unsigned int i = 0; i < m_children.size(); i++ ) {
 		m_children[ i ]->RenderAll();
 	}
+	Render();
 }
 
 void Entity::SetPhysicsBody( PhysicsBody *pPhysicsBody ) {

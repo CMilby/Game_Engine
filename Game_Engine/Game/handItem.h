@@ -16,7 +16,7 @@ class HandItem : public Item {
 private:
 	
 public:
-	HandItem();
+	HandItem( const Vector3<float> &pPosition );
 };
 
 #endif /* handItem_h */
