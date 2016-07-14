@@ -50,6 +50,8 @@ NPC::~NPC() {
 }
 
 void NPC::Update( float pDelta ) {
+	// Vector2<float> myLeftPos = Math3D::RotatePoint( GetPosition() + s_leftHandOffset, GetPosition(), pAngle )
+	
 	m_leftHand->SetPosition( GetPosition() + s_leftHandOffset );
 	m_rightHand->SetPosition( GetPosition() + s_rightHandOffset );
 }

@@ -942,6 +942,22 @@ namespace Math3D {
 		rotAxis = rotAxis.Normalized();
 		return Quaternion( rotAxis, rotAngle );
 	}
+	
+	inline Vector2<float> RotatePoint( const Vector2<float> &pPoint, const Vector2<float> &pCenter, float pAngle ) {
+		pAngle = ToRadian( pAngle );
+		
+		float s = sinf( pAngle );
+		float c = cosf( pAngle );
+		
+		Vector2<float> myPoint( pPoint.GetX() - pCenter.GetX(), pPoint.GetY() - pCenter.GetY() );
+		float xNew = myPoint.GetX() * c - myPoint.GetY() * s;
+		float yNew = myPoint.GetX() * s + myPoint.GetY() * c;
+		
+		myPoint.SetX( xNew + pCenter.GetX() );
+		myPoint.SetY( yNew + pCenter.GetY() );
+		
+		return myPoint;
+	}
 }
 
 #endif /* math3d_hpp */

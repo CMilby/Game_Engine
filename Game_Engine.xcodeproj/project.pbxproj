@@ -55,6 +55,7 @@
 		443F74511CB311EE00A0A939 /* math3d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 443F744D1CB311EE00A0A939 /* math3d.cpp */; };
 		443F74521CB311EE00A0A939 /* simplexNoise.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 443F744F1CB311EE00A0A939 /* simplexNoise.cpp */; };
 		443F74581CB314D700A0A939 /* random.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 443F74561CB314D700A0A939 /* random.cpp */; };
+		444684841D371AD600CC44FC /* swordItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 444684821D371AD600CC44FC /* swordItem.cpp */; };
 		449D85F41BD6B6F300B72584 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 449D85F31BD6B6F300B72584 /* OpenGL.framework */; };
 		449D85F91BD6BB0900B72584 /* libGLEW.1.12.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 449D85F81BD6BB0900B72584 /* libGLEW.1.12.0.dylib */; };
 		44B9C3FB1D1B356D0043FF1D /* chunk.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44B9C3F51D1B356D0043FF1D /* chunk.cpp */; };
@@ -193,6 +194,8 @@
 		443F74501CB311EE00A0A939 /* simplexNoise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = simplexNoise.h; path = Engine/Core/Math/simplexNoise.h; sourceTree = "<group>"; };
 		443F74561CB314D700A0A939 /* random.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = random.cpp; path = Engine/Core/Math/random.cpp; sourceTree = "<group>"; };
 		443F74571CB314D700A0A939 /* random.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = random.h; path = Engine/Core/Math/random.h; sourceTree = "<group>"; };
+		444684821D371AD600CC44FC /* swordItem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = swordItem.cpp; sourceTree = "<group>"; };
+		444684831D371AD600CC44FC /* swordItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = swordItem.h; sourceTree = "<group>"; };
 		447B54141BF04A9600BB5977 /* libSDL2-2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libSDL2-2.0.0.dylib"; path = "../../../../usr/local/Cellar/sdl2/2.0.3/lib/libSDL2-2.0.0.dylib"; sourceTree = "<group>"; };
 		449D85F31BD6B6F300B72584 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		449D85F61BD6BACB00B72584 /* libglfw.3.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw.3.1.dylib; path = ../../../../usr/local/lib/libglfw.3.1.dylib; sourceTree = "<group>"; };
@@ -507,6 +510,8 @@
 				44B9C4331D21D7650043FF1D /* item.h */,
 				443C93051D276A5E009F1FDC /* handItem.cpp */,
 				443C93061D276A5E009F1FDC /* handItem.h */,
+				444684821D371AD600CC44FC /* swordItem.cpp */,
+				444684831D371AD600CC44FC /* swordItem.h */,
 			);
 			name = Items;
 			sourceTree = "<group>";
@@ -623,6 +628,7 @@
 				44394E9C1CAF25BE00212467 /* camera.cpp in Sources */,
 				440BD7171C88904F001DB584 /* windowSystem.cpp in Sources */,
 				443C92FD1D274979009F1FDC /* logger.cpp in Sources */,
+				444684841D371AD600CC44FC /* swordItem.cpp in Sources */,
 				44394E931CAF25AB00212467 /* utility.cpp in Sources */,
 				443C92FC1D274979009F1FDC /* configLoader.cpp in Sources */,
 				440BD7121C88904F001DB584 /* entitySystem.cpp in Sources */,
