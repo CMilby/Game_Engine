@@ -17,8 +17,16 @@
 #include <windows.h>
 #endif
 
-int Timing::GetTimeMillis() {
+unsigned int Timing::GetTimeMillis() {
     return SDL_GetTicks();
+}
+
+unsigned int Timing::GetTimeMillisSpan( unsigned int pStartTime ) {
+	int mySpan = Timing::GetTimeMillis() - pStartTime;
+	if ( mySpan < 0 ) {
+		mySpan += 0x100000 * 1000;
+	}
+	return ( unsigned int ) mySpan;
 }
 
 void Timing::Delay( int millis ) {

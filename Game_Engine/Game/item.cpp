@@ -8,10 +8,12 @@
 
 #include "item.h"
 
-#include "logger.h"
-
 Item::Item() {
 	m_item = "BaseItem";
+	
+	m_useTime = 30;
+	m_timeSinceUse = 0;
+	
 	m_cooldown = 50;
 	m_currentCooldown = 0;
 	m_isCoolingDown = false;
@@ -21,6 +23,9 @@ Item::Item( const std::string &pItem, eHand pHand ) {
 	m_item = pItem;
 	m_hand = pHand;
 	
+	m_useTime = 30;
+	m_timeSinceUse = 0;
+	
 	m_cooldown = 50;
 	m_currentCooldown = 0;
 	m_isCoolingDown = false;
@@ -28,8 +33,11 @@ Item::Item( const std::string &pItem, eHand pHand ) {
 
 Item::Item( const Vector3<float> &pPosition, const std::string &pItem ) {
 	SetPosition( pPosition );
-	
 	m_item = pItem;
+	
+	m_useTime = 30;
+	m_timeSinceUse = 0;
+	
 	m_cooldown = 50;
 	m_currentCooldown = 0;
 	m_isCoolingDown = false;
@@ -44,6 +52,9 @@ Item::Item( const Vector3<float> &pPosition, const std::string &pItem, eHand pHa
 	
 	m_item = pItem;
 	m_hand = pHand;
+	
+	m_useTime = 30;
+	m_timeSinceUse = 0;
 	
 	m_cooldown = 50;
 	m_currentCooldown = 0;
@@ -64,18 +75,22 @@ bool Item::Use() {
 		return false;
 	}
 	
-	Logger::LogDebug( "Item - Use", m_item );
+	Logger::LogInfo( "Item - Use", m_item );
 	
 	m_isCoolingDown = true;
 	m_currentCooldown = m_cooldown;
 	return true;
 }
 
-void Item::SetPosition( const Vector3<float> &pPosition ) {
-	if ( m_hand == eHand::HAND_LEFT ) {
-		RenderableEntity::SetPosition( pPosition + m_handLeftOffset );
-	} else if ( m_hand == eHand::HAND_RIGHT ) {
-		RenderableEntity::SetPosition( pPosition + m_handRightOffset );
+void Item::SetPosition( const Vector3<float> &pPosition, bool pHandOffset ) {
+	if ( pHandOffset ) {
+		if ( m_hand == eHand::HAND_LEFT ) {
+			RenderableEntity::SetPosition( pPosition + m_handLeftOffset );
+		} else if ( m_hand == eHand::HAND_RIGHT ) {
+			RenderableEntity::SetPosition( pPosition + m_handRightOffset );
+		}
+	} else {
+		RenderableEntity::SetPosition( pPosition );
 	}
 }
 

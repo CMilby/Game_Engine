@@ -18,6 +18,7 @@ class Entity {
 	
 private:
 	std::vector<Entity*> m_children;
+	
 	Entity *m_parent;
 	
 	Transform m_transform;
@@ -64,7 +65,7 @@ public:
 	inline Entity* GetParent() const { return m_parent; }
 	inline void SetParent( Entity* pParent ) { m_parent = pParent; }
 	
-	inline Matrix4<float> GetModelMatrix() const { return m_transform.GetModelMatrix(); }
+	Matrix4<float> GetModelMatrix() const;
 };
 
 #endif /* entity_h */

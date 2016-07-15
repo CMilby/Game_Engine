@@ -13,7 +13,9 @@
 
 namespace Timing {
     
-    int GetTimeMillis();
+    unsigned int GetTimeMillis();
+	unsigned int GetTimeMillisSpan( unsigned int pStartTime );
+	
     void Delay( int millis );
     
 	time_t GetCurrentTime();

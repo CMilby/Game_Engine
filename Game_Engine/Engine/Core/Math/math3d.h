@@ -226,7 +226,16 @@ public:
     inline T operator[]( unsigned int index ) const {
         return m_values[ index ];
     }
-    
+	
+	inline std::string ToString() const {
+		std::string myRet;
+		for ( unsigned int i = 0; i < D; i++ ) {
+			myRet += std::to_string( m_values[ i ] ) + ", ";
+		}
+		
+		return myRet.substr( 0, myRet.length() - 2 );
+	}
+	
     inline void Print() const {
         for ( unsigned int i = 0; i < D; i++ ) {
             std::cout << m_values[ i ] << " ";
@@ -288,7 +297,13 @@ public:
         ( *this )[ 1 ] = y;
         ( *this )[ 2 ] = z;
     }
-    
+	
+	Vector3( const Vector2<T> &pVect, T pZ ) {
+		( *this )[ 0 ] = pVect[ 0 ];
+		( *this )[ 1 ] = pVect[ 1 ];
+		( *this )[ 2 ] = pZ;
+	}
+	
     inline Vector3<T> Cross( const Vector3<T> &vect ) const {
         T x = ( *this )[ 1 ] * vect[ 2 ] - ( *this )[ 2 ] * vect[ 1 ];
         T y = ( *this )[ 2 ] * vect[ 0 ] - ( *this )[ 0 ] * vect[ 2 ];
@@ -296,6 +311,10 @@ public:
         
         return Vector3<T>( x, y, z );
     }
+	
+	inline Vector3<T> Lerp( const Vector3<T> &pVect, T pLerpFactor ) {
+		return ( pVect - *this ) * pLerpFactor + *this;
+	}
     
     inline T GetX() const { return ( *this )[ 0 ]; }
     inline T GetY() const { return ( *this )[ 1 ]; }
@@ -304,6 +323,15 @@ public:
     inline void SetX( const T &x ) { ( *this )[ 0 ] = x; }
     inline void SetY( T y ) { ( *this )[ 1 ] = y; }
     inline void SetZ( T z ) { ( *this )[ 2 ] = z; }
+	
+	inline Vector2<T> GetXY() const { return Vector2<T>( (*this )[ 0 ], ( *this )[ 1 ] ); }
+	inline Vector2<T> GetXZ() const { return Vector2<T>( (*this )[ 0 ], ( *this )[ 2 ] ); }
+	
+	inline Vector2<T> GetYX() const { return Vector2<T>( (*this )[ 1 ], ( *this )[ 0 ] ); }
+	inline Vector2<T> GetYZ() const { return Vector2<T>( (*this )[ 1 ], ( *this )[ 2 ] ); }
+	
+	inline Vector2<T> GetZX() const { return Vector2<T>( (*this )[ 2 ], ( *this )[ 0 ] ); }
+	inline Vector2<T> GetZY() const { return Vector2<T>( (*this )[ 2 ], ( *this )[ 1 ] ); }
 };
 
 template<class T> class Vector4 : public Vector<T, 4> {
@@ -957,6 +985,10 @@ namespace Math3D {
 		myPoint.SetY( yNew + pCenter.GetY() );
 		
 		return myPoint;
+	}
+	
+	inline float AngleBetween( const Vector2<float> &pPoint1, const Vector2<float> &pPoint2 ) {
+		return atan2f( pPoint1.GetY() - pPoint2.GetY(), pPoint1.GetX() - pPoint2.GetX() );
 	}
 }
 

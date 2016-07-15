@@ -15,8 +15,18 @@ class HandItem : public Item {
 	
 private:
 	
+protected:
+	Entity *m_forward;
+	Entity *m_base;
+	
+	virtual void Update( float pDelta );
+	
 public:
 	HandItem( const Vector3<float> &pPosition, eHand pHand );
+	HandItem( const std::string &pItem, eHand pHand );
+	virtual ~HandItem();
+	
+	virtual bool Use();
 };
 
 #endif /* handItem_h */

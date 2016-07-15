@@ -34,3 +34,8 @@ void Transform::Rotate( const Quaternion &quat ) {
 void Transform::Rotate( const Vector3<float> &axis, float angle ) {
 	Rotate( Quaternion( axis, angle ) );
 }
+
+
+
+
+

@@ -12,22 +12,36 @@
 
 Entity::Entity() {
 	m_physicsBody = 0;
+	m_parent = 0;
 }
 
 Entity::Entity( const Transform &transform ) {
 	m_transform = transform;
 	m_physicsBody = 0;
+	m_parent = 0;
 }
 
 Entity::Entity( const Vector3<float> &position ) {
 	m_transform.SetPosition( position );
 	m_physicsBody = 0;
+	m_parent = 0;
 }
 
 Entity::~Entity() {
+	for ( unsigned int i = 0; i < m_children.size(); i++ ) {
+		if ( m_children[ i ] ) {
+			delete m_children[ i ];
+		}
+	}
+	
 	if ( m_physicsBody ) {
 		delete m_physicsBody;
 		m_physicsBody = 0;
+	}
+	
+	if ( m_parent != 0 ) {
+		delete m_parent;
+		m_parent = 0;
 	}
 }
 
@@ -87,6 +101,13 @@ void Entity::RemoveChild( Entity *pEntity ) {
 
 void Entity::RemoveChild( int pIndex ) {
 	m_children.erase( m_children.begin() + pIndex );
+}
+
+Matrix4<float> Entity::GetModelMatrix() const {
+	if ( m_parent != 0 ) {
+		return m_parent->GetModelMatrix() * m_transform.GetModelMatrix();
+	}
+	return m_transform.GetModelMatrix();
 }
 
 

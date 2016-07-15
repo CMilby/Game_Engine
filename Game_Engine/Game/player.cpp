@@ -13,6 +13,8 @@
 #include "inputSystem.h"
 #include "logger.h"
 
+#include "stabbingSwordItem.h"
+
 Player::Player() {
 	/*SetPosition( Vector3<float>( 0.0f, 0.0f, 0.0f ) );
 	SetRotation( Quaternion( Vector3<float>( 1.0f, 0.0f, 0.0f ), 90.0f ) );
@@ -45,6 +47,8 @@ Player::Player( const Vector2<float> &pPosition ) : NPC( pPosition ) {
 	SetCurrentStamina( GetCurrentStamina() );
 	
 	SetMaterial( new Material( new Texture( "character.png" ) ) );
+	
+	// SetRightHandItem( new StabbingSwordItem( GetPosition(), eHand::HAND_RIGHT ) );
 }
 
 void Player::Input( float pDelta ) {
@@ -53,33 +57,24 @@ void Player::Input( float pDelta ) {
 	SetRotation( Quaternion( Vector3<float>( 0.0f, 0.0f, -1.0f ), ToDegree( atan2f( screenCenter.GetY() - mousePos.GetY(), screenCenter.GetX() - mousePos.GetX() ) ) - 90.0f ) );
 	
 	float moveAmt = GetMoveSpeed() * pDelta;
-	// Matrix4<float> rotation = GetRotation().ToRotationMatrix();
 	
 	if ( InputSystem::IsKeyDown( Config::GetKeySprint()) ) {
 		moveAmt *= GetSprintSpeed();
 	}
 	
 	if ( InputSystem::IsKeyDown( Config::GetKeyUp() ) ) {
-		// Vector3<float> direction = GetRotation().GetUp( rotation );
-		// Move( Vector3<float>( direction.GetX() * -1, direction.GetY(), direction.GetZ() ), moveAmt );
 		Move( Vector3<float>( 0.0f, 1.0f, 0.0f ), moveAmt );
 	}
 	
 	if ( InputSystem::IsKeyDown( Config::GetKeyLeft() ) ) {
-		// Vector3<float> direction = GetRotation().GetLeft( rotation );
-		// Move( Vector3<float>( direction.GetX(), direction.GetY() * -1, direction.GetZ() ), moveAmt );
 		Move( Vector3<float>( -1.0f, 0.0f, 0.0f ), moveAmt );
 	}
 	
 	if ( InputSystem::IsKeyDown( Config::GetKeyDown() ) ) {
-		// Vector3<float> direction = GetRotation().GetDown( rotation );
-		// Move( Vector3<float>( direction.GetX() * -1, direction.GetY(), direction.GetZ() ), moveAmt );
 		Move( Vector3<float>( 0.0f, -1.0f, 0.0f ), moveAmt );
 	}
 	
 	if ( InputSystem::IsKeyDown( Config::GetKeyRight() ) ) {
-		// Vector3<float> direction = GetRotation().GetRight( rotation );
-		// Move( Vector3<float>( direction.GetX(), direction.GetY() * -1, direction.GetZ() ), moveAmt );
 		Move( Vector3<float>( 1.0f, 0.0f, 0.0f ), moveAmt );
 	}
 	
@@ -97,17 +92,13 @@ void Player::Input( float pDelta ) {
 	
 	if ( InputSystem::IsMouseDown( Config::GetButtonUseRight() ) ) {
 		if ( GetRightHandItem()->Use() ) {
-			// Draw something?
-			
-			Logger::LogDebug( "Player - Input", "Use Right Hand" );
+			Logger::LogInfo( "Player - Input", "Use Right Hand" );
 		}
 	}
 	
 	if ( InputSystem::IsMouseDown( Config::GetButtonUseLeft() ) ) {
 		if ( GetLeftHandItem()->Use() ) {
-			// Draw something?
-			
-			Logger::LogDebug( "Player - Input", "Use Left Hand" );
+			Logger::LogInfo( "Player - Input", "Use Left Hand" );
 		}
 	}
 

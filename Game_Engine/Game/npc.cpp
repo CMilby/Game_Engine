@@ -9,11 +9,13 @@
 #include "npc.h"
 
 #include "handItem.h"
-#include "swordItem.h"
+#include "stabbingSwordItem.h"
+
+#include "logger.h"
 
 NPC::NPC() {
 	m_leftHand = new HandItem( Vector3<float>( 0.0f, 0.0f, NPC_HEIGHT ), eHand::HAND_LEFT );
-	m_rightHand = new SwordItem( Vector3<float>( 0.0f, 0.0f, NPC_HEIGHT ), eHand::HAND_RIGHT );
+	m_rightHand = new StabbingSwordItem( Vector3<float>( 0.0f, 0.0f, NPC_HEIGHT ), eHand::HAND_RIGHT );
 	
 	AddChild( m_leftHand );
 	AddChild( m_rightHand );
@@ -27,7 +29,7 @@ NPC::NPC( const Vector2<float> &pPosition ) {
 	SetPosition( Vector3<float>( pPosition.GetY(), pPosition.GetY(), NPC_HEIGHT ) );
 	
 	m_leftHand = new HandItem( GetPosition(), eHand::HAND_LEFT );
-	m_rightHand = new SwordItem( GetPosition(), eHand::HAND_RIGHT );
+	m_rightHand = new StabbingSwordItem( GetPosition(), eHand::HAND_RIGHT );
 	
 	AddChild( m_leftHand );
 	AddChild( m_rightHand );
@@ -40,21 +42,17 @@ NPC::NPC( const Vector2<float> &pPosition ) {
 NPC::~NPC() {
 	if ( m_leftHand != 0 ) {
 		delete m_leftHand;
+		m_leftHand = 0;
 	}
 	
 	if ( m_rightHand != 0 ) {
 		delete m_rightHand;
+		m_rightHand = 0;
 	}
 }
 
 void NPC::Update( float pDelta ) {
-	// Vector2<float> myLeftPos = Math3D::RotatePoint( GetPosition() + s_leftHandOffset, GetPosition(), pAngle )
 	
-	m_leftHand->SetPosition( GetPosition() );
-	m_rightHand->SetPosition( GetPosition() );
-	
-	m_leftHand->SetRotation( GetRotation() );
-	m_rightHand->SetRotation( GetRotation() );
 }
 
 
