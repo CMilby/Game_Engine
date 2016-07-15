@@ -17,9 +17,6 @@
 class NPC : public RenderableEntity {
 
 private:
-	static Vector3<float> s_leftHandOffset;
-	static Vector3<float> s_rightHandOffset;
-	
 	// Base Powers
 	int m_maxHealth;
 	int m_maxMana;

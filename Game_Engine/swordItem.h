@@ -16,7 +16,7 @@ class SwordItem : public Item {
 private:
 	
 public:
-	SwordItem( const Vector3<float> &pPosition );
+	SwordItem( const Vector3<float> &pPosition, eHand pHand );
 };
 
 #endif /* swordItem_h */
