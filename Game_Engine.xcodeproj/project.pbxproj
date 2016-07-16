@@ -57,6 +57,7 @@
 		443F74581CB314D700A0A939 /* random.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 443F74561CB314D700A0A939 /* random.cpp */; };
 		4446848F1D397A4200CC44FC /* stabbingSwordItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4446848D1D397A4200CC44FC /* stabbingSwordItem.cpp */; };
 		444684921D397A4E00CC44FC /* timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 444684901D397A4E00CC44FC /* timer.cpp */; };
+		444684951D39A3FA00CC44FC /* swingingSword.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 444684931D39A3FA00CC44FC /* swingingSword.cpp */; };
 		449D85F41BD6B6F300B72584 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 449D85F31BD6B6F300B72584 /* OpenGL.framework */; };
 		449D85F91BD6BB0900B72584 /* libGLEW.1.12.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 449D85F81BD6BB0900B72584 /* libGLEW.1.12.0.dylib */; };
 		44B9C3FB1D1B356D0043FF1D /* chunk.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44B9C3F51D1B356D0043FF1D /* chunk.cpp */; };
@@ -199,6 +200,8 @@
 		4446848E1D397A4200CC44FC /* stabbingSwordItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = stabbingSwordItem.h; path = Game/stabbingSwordItem.h; sourceTree = "<group>"; };
 		444684901D397A4E00CC44FC /* timer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = timer.cpp; path = Engine/Core/timer.cpp; sourceTree = "<group>"; };
 		444684911D397A4E00CC44FC /* timer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = timer.h; path = Engine/Core/timer.h; sourceTree = "<group>"; };
+		444684931D39A3FA00CC44FC /* swingingSword.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = swingingSword.cpp; path = Game/swingingSword.cpp; sourceTree = "<group>"; };
+		444684941D39A3FA00CC44FC /* swingingSword.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = swingingSword.h; path = Game/swingingSword.h; sourceTree = "<group>"; };
 		447B54141BF04A9600BB5977 /* libSDL2-2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libSDL2-2.0.0.dylib"; path = "../../../../usr/local/Cellar/sdl2/2.0.3/lib/libSDL2-2.0.0.dylib"; sourceTree = "<group>"; };
 		449D85F31BD6B6F300B72584 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		449D85F61BD6BACB00B72584 /* libglfw.3.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw.3.1.dylib; path = ../../../../usr/local/lib/libglfw.3.1.dylib; sourceTree = "<group>"; };
@@ -517,6 +520,8 @@
 				443C93061D276A5E009F1FDC /* handItem.h */,
 				4446848D1D397A4200CC44FC /* stabbingSwordItem.cpp */,
 				4446848E1D397A4200CC44FC /* stabbingSwordItem.h */,
+				444684931D39A3FA00CC44FC /* swingingSword.cpp */,
+				444684941D39A3FA00CC44FC /* swingingSword.h */,
 			);
 			name = Items;
 			sourceTree = "<group>";
@@ -640,6 +645,7 @@
 				440BD6FE1C889027001DB584 /* messagePayload.cpp in Sources */,
 				44394EAB1CAF25C900212467 /* physicsBody.cpp in Sources */,
 				44394EBF1CAF25DE00212467 /* shader.cpp in Sources */,
+				444684951D39A3FA00CC44FC /* swingingSword.cpp in Sources */,
 				440BD7141C88904F001DB584 /* inputSystem.cpp in Sources */,
 				44394EBD1CAF25DE00212467 /* mesh.cpp in Sources */,
 				44B9C43F1D21D7650043FF1D /* item.cpp in Sources */,

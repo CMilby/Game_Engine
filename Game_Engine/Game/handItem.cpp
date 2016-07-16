@@ -22,15 +22,12 @@ HandItem::HandItem( const Vector3<float> &pPosition, eHand pHand ) : Item( "Hand
 	
 	SetUseTime( 10 );
 	
-	m_base = new Entity( GetPosition() );
 	m_forward = new Entity( ( ( pHand == HAND_LEFT ) ? m_handLeftOffset : m_handRightOffset ) + Vector3<float>( 0.0f, 0.75f, 0.0f ) );
-	
-	AddChild( m_base );
 	AddChild( m_forward );
 }
 
 HandItem::HandItem( const std::string &pItem, eHand pHand ) : Item( pItem, pHand ) {
-	
+	// Used for subclasses
 }
 
 HandItem::~HandItem() {
@@ -52,7 +49,7 @@ void HandItem::Update( float pDelta ) {
 			
 			SetTimeSinceUse( GetTimeSinceUse() + 1 );
 		} else {
-			SetPosition( m_base->GetPosition(), false );
+			SetPosition( ( GetHand() == HAND_LEFT ) ? m_handLeftOffset : m_handRightOffset, false );
 		}
 	}
 }

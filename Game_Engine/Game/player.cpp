@@ -102,7 +102,7 @@ void Player::Input( float pDelta ) {
 		}
 	}
 
-	CameraSystem::GetMainCamera()->SetPosition( Vector3<float>( GetPosition().GetX(), GetPosition().GetY(), CameraSystem::GetMainCamera()->GetPosition().GetZ() ) );
+	CameraSystem::GetMainCamera()->SetPosition( Vector3<float>( GetPosition().GetXY(), CameraSystem::GetMainCamera()->GetPosition().GetZ() ) );
 }
 
 

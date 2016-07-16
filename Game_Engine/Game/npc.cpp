@@ -10,12 +10,13 @@
 
 #include "handItem.h"
 #include "stabbingSwordItem.h"
+#include "swingingSword.h"
 
 #include "logger.h"
 
 NPC::NPC() {
 	m_leftHand = new HandItem( Vector3<float>( 0.0f, 0.0f, NPC_HEIGHT ), eHand::HAND_LEFT );
-	m_rightHand = new StabbingSwordItem( Vector3<float>( 0.0f, 0.0f, NPC_HEIGHT ), eHand::HAND_RIGHT );
+	m_rightHand = new SwingingSword( Vector3<float>( 0.0f, 0.0f, NPC_HEIGHT ), eHand::HAND_RIGHT );
 	
 	AddChild( m_leftHand );
 	AddChild( m_rightHand );
@@ -29,7 +30,7 @@ NPC::NPC( const Vector2<float> &pPosition ) {
 	SetPosition( Vector3<float>( pPosition.GetY(), pPosition.GetY(), NPC_HEIGHT ) );
 	
 	m_leftHand = new HandItem( GetPosition(), eHand::HAND_LEFT );
-	m_rightHand = new StabbingSwordItem( GetPosition(), eHand::HAND_RIGHT );
+	m_rightHand = new SwingingSword( GetPosition(), eHand::HAND_RIGHT );
 	
 	AddChild( m_leftHand );
 	AddChild( m_rightHand );

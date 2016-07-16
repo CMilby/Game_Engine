@@ -17,7 +17,6 @@ private:
 	
 protected:
 	Entity *m_forward;
-	Entity *m_base;
 	
 	virtual void Update( float pDelta );
 	

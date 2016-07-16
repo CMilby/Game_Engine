@@ -15,8 +15,21 @@
 #define ToRadian(x) (float)(((x) * 3.1415926536f / 180.0f))
 #define ToDegree(x) (float)(((x) * 180.0f / 3.1415926536f))
 
+template<class T>
+inline T Clamp( const T &value, const T &min, const T &max ) {
+	if ( value > max ) {
+		return max;
+	}
+	
+	if ( value < min ) {
+		return min;
+	}
+	
+	return value;
+}
+
 template<class T, unsigned int D> class Vector {
-    
+	
 private:
     T m_values[ D ];
     
@@ -312,8 +325,43 @@ public:
         return Vector3<T>( x, y, z );
     }
 	
-	inline Vector3<T> Lerp( const Vector3<T> &pVect, T pLerpFactor ) {
+	inline Vector3<T> Lerp( const Vector3<T> &pVect, T pLerpFactor ) const {
 		return ( pVect - *this ) * pLerpFactor + *this;
+	}
+	
+	inline Vector3<T> SLerp( const Vector3<T> &pVect, T pLerpFactor ) const {
+		T myDot = this->Dot( pVect );
+		myDot = Clamp( myDot, T( -1 ), T( 1 ) );
+		
+		T myTheta = acosf( myDot ) * pLerpFactor;
+		Vector3<T> relative = pVect - ( *this ) * myDot;
+		relative = relative.Normalized();
+		return ( ( ( *this ) * cosf( myTheta ) ) + ( relative * sinf( myTheta ) ) );
+	}
+	
+	inline Vector3<T> NLerp( const Vector3<T> &pVect, T pLerpFactor ) const {
+		return this->Lerp( pVect, pLerpFactor ).Normalized();
+	}
+	
+	inline Vector3<T> RotateX( const T &pAngle ) const {
+		T myAngle = ToRadian( pAngle );
+		return Vector3<T>( GetX(),
+						   GetY() * cosf( myAngle ) - GetZ() * sinf( myAngle ),
+						   GetY() * sinf( myAngle ) + GetZ() * cosf( myAngle ) );
+	}
+	
+	inline Vector3<T> RotateY( const T &pAngle ) const {
+		T myAngle = ToRadian( pAngle );
+		return Vector3<T>( GetZ() * sinf( myAngle ) + GetX() * cosf( myAngle ),
+						   GetY(),
+						   GetZ() * cosf( myAngle ) - GetX() * sinf( myAngle ) );
+	}
+	
+	inline Vector3<T> RotateZ( const T &pAngle ) const {
+		T myAngle = ToRadian( pAngle );
+		return Vector3<T>( GetX() * cosf( myAngle ) - GetY() * sinf( myAngle ),
+						   GetX() * sinf( myAngle ) + GetY() * cosf( myAngle ),
+						   GetZ() );
 	}
     
     inline T GetX() const { return ( *this )[ 0 ]; }
@@ -722,6 +770,7 @@ public:
     }
     
     // Thanks GLM!
+	// Why do I even have this?!?!?
     inline Matrix4<T> InverseTranspose() {
         T SubFactor00 = ( *this )[2][2] * ( *this )[3][3] - ( *this )[3][2] * ( *this )[2][3];
         T SubFactor01 = ( *this )[2][1] * ( *this )[3][3] - ( *this )[3][1] * ( *this )[2][3];
@@ -744,25 +793,25 @@ public:
         T SubFactor18 = ( *this )[1][0] * ( *this )[2][1] - ( *this )[2][0] * ( *this )[1][1];
     
         Matrix4<T> inverse;
-        inverse[0][0] = + (( *this )[1][1] * SubFactor00 - ( *this )[1][2] * SubFactor01 + ( *this )[1][3] * SubFactor02);
-        inverse[0][1] = - (( *this )[1][0] * SubFactor00 - ( *this )[1][2] * SubFactor03 + ( *this )[1][3] * SubFactor04);
-        inverse[0][2] = + (( *this )[1][0] * SubFactor01 - ( *this )[1][1] * SubFactor03 + ( *this )[1][3] * SubFactor05);
-        inverse[0][3] = - (( *this )[1][0] * SubFactor02 - ( *this )[1][1] * SubFactor04 + ( *this )[1][2] * SubFactor05);
+        inverse[ 0 ][0] = + ( ( *this )[1][1] * SubFactor00 - ( *this )[1][2] * SubFactor01 + ( *this )[1][3] * SubFactor02);
+        inverse[ 0 ][1] = - ( ( *this )[1][0] * SubFactor00 - ( *this )[1][2] * SubFactor03 + ( *this )[1][3] * SubFactor04);
+        inverse[ 0 ][2] = + ( ( *this )[1][0] * SubFactor01 - ( *this )[1][1] * SubFactor03 + ( *this )[1][3] * SubFactor05);
+        inverse[ 0 ][3] = - ( ( *this )[1][0] * SubFactor02 - ( *this )[1][1] * SubFactor04 + ( *this )[1][2] * SubFactor05);
         
-        inverse[1][0] = - (( *this )[0][1] * SubFactor00 - ( *this )[0][2] * SubFactor01 + ( *this )[0][3] * SubFactor02);
-        inverse[1][1] = + (( *this )[0][0] * SubFactor00 - ( *this )[0][2] * SubFactor03 + ( *this )[0][3] * SubFactor04);
-        inverse[1][2] = - (( *this )[0][0] * SubFactor01 - ( *this )[0][1] * SubFactor03 + ( *this )[0][3] * SubFactor05);
-        inverse[1][3] = + (( *this )[0][0] * SubFactor02 - ( *this )[0][1] * SubFactor04 + ( *this )[0][2] * SubFactor05);
+        inverse[ 1 ][0] = - ( ( *this )[0][1] * SubFactor00 - ( *this )[0][2] * SubFactor01 + ( *this )[0][3] * SubFactor02);
+        inverse[ 1 ][1] = + ( ( *this )[0][0] * SubFactor00 - ( *this )[0][2] * SubFactor03 + ( *this )[0][3] * SubFactor04);
+        inverse[ 1 ][2] = - ( ( *this )[0][0] * SubFactor01 - ( *this )[0][1] * SubFactor03 + ( *this )[0][3] * SubFactor05);
+        inverse[ 1 ][3] = + ( ( *this )[0][0] * SubFactor02 - ( *this )[0][1] * SubFactor04 + ( *this )[0][2] * SubFactor05);
         
-        inverse[2][0] = + (( *this )[0][1] * SubFactor06 - ( *this )[0][2] * SubFactor07 + ( *this )[0][3] * SubFactor08);
-        inverse[2][1] = - (( *this )[0][0] * SubFactor06 - ( *this )[0][2] * SubFactor09 + ( *this )[0][3] * SubFactor10);
-        inverse[2][2] = + (( *this )[0][0] * SubFactor11 - ( *this )[0][1] * SubFactor09 + ( *this )[0][3] * SubFactor12);
-        inverse[2][3] = - (( *this )[0][0] * SubFactor08 - ( *this )[0][1] * SubFactor10 + ( *this )[0][2] * SubFactor12);
+        inverse[ 2 ][0] = + ( ( *this )[0][1] * SubFactor06 - ( *this )[0][2] * SubFactor07 + ( *this )[0][3] * SubFactor08);
+        inverse[ 2 ][1] = - ( ( *this )[0][0] * SubFactor06 - ( *this )[0][2] * SubFactor09 + ( *this )[0][3] * SubFactor10);
+        inverse[ 2 ][2] = + ( ( *this )[0][0] * SubFactor11 - ( *this )[0][1] * SubFactor09 + ( *this )[0][3] * SubFactor12);
+        inverse[ 2 ][3] = - ( ( *this )[0][0] * SubFactor08 - ( *this )[0][1] * SubFactor10 + ( *this )[0][2] * SubFactor12);
         
-        inverse[3][0] = - (( *this )[0][1] * SubFactor13 - ( *this )[0][2] * SubFactor14 + ( *this )[0][3] * SubFactor15);
-        inverse[3][1] = + (( *this )[0][0] * SubFactor13 - ( *this )[0][2] * SubFactor16 + ( *this )[0][3] * SubFactor17);
-        inverse[3][2] = - (( *this )[0][0] * SubFactor14 - ( *this )[0][1] * SubFactor16 + ( *this )[0][3] * SubFactor18);
-        inverse[3][3] = + (( *this )[0][0] * SubFactor15 - ( *this )[0][1] * SubFactor17 + ( *this )[0][2] * SubFactor18);
+        inverse[ 3 ][0] = - ( ( *this )[0][1] * SubFactor13 - ( *this )[0][2] * SubFactor14 + ( *this )[0][3] * SubFactor15);
+        inverse[ 3 ][1] = + ( ( *this )[0][0] * SubFactor13 - ( *this )[0][2] * SubFactor16 + ( *this )[0][3] * SubFactor17);
+        inverse[ 3 ][2] = - ( ( *this )[0][0] * SubFactor14 - ( *this )[0][1] * SubFactor16 + ( *this )[0][3] * SubFactor18);
+        inverse[ 3 ][3] = + ( ( *this )[0][0] * SubFactor15 - ( *this )[0][1] * SubFactor17 + ( *this )[0][2] * SubFactor18);
         
         T determinant = ( *this )[ 0 ][ 0 ] * inverse[ 0 ][ 0 ] +
                         ( *this )[ 0 ][ 1 ] * inverse[ 0 ][ 1 ] +
@@ -785,6 +834,39 @@ public:
 		
         return ret;
     }
+	
+	inline Matrix4<T> RotationX( const T &pAngle ) {
+		Matrix4<T> ret = Matrix4<T>().InitIdentity();
+		
+		ret[ 1 ][ 1 ] = cos( pAngle );
+		ret[ 1 ][ 2 ] = -sin( pAngle );
+		ret[ 2 ][ 1 ] = sin( pAngle );
+		ret[ 2 ][ 2 ] = cos( pAngle );
+		
+		return ret;
+	}
+	
+	inline Matrix4<T> RotationY( const T &pAngle ) {
+		Matrix4<T> ret = Matrix4<T>().InitIdentity();
+		
+		ret[ 0 ][ 0 ] = cos( pAngle );
+		ret[ 0 ][ 2 ] = sin( pAngle );
+		ret[ 2 ][ 0 ] = -sin( pAngle );
+		ret[ 2 ][ 2 ] = cos( pAngle );
+		
+		return ret;
+	}
+	
+	inline Matrix4<T> RotationZ( const T &pAngle ) {
+		Matrix4<T> ret = Matrix4<T>().InitIdentity();
+		
+		ret[ 0 ][ 0 ] = cos( pAngle );
+		ret[ 0 ][ 1 ] = -sin( pAngle );
+		ret[ 1 ][ 0 ] = sin( pAngle );
+		ret[ 1 ][ 1 ] = cos( pAngle );
+		
+		return ret;
+	}
 };
 
 class Quaternion : public Vector<float, 4> {
@@ -847,26 +929,50 @@ public:
     inline Vector3<float> GetBack( const Matrix4<float> &rotation ) const {
         return Vector3<float>( rotation[ 0 ][ 2 ], rotation[ 1 ][ 2 ], rotation[ 2 ][ 2 ] );
     }
+	
+	inline Vector3<float> GetBack() const {
+		return GetBack( this->ToRotationMatrix() );
+	}
     
     inline Vector3<float> GetForward( const Matrix4<float> &rotation ) const {
         return GetBack( rotation ) * -1;
     }
+	
+	inline Vector3<float> GetForward() const {
+		return GetForward( this->ToRotationMatrix() );
+	}
     
     inline Vector3<float> GetRight( const Matrix4<float> &rotation ) const {
         return Vector3<float>( rotation[ 0 ][ 0 ], rotation[ 1 ][ 0 ], rotation[ 2 ][ 0 ] );
     }
+	
+	inline Vector3<float> GetRight() const {
+		return GetRight( this->ToRotationMatrix() );
+	}
     
     inline Vector3<float> GetLeft( const Matrix4<float> &rotation ) const {
         return GetRight( rotation ) * -1;
     }
-    
+	
+	inline Vector3<float> GetLeft() const {
+		return GetLeft( this->ToRotationMatrix() );
+	}
+	
     inline Vector3<float> GetUp( const Matrix4<float> &rotation ) const {
         return Vector3<float>( rotation[ 0 ][ 1 ], rotation[ 1 ][ 1 ], rotation[ 2 ][ 1 ] );;
     }
+	
+	inline Vector3<float> GetUp() const {
+		return GetUp( this->ToRotationMatrix() );
+	}
     
     inline Vector3<float> GetDown( const Matrix4<float> &rotation ) const {
         return GetUp( rotation ) * -1;
     }
+	
+	inline Vector3<float> GetDown() const {
+		return GetDown( this->ToRotationMatrix() );
+	}
     
     inline Matrix4<float> ToRotationMatrix() const {
         Vector3<float> forward = Vector3<float>( 2.0f * ( GetX() * GetZ() - GetW() * GetY() ), 2.0f * ( GetY() * GetZ() + GetW() * GetX() ), 1.0f - 2.0f * ( GetX() * GetX() + GetY() * GetY() ) );
@@ -877,6 +983,7 @@ public:
     }
 	
 	// What do I even use this for?
+	// Arcball I think?
 	inline Vector3<float> ZDirection() {
         Vector3<float> vect( 0.0f, 0.0f, 0.0f );
         vect.SetX( 2 * GetW() * GetY() + 2 * GetX() * GetZ() );

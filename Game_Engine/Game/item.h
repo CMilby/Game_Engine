@@ -59,6 +59,9 @@ public:
 	inline void SetCurrentCooldown( int pCurrentCooldown ) { m_currentCooldown = pCurrentCooldown; }
 
 	inline int GetCooldown() const { return m_cooldown; }
+	inline void SetCooldown( int pCooldown ) { m_cooldown = pCooldown; }
+	
+	inline eHand GetHand() const { return m_hand; }
 	
 	inline std::string GetItemName() const { return m_item; }
 	inline void SetItemName( const std::string &pItem ) { m_item = pItem; }

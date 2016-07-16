@@ -22,9 +22,6 @@ StabbingSwordItem::StabbingSwordItem( const Vector3<float> &pPosition, eHand pHa
 	
 	SetUseTime( 20 );
 	
-	m_base = new Entity( GetPosition() );
 	m_forward = new Entity( ( ( pHand == HAND_LEFT ) ? m_handLeftOffset : m_handRightOffset ) + Vector3<float>( 0.0f, 1.25f, 0.0f ) );
-	
-	AddChild( m_base );
 	AddChild( m_forward );
 }
