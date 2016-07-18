@@ -14,24 +14,10 @@
 #include "logger.h"
 
 #include "stabbingSwordItem.h"
+#include "swingingSword.h"
 
 Player::Player() {
-	/*SetPosition( Vector3<float>( 0.0f, 0.0f, 0.0f ) );
-	SetRotation( Quaternion( Vector3<float>( 1.0f, 0.0f, 0.0f ), 90.0f ) );
-	SetScale( Vector3<float>( 0.5f, 0.5f, 0.5f ) );
 	
-	SetMaxHealth( 200 );
-	SetMaxMana( 100 );
-	SetMaxStamina( 100 );
-	
-	SetCurrentHealth( GetMaxHealth() );
-	SetCurrentMana( GetMaxMana() );
-	SetCurrentStamina( GetCurrentStamina() );
-	
-	SetMesh( new Mesh( "plane.obj" ) );
-	SetMaterial( new Material( new Texture( 1, "tiles", 1, 1 ) ) );
-	SetShaderType( ShaderType::SHADER_TILE );
-	SetIsVisible( true );*/
 }
 
 Player::Player( const Vector2<float> &pPosition ) : NPC( pPosition ) {
@@ -48,7 +34,11 @@ Player::Player( const Vector2<float> &pPosition ) : NPC( pPosition ) {
 	
 	SetMaterial( new Material( new Texture( "character.png" ) ) );
 	
-	// SetRightHandItem( new StabbingSwordItem( GetPosition(), eHand::HAND_RIGHT ) );
+	SetRightHandItem( new SwingingSword( eHand::HAND_RIGHT ) );
+}
+
+Player::~Player() {
+	
 }
 
 void Player::Input( float pDelta ) {

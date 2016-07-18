@@ -11,7 +11,8 @@
 
 #include <vector>
 
-#include "physicsBody.h"
+#include "entityType.h"
+#include "physicsBody2d.h"
 #include "transform.h"
 
 class Entity {
@@ -20,9 +21,11 @@ private:
 	std::vector<Entity*> m_children;
 	
 	Entity *m_parent;
+	// bool m_inheritParent;
 	
+	EntityType m_entityType;
 	Transform m_transform;
-	PhysicsBody *m_physicsBody;
+	PhysicsBody2D *m_physicsBody;
 	
 protected:
 	virtual void Init() {}
@@ -36,14 +39,14 @@ public:
 	Entity( const Vector3<float> &position );
 	virtual ~Entity();
 	
-	Entity* AddChild( Entity *child );
+	Entity* AddChild( Entity *pChild );
 	
 	void InitAll();
 	void InputAll( float pDelta );
 	void UpdateAll( float pDelta );
 	void RenderAll();
 	
-	void SetPhysicsBody( PhysicsBody *pPhysicsBody );
+	void SetPhysicsBody( PhysicsBody2D *pPhysicsBody );
 	void RemoveChild( Entity* pEntity );
 	void RemoveChild( int pIndex );
 	
@@ -64,6 +67,12 @@ public:
 	
 	inline Entity* GetParent() const { return m_parent; }
 	inline void SetParent( Entity* pParent ) { m_parent = pParent; }
+	
+	inline EntityType GetEntityType() const { return m_entityType; }
+	inline void SetEntityType( EntityType pEntityType ) { m_entityType = pEntityType; }
+	
+	// inline bool InheritParent() const { return m_inheritParent; }
+	// inline void SetInheritParent( bool pInherit ) { m_inheritParent = pInherit; }
 	
 	Matrix4<float> GetModelMatrix() const;
 };

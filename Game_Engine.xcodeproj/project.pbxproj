@@ -58,6 +58,11 @@
 		4446848F1D397A4200CC44FC /* stabbingSwordItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4446848D1D397A4200CC44FC /* stabbingSwordItem.cpp */; };
 		444684921D397A4E00CC44FC /* timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 444684901D397A4E00CC44FC /* timer.cpp */; };
 		444684951D39A3FA00CC44FC /* swingingSword.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 444684931D39A3FA00CC44FC /* swingingSword.cpp */; };
+		444EFB351D3A937400790423 /* shieldItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 444EFB331D3A937400790423 /* shieldItem.cpp */; };
+		444EFB381D3A94CC00790423 /* axeItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 444EFB361D3A94CC00790423 /* axeItem.cpp */; };
+		444EFB3B1D3A961B00790423 /* halberdItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 444EFB391D3A961B00790423 /* halberdItem.cpp */; };
+		444EFB3E1D3C549800790423 /* monster.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 444EFB3C1D3C549800790423 /* monster.cpp */; };
+		444EFB411D3C5B4200790423 /* physicsBody2d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 444EFB3F1D3C5B4200790423 /* physicsBody2d.cpp */; };
 		449D85F41BD6B6F300B72584 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 449D85F31BD6B6F300B72584 /* OpenGL.framework */; };
 		449D85F91BD6BB0900B72584 /* libGLEW.1.12.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 449D85F81BD6BB0900B72584 /* libGLEW.1.12.0.dylib */; };
 		44B9C3FB1D1B356D0043FF1D /* chunk.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44B9C3F51D1B356D0043FF1D /* chunk.cpp */; };
@@ -202,6 +207,17 @@
 		444684911D397A4E00CC44FC /* timer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = timer.h; path = Engine/Core/timer.h; sourceTree = "<group>"; };
 		444684931D39A3FA00CC44FC /* swingingSword.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = swingingSword.cpp; path = Game/swingingSword.cpp; sourceTree = "<group>"; };
 		444684941D39A3FA00CC44FC /* swingingSword.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = swingingSword.h; path = Game/swingingSword.h; sourceTree = "<group>"; };
+		444EFB331D3A937400790423 /* shieldItem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = shieldItem.cpp; sourceTree = "<group>"; };
+		444EFB341D3A937400790423 /* shieldItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shieldItem.h; sourceTree = "<group>"; };
+		444EFB361D3A94CC00790423 /* axeItem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = axeItem.cpp; path = Game/axeItem.cpp; sourceTree = "<group>"; };
+		444EFB371D3A94CC00790423 /* axeItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = axeItem.h; path = Game/axeItem.h; sourceTree = "<group>"; };
+		444EFB391D3A961B00790423 /* halberdItem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = halberdItem.cpp; path = Game/halberdItem.cpp; sourceTree = "<group>"; };
+		444EFB3A1D3A961B00790423 /* halberdItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = halberdItem.h; path = Game/halberdItem.h; sourceTree = "<group>"; };
+		444EFB3C1D3C549800790423 /* monster.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = monster.cpp; sourceTree = "<group>"; };
+		444EFB3D1D3C549800790423 /* monster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = monster.h; sourceTree = "<group>"; };
+		444EFB3F1D3C5B4200790423 /* physicsBody2d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = physicsBody2d.cpp; path = Engine/Physics/physicsBody2d.cpp; sourceTree = "<group>"; };
+		444EFB401D3C5B4200790423 /* physicsBody2d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = physicsBody2d.h; path = Engine/Physics/physicsBody2d.h; sourceTree = "<group>"; };
+		444EFB421D3C5F7900790423 /* entityType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = entityType.h; sourceTree = "<group>"; };
 		447B54141BF04A9600BB5977 /* libSDL2-2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libSDL2-2.0.0.dylib"; path = "../../../../usr/local/Cellar/sdl2/2.0.3/lib/libSDL2-2.0.0.dylib"; sourceTree = "<group>"; };
 		449D85F31BD6B6F300B72584 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		449D85F61BD6BACB00B72584 /* libglfw.3.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw.3.1.dylib; path = ../../../../usr/local/lib/libglfw.3.1.dylib; sourceTree = "<group>"; };
@@ -377,6 +393,8 @@
 				44394EA41CAF25C900212467 /* intersectData.h */,
 				44394EA51CAF25C900212467 /* physicsBody.cpp */,
 				44394EA61CAF25C900212467 /* physicsBody.h */,
+				444EFB3F1D3C5B4200790423 /* physicsBody2d.cpp */,
+				444EFB401D3C5B4200790423 /* physicsBody2d.h */,
 				443F744A1CB311AE00A0A939 /* planeCollider.cpp */,
 				443F744B1CB311AE00A0A939 /* planeCollider.h */,
 				44394EA71CAF25C900212467 /* sphereCollider.cpp */,
@@ -507,6 +525,9 @@
 				44B9C4351D21D7650043FF1D /* npc.h */,
 				44B9C4381D21D7650043FF1D /* player.cpp */,
 				44B9C4391D21D7650043FF1D /* player.h */,
+				444EFB3C1D3C549800790423 /* monster.cpp */,
+				444EFB3D1D3C549800790423 /* monster.h */,
+				444EFB421D3C5F7900790423 /* entityType.h */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -520,8 +541,14 @@
 				443C93061D276A5E009F1FDC /* handItem.h */,
 				4446848D1D397A4200CC44FC /* stabbingSwordItem.cpp */,
 				4446848E1D397A4200CC44FC /* stabbingSwordItem.h */,
+				444EFB391D3A961B00790423 /* halberdItem.cpp */,
+				444EFB3A1D3A961B00790423 /* halberdItem.h */,
 				444684931D39A3FA00CC44FC /* swingingSword.cpp */,
 				444684941D39A3FA00CC44FC /* swingingSword.h */,
+				444EFB361D3A94CC00790423 /* axeItem.cpp */,
+				444EFB371D3A94CC00790423 /* axeItem.h */,
+				444EFB331D3A937400790423 /* shieldItem.cpp */,
+				444EFB341D3A937400790423 /* shieldItem.h */,
 			);
 			name = Items;
 			sourceTree = "<group>";
@@ -630,6 +657,8 @@
 				443F744C1CB311AE00A0A939 /* planeCollider.cpp in Sources */,
 				44394EC71CAF261500212467 /* messenger.cpp in Sources */,
 				443F74581CB314D700A0A939 /* random.cpp in Sources */,
+				444EFB3E1D3C549800790423 /* monster.cpp in Sources */,
+				444EFB411D3C5B4200790423 /* physicsBody2d.cpp in Sources */,
 				44394EA91CAF25C900212467 /* aabbCollider.cpp in Sources */,
 				440BD7101C88904F001DB584 /* cameraSystem.cpp in Sources */,
 				44B9C4401D21D7650043FF1D /* npc.cpp in Sources */,
@@ -639,6 +668,7 @@
 				440BD7171C88904F001DB584 /* windowSystem.cpp in Sources */,
 				443C92FD1D274979009F1FDC /* logger.cpp in Sources */,
 				44394E931CAF25AB00212467 /* utility.cpp in Sources */,
+				444EFB381D3A94CC00790423 /* axeItem.cpp in Sources */,
 				443C92FC1D274979009F1FDC /* configLoader.cpp in Sources */,
 				440BD7121C88904F001DB584 /* entitySystem.cpp in Sources */,
 				440BD7161C88904F001DB584 /* system.cpp in Sources */,
@@ -653,6 +683,7 @@
 				44B9C42E1D21D7400043FF1D /* mersenneTwister.cpp in Sources */,
 				443F74521CB311EE00A0A939 /* simplexNoise.cpp in Sources */,
 				44394EC01CAF25DE00212467 /* textShader.cpp in Sources */,
+				444EFB3B1D3A961B00790423 /* halberdItem.cpp in Sources */,
 				44394EBC1CAF25DE00212467 /* basicShader.cpp in Sources */,
 				44394EBE1CAF25DE00212467 /* phongShader.cpp in Sources */,
 				44394EC41CAF25F200212467 /* physicsEngineSystem.cpp in Sources */,
@@ -668,6 +699,7 @@
 				44B9C4431D21D7650043FF1D /* tileMap.cpp in Sources */,
 				44B9C3FC1D1B356D0043FF1D /* world.cpp in Sources */,
 				44394E8E1CAF25AB00212467 /* config.cpp in Sources */,
+				444EFB351D3A937400790423 /* shieldItem.cpp in Sources */,
 				44394E9E1CAF25BE00212467 /* renderableEntity.cpp in Sources */,
 				44394E9D1CAF25BE00212467 /* entity.cpp in Sources */,
 				440BD7131C88904F001DB584 /* gameSystem.cpp in Sources */,

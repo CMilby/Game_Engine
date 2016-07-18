@@ -16,7 +16,9 @@ class StabbingSwordItem : public HandItem {
 private:
 	
 public:
-	StabbingSwordItem( const Vector3<float> &pPosition, eHand pHand );
+	StabbingSwordItem( eHand pHand );
+	StabbingSwordItem( const std::string &pItem, eHand pHand );
+	virtual ~StabbingSwordItem();
 };
 
 #endif /* stabbingSword_h */

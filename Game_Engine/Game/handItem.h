@@ -21,7 +21,7 @@ protected:
 	virtual void Update( float pDelta );
 	
 public:
-	HandItem( const Vector3<float> &pPosition, eHand pHand );
+	HandItem( eHand pHand );
 	HandItem( const std::string &pItem, eHand pHand );
 	virtual ~HandItem();
 	

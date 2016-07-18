@@ -8,7 +8,7 @@
 
 #include "handItem.h"
 
-HandItem::HandItem( const Vector3<float> &pPosition, eHand pHand ) : Item( "Hand", pHand ) {
+HandItem::HandItem( eHand pHand ) : Item( "Hand", pHand ) {
 	m_handLeftOffset = Vector3<float>( -0.25f, 0.25f, 0.0f );
 	m_handRightOffset = Vector3<float>( 0.25f, 0.25f, 0.0f );
 	
@@ -17,7 +17,7 @@ HandItem::HandItem( const Vector3<float> &pPosition, eHand pHand ) : Item( "Hand
 	SetShaderType( ShaderType::SHADER_BASIC );
 	SetIsVisible( true );
 	
-	SetPosition( pPosition );
+	SetPosition();
 	SetScale( Vector3<float>( 0.25f, 0.25f, 0.25f ) );
 	
 	SetUseTime( 10 );
@@ -45,11 +45,11 @@ void HandItem::Update( float pDelta ) {
 		}
 		
 		if ( GetTimeSinceUse() <= GetUseTime() ) {
-			SetPosition( GetPosition().Lerp( m_forward->GetPosition(), ( ( float ) GetTimeSinceUse() / ( float ) GetUseTime() ) ), false );
+			SetPosition( GetPosition().Lerp( m_forward->GetPosition(), ( ( float ) GetTimeSinceUse() / ( float ) GetUseTime() ) ) );
 			
 			SetTimeSinceUse( GetTimeSinceUse() + 1 );
 		} else {
-			SetPosition( ( GetHand() == HAND_LEFT ) ? m_handLeftOffset : m_handRightOffset, false );
+			SetPosition();
 		}
 	}
 }

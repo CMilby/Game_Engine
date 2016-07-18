@@ -22,6 +22,7 @@ protected:
 public:
 	Player();
 	Player( const Vector2<float> &pPosition );
+	virtual ~Player();
 };
 
 #endif

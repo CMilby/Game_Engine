@@ -24,16 +24,16 @@ void PhysicsEngineSystem::Init() {
 	m_callbacks[ MESSAGE_ADD_PHYSICS_BODY ] = std::bind( &PhysicsEngineSystem::HandleAddPhysicsBody, this, std::placeholders::_1 );
 }
 
-void PhysicsEngineSystem::AddObject( PhysicsBody *pEntity ) {
+void PhysicsEngineSystem::AddObject( PhysicsBody2D *pEntity ) {
 	m_objects.emplace_back( pEntity );
 }
 
 void PhysicsEngineSystem::HandleSimulatePhysics( const std::vector<MessagePayload> &pPayload ) {
-	float myDelta = pPayload[ 0 ].GetPayloadFloat();
+	/*float myDelta = pPayload[ 0 ].GetPayloadFloat();
 	
 	for ( unsigned int i = 0; i < m_objects.size(); i++ ) {
 		m_objects[ i ]->Intergrate( myDelta );
-	}
+	}*/
 }
 
 void PhysicsEngineSystem::HandleHandleCollisions( const std::vector<MessagePayload> &pPayload ) {
@@ -41,10 +41,13 @@ void PhysicsEngineSystem::HandleHandleCollisions( const std::vector<MessagePaylo
 		for ( unsigned int j = i + 1; j < m_objects.size(); j++ ) {
 			IntersectData myIntersect = m_objects[ i ]->GetCollider().Intersect( m_objects[ j ]->GetCollider() );
 			if ( myIntersect.DoesIntersect() ) {
-				Vector3<float> myDirection = myIntersect.GetDirection().Normalized();
+				/*Vector3<float> myDirection = myIntersect.GetDirection().Normalized();
 				Vector3<float> myOtherDirection = myDirection.Reflect( m_objects[ i ]->GetVelocity().Normalized() );
 				m_objects[ i ]->SetVelocity( m_objects[ i ]->GetVelocity().Reflect( myOtherDirection ) );
-				m_objects[ j ]->SetVelocity( m_objects[ j ]->GetVelocity().Reflect( myDirection ) );
+				m_objects[ j ]->SetVelocity( m_objects[ j ]->GetVelocity().Reflect( myDirection ) );*/
+				
+				
+				
 			} 
 		}
 	}

@@ -8,6 +8,7 @@
 
 #include "game.h"
 
+#include "monster.h"
 #include "player.h"
 #include "world.h"
 
@@ -21,6 +22,9 @@ void Game::LoadGame() {
 	
 	Player *player = new Player( Vector2<float>( 0, 0 ) );
 	AddToScene( player );
+	
+	Monster *monster = new Monster( Vector2<float>( 5, 5 ) );
+	AddToScene( monster );
 	
 	SendMessage( SYSTEM_ENTITY, Message( SYSTEM_GAME, MESSAGE_INIT ) );
 }

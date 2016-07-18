@@ -8,7 +8,7 @@
 
 #include "swingingSword.h"
 
-SwingingSword::SwingingSword( const Vector3<float> &pPosition, eHand pHand ) : Item( "SwingingSword", pHand ){
+SwingingSword::SwingingSword( eHand pHand ) : Item( "SwingingSword", pHand ){
 	m_handLeftOffset = Vector3<float>( -0.45f, 0.5f, 0.0f );
 	m_handRightOffset = Vector3<float>( 0.45f, 0.5f, 0.0f );
 
@@ -17,11 +17,11 @@ SwingingSword::SwingingSword( const Vector3<float> &pPosition, eHand pHand ) : I
 	SetShaderType( ShaderType::SHADER_BASIC );
 	SetIsVisible( true );
 	
-	SetPosition( pPosition );
+	SetPosition();
 	SetScale( Vector3<float>( 0.9f, 0.9f, 0.9f ) );
 	
-	SetCooldown( 50 );
-	SetUseTime( 20 );
+	SetCooldown( 30 );
+	SetUseTime( 15 );
 	
 	m_swingAngle = 125.0f;
 }
@@ -46,7 +46,7 @@ void SwingingSword::Update( float pDelta ) {
 		}
 		
 		if ( GetTimeSinceUse() <= GetUseTime() ) {
-			SetPosition( Vector3<float>( 1.5f, 0.5f, GetPosition().GetZ() ).RotateZ( ( ( float ) GetTimeSinceUse() / ( float ) GetUseTime() ) * m_swingAngle ), false );
+			SetPosition( Vector3<float>( 1.5f, 0.5f, GetPosition().GetZ() ).RotateZ( ( ( float ) GetTimeSinceUse() / ( float ) GetUseTime() ) * m_swingAngle ) );
 			
 			Vector2<float> swordPos = GetPosition().GetXY() + GetParent()->GetPosition().GetXY();
 			Vector2<float> playerPos = GetParent()->GetPosition().GetXY();
@@ -54,7 +54,7 @@ void SwingingSword::Update( float pDelta ) {
 			
 			SetTimeSinceUse( GetTimeSinceUse() + 1 );
 		} else {
-			SetPosition( ( GetHand() == HAND_LEFT ) ? m_handLeftOffset : m_handRightOffset, false );
+			SetPosition();
 			SetRotation( Quaternion( 0.0f, 0.0f, 0.0f, 1.0f ) );
 		}
 	}

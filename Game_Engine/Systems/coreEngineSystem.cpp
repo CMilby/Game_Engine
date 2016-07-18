@@ -70,7 +70,7 @@ void CoreEngineSystem::HandleCoreEngineStart( const std::vector<MessagePayload>&
 		SendMessage( SYSTEM_GAME, Message( SYSTEM_CORE_ENGINE, MESSAGE_UPDATE, myPayload ) );
 		
 		// SendMessage( SYSTEM_PHYSICS_ENGINE, Message( SYSTEM_CORE_ENGINE, MESSAGE_SIMULATE_PHYSICS, myPayload ) );
-		// SendMessage( SYSTEM_PHYSICS_ENGINE, Message( SYSTEM_CORE_ENGINE, MESSAGE_HANDLE_COLLISIONS ) );
+		SendMessage( SYSTEM_PHYSICS_ENGINE, Message( SYSTEM_CORE_ENGINE, MESSAGE_HANDLE_COLLISIONS ) );
 		
         SendMessage( SYSTEM_RENDERING_ENGINE, Message( SYSTEM_CORE_ENGINE, MESSAGE_RENDER ) );
         SendMessage( SYSTEM_WINDOW, Message( SYSTEM_CORE_ENGINE, MESSAGE_UPDATE, myPayload ) );

@@ -31,36 +31,6 @@ Item::Item( const std::string &pItem, eHand pHand ) {
 	m_isCoolingDown = false;
 }
 
-Item::Item( const Vector3<float> &pPosition, const std::string &pItem ) {
-	SetPosition( pPosition );
-	m_item = pItem;
-	
-	m_useTime = 30;
-	m_timeSinceUse = 0;
-	
-	m_cooldown = 50;
-	m_currentCooldown = 0;
-	m_isCoolingDown = false;
-}
-
-Item::Item( const Vector3<float> &pPosition, const std::string &pItem, eHand pHand ) {
-	if ( pHand == HAND_LEFT ) {
-		SetPosition( pPosition + m_handLeftOffset );
-	} else if ( pHand == HAND_RIGHT ) {
-		SetPosition( pPosition + m_handRightOffset );
-	}
-	
-	m_item = pItem;
-	m_hand = pHand;
-	
-	m_useTime = 30;
-	m_timeSinceUse = 0;
-	
-	m_cooldown = 50;
-	m_currentCooldown = 0;
-	m_isCoolingDown = false;
-}
-
 void Item::Update( float pDelta ) {
 	if ( m_isCoolingDown ) {
 		m_currentCooldown--;
@@ -82,16 +52,16 @@ bool Item::Use() {
 	return true;
 }
 
-void Item::SetPosition( const Vector3<float> &pPosition, bool pHandOffset ) {
-	if ( pHandOffset ) {
-		if ( m_hand == eHand::HAND_LEFT ) {
-			RenderableEntity::SetPosition( pPosition + m_handLeftOffset );
-		} else if ( m_hand == eHand::HAND_RIGHT ) {
-			RenderableEntity::SetPosition( pPosition + m_handRightOffset );
-		}
-	} else {
-		RenderableEntity::SetPosition( pPosition );
+void Item::SetPosition() {
+	if ( m_hand == eHand::HAND_LEFT ) {
+		RenderableEntity::SetPosition( Vector3<float>( m_handLeftOffset.GetXY(), ITEM_HEIGHT ) );
+	} else if ( m_hand == eHand::HAND_RIGHT ) {
+		RenderableEntity::SetPosition( Vector3<float>( m_handRightOffset.GetXY(), ITEM_HEIGHT ) );
 	}
+}
+
+void Item::SetPosition( const Vector3<float> &pPosition ) {
+	RenderableEntity::SetPosition( Vector3<float>( pPosition.GetXY(), ITEM_HEIGHT ) );
 }
 
 

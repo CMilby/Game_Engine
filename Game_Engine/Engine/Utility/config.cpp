@@ -37,6 +37,11 @@ unsigned int Config::s_screenWidth = 800;
 unsigned int Config::s_screenHeight = 600;
 bool Config::s_fullscreen = false;
 
+float Config::s_top = 12.0f;
+float Config::s_bottom = -s_top;
+float Config::s_right = 12.0f;
+float Config::s_left = -s_right;
+
 float Config::s_fieldOfView = 45.0f;
 float Config::s_aspectRatio = 1.3f;
 float Config::s_zNear = 0.1f;

@@ -12,6 +12,8 @@
 #include "logger.h"
 #include "renderableEntity.h"
 
+#define ITEM_HEIGHT 1.0f
+
 enum eHand {
 	HAND_LEFT,
 	HAND_RIGHT
@@ -39,12 +41,11 @@ protected:
 public:
 	Item();
 	Item( const std::string &pItem, eHand pHand );
-	Item( const Vector3<float> &pPosition, const std::string &pItem );
-	Item( const Vector3<float> &pPosition, const std::string &pItem, eHand pHand );
 	
 	virtual bool Use();
 	
-	void SetPosition( const Vector3<float> &pPosition, bool pHandOffset = true );
+	void SetPosition( const Vector3<float> &pPosition );
+	void SetPosition();
 	
 	inline int GetUseTime() const { return m_useTime; }
 	inline void SetUseTime( int pUseTime ) { m_useTime = pUseTime; }

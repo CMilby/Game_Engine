@@ -12,7 +12,7 @@
 #include "item.h"
 #include "renderableEntity.h"
 
-#define NPC_HEIGHT 1.0f
+#define NPC_HEIGHT ITEM_HEIGHT
 
 class NPC : public RenderableEntity {
 
@@ -58,8 +58,8 @@ public:
 	inline int GetCurrentMana() const { return m_currentMana; }
 	inline int GetCurrentStamina() const { return m_currentStamina; }
 	
-	inline void SetLeftHandItem( Item *pItem ) { m_leftHand = pItem; }
-	inline void SetRightHandItem( Item *pItem ) { m_rightHand = pItem; }
+	void SetLeftHandItem( Item *pItem );
+	void SetRightHandItem( Item *pItem );
 	
 	inline float GetMoveSpeed() const { return m_moveSpeed; }
 	inline float GetSprintSpeed() const { return m_sprintSpeed; }

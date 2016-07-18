@@ -13,18 +13,21 @@
 Entity::Entity() {
 	m_physicsBody = 0;
 	m_parent = 0;
+	m_entityType = EntityType::ENTITY_BASE;
 }
 
 Entity::Entity( const Transform &transform ) {
 	m_transform = transform;
 	m_physicsBody = 0;
 	m_parent = 0;
+	m_entityType = EntityType::ENTITY_BASE;
 }
 
 Entity::Entity( const Vector3<float> &position ) {
 	m_transform.SetPosition( position );
 	m_physicsBody = 0;
 	m_parent = 0;
+	m_entityType = EntityType::ENTITY_BASE;
 }
 
 Entity::~Entity() {
@@ -34,7 +37,7 @@ Entity::~Entity() {
 		}
 	}
 	
-	if ( m_physicsBody ) {
+	if ( m_physicsBody != 0 ) {
 		delete m_physicsBody;
 		m_physicsBody = 0;
 	}
@@ -85,8 +88,10 @@ void Entity::RenderAll() {
 	Render();
 }
 
-void Entity::SetPhysicsBody( PhysicsBody *pPhysicsBody ) {
+void Entity::SetPhysicsBody( PhysicsBody2D *pPhysicsBody ) {
 	m_physicsBody = pPhysicsBody;
+	m_physicsBody->SetParent( this );
+	
 	std::vector<MessagePayload> myPayload;
 	myPayload.emplace_back( MessagePayload( PAYLOAD_PHYSICS_OBJECT, pPhysicsBody ) );
 	Messenger::SendMessage( SYSTEM_PHYSICS_ENGINE, Message( SYSTEM_ENTITY, MESSAGE_ADD_PHYSICS_BODY, myPayload ) );

@@ -32,6 +32,6 @@ Entity* MessagePayload::GetPayloadEntity() const {
 	return static_cast<Entity*>( m_payload );
 }
 
-PhysicsBody* MessagePayload::GetPayloadPhysicsBody() const {
-	return static_cast<PhysicsBody*>( m_payload );
+PhysicsBody2D* MessagePayload::GetPayloadPhysicsBody() const {
+	return static_cast<PhysicsBody2D*>( m_payload );
 }

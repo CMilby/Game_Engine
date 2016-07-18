@@ -19,9 +19,12 @@ private:
 	virtual void Update( float pDelta );
 	
 public:
-	SwingingSword( const Vector3<float> &pPosition, eHand pHand );
+	SwingingSword( eHand pHand );
 	SwingingSword( const std::string &pItem, eHand pHand );
 	virtual ~SwingingSword();
+	
+	inline void SetSwingAngle( float pSwingAngle ) { m_swingAngle = pSwingAngle; }
+	inline float GetSwingAngle() const { return m_swingAngle; }
 	
 	virtual bool Use();
 };

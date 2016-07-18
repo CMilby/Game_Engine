@@ -43,6 +43,11 @@ private:
     static unsigned int s_screenHeight;
     static bool s_fullscreen;
 	
+	static float s_top;
+	static float s_bottom;
+	static float s_left;
+	static float s_right;
+	
     static float s_fieldOfView;
     static float s_zNear;
     static float s_zFar;
@@ -195,7 +200,31 @@ public:
 	}
 	
 	inline static bool GetFullscreen() { return s_fullscreen; }
-    
+	
+	inline static void SetTop( float pTop ) {
+		s_top = pTop;
+	}
+	
+	inline static float GetTop() { return s_top; }
+	
+	inline static void SetBottom( float pBottom ) {
+		s_bottom = pBottom;
+	}
+	
+	inline static float GetBottom() { return s_bottom; }
+	
+	inline static void SetLeft( float pLeft ) {
+		s_left = pLeft;
+	}
+	
+	inline static float GetLeft() { return s_left; }
+	
+	inline static void SetRight( float pRight ) {
+		s_right = pRight;
+	}
+	
+	inline static float GetRight() { return s_right; }
+	
     inline static void SetAspectRatio( float aspectRatio ) {
         s_aspectRatio = aspectRatio;
         Transform::SetPerspectiveProjection( s_fieldOfView, s_aspectRatio, s_zNear, s_zFar );
@@ -211,7 +240,7 @@ public:
     inline static void SetZNear( float zNear ) {
         s_zNear = zNear;
         Transform::SetPerspectiveProjection( s_fieldOfView, s_aspectRatio, s_zNear, s_zFar );
-		Transform::SetOrthographicProjection( 0.0f, GetScreenWidth(), GetScreenHeight(), 0.0f, GetZNear(), GetZFar() );
+		Transform::SetOrthographicProjection( GetLeft(), GetRight(), GetTop(), GetBottom(), GetZNear(), GetZFar() );
     }
     
     inline static float GetZNear() { return s_zNear; }
@@ -219,7 +248,7 @@ public:
     inline static void SetZFar( float zFar ) {
         s_zFar = zFar;
         Transform::SetPerspectiveProjection( s_fieldOfView, s_aspectRatio, s_zNear, s_zFar );
-		Transform::SetOrthographicProjection( 0.0f, GetScreenWidth(), GetScreenHeight(), 0.0f, GetZNear(), GetZFar() );
+		Transform::SetOrthographicProjection( GetLeft(), GetRight(), GetTop(), GetBottom(), GetZNear(), GetZFar() );
     }
     
     inline static float GetZFar() { return s_zFar; }
