@@ -50,33 +50,33 @@
 		44394ED31CAF26B300212467 /* transform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44394ECE1CAF26B300212467 /* transform.cpp */; };
 		443C92FC1D274979009F1FDC /* configLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 443C92F81D274979009F1FDC /* configLoader.cpp */; };
 		443C92FD1D274979009F1FDC /* logger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 443C92FA1D274979009F1FDC /* logger.cpp */; };
-		443C93071D276A5E009F1FDC /* handItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 443C93051D276A5E009F1FDC /* handItem.cpp */; };
 		443F744C1CB311AE00A0A939 /* planeCollider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 443F744A1CB311AE00A0A939 /* planeCollider.cpp */; };
 		443F74511CB311EE00A0A939 /* math3d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 443F744D1CB311EE00A0A939 /* math3d.cpp */; };
 		443F74521CB311EE00A0A939 /* simplexNoise.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 443F744F1CB311EE00A0A939 /* simplexNoise.cpp */; };
 		443F74581CB314D700A0A939 /* random.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 443F74561CB314D700A0A939 /* random.cpp */; };
-		4446848F1D397A4200CC44FC /* stabbingSwordItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4446848D1D397A4200CC44FC /* stabbingSwordItem.cpp */; };
 		444684921D397A4E00CC44FC /* timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 444684901D397A4E00CC44FC /* timer.cpp */; };
-		444684951D39A3FA00CC44FC /* swingingSword.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 444684931D39A3FA00CC44FC /* swingingSword.cpp */; };
-		444EFB351D3A937400790423 /* shieldItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 444EFB331D3A937400790423 /* shieldItem.cpp */; };
-		444EFB381D3A94CC00790423 /* axeItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 444EFB361D3A94CC00790423 /* axeItem.cpp */; };
-		444EFB3B1D3A961B00790423 /* halberdItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 444EFB391D3A961B00790423 /* halberdItem.cpp */; };
-		444EFB3E1D3C549800790423 /* monster.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 444EFB3C1D3C549800790423 /* monster.cpp */; };
 		444EFB411D3C5B4200790423 /* physicsBody2d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 444EFB3F1D3C5B4200790423 /* physicsBody2d.cpp */; };
+		444EFB4A1D3C6F2F00790423 /* monster.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 444EFB441D3C6F2F00790423 /* monster.cpp */; };
+		444EFB4B1D3C6F2F00790423 /* npc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 444EFB461D3C6F2F00790423 /* npc.cpp */; };
+		444EFB4C1D3C6F2F00790423 /* player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 444EFB481D3C6F2F00790423 /* player.cpp */; };
+		444EFB5A1D3C6F3E00790423 /* biome.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 444EFB4D1D3C6F3E00790423 /* biome.cpp */; };
+		444EFB5B1D3C6F3E00790423 /* chunk.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 444EFB4F1D3C6F3E00790423 /* chunk.cpp */; };
+		444EFB5C1D3C6F3E00790423 /* renderableChunk.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 444EFB511D3C6F3E00790423 /* renderableChunk.cpp */; };
+		444EFB5D1D3C6F3E00790423 /* tileMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 444EFB531D3C6F3E00790423 /* tileMap.cpp */; };
+		444EFB5E1D3C6F3E00790423 /* world.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 444EFB561D3C6F3E00790423 /* world.cpp */; };
+		444EFB5F1D3C6F3E00790423 /* worldGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 444EFB581D3C6F3E00790423 /* worldGenerator.cpp */; };
+		444EFB6E1D3C6F4F00790423 /* axeItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 444EFB601D3C6F4F00790423 /* axeItem.cpp */; };
+		444EFB6F1D3C6F4F00790423 /* halberdItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 444EFB621D3C6F4F00790423 /* halberdItem.cpp */; };
+		444EFB701D3C6F4F00790423 /* handItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 444EFB641D3C6F4F00790423 /* handItem.cpp */; };
+		444EFB711D3C6F4F00790423 /* item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 444EFB661D3C6F4F00790423 /* item.cpp */; };
+		444EFB721D3C6F4F00790423 /* shieldItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 444EFB681D3C6F4F00790423 /* shieldItem.cpp */; };
+		444EFB731D3C6F4F00790423 /* stabbingSwordItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 444EFB6A1D3C6F4F00790423 /* stabbingSwordItem.cpp */; };
+		444EFB741D3C6F4F00790423 /* swingingSword.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 444EFB6C1D3C6F4F00790423 /* swingingSword.cpp */; };
 		449D85F41BD6B6F300B72584 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 449D85F31BD6B6F300B72584 /* OpenGL.framework */; };
 		449D85F91BD6BB0900B72584 /* libGLEW.1.12.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 449D85F81BD6BB0900B72584 /* libGLEW.1.12.0.dylib */; };
-		44B9C3FB1D1B356D0043FF1D /* chunk.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44B9C3F51D1B356D0043FF1D /* chunk.cpp */; };
-		44B9C3FC1D1B356D0043FF1D /* world.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44B9C3F91D1B356D0043FF1D /* world.cpp */; };
 		44B9C40A1D1F16950043FF1D /* lockedCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44B9C4081D1F16950043FF1D /* lockedCamera.cpp */; };
 		44B9C40D1D1F16A50043FF1D /* tileShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44B9C40B1D1F16A50043FF1D /* tileShader.cpp */; };
-		44B9C4101D1F16D00043FF1D /* renderableChunk.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44B9C40E1D1F16D00043FF1D /* renderableChunk.cpp */; };
 		44B9C42E1D21D7400043FF1D /* mersenneTwister.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44B9C42C1D21D7400043FF1D /* mersenneTwister.cpp */; };
-		44B9C43E1D21D7650043FF1D /* biome.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44B9C4301D21D7650043FF1D /* biome.cpp */; };
-		44B9C43F1D21D7650043FF1D /* item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44B9C4321D21D7650043FF1D /* item.cpp */; };
-		44B9C4401D21D7650043FF1D /* npc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44B9C4341D21D7650043FF1D /* npc.cpp */; };
-		44B9C4421D21D7650043FF1D /* player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44B9C4381D21D7650043FF1D /* player.cpp */; };
-		44B9C4431D21D7650043FF1D /* tileMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44B9C43A1D21D7650043FF1D /* tileMap.cpp */; };
-		44B9C4441D21D7650043FF1D /* worldGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44B9C43C1D21D7650043FF1D /* worldGenerator.cpp */; };
 		44D3CD701BCBFAED0074E300 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44D3CD6F1BCBFAED0074E300 /* main.cpp */; };
 /* End PBXBuildFile section */
 
@@ -191,8 +191,6 @@
 		443C92FA1D274979009F1FDC /* logger.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = logger.cpp; path = Engine/Utility/logger.cpp; sourceTree = "<group>"; };
 		443C92FB1D274979009F1FDC /* logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = logger.h; path = Engine/Utility/logger.h; sourceTree = "<group>"; };
 		443C93001D274F51009F1FDC /* config.ini */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = config.ini; path = Resources/config/config.ini; sourceTree = "<group>"; };
-		443C93051D276A5E009F1FDC /* handItem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = handItem.cpp; path = Game/handItem.cpp; sourceTree = "<group>"; };
-		443C93061D276A5E009F1FDC /* handItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = handItem.h; path = Game/handItem.h; sourceTree = "<group>"; };
 		443F744A1CB311AE00A0A939 /* planeCollider.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = planeCollider.cpp; path = Engine/Physics/planeCollider.cpp; sourceTree = "<group>"; };
 		443F744B1CB311AE00A0A939 /* planeCollider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = planeCollider.h; path = Engine/Physics/planeCollider.h; sourceTree = "<group>"; };
 		443F744D1CB311EE00A0A939 /* math3d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = math3d.cpp; path = Engine/Core/Math/math3d.cpp; sourceTree = "<group>"; };
@@ -201,55 +199,57 @@
 		443F74501CB311EE00A0A939 /* simplexNoise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = simplexNoise.h; path = Engine/Core/Math/simplexNoise.h; sourceTree = "<group>"; };
 		443F74561CB314D700A0A939 /* random.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = random.cpp; path = Engine/Core/Math/random.cpp; sourceTree = "<group>"; };
 		443F74571CB314D700A0A939 /* random.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = random.h; path = Engine/Core/Math/random.h; sourceTree = "<group>"; };
-		4446848D1D397A4200CC44FC /* stabbingSwordItem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = stabbingSwordItem.cpp; path = Game/stabbingSwordItem.cpp; sourceTree = "<group>"; };
-		4446848E1D397A4200CC44FC /* stabbingSwordItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = stabbingSwordItem.h; path = Game/stabbingSwordItem.h; sourceTree = "<group>"; };
 		444684901D397A4E00CC44FC /* timer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = timer.cpp; path = Engine/Core/timer.cpp; sourceTree = "<group>"; };
 		444684911D397A4E00CC44FC /* timer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = timer.h; path = Engine/Core/timer.h; sourceTree = "<group>"; };
-		444684931D39A3FA00CC44FC /* swingingSword.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = swingingSword.cpp; path = Game/swingingSword.cpp; sourceTree = "<group>"; };
-		444684941D39A3FA00CC44FC /* swingingSword.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = swingingSword.h; path = Game/swingingSword.h; sourceTree = "<group>"; };
-		444EFB331D3A937400790423 /* shieldItem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = shieldItem.cpp; sourceTree = "<group>"; };
-		444EFB341D3A937400790423 /* shieldItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shieldItem.h; sourceTree = "<group>"; };
-		444EFB361D3A94CC00790423 /* axeItem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = axeItem.cpp; path = Game/axeItem.cpp; sourceTree = "<group>"; };
-		444EFB371D3A94CC00790423 /* axeItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = axeItem.h; path = Game/axeItem.h; sourceTree = "<group>"; };
-		444EFB391D3A961B00790423 /* halberdItem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = halberdItem.cpp; path = Game/halberdItem.cpp; sourceTree = "<group>"; };
-		444EFB3A1D3A961B00790423 /* halberdItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = halberdItem.h; path = Game/halberdItem.h; sourceTree = "<group>"; };
-		444EFB3C1D3C549800790423 /* monster.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = monster.cpp; sourceTree = "<group>"; };
-		444EFB3D1D3C549800790423 /* monster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = monster.h; sourceTree = "<group>"; };
 		444EFB3F1D3C5B4200790423 /* physicsBody2d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = physicsBody2d.cpp; path = Engine/Physics/physicsBody2d.cpp; sourceTree = "<group>"; };
 		444EFB401D3C5B4200790423 /* physicsBody2d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = physicsBody2d.h; path = Engine/Physics/physicsBody2d.h; sourceTree = "<group>"; };
-		444EFB421D3C5F7900790423 /* entityType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = entityType.h; sourceTree = "<group>"; };
+		444EFB431D3C6F2F00790423 /* entityType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = entityType.h; path = Game/Entities/entityType.h; sourceTree = "<group>"; };
+		444EFB441D3C6F2F00790423 /* monster.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = monster.cpp; path = Game/Entities/monster.cpp; sourceTree = "<group>"; };
+		444EFB451D3C6F2F00790423 /* monster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = monster.h; path = Game/Entities/monster.h; sourceTree = "<group>"; };
+		444EFB461D3C6F2F00790423 /* npc.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = npc.cpp; path = Game/Entities/npc.cpp; sourceTree = "<group>"; };
+		444EFB471D3C6F2F00790423 /* npc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = npc.h; path = Game/Entities/npc.h; sourceTree = "<group>"; };
+		444EFB481D3C6F2F00790423 /* player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = player.cpp; path = Game/Entities/player.cpp; sourceTree = "<group>"; };
+		444EFB491D3C6F2F00790423 /* player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = player.h; path = Game/Entities/player.h; sourceTree = "<group>"; };
+		444EFB4D1D3C6F3E00790423 /* biome.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = biome.cpp; path = Game/World/biome.cpp; sourceTree = "<group>"; };
+		444EFB4E1D3C6F3E00790423 /* biome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = biome.h; path = Game/World/biome.h; sourceTree = "<group>"; };
+		444EFB4F1D3C6F3E00790423 /* chunk.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = chunk.cpp; path = Game/World/chunk.cpp; sourceTree = "<group>"; };
+		444EFB501D3C6F3E00790423 /* chunk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = chunk.h; path = Game/World/chunk.h; sourceTree = "<group>"; };
+		444EFB511D3C6F3E00790423 /* renderableChunk.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = renderableChunk.cpp; path = Game/World/renderableChunk.cpp; sourceTree = "<group>"; };
+		444EFB521D3C6F3E00790423 /* renderableChunk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = renderableChunk.h; path = Game/World/renderableChunk.h; sourceTree = "<group>"; };
+		444EFB531D3C6F3E00790423 /* tileMap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = tileMap.cpp; path = Game/World/tileMap.cpp; sourceTree = "<group>"; };
+		444EFB541D3C6F3E00790423 /* tileMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tileMap.h; path = Game/World/tileMap.h; sourceTree = "<group>"; };
+		444EFB551D3C6F3E00790423 /* tileType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tileType.h; path = Game/World/tileType.h; sourceTree = "<group>"; };
+		444EFB561D3C6F3E00790423 /* world.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = world.cpp; path = Game/World/world.cpp; sourceTree = "<group>"; };
+		444EFB571D3C6F3E00790423 /* world.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = world.h; path = Game/World/world.h; sourceTree = "<group>"; };
+		444EFB581D3C6F3E00790423 /* worldGenerator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = worldGenerator.cpp; path = Game/World/worldGenerator.cpp; sourceTree = "<group>"; };
+		444EFB591D3C6F3E00790423 /* worldGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = worldGenerator.h; path = Game/World/worldGenerator.h; sourceTree = "<group>"; };
+		444EFB601D3C6F4F00790423 /* axeItem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = axeItem.cpp; path = Game/Items/axeItem.cpp; sourceTree = "<group>"; };
+		444EFB611D3C6F4F00790423 /* axeItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = axeItem.h; path = Game/Items/axeItem.h; sourceTree = "<group>"; };
+		444EFB621D3C6F4F00790423 /* halberdItem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = halberdItem.cpp; path = Game/Items/halberdItem.cpp; sourceTree = "<group>"; };
+		444EFB631D3C6F4F00790423 /* halberdItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = halberdItem.h; path = Game/Items/halberdItem.h; sourceTree = "<group>"; };
+		444EFB641D3C6F4F00790423 /* handItem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = handItem.cpp; path = Game/Items/handItem.cpp; sourceTree = "<group>"; };
+		444EFB651D3C6F4F00790423 /* handItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = handItem.h; path = Game/Items/handItem.h; sourceTree = "<group>"; };
+		444EFB661D3C6F4F00790423 /* item.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = item.cpp; path = Game/Items/item.cpp; sourceTree = "<group>"; };
+		444EFB671D3C6F4F00790423 /* item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = item.h; path = Game/Items/item.h; sourceTree = "<group>"; };
+		444EFB681D3C6F4F00790423 /* shieldItem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = shieldItem.cpp; path = Game/Items/shieldItem.cpp; sourceTree = "<group>"; };
+		444EFB691D3C6F4F00790423 /* shieldItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = shieldItem.h; path = Game/Items/shieldItem.h; sourceTree = "<group>"; };
+		444EFB6A1D3C6F4F00790423 /* stabbingSwordItem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = stabbingSwordItem.cpp; path = Game/Items/stabbingSwordItem.cpp; sourceTree = "<group>"; };
+		444EFB6B1D3C6F4F00790423 /* stabbingSwordItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = stabbingSwordItem.h; path = Game/Items/stabbingSwordItem.h; sourceTree = "<group>"; };
+		444EFB6C1D3C6F4F00790423 /* swingingSword.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = swingingSword.cpp; path = Game/Items/swingingSword.cpp; sourceTree = "<group>"; };
+		444EFB6D1D3C6F4F00790423 /* swingingSword.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = swingingSword.h; path = Game/Items/swingingSword.h; sourceTree = "<group>"; };
 		447B54141BF04A9600BB5977 /* libSDL2-2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libSDL2-2.0.0.dylib"; path = "../../../../usr/local/Cellar/sdl2/2.0.3/lib/libSDL2-2.0.0.dylib"; sourceTree = "<group>"; };
 		449D85F31BD6B6F300B72584 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		449D85F61BD6BACB00B72584 /* libglfw.3.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw.3.1.dylib; path = ../../../../usr/local/lib/libglfw.3.1.dylib; sourceTree = "<group>"; };
 		449D85F81BD6BB0900B72584 /* libGLEW.1.12.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libGLEW.1.12.0.dylib; path = ../../../../usr/local/Cellar/glew/1.12.0/lib/libGLEW.1.12.0.dylib; sourceTree = "<group>"; };
-		44B9C3F51D1B356D0043FF1D /* chunk.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = chunk.cpp; path = Game/chunk.cpp; sourceTree = "<group>"; };
-		44B9C3F61D1B356D0043FF1D /* chunk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = chunk.h; path = Game/chunk.h; sourceTree = "<group>"; };
-		44B9C3F91D1B356D0043FF1D /* world.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = world.cpp; path = Game/world.cpp; sourceTree = "<group>"; };
-		44B9C3FA1D1B356D0043FF1D /* world.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = world.h; path = Game/world.h; sourceTree = "<group>"; };
 		44B9C3FD1D1B35A10043FF1D /* TileShader.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = TileShader.fs; path = Resources/shaders/TileShader.fs; sourceTree = "<group>"; };
 		44B9C3FE1D1B35A10043FF1D /* TileShader.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = TileShader.vs; path = Resources/shaders/TileShader.vs; sourceTree = "<group>"; };
 		44B9C4081D1F16950043FF1D /* lockedCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = lockedCamera.cpp; path = Engine/Components/lockedCamera.cpp; sourceTree = "<group>"; };
 		44B9C4091D1F16950043FF1D /* lockedCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lockedCamera.h; path = Engine/Components/lockedCamera.h; sourceTree = "<group>"; };
 		44B9C40B1D1F16A50043FF1D /* tileShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = tileShader.cpp; path = Engine/Rendering/tileShader.cpp; sourceTree = "<group>"; };
 		44B9C40C1D1F16A50043FF1D /* tileShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tileShader.h; path = Engine/Rendering/tileShader.h; sourceTree = "<group>"; };
-		44B9C40E1D1F16D00043FF1D /* renderableChunk.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = renderableChunk.cpp; path = Game/renderableChunk.cpp; sourceTree = "<group>"; };
-		44B9C40F1D1F16D00043FF1D /* renderableChunk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = renderableChunk.h; path = Game/renderableChunk.h; sourceTree = "<group>"; };
-		44B9C4201D1F49ED0043FF1D /* tileType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = tileType.h; path = Game/tileType.h; sourceTree = "<group>"; };
 		44B9C42C1D21D7400043FF1D /* mersenneTwister.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mersenneTwister.cpp; path = Engine/Core/Math/mersenneTwister.cpp; sourceTree = "<group>"; };
 		44B9C42D1D21D7400043FF1D /* mersenneTwister.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mersenneTwister.h; path = Engine/Core/Math/mersenneTwister.h; sourceTree = "<group>"; };
 		44B9C42F1D21D74B0043FF1D /* system.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = system.h; path = Engine/Core/system.h; sourceTree = "<group>"; };
-		44B9C4301D21D7650043FF1D /* biome.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = biome.cpp; path = Game/biome.cpp; sourceTree = "<group>"; };
-		44B9C4311D21D7650043FF1D /* biome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = biome.h; path = Game/biome.h; sourceTree = "<group>"; };
-		44B9C4321D21D7650043FF1D /* item.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = item.cpp; path = Game/item.cpp; sourceTree = "<group>"; };
-		44B9C4331D21D7650043FF1D /* item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = item.h; path = Game/item.h; sourceTree = "<group>"; };
-		44B9C4341D21D7650043FF1D /* npc.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = npc.cpp; path = Game/npc.cpp; sourceTree = "<group>"; };
-		44B9C4351D21D7650043FF1D /* npc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = npc.h; path = Game/npc.h; sourceTree = "<group>"; };
-		44B9C4381D21D7650043FF1D /* player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = player.cpp; path = Game/player.cpp; sourceTree = "<group>"; };
-		44B9C4391D21D7650043FF1D /* player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = player.h; path = Game/player.h; sourceTree = "<group>"; };
-		44B9C43A1D21D7650043FF1D /* tileMap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = tileMap.cpp; path = Game/tileMap.cpp; sourceTree = "<group>"; };
-		44B9C43B1D21D7650043FF1D /* tileMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tileMap.h; path = Game/tileMap.h; sourceTree = "<group>"; };
-		44B9C43C1D21D7650043FF1D /* worldGenerator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = worldGenerator.cpp; path = Game/worldGenerator.cpp; sourceTree = "<group>"; };
-		44B9C43D1D21D7650043FF1D /* worldGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = worldGenerator.h; path = Game/worldGenerator.h; sourceTree = "<group>"; };
 		44D3CD6C1BCBFAED0074E300 /* Game_Engine */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Game_Engine; sourceTree = BUILT_PRODUCTS_DIR; };
 		44D3CD6F1BCBFAED0074E300 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -501,19 +501,19 @@
 		44B9C41A1D1F1B4B0043FF1D /* World */ = {
 			isa = PBXGroup;
 			children = (
-				44B9C3F51D1B356D0043FF1D /* chunk.cpp */,
-				44B9C3F61D1B356D0043FF1D /* chunk.h */,
-				44B9C40E1D1F16D00043FF1D /* renderableChunk.cpp */,
-				44B9C40F1D1F16D00043FF1D /* renderableChunk.h */,
-				44B9C3F91D1B356D0043FF1D /* world.cpp */,
-				44B9C3FA1D1B356D0043FF1D /* world.h */,
-				44B9C4301D21D7650043FF1D /* biome.cpp */,
-				44B9C4311D21D7650043FF1D /* biome.h */,
-				44B9C43A1D21D7650043FF1D /* tileMap.cpp */,
-				44B9C43B1D21D7650043FF1D /* tileMap.h */,
-				44B9C43C1D21D7650043FF1D /* worldGenerator.cpp */,
-				44B9C43D1D21D7650043FF1D /* worldGenerator.h */,
-				44B9C4201D1F49ED0043FF1D /* tileType.h */,
+				444EFB4D1D3C6F3E00790423 /* biome.cpp */,
+				444EFB4E1D3C6F3E00790423 /* biome.h */,
+				444EFB4F1D3C6F3E00790423 /* chunk.cpp */,
+				444EFB501D3C6F3E00790423 /* chunk.h */,
+				444EFB511D3C6F3E00790423 /* renderableChunk.cpp */,
+				444EFB521D3C6F3E00790423 /* renderableChunk.h */,
+				444EFB531D3C6F3E00790423 /* tileMap.cpp */,
+				444EFB541D3C6F3E00790423 /* tileMap.h */,
+				444EFB551D3C6F3E00790423 /* tileType.h */,
+				444EFB561D3C6F3E00790423 /* world.cpp */,
+				444EFB571D3C6F3E00790423 /* world.h */,
+				444EFB581D3C6F3E00790423 /* worldGenerator.cpp */,
+				444EFB591D3C6F3E00790423 /* worldGenerator.h */,
 			);
 			name = World;
 			sourceTree = "<group>";
@@ -521,13 +521,13 @@
 		44B9C4451D21DA650043FF1D /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				44B9C4341D21D7650043FF1D /* npc.cpp */,
-				44B9C4351D21D7650043FF1D /* npc.h */,
-				44B9C4381D21D7650043FF1D /* player.cpp */,
-				44B9C4391D21D7650043FF1D /* player.h */,
-				444EFB3C1D3C549800790423 /* monster.cpp */,
-				444EFB3D1D3C549800790423 /* monster.h */,
-				444EFB421D3C5F7900790423 /* entityType.h */,
+				444EFB431D3C6F2F00790423 /* entityType.h */,
+				444EFB441D3C6F2F00790423 /* monster.cpp */,
+				444EFB451D3C6F2F00790423 /* monster.h */,
+				444EFB461D3C6F2F00790423 /* npc.cpp */,
+				444EFB471D3C6F2F00790423 /* npc.h */,
+				444EFB481D3C6F2F00790423 /* player.cpp */,
+				444EFB491D3C6F2F00790423 /* player.h */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -535,20 +535,20 @@
 		44B9C4461D21DA700043FF1D /* Items */ = {
 			isa = PBXGroup;
 			children = (
-				44B9C4321D21D7650043FF1D /* item.cpp */,
-				44B9C4331D21D7650043FF1D /* item.h */,
-				443C93051D276A5E009F1FDC /* handItem.cpp */,
-				443C93061D276A5E009F1FDC /* handItem.h */,
-				4446848D1D397A4200CC44FC /* stabbingSwordItem.cpp */,
-				4446848E1D397A4200CC44FC /* stabbingSwordItem.h */,
-				444EFB391D3A961B00790423 /* halberdItem.cpp */,
-				444EFB3A1D3A961B00790423 /* halberdItem.h */,
-				444684931D39A3FA00CC44FC /* swingingSword.cpp */,
-				444684941D39A3FA00CC44FC /* swingingSword.h */,
-				444EFB361D3A94CC00790423 /* axeItem.cpp */,
-				444EFB371D3A94CC00790423 /* axeItem.h */,
-				444EFB331D3A937400790423 /* shieldItem.cpp */,
-				444EFB341D3A937400790423 /* shieldItem.h */,
+				444EFB601D3C6F4F00790423 /* axeItem.cpp */,
+				444EFB611D3C6F4F00790423 /* axeItem.h */,
+				444EFB621D3C6F4F00790423 /* halberdItem.cpp */,
+				444EFB631D3C6F4F00790423 /* halberdItem.h */,
+				444EFB641D3C6F4F00790423 /* handItem.cpp */,
+				444EFB651D3C6F4F00790423 /* handItem.h */,
+				444EFB661D3C6F4F00790423 /* item.cpp */,
+				444EFB671D3C6F4F00790423 /* item.h */,
+				444EFB681D3C6F4F00790423 /* shieldItem.cpp */,
+				444EFB691D3C6F4F00790423 /* shieldItem.h */,
+				444EFB6A1D3C6F4F00790423 /* stabbingSwordItem.cpp */,
+				444EFB6B1D3C6F4F00790423 /* stabbingSwordItem.h */,
+				444EFB6C1D3C6F4F00790423 /* swingingSword.cpp */,
+				444EFB6D1D3C6F4F00790423 /* swingingSword.h */,
 			);
 			name = Items;
 			sourceTree = "<group>";
@@ -653,70 +653,70 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				44B9C43E1D21D7650043FF1D /* biome.cpp in Sources */,
 				443F744C1CB311AE00A0A939 /* planeCollider.cpp in Sources */,
 				44394EC71CAF261500212467 /* messenger.cpp in Sources */,
+				444EFB711D3C6F4F00790423 /* item.cpp in Sources */,
 				443F74581CB314D700A0A939 /* random.cpp in Sources */,
-				444EFB3E1D3C549800790423 /* monster.cpp in Sources */,
 				444EFB411D3C5B4200790423 /* physicsBody2d.cpp in Sources */,
 				44394EA91CAF25C900212467 /* aabbCollider.cpp in Sources */,
 				440BD7101C88904F001DB584 /* cameraSystem.cpp in Sources */,
-				44B9C4401D21D7650043FF1D /* npc.cpp in Sources */,
 				44394EC11CAF25DE00212467 /* texture.cpp in Sources */,
 				44D3CD701BCBFAED0074E300 /* main.cpp in Sources */,
 				44394E9C1CAF25BE00212467 /* camera.cpp in Sources */,
 				440BD7171C88904F001DB584 /* windowSystem.cpp in Sources */,
+				444EFB5B1D3C6F3E00790423 /* chunk.cpp in Sources */,
 				443C92FD1D274979009F1FDC /* logger.cpp in Sources */,
 				44394E931CAF25AB00212467 /* utility.cpp in Sources */,
-				444EFB381D3A94CC00790423 /* axeItem.cpp in Sources */,
 				443C92FC1D274979009F1FDC /* configLoader.cpp in Sources */,
+				444EFB5A1D3C6F3E00790423 /* biome.cpp in Sources */,
 				440BD7121C88904F001DB584 /* entitySystem.cpp in Sources */,
 				440BD7161C88904F001DB584 /* system.cpp in Sources */,
+				444EFB5F1D3C6F3E00790423 /* worldGenerator.cpp in Sources */,
 				440BD6FE1C889027001DB584 /* messagePayload.cpp in Sources */,
 				44394EAB1CAF25C900212467 /* physicsBody.cpp in Sources */,
+				444EFB721D3C6F4F00790423 /* shieldItem.cpp in Sources */,
 				44394EBF1CAF25DE00212467 /* shader.cpp in Sources */,
-				444684951D39A3FA00CC44FC /* swingingSword.cpp in Sources */,
+				444EFB4C1D3C6F2F00790423 /* player.cpp in Sources */,
+				444EFB741D3C6F4F00790423 /* swingingSword.cpp in Sources */,
 				440BD7141C88904F001DB584 /* inputSystem.cpp in Sources */,
 				44394EBD1CAF25DE00212467 /* mesh.cpp in Sources */,
-				44B9C43F1D21D7650043FF1D /* item.cpp in Sources */,
-				4446848F1D397A4200CC44FC /* stabbingSwordItem.cpp in Sources */,
 				44B9C42E1D21D7400043FF1D /* mersenneTwister.cpp in Sources */,
 				443F74521CB311EE00A0A939 /* simplexNoise.cpp in Sources */,
+				444EFB5C1D3C6F3E00790423 /* renderableChunk.cpp in Sources */,
 				44394EC01CAF25DE00212467 /* textShader.cpp in Sources */,
-				444EFB3B1D3A961B00790423 /* halberdItem.cpp in Sources */,
+				444EFB4A1D3C6F2F00790423 /* monster.cpp in Sources */,
 				44394EBC1CAF25DE00212467 /* basicShader.cpp in Sources */,
+				444EFB5E1D3C6F3E00790423 /* world.cpp in Sources */,
 				44394EBE1CAF25DE00212467 /* phongShader.cpp in Sources */,
 				44394EC41CAF25F200212467 /* physicsEngineSystem.cpp in Sources */,
 				443F74511CB311EE00A0A939 /* math3d.cpp in Sources */,
-				44B9C4441D21D7650043FF1D /* worldGenerator.cpp in Sources */,
 				440BD7111C88904F001DB584 /* coreEngineSystem.cpp in Sources */,
 				440BD6FD1C889027001DB584 /* messageBus.cpp in Sources */,
 				44394EAC1CAF25C900212467 /* sphereCollider.cpp in Sources */,
+				444EFB6F1D3C6F4F00790423 /* halberdItem.cpp in Sources */,
+				444EFB6E1D3C6F4F00790423 /* axeItem.cpp in Sources */,
 				44B9C40A1D1F16950043FF1D /* lockedCamera.cpp in Sources */,
 				444684921D397A4E00CC44FC /* timer.cpp in Sources */,
-				44B9C4101D1F16D00043FF1D /* renderableChunk.cpp in Sources */,
 				44B9C40D1D1F16A50043FF1D /* tileShader.cpp in Sources */,
-				44B9C4431D21D7650043FF1D /* tileMap.cpp in Sources */,
-				44B9C3FC1D1B356D0043FF1D /* world.cpp in Sources */,
+				444EFB701D3C6F4F00790423 /* handItem.cpp in Sources */,
 				44394E8E1CAF25AB00212467 /* config.cpp in Sources */,
-				444EFB351D3A937400790423 /* shieldItem.cpp in Sources */,
+				444EFB731D3C6F4F00790423 /* stabbingSwordItem.cpp in Sources */,
 				44394E9E1CAF25BE00212467 /* renderableEntity.cpp in Sources */,
 				44394E9D1CAF25BE00212467 /* entity.cpp in Sources */,
 				440BD7131C88904F001DB584 /* gameSystem.cpp in Sources */,
 				44394ED01CAF26B300212467 /* dateTime.cpp in Sources */,
 				440BD7441C88909D001DB584 /* windowFramework.cpp in Sources */,
 				440BD7201C889057001DB584 /* shadingFramework.cpp in Sources */,
-				44B9C3FB1D1B356D0043FF1D /* chunk.cpp in Sources */,
 				440BD71F1C889057001DB584 /* renderFramework.cpp in Sources */,
 				440BD71E1C889057001DB584 /* inputFramework.cpp in Sources */,
 				44394ED21CAF26B300212467 /* time.cpp in Sources */,
 				4402765B1C8A553800449791 /* game.cpp in Sources */,
+				444EFB4B1D3C6F2F00790423 /* npc.cpp in Sources */,
 				44394EAA1CAF25C900212467 /* collider.cpp in Sources */,
 				440BD6FC1C889027001DB584 /* message.cpp in Sources */,
-				443C93071D276A5E009F1FDC /* handItem.cpp in Sources */,
 				44394E911CAF25AB00212467 /* stb_image.c in Sources */,
-				44B9C4421D21D7650043FF1D /* player.cpp in Sources */,
 				440BD7151C88904F001DB584 /* renderingEngineSystem.cpp in Sources */,
+				444EFB5D1D3C6F3E00790423 /* tileMap.cpp in Sources */,
 				44394ED31CAF26B300212467 /* transform.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
