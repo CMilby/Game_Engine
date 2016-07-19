@@ -12,6 +12,7 @@
 #include "collider.h"
 
 class BoxCollider;
+class LineCollider;
 class PointCollider;
 
 class CircleCollider : public Collider {
@@ -23,11 +24,14 @@ private:
 public:
 	CircleCollider( const Vector2<float> &pCenter, float pRadius );
 	
+	virtual void Transform( const Vector3<float> &pTraslation );
+	
 	IntersectData IntersectsBox( const BoxCollider &pOther ) const;
 	IntersectData IntersectsCircle( const CircleCollider &pCircle ) const;
+	IntersectData IntersectsLine( const LineCollider &pLine ) const;
 	IntersectData IntersectsPoint( const PointCollider &pPoint ) const;
 	
-	inline Vector2<float> GetCenter() const { return m_center; }
+	virtual Vector3<float> GetCenter() const { return Vector3<float>( m_center, 1.0f ); }
 	inline float GetRadius() const { return m_radius; }
 };
 

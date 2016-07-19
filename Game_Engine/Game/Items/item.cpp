@@ -8,7 +8,7 @@
 
 #include "item.h"
 
-Item::Item() {
+Item::Item() : RenderableEntity( EntityType::ENTITY_ITEM ) {
 	m_item = "BaseItem";
 	
 	m_useTime = 30;
@@ -19,7 +19,7 @@ Item::Item() {
 	m_isCoolingDown = false;
 }
 
-Item::Item( const std::string &pItem, eHand pHand ) {
+Item::Item( const std::string &pItem, eHand pHand ) : RenderableEntity( EntityType::ENTITY_ITEM ) {
 	m_item = pItem;
 	m_hand = pHand;
 	
@@ -50,6 +50,10 @@ bool Item::Use() {
 	m_isCoolingDown = true;
 	m_currentCooldown = m_cooldown;
 	return true;
+}
+
+void Item::Collided( Entity *pOther ) {
+	Logger::LogDebug( "Item - Collided", "Collided" );
 }
 
 void Item::SetPosition() {

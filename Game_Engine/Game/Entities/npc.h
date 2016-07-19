@@ -42,6 +42,8 @@ public:
 	NPC( const Vector2<float> &pPosition );
 	virtual ~NPC();
 	
+	virtual void Collided( Entity *pOther );
+	
 	inline void SetMaxHealth( int pHealth ) { m_maxHealth = pHealth; }
 	inline void SetMaxMana( int pMana ) { m_maxMana = pMana; }
 	inline void SetMaxStamina( int pStamina ) { m_maxStamina = pStamina; }

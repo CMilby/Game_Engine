@@ -8,6 +8,9 @@
 
 #include "stabbingSwordItem.h"
 
+#include "physicsBody2d.h"
+#include "pointCollider.h"
+
 StabbingSwordItem::StabbingSwordItem( eHand pHand ) : HandItem( "StabbingSword", pHand ) {
 	m_handLeftOffset = Vector3<float>( -0.45f, 0.8f, 0.0f );
 	m_handRightOffset = Vector3<float>( 0.45f, 0.8f, 0.0f );
@@ -21,6 +24,8 @@ StabbingSwordItem::StabbingSwordItem( eHand pHand ) : HandItem( "StabbingSword",
 	SetScale( Vector3<float>( 0.9f, 0.9f, 0.9f ) );
 	
 	SetUseTime( 20 );
+	
+	SetPhysicsBody( new PhysicsBody2D( new PointCollider( GetPosition().GetXY() ) ) );
 	
 	m_forward = new Entity( ( ( pHand == HAND_LEFT ) ? m_handLeftOffset : m_handRightOffset ) + Vector3<float>( 0.0f, 1.25f, 0.0f ) );
 	AddChild( m_forward );

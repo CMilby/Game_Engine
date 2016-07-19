@@ -9,7 +9,7 @@
 #include "entitySystem.h"
 
 EntitySystem::EntitySystem() : System( SYSTEM_ENTITY ) {
-	m_root = new Entity();
+	m_root = new Entity( EntityType::ENTITY_ROOT );
 }
 
 EntitySystem::EntitySystem( Entity *root ) : System( SYSTEM_ENTITY ) {

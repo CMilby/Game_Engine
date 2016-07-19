@@ -11,6 +11,7 @@
 #include "aabbCollider.h"
 #include "boxCollider.h"
 #include "circleCollider.h"
+#include "lineCollider.h"
 #include "planeCollider.h"
 #include "pointCollider.h"
 #include "sphereCollider.h"
@@ -32,6 +33,10 @@ IntersectData Collider::Intersect( const Collider &pCollider ) const {
 			return self->IntersectsCircle( ( CircleCollider& ) pCollider );
 		}
 		
+		if ( pCollider.GetType() == ColliderType::COLLIDER_LINE ) {
+			return self->IntersectsLine( ( LineCollider& ) pCollider );
+		}
+		
 		if ( pCollider.GetType() == ColliderType::COLLIDER_POINT ) {
 			return self->IntersectsPoint( ( PointCollider& ) pCollider );
 		}
@@ -45,6 +50,10 @@ IntersectData Collider::Intersect( const Collider &pCollider ) const {
 		
 		if ( pCollider.GetType() == ColliderType::COLLIDER_CIRCLE ) {
 			return self->IntersectsCircle( ( CircleCollider& ) pCollider );
+		}
+		
+		if ( pCollider.GetType() == ColliderType::COLLIDER_LINE ) {
+			return self->IntersectsLine( ( LineCollider& ) pCollider );
 		}
 		
 		if ( pCollider.GetType() == ColliderType::COLLIDER_POINT ) {
@@ -62,24 +71,50 @@ IntersectData Collider::Intersect( const Collider &pCollider ) const {
 			return self->IntersectsCircle( ( CircleCollider& ) pCollider );
 		}
 		
+		if ( pCollider.GetType() == ColliderType::COLLIDER_LINE ) {
+			return self->IntersectsLine( ( LineCollider& ) pCollider );
+		}
+		
 		if ( pCollider.GetType() == ColliderType::COLLIDER_POINT ) {
 			return self->IntersectsPoint( ( PointCollider& ) pCollider );
 		}
 	}
 	
+	if ( m_type == ColliderType::COLLIDER_LINE ) {
+		LineCollider *self = ( LineCollider* ) this;
+		if ( pCollider.GetType() == ColliderType::COLLIDER_BOX ) {
+			return self->IntersectsBox( ( BoxCollider& ) pCollider );
+		}
+		
+		if ( pCollider.GetType() == ColliderType::COLLIDER_CIRCLE ) {
+			return self->IntersectsCircle( ( CircleCollider& ) pCollider );
+		}
+		
+		if ( pCollider.GetType() == ColliderType::COLLIDER_LINE ) {
+			return self->IntersectsLine( ( LineCollider& ) pCollider );
+		}
+		
+		if ( pCollider.GetType() == ColliderType::COLLIDER_POINT ) {
+			return self->IntersectsPoint( ( PointCollider& ) pCollider );
+		}
+	}
 	
-	if ( m_type == ColliderType::COLLIDER_SPHERE ) {
-		SphereCollider *self = ( SphereCollider* ) this;
-		if ( pCollider.GetType() == ColliderType::COLLIDER_SPHERE ) {
-			return self->IntersectSphereCollider( ( SphereCollider& ) pCollider );
+	if ( m_type == ColliderType::COLLIDER_POINT ) {
+		PointCollider *self = ( PointCollider* ) this;
+		if ( pCollider.GetType() == ColliderType::COLLIDER_BOX ) {
+			return self->IntersectsBox( ( BoxCollider& ) pCollider );
 		}
 		
-		if ( pCollider.GetType() == ColliderType::COLLIDER_AABB ) {
-			return self->IntersectAABBCollider( ( AABBCollider& ) pCollider );
+		if ( pCollider.GetType() == ColliderType::COLLIDER_CIRCLE ) {
+			return self->IntersectsCircle( ( CircleCollider& ) pCollider );
 		}
 		
-		if ( pCollider.GetType() == ColliderType::COLLIDER_PLANE ) {
-			return self->IntersectPlaneCollider( ( PlaneCollider& ) pCollider );
+		if ( pCollider.GetType() == ColliderType::COLLIDER_LINE ) {
+			return self->IntersectsLine( ( LineCollider& ) pCollider );
+		}
+		
+		if ( pCollider.GetType() == ColliderType::COLLIDER_POINT ) {
+			return self->IntersectsPoint( ( PointCollider& ) pCollider );
 		}
 	}
 	

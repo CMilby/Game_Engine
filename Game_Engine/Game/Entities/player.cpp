@@ -34,7 +34,7 @@ Player::Player( const Vector2<float> &pPosition ) : NPC( pPosition ) {
 	
 	SetMaterial( new Material( new Texture( "character.png" ) ) );
 	
-	SetRightHandItem( new SwingingSword( eHand::HAND_RIGHT ) );
+	SetRightHandItem( new StabbingSwordItem( eHand::HAND_RIGHT ) );
 }
 
 Player::~Player() {

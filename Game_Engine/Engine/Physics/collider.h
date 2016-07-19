@@ -21,6 +21,7 @@ namespace ColliderType {
 		COLLIDER_POINT,
 		COLLIDER_BOX,
 		COLLIDER_CIRCLE,
+		COLLIDER_LINE,
 		NUM_COLLIDERS
 	};
 }

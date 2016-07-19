@@ -9,6 +9,7 @@
 #include "boxCollider.h"
 
 #include "circleCollider.h"
+#include "lineCollider.h"
 #include "pointCollider.h"
 
 BoxCollider::BoxCollider( const Vector2<float> &pMinExtents, const Vector2<float> &pMaxExtents ) : Collider( ColliderType::COLLIDER_BOX ) {
@@ -16,11 +17,22 @@ BoxCollider::BoxCollider( const Vector2<float> &pMinExtents, const Vector2<float
 	m_maxExtents = pMaxExtents;
 }
 
+void BoxCollider::Transform( const Vector3<float> &pTraslation ) {
+	
+}
+
 IntersectData BoxCollider::IntersectsBox( const BoxCollider &pOther ) const {
-	return IntersectData( false );
+	return IntersectData( ( GetMinExtents().GetX() < pOther.GetMaxExtents().GetX() ) &&
+						  ( GetMaxExtents().GetX() > pOther.GetMinExtents().GetX() ) &&
+						  ( GetMinExtents().GetY() < pOther.GetMaxExtents().GetY() ) &&
+						  ( GetMaxExtents().GetY() > pOther.GetMinExtents().GetY() ) );
 }
 
 IntersectData BoxCollider::IntersectsCircle( const CircleCollider &pCircle ) const {
+	return IntersectData( false );
+}
+
+IntersectData BoxCollider::IntersectsLine( const LineCollider &pLine ) const {
 	return IntersectData( false );
 }
 

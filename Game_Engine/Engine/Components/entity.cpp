@@ -9,11 +9,12 @@
 #include "entity.h"
 
 #include "messenger.h"
+#include "physicsBody2d.h"
 
-Entity::Entity() {
+Entity::Entity( EntityType pType ) {
 	m_physicsBody = 0;
 	m_parent = 0;
-	m_entityType = EntityType::ENTITY_BASE;
+	m_entityType = pType;
 }
 
 Entity::Entity( const Transform &transform ) {

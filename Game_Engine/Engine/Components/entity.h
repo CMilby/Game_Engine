@@ -12,8 +12,9 @@
 #include <vector>
 
 #include "entityType.h"
-#include "physicsBody2d.h"
 #include "transform.h"
+
+class PhysicsBody2D;
 
 class Entity {
 	
@@ -21,7 +22,6 @@ private:
 	std::vector<Entity*> m_children;
 	
 	Entity *m_parent;
-	// bool m_inheritParent;
 	
 	EntityType m_entityType;
 	Transform m_transform;
@@ -34,7 +34,7 @@ protected:
 	virtual void Render() {}
 	
 public:
-	Entity();
+	Entity( EntityType pType );
 	Entity( const Transform &transform );
 	Entity( const Vector3<float> &position );
 	virtual ~Entity();
@@ -71,8 +71,8 @@ public:
 	inline EntityType GetEntityType() const { return m_entityType; }
 	inline void SetEntityType( EntityType pEntityType ) { m_entityType = pEntityType; }
 	
-	// inline bool InheritParent() const { return m_inheritParent; }
-	// inline void SetInheritParent( bool pInherit ) { m_inheritParent = pInherit; }
+	virtual void Collided( Entity* pOther ) {}
+	virtual Vector3<float> GetWorldCoordinates() const { return GetPosition(); }
 	
 	Matrix4<float> GetModelMatrix() const;
 };

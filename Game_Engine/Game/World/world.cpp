@@ -7,7 +7,7 @@
 #include "renderableChunk.h"
 #include "worldGenerator.h"
 
-World::World() {
+World::World() : Entity( EntityType::ENTITY_WORLD ) {
 	m_mainCamera = CameraSystem::GetMainCamera();
 	m_drawDistance = 10.0f;
 }

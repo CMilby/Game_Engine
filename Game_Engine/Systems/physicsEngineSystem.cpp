@@ -46,8 +46,8 @@ void PhysicsEngineSystem::HandleHandleCollisions( const std::vector<MessagePaylo
 				m_objects[ i ]->SetVelocity( m_objects[ i ]->GetVelocity().Reflect( myOtherDirection ) );
 				m_objects[ j ]->SetVelocity( m_objects[ j ]->GetVelocity().Reflect( myDirection ) );*/
 				
-				
-				
+				m_objects[ i ]->GetParent()->Collided( m_objects[ j ]->GetParent() );
+				m_objects[ j ]->GetParent()->Collided( m_objects[ i ]->GetParent() );
 			} 
 		}
 	}

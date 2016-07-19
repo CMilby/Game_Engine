@@ -14,6 +14,8 @@ PhysicsBody2D::PhysicsBody2D() {
 
 PhysicsBody2D::PhysicsBody2D( Collider *pCollider ) {
 	m_collider = pCollider;
+	// m_position = pCollider->GetCenter();
+	// m_oldPosition = m_position;
 }
 
 PhysicsBody2D::~PhysicsBody2D() {
@@ -21,4 +23,8 @@ PhysicsBody2D::~PhysicsBody2D() {
 		delete m_collider;
 		m_collider = 0;
 	}
+}
+
+void PhysicsBody2D::Intergrate( float pDelta ){
+	
 }

@@ -8,16 +8,16 @@
 
 #include "camera.h"
 
-Camera::Camera() {
+Camera::Camera() : Entity( EntityType::ENTITY_CAMERA ) {
 	m_view = GetRotation().ToRotationMatrix() * Matrix4<float>().Transform( GetPosition() * -1 );
 }
 
-Camera::Camera( const Vector3<float> &position ) {
+Camera::Camera( const Vector3<float> &position ) : Entity( EntityType::ENTITY_CAMERA ) {
 	SetPosition( position );
 	m_view = GetRotation().ToRotationMatrix() * Matrix4<float>().Transform( GetPosition() * -1 );
 }
 
-Camera::Camera( const Vector3<float> &pPosition, const Quaternion &pRotation ) {
+Camera::Camera( const Vector3<float> &pPosition, const Quaternion &pRotation ) : Entity( EntityType::ENTITY_CAMERA ) {
 	SetPosition( pPosition );
 	SetRotation( pRotation );
 	m_view = GetRotation().ToRotationMatrix() * Matrix4<float>().Transform( GetPosition() * -1 );

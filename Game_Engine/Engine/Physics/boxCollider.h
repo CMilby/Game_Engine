@@ -12,6 +12,7 @@
 #include "collider.h"
 
 class CircleCollider;
+class LineCollider;
 class PointCollider;
 
 class BoxCollider : public Collider {
@@ -23,8 +24,11 @@ private:
 public:
 	BoxCollider( const Vector2<float> &pMinExtents, const Vector2<float> &pMaxExtents );
 	
+	virtual void Transform( const Vector3<float> &pTraslation );
+	
 	IntersectData IntersectsBox( const BoxCollider &pOther ) const;
 	IntersectData IntersectsCircle( const CircleCollider &pCircle ) const;
+	IntersectData IntersectsLine( const LineCollider &pLine ) const;
 	IntersectData IntersectsPoint( const PointCollider &pPoint ) const;
 	
 	inline Vector2<float> GetMinExtents() const { return m_minExtents; }

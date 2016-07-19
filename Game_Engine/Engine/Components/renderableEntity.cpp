@@ -11,21 +11,21 @@
 #include "cameraSystem.h"
 #include "renderingEngineSystem.h"
 
-RenderableEntity::RenderableEntity() {
+RenderableEntity::RenderableEntity( EntityType pType ) : Entity( pType ) {
 	// m_mesh = new Mesh( "cube.obj" );
 	// m_material = new Material();
 	m_shaderType = SHADER_BASIC;
 	m_isVisible = false;
 }
 
-RenderableEntity::RenderableEntity( Mesh *mesh, Material *material ) {
+RenderableEntity::RenderableEntity( Mesh *mesh, Material *material ) : Entity( EntityType::ENTITY_BASE ) {
 	m_mesh = mesh;
 	m_material = material;
 	m_shaderType = SHADER_BASIC;
 	m_isVisible = true;
 }
 
-RenderableEntity::RenderableEntity( const std::string &mesh, const std::string &texture ) {
+RenderableEntity::RenderableEntity( const std::string &mesh, const std::string &texture ) : Entity( EntityType::ENTITY_BASE ) {
 	m_mesh = new Mesh( mesh );
 	m_material = new Material( texture );
 	m_shaderType = SHADER_BASIC;

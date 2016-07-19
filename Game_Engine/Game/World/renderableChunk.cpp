@@ -8,7 +8,7 @@
 
 #include "renderableChunk.h"
 
-RenderableChunk::RenderableChunk( int pX, int pY ) {
+RenderableChunk::RenderableChunk( int pX, int pY ) : RenderableEntity( EntityType::ENTITY_WORLD ) {
 	m_chunk = new Chunk( pX, pY );
 	SetPosition( Vector3<float>( pX * CHUNK_X, pY * CHUNK_Y, 0 ) );
 	

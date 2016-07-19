@@ -8,10 +8,12 @@
 
 #include "npc.h"
 
+#include "circleCollider.h"
 #include "handItem.h"
 #include "logger.h"
+#include "physicsBody2d.h"
 
-NPC::NPC() {
+NPC::NPC() : RenderableEntity( EntityType::ENTITY_NPC ) {
 	m_leftHand = new HandItem( eHand::HAND_LEFT );
 	m_rightHand = new HandItem( eHand::HAND_RIGHT );
 	
@@ -23,7 +25,7 @@ NPC::NPC() {
 	SetIsVisible( true );
 }
 
-NPC::NPC( const Vector2<float> &pPosition ) {
+NPC::NPC( const Vector2<float> &pPosition ) : RenderableEntity( EntityType::ENTITY_NPC ) {
 	SetPosition( Vector3<float>( pPosition.GetX(), pPosition.GetY(), NPC_HEIGHT ) );
 	
 	m_leftHand = new HandItem( eHand::HAND_LEFT );
@@ -31,6 +33,8 @@ NPC::NPC( const Vector2<float> &pPosition ) {
 	
 	AddChild( m_leftHand );
 	AddChild( m_rightHand );
+	
+	// SetPhysicsBody( new PhysicsBody2D( new CircleCollider( GetPosition().GetXY(), 0.875f ) ) );
 	
 	SetMesh( new Mesh( "player_plane.obj" ) );
 	SetShaderType( ShaderType::SHADER_BASIC );
@@ -47,6 +51,10 @@ NPC::~NPC() {
 		delete m_rightHand;
 		m_rightHand = 0;
 	}
+}
+
+void NPC::Collided( Entity *pOther ) {
+	Logger::LogDebug( "NPC - Collided", "Collided" );
 }
 
 void NPC::Update( float pDelta ) {

@@ -27,7 +27,7 @@ protected:
 	virtual void Render();
 	
 public:
-	RenderableEntity();
+	RenderableEntity( EntityType pType );
 	RenderableEntity( Mesh *mesh, Material *material = new Material() );
 	RenderableEntity( const std::string &mesh, const std::string &texture = "test.png" );
 	virtual ~RenderableEntity();

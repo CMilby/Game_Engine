@@ -10,16 +10,15 @@
 #define __PHYSICS_BODY_2D__
 
 #include "collider.h"
-
-class Entity;
+#include "entity.h"
 
 class PhysicsBody2D {
 
 private:
 	Entity *m_parent;
 	
-	Vector3<float> m_position;
-	Vector3<float> m_oldPosition;
+	// Vector3<float> m_position;
+	// Vector3<float> m_oldPosition;
 	Collider *m_collider;
 	
 public:
@@ -27,14 +26,16 @@ public:
 	PhysicsBody2D( Collider *pCollider );
 	virtual ~PhysicsBody2D();
 	
+	void Intergrate( float pDelta );
+	
 	inline const Collider& GetCollider() {
-		Vector3<float> myTranslation = m_position - m_oldPosition;
-		m_oldPosition = GetPosition();
-		m_collider->Transform( myTranslation );
+		// Vector3<float> myTranslation = m_position - m_oldPosition;
+		// m_oldPosition = GetPosition();
+		m_collider->Transform( GetPosition() );
 		return *m_collider;
 	}
 	
-	inline Vector3<float> GetPosition() const { return m_position; }
+	inline Vector3<float> GetPosition() const { return GetParent()->GetWorldCoordinates(); }
 	
 	inline void SetParent( Entity* pParent ) { m_parent = pParent; }
 	inline Entity* GetParent() const { return m_parent; }

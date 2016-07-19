@@ -10,7 +10,6 @@
 #define __PLAYER_H__
 
 #include "npc.h"
-// #include "renderableEntity.h"
 
 class Player : public NPC {
 

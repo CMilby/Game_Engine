@@ -1,27 +1,29 @@
 //
-//  pointCollider.h
+//  lineCollider.h
 //  Game_Engine
 //
-//  Created by Craig Milby on 7/18/16.
+//  Created by Craig Milby on 7/19/16.
 //  Copyright © 2016 Craig Milby. All rights reserved.
 //
 
-#ifndef __POINT_COLLIDER_H__
-#define __POINT_COLLIDER_H__
+#ifndef __LINE_COLLIDER_H__
+#define __LINE_COLLIDER_H__
 
 #include "collider.h"
 
 class BoxCollider;
 class CircleCollider;
-class LineCollider;
+class PointCollider;
 
-class PointCollider : public Collider {
+class LineCollider : public Collider {
 	
 private:
-	Vector2<float> m_position;
+	Vector2<float> m_point1;
+	Vector2<float> m_point2;
 	
 public:
-	PointCollider( const Vector2<float> &pPosition );
+	LineCollider( const Vector2<float> &pPoint1, const Vector2<float> &pPoint2 );
+	virtual ~LineCollider();
 	
 	virtual void Transform( const Vector3<float> &pTraslation );
 	
@@ -29,8 +31,6 @@ public:
 	IntersectData IntersectsCircle( const CircleCollider &pCircle ) const;
 	IntersectData IntersectsLine( const LineCollider &pLine ) const;
 	IntersectData IntersectsPoint( const PointCollider &pPoint ) const;
-	
-	inline Vector2<float> GetPosition() const { return m_position; }
 };
 
-#endif /* pointCollider_h */
+#endif /* lineCollider_h */
