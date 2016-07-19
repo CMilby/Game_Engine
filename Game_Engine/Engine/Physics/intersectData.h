@@ -18,6 +18,7 @@ private:
 	const Vector3<float> m_direction;
 	
 public:
+	IntersectData( const bool pDoesIntersect ) : m_doesIntersect( pDoesIntersect ), m_direction( Vector3<float>( 0.0f, 0.0f, 0.0f ) ) {}
 	IntersectData( const bool pDoesIntersect, const Vector3<float> &pDirection ) : m_doesIntersect( pDoesIntersect ), m_direction( pDirection ) {}
 	
 	inline bool DoesIntersect() const { return m_doesIntersect; }
