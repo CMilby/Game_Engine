@@ -46,7 +46,9 @@ public:
 	void UpdateAll( float pDelta );
 	void RenderAll();
 	
+	inline PhysicsBody2D* GetPhysicsBody() const { return m_physicsBody; }
 	void SetPhysicsBody( PhysicsBody2D *pPhysicsBody );
+	
 	void RemoveChild( Entity* pEntity );
 	void RemoveChild( int pIndex );
 	
@@ -62,6 +64,12 @@ public:
 	inline void Rotate( const Quaternion &quat ) { m_transform.Rotate( quat ); }
 	inline void Rotate( const Vector3<float> &axis, float angle ) { m_transform.Rotate( axis, angle ); }
 	
+	void SetVelocity( const Vector2<float> &pVelocity );
+	void SetVelocityX( float pX );
+	void SetVelocityY( float pY );
+	
+	Vector2<float> GetVelocity() const;
+	
 	inline void ClearChildren() { m_children.clear(); }
 	inline std::vector<Entity*> GetChildren() const { return m_children; }
 	
@@ -72,7 +80,7 @@ public:
 	inline void SetEntityType( EntityType pEntityType ) { m_entityType = pEntityType; }
 	
 	virtual void Collided( Entity* pOther ) {}
-	virtual Vector3<float> GetWorldCoordinates() const { return GetPosition(); }
+	// virtual Vector3<float> GetWorldCoordinates() const { return GetPosition(); }
 	
 	Matrix4<float> GetModelMatrix() const;
 };

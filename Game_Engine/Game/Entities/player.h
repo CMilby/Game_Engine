@@ -17,11 +17,13 @@ private:
 	
 protected:
 	virtual void Input( float pDelta );
-
+	
 public:
 	Player();
 	Player( const Vector2<float> &pPosition );
 	virtual ~Player();
+	
+	virtual void Collided( Entity *pOther );
 };
 
 #endif

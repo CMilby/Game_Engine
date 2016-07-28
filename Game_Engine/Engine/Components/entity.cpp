@@ -56,7 +56,7 @@ Entity* Entity::AddChild( Entity *child ) {
 }
 
 void Entity::Update( float pDelta ) {
-	if ( m_physicsBody != NULL ) {
+	if ( m_physicsBody != 0 ) {
 		SetPosition( m_physicsBody->GetPosition() );
 	}
 }
@@ -96,6 +96,22 @@ void Entity::SetPhysicsBody( PhysicsBody2D *pPhysicsBody ) {
 	std::vector<MessagePayload> myPayload;
 	myPayload.emplace_back( MessagePayload( PAYLOAD_PHYSICS_OBJECT, pPhysicsBody ) );
 	Messenger::SendMessage( SYSTEM_PHYSICS_ENGINE, Message( SYSTEM_ENTITY, MESSAGE_ADD_PHYSICS_BODY, myPayload ) );
+}
+
+void Entity::SetVelocity( const Vector2<float> &pVelocity ) {
+	m_physicsBody->SetVelocity( pVelocity );
+}
+
+void Entity::SetVelocityX( float pX ) {
+	m_physicsBody->SetVelocityX( pX );
+}
+
+void Entity::SetVelocityY( float pY ) {
+	m_physicsBody->SetVelocityY( pY );
+}
+
+Vector2<float> Entity::GetVelocity() const {
+	return m_physicsBody->GetVelocity();
 }
 
 void Entity::RemoveChild( Entity *pEntity ) {

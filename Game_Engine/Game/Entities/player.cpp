@@ -22,7 +22,7 @@ Player::Player() {
 
 Player::Player( const Vector2<float> &pPosition ) : NPC( pPosition ) {
 	SetMoveSpeed( 2.5f );
-	SetSprintSpeed( 2.5f );
+	SetSprintSpeed( 5.0f );
 	
 	SetMaxHealth( 200 );
 	SetMaxMana( 100 );
@@ -41,31 +41,38 @@ Player::~Player() {
 	
 }
 
+void Player::Collided( Entity *pOther ) {
+	Logger::LogDebug( "Player - Collided", "Collided" );
+}
+
 void Player::Input( float pDelta ) {
 	Vector2<int> mousePos = InputSystem::GetCursorPosition();
 	Vector2<int> screenCenter( Config::GetScreenWidth() / 2, Config::GetScreenHeight() / 2 );
 	SetRotation( Quaternion( Vector3<float>( 0.0f, 0.0f, -1.0f ), ToDegree( atan2f( screenCenter.GetY() - mousePos.GetY(), screenCenter.GetX() - mousePos.GetX() ) ) - 90.0f ) );
 	
-	float moveAmt = GetMoveSpeed() * pDelta;
+	float moveAmt = GetMoveSpeed();
 	
 	if ( InputSystem::IsKeyDown( Config::GetKeySprint()) ) {
-		moveAmt *= GetSprintSpeed();
+		moveAmt = GetSprintSpeed();
 	}
 	
 	if ( InputSystem::IsKeyDown( Config::GetKeyUp() ) ) {
-		Move( Vector3<float>( 0.0f, 1.0f, 0.0f ), moveAmt );
+		SetVelocityY( moveAmt );
 	}
 	
 	if ( InputSystem::IsKeyDown( Config::GetKeyLeft() ) ) {
-		Move( Vector3<float>( -1.0f, 0.0f, 0.0f ), moveAmt );
+		// Move( Vector3<float>( -1.0f, 0.0f, 0.0f ), moveAmt );
+		SetVelocityX( -moveAmt );
 	}
 	
 	if ( InputSystem::IsKeyDown( Config::GetKeyDown() ) ) {
-		Move( Vector3<float>( 0.0f, -1.0f, 0.0f ), moveAmt );
+		// Move( Vector3<float>( 0.0f, -1.0f, 0.0f ), moveAmt );
+		SetVelocityY( -moveAmt );
 	}
 	
 	if ( InputSystem::IsKeyDown( Config::GetKeyRight() ) ) {
-		Move( Vector3<float>( 1.0f, 0.0f, 0.0f ), moveAmt );
+		// Move( Vector3<float>( 1.0f, 0.0f, 0.0f ), moveAmt );
+		SetVelocityX( moveAmt );
 	}
 	
 	if ( InputSystem::IsKeyDown( Config::GetKeyNext() ) ) {
@@ -94,6 +101,7 @@ void Player::Input( float pDelta ) {
 
 	CameraSystem::GetMainCamera()->SetPosition( Vector3<float>( GetPosition().GetXY(), CameraSystem::GetMainCamera()->GetPosition().GetZ() ) );
 }
+
 
 
 

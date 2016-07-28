@@ -1,5 +1,5 @@
 //
-//  math3d.h
+//  ( *this )ath3d.h
 //  Game_Engine
 //
 //  Created by Craig Milby on 10/12/15.
@@ -369,8 +369,17 @@ public:
     inline T GetZ() const { return ( *this )[ 2 ]; }
     
     inline void SetX( const T &x ) { ( *this )[ 0 ] = x; }
-    inline void SetY( T y ) { ( *this )[ 1 ] = y; }
-    inline void SetZ( T z ) { ( *this )[ 2 ] = z; }
+    inline void SetY( const T &y ) { ( *this )[ 1 ] = y; }
+    inline void SetZ( const T &z ) { ( *this )[ 2 ] = z; }
+	
+	inline void SetXY( const Vector2<T> &pVect ) { SetX( pVect.GetX() ); SetY( pVect.GetY() ); }
+	inline void SetXZ( const Vector2<T> &pVect ) { SetX( pVect.GetX() ); SetZ( pVect.GetY() ); }
+	
+	inline void SetYX( const Vector2<T> &pVect ) { SetY( pVect.GetX() ); SetX( pVect.GetY() ); }
+	inline void SetYZ( const Vector2<T> &pVect ) { SetY( pVect.GetX() ); SetZ( pVect.GetY() ); }
+	
+	inline void SetZX( const Vector2<T> &pVect ) { SetZ( pVect.GetX() ); SetX( pVect.GetY() ); }
+	inline void SetZY( const Vector2<T> &pVect ) { SetZ( pVect.GetX() ); SetY( pVect.GetY() ); }
 	
 	inline Vector2<T> GetXY() const { return Vector2<T>( (*this )[ 0 ], ( *this )[ 1 ] ); }
 	inline Vector2<T> GetXZ() const { return Vector2<T>( (*this )[ 0 ], ( *this )[ 2 ] ); }
@@ -636,6 +645,28 @@ public:
             }
         }
     }
+	
+	Matrix4( const Vector4<T> &pCol0, const Vector4<T> &pCol1, const Vector4<T> &pCol2, const Vector4<T> &pCol3 ) {
+		( *this )[ 0 ][ 0 ] = pCol0.GetX();
+		( *this )[ 1 ][ 0 ] = pCol0.GetY();
+		( *this )[ 2 ][ 0 ] = pCol0.GetZ();
+		( *this )[ 3 ][ 0 ] = pCol0.GetW();
+		
+		( *this )[ 0 ][ 1 ] = pCol1.GetX();
+		( *this )[ 1 ][ 1 ] = pCol1.GetY();
+		( *this )[ 2 ][ 1 ] = pCol1.GetZ();
+		( *this )[ 3 ][ 1 ] = pCol1.GetW();
+		
+		( *this )[ 0 ][ 2 ] = pCol2.GetX();
+		( *this )[ 1 ][ 2 ] = pCol2.GetY();
+		( *this )[ 2 ][ 2 ] = pCol2.GetZ();
+		( *this )[ 3 ][ 2 ] = pCol2.GetW();
+		
+		( *this )[ 0 ][ 3 ] = pCol3.GetX();
+		( *this )[ 1 ][ 3 ] = pCol3.GetY();
+		( *this )[ 2 ][ 3 ] = pCol3.GetZ();
+		( *this )[ 3 ][ 3 ] = pCol3.GetW();
+	}
     
     template<unsigned int D>
     Matrix4( const Matrix<T, D> &matrix ) {
@@ -820,6 +851,63 @@ public:
         inverse /= determinant;
         return inverse;
     }
+	
+	// Thanks GLM!
+	inline Matrix4<T> Inverse() {
+		T Coef00 = ( *this )[2][2] * ( *this )[3][3] - ( *this )[3][2] * ( *this )[2][3];
+		T Coef02 = ( *this )[1][2] * ( *this )[3][3] - ( *this )[3][2] * ( *this )[1][3];
+		T Coef03 = ( *this )[1][2] * ( *this )[2][3] - ( *this )[2][2] * ( *this )[1][3];
+		
+		T Coef04 = ( *this )[2][1] * ( *this )[3][3] - ( *this )[3][1] * ( *this )[2][3];
+		T Coef06 = ( *this )[1][1] * ( *this )[3][3] - ( *this )[3][1] * ( *this )[1][3];
+		T Coef07 = ( *this )[1][1] * ( *this )[2][3] - ( *this )[2][1] * ( *this )[1][3];
+		
+		T Coef08 = ( *this )[2][1] * ( *this )[3][2] - ( *this )[3][1] * ( *this )[2][2];
+		T Coef10 = ( *this )[1][1] * ( *this )[3][2] - ( *this )[3][1] * ( *this )[1][2];
+		T Coef11 = ( *this )[1][1] * ( *this )[2][2] - ( *this )[2][1] * ( *this )[1][2];
+		
+		T Coef12 = ( *this )[2][0] * ( *this )[3][3] - ( *this )[3][0] * ( *this )[2][3];
+		T Coef14 = ( *this )[1][0] * ( *this )[3][3] - ( *this )[3][0] * ( *this )[1][3];
+		T Coef15 = ( *this )[1][0] * ( *this )[2][3] - ( *this )[2][0] * ( *this )[1][3];
+		
+		T Coef16 = ( *this )[2][0] * ( *this )[3][2] - ( *this )[3][0] * ( *this )[2][2];
+		T Coef18 = ( *this )[1][0] * ( *this )[3][2] - ( *this )[3][0] * ( *this )[1][2];
+		T Coef19 = ( *this )[1][0] * ( *this )[2][2] - ( *this )[2][0] * ( *this )[1][2];
+		
+		T Coef20 = ( *this )[2][0] * ( *this )[3][1] - ( *this )[3][0] * ( *this )[2][1];
+		T Coef22 = ( *this )[1][0] * ( *this )[3][1] - ( *this )[3][0] * ( *this )[1][1];
+		T Coef23 = ( *this )[1][0] * ( *this )[2][1] - ( *this )[2][0] * ( *this )[1][1];
+		
+		Vector4<T> Fac0(Coef00, Coef00, Coef02, Coef03);
+		Vector4<T> Fac1(Coef04, Coef04, Coef06, Coef07);
+		Vector4<T> Fac2(Coef08, Coef08, Coef10, Coef11);
+		Vector4<T> Fac3(Coef12, Coef12, Coef14, Coef15);
+		Vector4<T> Fac4(Coef16, Coef16, Coef18, Coef19);
+		Vector4<T> Fac5(Coef20, Coef20, Coef22, Coef23);
+		
+		Vector4<T> Vec0(( *this )[1][0], ( *this )[0][0], ( *this )[0][0], ( *this )[0][0]);
+		Vector4<T> Vec1(( *this )[1][1], ( *this )[0][1], ( *this )[0][1], ( *this )[0][1]);
+		Vector4<T> Vec2(( *this )[1][2], ( *this )[0][2], ( *this )[0][2], ( *this )[0][2]);
+		Vector4<T> Vec3(( *this )[1][3], ( *this )[0][3], ( *this )[0][3], ( *this )[0][3]);
+		
+		Vector4<T> Inv0(Vec1 * Fac0 - Vec2 * Fac1 + Vec3 * Fac2);
+		Vector4<T> Inv1(Vec0 * Fac0 - Vec2 * Fac3 + Vec3 * Fac4);
+		Vector4<T> Inv2(Vec0 * Fac1 - Vec1 * Fac3 + Vec3 * Fac5);
+		Vector4<T> Inv3(Vec0 * Fac2 - Vec1 * Fac4 + Vec2 * Fac5);
+		
+		Vector4<T> SignA(+1, -1, +1, -1);
+		Vector4<T> SignB(-1, +1, -1, +1);
+		Matrix4<T> Inverse(Inv0 * SignA, Inv1 * SignB, Inv2 * SignA, Inv3 * SignB);
+		
+		Vector4<T> Row0(Inverse[0][0], Inverse[1][0], Inverse[2][0], Inverse[3][0]);
+		
+		Vector4<T> Dot0( ( *this )[ 0 ] * Row0);
+		T Dot1 = (Dot0.x + Dot0.y) + (Dot0.z + Dot0.w);
+		
+		T OneOverDeterminant = static_cast<T>( 1 ) / Dot1;
+		
+		return Inverse * OneOverDeterminant;
+	}
 
     inline Matrix4<T> Ortho( const T &left, const T &right, const T &top, const T &bottom, const T &near, const T &far ) {
         Matrix4<float> ret = Matrix4<float>().InitIdentity();

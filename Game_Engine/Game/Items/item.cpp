@@ -32,13 +32,15 @@ Item::Item( const std::string &pItem, eHand pHand ) : RenderableEntity( EntityTy
 }
 
 void Item::Update( float pDelta ) {
+	RenderableEntity::Update( pDelta );
+	
 	if ( m_isCoolingDown ) {
 		m_currentCooldown--;
 		if ( m_currentCooldown == 0 ) {
 			m_isCoolingDown = false;
 		}
 	}
-} 
+}
 
 bool Item::Use() {
 	if ( m_isCoolingDown ) {
@@ -67,6 +69,7 @@ void Item::SetPosition() {
 void Item::SetPosition( const Vector3<float> &pPosition ) {
 	RenderableEntity::SetPosition( Vector3<float>( pPosition.GetXY(), ITEM_HEIGHT ) );
 }
+
 
 
 

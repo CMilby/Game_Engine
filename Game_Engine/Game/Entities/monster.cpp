@@ -27,7 +27,7 @@ Monster::Monster( const Vector2<float> &pPosition ) : NPC( pPosition ) {
 	SetCurrentMana( GetMaxMana() );
 	SetCurrentStamina( GetCurrentStamina() );
 	
-	SetPhysicsBody( new PhysicsBody2D( new CircleCollider( GetPosition().GetXY(), 0.875f ) ) );
+	// SetPhysicsBody( new PhysicsBody2D( new CircleCollider( GetPosition().GetXY(), 0.875f ) ) );
 	
 	SetMaterial( new Material( new Texture( "monster.png" ) ) );
 }
@@ -37,5 +37,8 @@ Monster::~Monster() {
 }
 
 void Monster::Update( float pDelta ) {
-	
+	NPC::Update( pDelta );
 }
+
+
+

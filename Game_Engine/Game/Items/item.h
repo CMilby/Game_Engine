@@ -63,8 +63,6 @@ public:
 	inline int GetCooldown() const { return m_cooldown; }
 	inline void SetCooldown( int pCooldown ) { m_cooldown = pCooldown; }
 	
-	virtual Vector3<float> GetWorldCoordinates() const { return GetParent()->GetPosition() + GetPosition(); }
-	
 	inline Vector3<float> GetHandOffset() const { return ( m_hand == HAND_LEFT ) ? m_handLeftOffset : m_handRightOffset; }
 	
 	inline eHand GetHand() const { return m_hand; }

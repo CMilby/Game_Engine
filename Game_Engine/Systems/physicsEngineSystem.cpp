@@ -29,11 +29,11 @@ void PhysicsEngineSystem::AddObject( PhysicsBody2D *pEntity ) {
 }
 
 void PhysicsEngineSystem::HandleSimulatePhysics( const std::vector<MessagePayload> &pPayload ) {
-	/*float myDelta = pPayload[ 0 ].GetPayloadFloat();
+	float myDelta = pPayload[ 0 ].GetPayloadFloat();
 	
 	for ( unsigned int i = 0; i < m_objects.size(); i++ ) {
 		m_objects[ i ]->Intergrate( myDelta );
-	}*/
+	}
 }
 
 void PhysicsEngineSystem::HandleHandleCollisions( const std::vector<MessagePayload> &pPayload ) {

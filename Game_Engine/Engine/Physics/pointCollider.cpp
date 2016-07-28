@@ -19,9 +19,9 @@ PointCollider::PointCollider( const Vector2<float> &pPosition ) : Collider( Coll
 }
 
 void PointCollider::Transform( const Vector3<float> &pTraslation ) {
-	m_position = pTraslation.GetXY();
+	m_position += pTraslation.GetXY();
 	
-	Logger::LogDebug( "PC - Trans", pTraslation.GetXY().ToString() );
+	// Logger::LogDebug( "PC - Trans", pTraslation.GetXY().ToString() );
 }
 
 IntersectData PointCollider::IntersectsBox( const BoxCollider &pOther ) const {

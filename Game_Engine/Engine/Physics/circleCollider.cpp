@@ -18,7 +18,7 @@ CircleCollider::CircleCollider( const Vector2<float> &pCenter, float pRadius ) :
 }
 
 void CircleCollider::Transform( const Vector3<float> &pTraslation ) {
-	m_center = pTraslation.GetXY();
+	m_center += pTraslation.GetXY();
 }
 
 IntersectData CircleCollider::IntersectsBox( const BoxCollider &pOther ) const {

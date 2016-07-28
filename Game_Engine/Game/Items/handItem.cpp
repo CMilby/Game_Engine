@@ -52,6 +52,8 @@ void HandItem::Update( float pDelta ) {
 			SetPosition();
 		}
 	}
+	
+	( GetModelMatrix() * GetParent()->GetModelMatrix() ).Print();
 }
 
 bool HandItem::Use() {

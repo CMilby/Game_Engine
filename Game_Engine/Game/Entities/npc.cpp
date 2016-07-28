@@ -34,7 +34,7 @@ NPC::NPC( const Vector2<float> &pPosition ) : RenderableEntity( EntityType::ENTI
 	AddChild( m_leftHand );
 	AddChild( m_rightHand );
 	
-	// SetPhysicsBody( new PhysicsBody2D( new CircleCollider( GetPosition().GetXY(), 0.875f ) ) );
+	SetPhysicsBody( new PhysicsBody2D( new CircleCollider( GetPosition().GetXY(), 0.875f ) ) );
 	
 	SetMesh( new Mesh( "player_plane.obj" ) );
 	SetShaderType( ShaderType::SHADER_BASIC );
@@ -58,7 +58,7 @@ void NPC::Collided( Entity *pOther ) {
 }
 
 void NPC::Update( float pDelta ) {
-	
+	RenderableEntity::Update( pDelta );
 }
 
 void NPC::SetRightHandItem( Item *pItem ) {
