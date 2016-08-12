@@ -8,6 +8,7 @@
 
 #include "phongShader.h"
 
+#include "cameraEntity.h"
 #include "transform.h"
 
 PhongShader::PhongShader() {
@@ -81,7 +82,7 @@ void PhongShader::Disable() const {
 	DisableVertexAttribArray( 2 );
 }
 
-void PhongShader::UpdateUniforms( const Matrix4<float> &world, const Matrix4<float> &projected, const Camera &camera, const Material &material ) {
+void PhongShader::UpdateUniforms( const Matrix4<float> &world, const Matrix4<float> &projected, const CameraEntity &camera, const Material &material ) {
     material.m_texture->Bind();
 	
     UniformVector3f( "baseColor", material.m_color );

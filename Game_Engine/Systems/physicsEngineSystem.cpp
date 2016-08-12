@@ -24,7 +24,7 @@ void PhysicsEngineSystem::Init() {
 	m_callbacks[ MESSAGE_ADD_PHYSICS_BODY ] = std::bind( &PhysicsEngineSystem::HandleAddPhysicsBody, this, std::placeholders::_1 );
 }
 
-void PhysicsEngineSystem::AddObject( PhysicsBody2D *pEntity ) {
+void PhysicsEngineSystem::AddObject( PhysicsBody *pEntity ) {
 	m_objects.emplace_back( pEntity );
 }
 
@@ -46,8 +46,8 @@ void PhysicsEngineSystem::HandleHandleCollisions( const std::vector<MessagePaylo
 				m_objects[ i ]->SetVelocity( m_objects[ i ]->GetVelocity().Reflect( myOtherDirection ) );
 				m_objects[ j ]->SetVelocity( m_objects[ j ]->GetVelocity().Reflect( myDirection ) );*/
 				
-				m_objects[ i ]->GetParent()->Collided( m_objects[ j ]->GetParent() );
-				m_objects[ j ]->GetParent()->Collided( m_objects[ i ]->GetParent() );
+				// m_objects[ i ]->GetParent()->Collided( m_objects[ j ]->GetParent() );
+				// m_objects[ j ]->GetParent()->Collided( m_objects[ i ]->GetParent() );
 			} 
 		}
 	}

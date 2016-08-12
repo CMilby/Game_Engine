@@ -15,7 +15,7 @@
 #include "shaderType.h"
 #include "system.h"
 
-class RenderingEngineSystem : public System {
+class RenderingSystem : public System {
     
 private:
 	static std::map<ShaderType, Shader*> s_shaders;
@@ -23,7 +23,7 @@ private:
 	void InitShaders();
 	
 public:
-    RenderingEngineSystem();
+    RenderingSystem();
     
     virtual void Init();
     virtual void Render();

@@ -47,7 +47,7 @@ public:
 		SetOrthographicProjection( Matrix4<float>().Ortho( pLeft, pRight, pTop, pBottom, pZNear, pZFar ) );
 	}
 	
-	static Matrix4<float> GetProjection() { return s_ortho; }
+	static Matrix4<float> GetProjection() { return s_projection; }
 };
 
 #endif /* transform_h */

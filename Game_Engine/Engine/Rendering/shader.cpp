@@ -8,6 +8,7 @@
 
 #include "shader.h"
 
+#include "cameraEntity.h"
 #include "utility.h"
 
 Shader::Shader() {
@@ -46,7 +47,7 @@ void Shader::Bind() const {
     m_framework->Bind();
 }
 
-void Shader::UpdateUniforms( const Matrix4<float> &world, const Matrix4<float> &projected, const Camera &camera, const Material &material ) {
+void Shader::UpdateUniforms( const Matrix4<float> &world, const Matrix4<float> &projected, const CameraEntity &camera, const Material &material ) {
 	
 }
 

@@ -11,27 +11,27 @@
 
 #include <vector>
 
-#include "camera.h"
+#include "cameraEntity.h"
 #include "system.h"
 
 class CameraSystem : public System {
     
 private:
-	static Camera *s_mainCamera;
+	static CameraEntity *s_mainCamera;
     
 public:
     CameraSystem();
-	CameraSystem( Camera *camera );
+	CameraSystem( CameraEntity *camera );
     virtual ~CameraSystem();
     
     virtual void Init();
 	virtual void Input( float pDelta );
     virtual void Update( float pDelta );
 	
-	void AddCamera( Camera* camera );
+	void AddCamera( CameraEntity* pCamera );
 	
-	static Camera* GetMainCamera() { return s_mainCamera; }
-	static void SetMainCamera( Camera *mainCamera ) { s_mainCamera = mainCamera; }
+	static CameraEntity* GetMainCamera() { return s_mainCamera; }
+	static void SetMainCamera( CameraEntity *pMainCamera ) { s_mainCamera = pMainCamera; }
 };
 
 #endif /* cameraSystem_h */

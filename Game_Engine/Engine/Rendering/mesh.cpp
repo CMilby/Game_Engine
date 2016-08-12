@@ -22,7 +22,7 @@ Mesh::Mesh() {
 	
 }
 
-Mesh::Mesh( const std::string &pFilename, bool pInstance ) {
+Mesh::Mesh( const std::string &pFilename, bool pInstance ) : m_filename( pFilename ) {
 	std::vector<unsigned short> myIndices;
 	std::vector<Vector3<float>> myVertices;
 	std::vector<Vector2<float>> myUVs;

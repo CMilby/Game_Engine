@@ -19,6 +19,9 @@ public:
 	StabbingSwordItem( eHand pHand );
 	StabbingSwordItem( const std::string &pItem, eHand pHand );
 	virtual ~StabbingSwordItem();
+	
+protected:
+	virtual void Update( float pDelta );
 };
 
 #endif /* stabbingSword_h */

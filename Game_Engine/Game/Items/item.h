@@ -69,6 +69,8 @@ public:
 	
 	inline std::string GetItemName() const { return m_item; }
 	inline void SetItemName( const std::string &pItem ) { m_item = pItem; }
+	
+	virtual Vector3<float> GetWorldCoordinates() const { return GetModelMatrix().GetPosition(); }
 };
 
 #endif

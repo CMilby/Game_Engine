@@ -53,7 +53,16 @@ void HandItem::Update( float pDelta ) {
 		}
 	}
 	
-	( GetModelMatrix() * GetParent()->GetModelMatrix() ).Print();
+	// GetPhysicsBody()->SetPosition( GetModelMatrix().GetPosition().GetXY() );
+	
+	// float *myPointMat = new float[ 16 ];
+	// Matrix4<float> myMat;
+	// Math3D::InvertMatrix( GetModelMatrix().ToPointer(), myPointMat );
+	// ( Math3D::Matrix4FromPointer<float>( myPointMat ) * GetParent()->GetModelMatrix() ).Print();
+	
+	// GetModelMatrix().Print();
+	
+	// ( GetParent()->GetPosition() + GetPosition() ).Print();
 }
 
 bool HandItem::Use() {

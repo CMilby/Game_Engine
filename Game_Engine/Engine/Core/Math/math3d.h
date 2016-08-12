@@ -436,8 +436,6 @@ public:
 };
 
 class Quaternion;
-Vector3<float> Rotate( const Vector3<float> &vect, const Quaternion &quat );
-Vector3<float> Rotate( const Vector3<float> &vect, float angle, const Vector3<float> &axis );
 
 template<class T, unsigned int D>
 class Matrix {
@@ -852,8 +850,10 @@ public:
         return inverse;
     }
 	
+	
+	
 	// Thanks GLM!
-	inline Matrix4<T> Inverse() {
+	/*inline Matrix4<T> Inverse() {
 		T Coef00 = ( *this )[2][2] * ( *this )[3][3] - ( *this )[3][2] * ( *this )[2][3];
 		T Coef02 = ( *this )[1][2] * ( *this )[3][3] - ( *this )[3][2] * ( *this )[1][3];
 		T Coef03 = ( *this )[1][2] * ( *this )[2][3] - ( *this )[2][2] * ( *this )[1][3];
@@ -907,7 +907,7 @@ public:
 		T OneOverDeterminant = static_cast<T>( 1 ) / Dot1;
 		
 		return Inverse * OneOverDeterminant;
-	}
+	}*/
 
     inline Matrix4<T> Ortho( const T &left, const T &right, const T &top, const T &bottom, const T &near, const T &far ) {
         Matrix4<float> ret = Matrix4<float>().InitIdentity();
@@ -954,6 +954,23 @@ public:
 		ret[ 1 ][ 1 ] = cos( pAngle );
 		
 		return ret;
+	}
+	
+	inline float* ToPointer() const {
+		float *mat = new float[ 16 ];
+		
+		unsigned int index = 0;
+		for ( unsigned int i = 0; i < 4; i++ ) {
+			for ( unsigned int j = 0; j < 4; j++ ) {
+				mat[ index ] = ( *this )[ i ][ j ];
+			}
+		}
+		
+		return mat;
+	}
+	
+	inline Vector3<T> GetPosition() const {
+		return Vector3<T>( ( *this )[ 3 ][ 0 ], ( *this )[ 3 ][ 1 ], ( *this )[ 3 ][ 2 ] );
 	}
 };
 
@@ -1079,7 +1096,6 @@ public:
         vect.SetZ( GetW() * GetW() + GetZ() * GetZ() - GetX() * GetX() - GetY() * GetY() );
         return vect;
     }
-
 	
     inline float GetX() const { return ( *this )[ 0 ]; }
     inline float GetY() const { return ( *this )[ 1 ]; }
@@ -1185,6 +1201,120 @@ namespace Math3D {
 	inline float AngleBetween( const Vector2<float> &pPoint1, const Vector2<float> &pPoint2 ) {
 		return atan2f( pPoint1.GetY() - pPoint2.GetY(), pPoint1.GetX() - pPoint2.GetX() );
 	}
+	
+	// Code From...
+	// ftp://download.intel.com/design/PentiumIII/sml/24504301.pdf
+	inline void InvertMatrix( float *mat, float *dst ) {
+		float tmp[ 12 ]; /* temp array for pairs */
+		float src[ 16 ]; /* array of transpose source matrix */
+		float det; /* determinant */
+		
+		/* transpose matrix */
+		for ( unsigned int i = 0; i < 4; i++ ) {
+			src[ i ] = mat[ i * 4 ];
+			src[ i + 4 ] = mat[ i * 4 + 1 ];
+			src[ i + 8 ] = mat[ i * 4 + 2 ];
+			src[ i + 12 ] = mat[ i * 4 + 3 ];
+		}
+		
+		/* calculate pairs for first 8 elements (cofactors) */
+		tmp[0] = src[10] * src[15];
+		tmp[1] = src[11] * src[14];
+		tmp[2] = src[9] * src[15];
+		tmp[3] = src[11] * src[13];
+		tmp[4] = src[9] * src[14];
+		tmp[5] = src[10] * src[13];
+		tmp[6] = src[8] * src[15];
+		tmp[7] = src[11] * src[12];
+		tmp[8] = src[8] * src[14];
+		tmp[9] = src[10] * src[12];
+		tmp[10] = src[8] * src[13];
+		tmp[11] = src[9] * src[12];
+		
+		/* calculate first 8 elements (cofactors) */
+		dst[0] = tmp[0]*src[5] + tmp[3]*src[6] + tmp[4]*src[7];
+		dst[0] -= tmp[1]*src[5] + tmp[2]*src[6] + tmp[5]*src[7];
+		dst[1] = tmp[1]*src[4] + tmp[6]*src[6] + tmp[9]*src[7];
+		dst[1] -= tmp[0]*src[4] + tmp[7]*src[6] + tmp[8]*src[7];
+		dst[2] = tmp[2]*src[4] + tmp[7]*src[5] + tmp[10]*src[7];
+		dst[2] -= tmp[3]*src[4] + tmp[6]*src[5] + tmp[11]*src[7];
+		dst[3] = tmp[5]*src[4] + tmp[8]*src[5] + tmp[11]*src[6];
+		dst[3] -= tmp[4]*src[4] + tmp[9]*src[5] + tmp[10]*src[6];
+		dst[4] = tmp[1]*src[1] + tmp[2]*src[2] + tmp[5]*src[3];
+		dst[4] -= tmp[0]*src[1] + tmp[3]*src[2] + tmp[4]*src[3];
+		dst[5] = tmp[0]*src[0] + tmp[7]*src[2] + tmp[8]*src[3];
+		dst[5] -= tmp[1]*src[0] + tmp[6]*src[2] + tmp[9]*src[3];
+		dst[6] = tmp[3]*src[0] + tmp[6]*src[1] + tmp[11]*src[3];
+		dst[6] -= tmp[2]*src[0] + tmp[7]*src[1] + tmp[10]*src[3];
+		dst[7] = tmp[4]*src[0] + tmp[9]*src[1] + tmp[10]*src[2];
+		dst[7] -= tmp[5]*src[0] + tmp[8]*src[1] + tmp[11]*src[2];
+		/* calculate pairs for second 8 elements (cofactors) */
+		tmp[0] = src[2]*src[7];
+		tmp[1] = src[3]*src[6];
+		tmp[2] = src[1]*src[7];
+		tmp[3] = src[3]*src[5];
+		tmp[4] = src[1]*src[6];
+		tmp[5] = src[2]*src[5];
+		
+		tmp[6] = src[0]*src[7];
+		tmp[7] = src[3]*src[4];
+		tmp[8] = src[0]*src[6];
+		tmp[9] = src[2]*src[4];
+		tmp[10] = src[0]*src[5];
+		tmp[11] = src[1]*src[4];
+		
+		/* calculate second 8 elements (cofactors) */
+		dst[8] = tmp[0]*src[13] + tmp[3]*src[14] + tmp[4]*src[15];
+		dst[8] -= tmp[1]*src[13] + tmp[2]*src[14] + tmp[5]*src[15];
+		dst[9] = tmp[1]*src[12] + tmp[6]*src[14] + tmp[9]*src[15];
+		dst[9] -= tmp[0]*src[12] + tmp[7]*src[14] + tmp[8]*src[15];
+		dst[10] = tmp[2]*src[12] + tmp[7]*src[13] + tmp[10]*src[15];
+		dst[10]-= tmp[3]*src[12] + tmp[6]*src[13] + tmp[11]*src[15];
+		dst[11] = tmp[5]*src[12] + tmp[8]*src[13] + tmp[11]*src[14];
+		dst[11]-= tmp[4]*src[12] + tmp[9]*src[13] + tmp[10]*src[14];
+		dst[12] = tmp[2]*src[10] + tmp[5]*src[11] + tmp[1]*src[9];
+		dst[12]-= tmp[4]*src[11] + tmp[0]*src[9] + tmp[3]*src[10];
+		dst[13] = tmp[8]*src[11] + tmp[0]*src[8] + tmp[7]*src[10];
+		dst[13]-= tmp[6]*src[10] + tmp[9]*src[11] + tmp[1]*src[8];
+		dst[14] = tmp[6]*src[9] + tmp[11]*src[11] + tmp[3]*src[8];
+		dst[14]-= tmp[10]*src[11] + tmp[2]*src[8] + tmp[7]*src[9];
+		dst[15] = tmp[10]*src[10] + tmp[4]*src[8] + tmp[9]*src[9];
+		dst[15]-= tmp[8]*src[9] + tmp[11]*src[10] + tmp[5]*src[8];
+		
+		/* calculate determinant */
+		det=src[0]*dst[0]+src[1]*dst[1]+src[2]*dst[2]+src[3]*dst[3];
+		
+		/* calculate matrix inverse */
+		det = 1/det;
+		for (int j = 0; j < 16; j++)
+			dst[j] *= det;
+	}
+	
+	template<class T>
+	inline Matrix4<T> Matrix4FromPointer( float *mat ) {
+		Matrix4<T> mat4;
+		
+		for ( unsigned int i = 0; i < 16; i++ ) {
+			mat4[ i % 4 ][ i / 4 ] = mat[ i ];
+		}
+		
+		return mat4;
+	}
+	
+	inline Vector3<float> Rotate( const Vector3<float> &vect, const Quaternion &quat ) {
+		Quaternion w = quat * vect * quat.Conjugate();
+		return Vector3<float>( w.GetX(), w.GetY(), w.GetZ() );
+	}
+	
+	inline Vector3<float> Rotate( const Vector3<float> &vect, float angle, const Vector3<float> &axis ) {
+		return Math3D::Rotate( vect, Quaternion( axis, angle ) );
+	}
 }
 
-#endif /* math3d_hpp */
+#endif /* math3d_h */
+
+
+
+
+
+

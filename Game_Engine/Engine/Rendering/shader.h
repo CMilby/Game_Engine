@@ -11,9 +11,10 @@
 
 #include <string>
 
-#include "camera.h"
 #include "material.h"
 #include "shadingFramework.h"
+
+class CameraEntity;
 
 class Shader {
     
@@ -39,7 +40,7 @@ public:
 	
     void Bind() const;
     
-    virtual void UpdateUniforms( const Matrix4<float> &world, const Matrix4<float> &projected, const Camera &camera, const Material &material );
+    virtual void UpdateUniforms( const Matrix4<float> &world, const Matrix4<float> &projected, const CameraEntity &camera, const Material &material );
 	virtual void UpdateUniforms( const Matrix4<float> &pMVP, const Material &pMaterial );
     
     void AddUniform( const std::string &name ) const;

@@ -11,7 +11,7 @@
 #include "circleCollider.h"
 #include "handItem.h"
 #include "logger.h"
-#include "physicsBody2d.h"
+#include "physicsBody.h"
 
 NPC::NPC() : RenderableEntity( EntityType::ENTITY_NPC ) {
 	m_leftHand = new HandItem( eHand::HAND_LEFT );
@@ -34,7 +34,7 @@ NPC::NPC( const Vector2<float> &pPosition ) : RenderableEntity( EntityType::ENTI
 	AddChild( m_leftHand );
 	AddChild( m_rightHand );
 	
-	SetPhysicsBody( new PhysicsBody2D( new CircleCollider( GetPosition().GetXY(), 0.875f ) ) );
+	SetPhysicsBody( new PhysicsBody( new CircleCollider( GetPosition().GetXY(), 0.875f ) ) );
 	
 	SetMesh( new Mesh( "player_plane.obj" ) );
 	SetShaderType( ShaderType::SHADER_BASIC );

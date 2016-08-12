@@ -8,8 +8,98 @@
 
 #include "entity.h"
 
+#include "component.h"
+
+Entity::Entity( EntityType pType ) {
+	m_type = pType;
+	m_parent = 0;
+}
+
+Entity::~Entity() {
+	for ( unsigned int i = 0; i < m_children.size(); i++ ) {
+		if ( m_children[ i ] != 0 ) {
+			delete m_children[ i ];
+		}
+	}
+	
+	std::map<ComponentType, Component*>::iterator it;
+	for ( it = m_components.begin(); it != m_components.end(); it++ ) {
+		delete it->second;
+	}
+}
+
+
+Entity* Entity::AddChild( Entity *pChild ) {
+	pChild->SetParent( this );
+	m_children.emplace_back( pChild );
+	return this;
+}
+
+Entity* Entity::AddComponent( Component *pComponent ) {
+	pComponent->SetParent( this );
+	m_components.insert( std::pair<ComponentType, Component*>( pComponent->GetType(), pComponent ) );
+	return this;
+}
+
+void Entity::InitAll() {
+	Init();
+	
+	for ( unsigned int i = 0; i < m_children.size(); i++ ) {
+		m_children[ i ]->InitAll();
+	}
+	
+	std::map<ComponentType, Component*>::iterator it;
+	for ( it = m_components.begin(); it != m_components.end(); it++ ) {
+		it->second->Init();
+	}
+}
+
+void Entity::UpdateAll( float pDelta ) {
+	Update( pDelta );
+	
+	for ( unsigned int i = 0; i < m_children.size(); i++ ) {
+		m_children[ i ]->UpdateAll( pDelta );
+	}
+	
+	std::map<ComponentType, Component*>::iterator it;
+	for ( it = m_components.begin(); it != m_components.end(); it++ ) {
+		it->second->Update( pDelta );
+	}
+}
+
+void Entity::InputAll( float pDelta ) {
+	Input( pDelta );
+	
+	for ( unsigned int i = 0; i < m_children.size(); i++ ) {
+		m_children[ i ]->InputAll( pDelta );
+	}
+	
+	std::map<ComponentType, Component*>::iterator it;
+	for ( it = m_components.begin(); it != m_components.end(); it++ ) {
+		it->second->Input( pDelta );
+	}
+}
+
+void Entity::RenderAll() {
+	Render();
+	
+	for ( unsigned int i = 0; i < m_children.size(); i++ ) {
+		m_children[ i ]->RenderAll();
+	}
+	
+	std::map<ComponentType, Component*>::iterator it;
+	for ( it = m_components.begin(); it != m_components.end(); it++ ) {
+		it->second->Render();
+	}
+}
+
+Component* Entity::GetComponent( ComponentType pType ) const {
+	return m_components.at( pType );
+}
+
+/*
 #include "messenger.h"
-#include "physicsBody2d.h"
+#include "physicsBody.h"
 
 Entity::Entity( EntityType pType ) {
 	m_physicsBody = 0;
@@ -70,6 +160,7 @@ void Entity::InitAll() {
 
 void Entity::InputAll( float pDelta ) {
 	Input( pDelta );
+	
 	for ( unsigned int i = 0; i < m_children.size(); i++ ) {
 		m_children[ i ]->InputAll( pDelta );
 	}
@@ -77,19 +168,23 @@ void Entity::InputAll( float pDelta ) {
 
 void Entity::UpdateAll( float pDelta ) {
 	Update( pDelta );
+	
 	for ( unsigned int i = 0; i < m_children.size(); i++ ) {
 		m_children[ i ]->UpdateAll( pDelta );
 	}
 }
 
 void Entity::RenderAll() {
+	Render();
+	
 	for ( unsigned int i = 0; i < m_children.size(); i++ ) {
 		m_children[ i ]->RenderAll();
 	}
-	Render();
+	
+	
 }
 
-void Entity::SetPhysicsBody( PhysicsBody2D *pPhysicsBody ) {
+void Entity::SetPhysicsBody( PhysicsBody *pPhysicsBody ) {
 	m_physicsBody = pPhysicsBody;
 	m_physicsBody->SetParent( this );
 	
@@ -99,7 +194,7 @@ void Entity::SetPhysicsBody( PhysicsBody2D *pPhysicsBody ) {
 }
 
 void Entity::SetVelocity( const Vector2<float> &pVelocity ) {
-	m_physicsBody->SetVelocity( pVelocity );
+	m_physicsBody->SetVelocity( Vector3<float>( pVelocity, 0.0f ) );
 }
 
 void Entity::SetVelocityX( float pX ) {
@@ -111,7 +206,7 @@ void Entity::SetVelocityY( float pY ) {
 }
 
 Vector2<float> Entity::GetVelocity() const {
-	return m_physicsBody->GetVelocity();
+	return m_physicsBody->GetVelocity().GetXY();
 }
 
 void Entity::RemoveChild( Entity *pEntity ) {
@@ -130,8 +225,7 @@ Matrix4<float> Entity::GetModelMatrix() const {
 		return m_parent->GetModelMatrix() * m_transform.GetModelMatrix();
 	}
 	return m_transform.GetModelMatrix();
-}
-
+}*/
 
 
 

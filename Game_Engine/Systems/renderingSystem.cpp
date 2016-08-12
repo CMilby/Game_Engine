@@ -6,7 +6,7 @@
 //  Copyright © 2016 Craig Milby. All rights reserved.
 //
 
-#include "renderingEngineSystem.h"
+#include "renderingSystem.h"
 
 #include "basicShader.h"
 #include "phongShader.h"
@@ -14,13 +14,13 @@
 #include "textShader.h"
 #include "tileShader.h"
 
-std::map<ShaderType, Shader*> RenderingEngineSystem::s_shaders = std::map<ShaderType, Shader*>();
+std::map<ShaderType, Shader*> RenderingSystem::s_shaders = std::map<ShaderType, Shader*>();
 
-RenderingEngineSystem::RenderingEngineSystem() : System( SYSTEM_RENDERING_ENGINE ) {
+RenderingSystem::RenderingSystem() : System( SYSTEM_RENDERING_ENGINE ) {
 	
 }
 
-void RenderingEngineSystem::Init() {
+void RenderingSystem::Init() {
     System::Init();
     
     RenderFramework::InitRenderer();
@@ -33,17 +33,17 @@ void RenderingEngineSystem::Init() {
 	InitShaders();
 }
 
-void RenderingEngineSystem::Render() {
+void RenderingSystem::Render() {
     RenderFramework::ClearScreen();
 	
     SendMessage( SYSTEM_ENTITY, Message( SYSTEM_RENDERING_ENGINE, MESSAGE_RENDER ) );
 }
 
-void RenderingEngineSystem::AddShader( const ShaderType &type, Shader *shader ) {
+void RenderingSystem::AddShader( const ShaderType &type, Shader *shader ) {
 	s_shaders[ type ] = shader;
 }
 
-void RenderingEngineSystem::InitShaders() {
+void RenderingSystem::InitShaders() {
 	for ( auto const &s : s_shaders ) {
 		s.second->Init();
 	}

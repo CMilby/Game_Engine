@@ -9,9 +9,9 @@
 #ifndef __LOCKED_CAMERA_H__
 #define __LOCKED_CAMERA_H__
 
-#include "camera.h"
+#include "cameraSystem.h"
 
-class LockedCamera : public Camera {
+class LockedCamera : public CameraEntity {
 	
 private:
 	int m_keyForward;

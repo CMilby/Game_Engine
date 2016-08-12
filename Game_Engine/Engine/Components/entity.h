@@ -9,12 +9,65 @@
 #ifndef __ENTITY_H__
 #define __ENTITY_H__
 
+#include <map>
 #include <vector>
 
-#include "entityType.h"
+#include "component.h"
+#include "componentTypes.h"
+#include "entityTypes.h"
 #include "transform.h"
 
-class PhysicsBody2D;
+class Entity {
+	
+private:
+	Entity *m_parent;
+	EntityType m_type;
+	
+	Transform m_transform;
+	
+	std::vector<Entity*> m_children;
+	std::map<ComponentType, Component*> m_components;
+
+protected:
+	virtual void Init() {}
+	virtual void Input( float pDelta ) {}
+	virtual void Update( float pDelta ) {}
+	virtual void Render() {}
+	
+public:
+	Entity( EntityType pType );
+	virtual ~Entity();
+	
+	void InitAll();
+	void InputAll( float pDelta );
+	void UpdateAll( float pDelta );
+	void RenderAll();
+	
+	Entity* AddChild( Entity *pChild );
+	Entity* AddComponent( Component* pComponent );
+	
+	Component* GetComponent( ComponentType pType ) const;
+	
+	inline Entity* GetParent() const { return m_parent; }
+	inline void SetParent( Entity* pParent ) { m_parent = pParent; }
+	
+	inline EntityType GetType() const { return m_type; }
+	
+	inline void SetPosition( const Vector3<float> &pPosition ) { m_transform.SetPosition( pPosition ); }
+	inline void SetRotation( const Quaternion &pRotation ) { m_transform.SetRotation( pRotation ); }
+	inline void SetScale( const Vector3<float> &pScale ) { m_transform.SetScale( pScale ); }
+	
+	inline Vector3<float> GetPosition() const { return m_transform.GetPosition(); }
+	inline Quaternion GetRotation() const { return m_transform.GetRotation(); }
+	inline Vector3<float> GetScale() const { return m_transform.GetScale(); }
+};
+
+/*#include <vector>
+
+#include "entityTypes.h"
+#include "transform.h"
+
+class PhysicsBody;
 
 class Entity {
 	
@@ -25,7 +78,7 @@ private:
 	
 	EntityType m_entityType;
 	Transform m_transform;
-	PhysicsBody2D *m_physicsBody;
+	PhysicsBody *m_physicsBody;
 	
 protected:
 	virtual void Init() {}
@@ -46,8 +99,8 @@ public:
 	void UpdateAll( float pDelta );
 	void RenderAll();
 	
-	inline PhysicsBody2D* GetPhysicsBody() const { return m_physicsBody; }
-	void SetPhysicsBody( PhysicsBody2D *pPhysicsBody );
+	inline PhysicsBody* GetPhysicsBody() const { return m_physicsBody; }
+	void SetPhysicsBody( PhysicsBody *pPhysicsBody );
 	
 	void RemoveChild( Entity* pEntity );
 	void RemoveChild( int pIndex );
@@ -80,9 +133,10 @@ public:
 	inline void SetEntityType( EntityType pEntityType ) { m_entityType = pEntityType; }
 	
 	virtual void Collided( Entity* pOther ) {}
-	// virtual Vector3<float> GetWorldCoordinates() const { return GetPosition(); }
+	virtual Vector3<float> GetWorldCoordinates() const { return GetPosition(); }
 	
 	Matrix4<float> GetModelMatrix() const;
 };
+*/
 
 #endif /* entity_h */

@@ -8,13 +8,13 @@
 
 #include "cameraSystem.h"
 
-Camera* CameraSystem::s_mainCamera = 0;
+CameraEntity* CameraSystem::s_mainCamera = 0;
 
 CameraSystem::CameraSystem() : System( SYSTEM_CAMERA ) {
-	s_mainCamera = new Camera();
+	s_mainCamera = new CameraEntity();
 }
 
-CameraSystem::CameraSystem( Camera *camera ) : System( SYSTEM_CAMERA ) {
+CameraSystem::CameraSystem( CameraEntity *camera ) : System( SYSTEM_CAMERA ) {
 	s_mainCamera = camera;
 }
 
@@ -34,6 +34,6 @@ void CameraSystem::Update( float pDelta ) {
 	s_mainCamera->UpdateAll( pDelta );
 }
 
-void CameraSystem::AddCamera( Camera *camera ) {
+void CameraSystem::AddCamera( CameraEntity *camera ) {
 	// m_cameraRoot->AddChild( camera );
 }

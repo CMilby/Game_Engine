@@ -1,49 +1,48 @@
 //
-//  renderableEntity.cpp
+//  renderableComponent.cpp
 //  Game_Engine
 //
-//  Created by Craig Milby on 3/3/16.
+//  Created by Craig Milby on 8/11/16.
 //  Copyright © 2016 Craig Milby. All rights reserved.
 //
 
-#include "renderableEntity.h"
+#include "renderableComponent.h"
 
-#include "transform.h"
 #include "cameraSystem.h"
 #include "renderingSystem.h"
 
-RenderableEntity::RenderableEntity( EntityType pType ) : Entity( pType ) {
-	// m_mesh = new Mesh( "cube.obj" );
-	// m_material = new Material();
-	m_shaderType = SHADER_BASIC;
+RenderableComponent::RenderableComponent() : TransformComponent( ComponentType::RENDERABLE_COMPONENT ) {
+	m_mesh = 0;
+	m_material = 0;
+	m_shaderType = ShaderType::SHADER_BASIC;
 	m_isVisible = false;
 }
 
-RenderableEntity::RenderableEntity( Mesh *mesh, Material *material ) : Entity( EntityType::ENTITY_BASE ) {
-	m_mesh = mesh;
-	m_material = material;
-	m_shaderType = SHADER_BASIC;
+RenderableComponent::RenderableComponent( const std::string &pMesh, const std::string &pTexture ) : TransformComponent( ComponentType::RENDERABLE_COMPONENT ) {
+	m_mesh = new Mesh( pMesh );
+	m_material = new Material( pTexture );
+	m_shaderType = ShaderType::SHADER_BASIC;
 	m_isVisible = true;
 }
 
-RenderableEntity::RenderableEntity( const std::string &mesh, const std::string &texture ) : Entity( EntityType::ENTITY_BASE ) {
-	m_mesh = new Mesh( mesh );
-	m_material = new Material( texture );
-	m_shaderType = SHADER_BASIC;
-	m_isVisible = true;
+RenderableComponent::~RenderableComponent() {
+	if ( m_mesh != 0 ) {
+		delete m_mesh;
+		m_mesh = 0;
+	}
+	
+	if ( m_material != 0 ) {
+		delete m_material;
+		m_material = 0;
+	}
 }
 
-RenderableEntity::~RenderableEntity() {
-	if ( m_mesh ) delete m_mesh;
-	if ( m_material ) delete m_material;
-}
-
-void RenderableEntity::Render() {
-	if ( IsVisible() ) {
+void RenderableComponent::Render() {
+	if ( m_isVisible ) {
 		Shader *shader = RenderingSystem::GetShaders()[ m_shaderType ];
 		shader->Bind();
 		
-		Matrix4<float> model = Transform().GetModelMatrix();
+		Matrix4<float> model = GetModelMatrix();
 		CameraEntity *camera = CameraSystem::GetMainCamera();
 		
 		shader->Enable();

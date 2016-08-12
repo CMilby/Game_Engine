@@ -33,7 +33,7 @@ public:
     virtual void Enable() const;
     virtual void Disable() const;
     
-    virtual void UpdateUniforms( const Matrix4<float> &world, const Matrix4<float> &projected, const Camera &camera, const Material &material );
+    virtual void UpdateUniforms( const Matrix4<float> &world, const Matrix4<float> &projected, const CameraEntity &camera, const Material &material );
     
     inline void AddPointLight( const PointLight &plight ) { m_pointLights.push_back( plight ); }
     inline void AddSpotLight( const SpotLight &sLight ) { m_spotLights.push_back( sLight ); }

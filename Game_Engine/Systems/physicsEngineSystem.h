@@ -11,13 +11,13 @@
 
 #include <vector>
 
-#include "physicsBody2d.h"
+#include "physicsBody.h"
 #include "system.h"
 
 class PhysicsEngineSystem : public System {
 	
 private:
-	std::vector<PhysicsBody2D*> m_objects;
+	std::vector<PhysicsBody*> m_objects;
 	
 protected:
 	void HandleSimulatePhysics( const std::vector<MessagePayload> &pPayload );
@@ -30,7 +30,7 @@ public:
 	
 	virtual void Init();
 	
-	void AddObject( PhysicsBody2D *pBody );
+	void AddObject( PhysicsBody *pBody );
 };
 
 #endif /* physicsEngineSystem_h */

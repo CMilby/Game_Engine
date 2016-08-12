@@ -55,7 +55,7 @@ bool Item::Use() {
 }
 
 void Item::Collided( Entity *pOther ) {
-	Logger::LogDebug( "Item - Collided", "Collided" );
+	// Logger::LogDebug( "Item - Collided", "Collided" );
 }
 
 void Item::SetPosition() {

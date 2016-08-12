@@ -16,7 +16,7 @@
 #include "inputSystem.h"
 #include "messageBus.h"
 #include "physicsEngineSystem.h"
-#include "renderingEngineSystem.h"
+#include "renderingSystem.h"
 #include "windowSystem.h"
 
 // Load Systems
@@ -24,7 +24,7 @@
 #include "configLoader.h"
 
 // Game
-#include "lockedCamera.h"
+#include "cameraEntity.h"
 #include "game.h"
 
 int main( int argc, const char *argv[] ) {
@@ -32,12 +32,12 @@ int main( int argc, const char *argv[] ) {
 	MessageBus *bus = MessageBus::GetInstance();
     
     CoreEngineSystem *coreEngine = new CoreEngineSystem();
-    RenderingEngineSystem *renderingEngine = new RenderingEngineSystem();
+    RenderingSystem *renderingEngine = new RenderingSystem();
 	PhysicsEngineSystem *physicsEngine = new PhysicsEngineSystem();
 	WindowSystem *window = new WindowSystem( "Game" );
     InputSystem *input = InputSystem::GetInstance();
     EntitySystem *entity = new EntitySystem();
-	CameraSystem *camera = new CameraSystem( new Camera( Vector3<float>( 0, 0, 20 ) ) );
+	CameraSystem *camera = new CameraSystem( new CameraEntity( Vector3<float>( 0, 0, 20 ) ) );
 	GameSystem *game = new Game();
     
     bus->AddSystem( coreEngine );

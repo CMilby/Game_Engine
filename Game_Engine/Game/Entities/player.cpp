@@ -42,7 +42,7 @@ Player::~Player() {
 }
 
 void Player::Collided( Entity *pOther ) {
-	Logger::LogDebug( "Player - Collided", "Collided" );
+	// Logger::LogDebug( "Player - Collided", "Collided" );
 }
 
 void Player::Input( float pDelta ) {

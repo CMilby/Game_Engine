@@ -13,12 +13,12 @@ LockedCamera::LockedCamera( const Vector3<float> &pPosition, const Quaternion &p
 	SetRotation( pRotation );
 	SetView( GetRotation().ToRotationMatrix() * Matrix4<float>().Transform( GetPosition() * -1 ) );
 	
-	m_keyUp = Key::KEY_W;
+	/*m_keyUp = Key::KEY_W;
 	m_keyDown = Key::KEY_S;
 	m_keyForward = Key::KEY_Q;
 	m_keyBack = Key::KEY_E;
 	m_keyLeft = Key::KEY_A;
-	m_keyRight = Key::KEY_D;
+	m_keyRight = Key::KEY_D;*/
 }
 
 LockedCamera::~LockedCamera() {

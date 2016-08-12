@@ -24,6 +24,7 @@ public:
 	PointCollider( const Vector2<float> &pPosition );
 	
 	virtual void Transform( const Vector3<float> &pTraslation );
+	virtual Vector3<float> GetCenter() const { return Vector3<float>( m_position, 1.0f ); }
 	
 	IntersectData IntersectsBox( const BoxCollider &pOther ) const;
 	IntersectData IntersectsCircle( const CircleCollider &pCircle ) const;

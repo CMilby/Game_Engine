@@ -1,5 +1,5 @@
 //
-//  renderableEntity.hpp
+//  renderableEntity.h
 //  Game_Engine
 //
 //  Created by Craig Milby on 3/3/16.
@@ -44,4 +44,4 @@ public:
 	inline bool IsVisible() const { return m_isVisible; }
 };
 
-#endif /* renderableEntity_hpp */
+#endif /* renderableEntity_h */

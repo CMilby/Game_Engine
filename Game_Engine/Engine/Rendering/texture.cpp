@@ -21,7 +21,7 @@
 #include <GLFW/glfw3.h>
 
 #include "stb_image.h"
-#include "tileMap.h"
+// #include "tileMap.h"
 #include "utility.h"
 
 std::map<std::string, GLuint> TextureAtlas::s_textureAtlas = std::map<std::string, GLuint>();
@@ -143,7 +143,7 @@ Texture::Texture( int pNumTextures, const std::string &pDirectory, int pWidth, i
 		
 		std::string myName = filepath.substr( Utility::LastIndexOf( filepath, '/' ) + 1 );
 		myName = Utility::ToUpper( myName.substr( 0, myName.length() - 4 ) );
-		TileMap::AddTile( myName, i );
+		// TileMap::AddTile( myName, i );
 		
 		i++;
 	}

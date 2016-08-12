@@ -8,7 +8,7 @@
 
 #include "stabbingSwordItem.h"
 
-#include "physicsBody2d.h"
+#include "physicsBody.h"
 #include "pointCollider.h"
 
 StabbingSwordItem::StabbingSwordItem( eHand pHand ) : HandItem( "StabbingSword", pHand ) {
@@ -25,7 +25,7 @@ StabbingSwordItem::StabbingSwordItem( eHand pHand ) : HandItem( "StabbingSword",
 	
 	SetUseTime( 20 );
 	
-	SetPhysicsBody( new PhysicsBody2D( new PointCollider( GetPosition().GetXY() ) ) );
+	SetPhysicsBody( new PhysicsBody( new PointCollider( GetPosition().GetXY() ) ) );
 	
 	m_forward = new Entity( ( ( pHand == HAND_LEFT ) ? m_handLeftOffset : m_handRightOffset ) + Vector3<float>( 0.0f, 1.25f, 0.0f ) );
 	AddChild( m_forward );
@@ -38,3 +38,10 @@ StabbingSwordItem::StabbingSwordItem( const std::string &pItem, eHand pHand ) : 
 StabbingSwordItem::~StabbingSwordItem() {
 	
 }
+
+void StabbingSwordItem::Update( float pDelta ) {
+	HandItem::Update( pDelta );
+}
+
+
+
