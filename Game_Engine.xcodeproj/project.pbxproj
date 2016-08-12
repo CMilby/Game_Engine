@@ -33,8 +33,6 @@
 		44394E8E1CAF25AB00212467 /* config.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44394E821CAF25AB00212467 /* config.cpp */; };
 		44394E911CAF25AB00212467 /* stb_image.c in Sources */ = {isa = PBXBuildFile; fileRef = 44394E881CAF25AB00212467 /* stb_image.c */; };
 		44394E931CAF25AB00212467 /* utility.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44394E8C1CAF25AB00212467 /* utility.cpp */; };
-		44394E9C1CAF25BE00212467 /* cameraEntity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44394E941CAF25BE00212467 /* cameraEntity.cpp */; };
-		44394E9D1CAF25BE00212467 /* entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44394E961CAF25BE00212467 /* entity.cpp */; };
 		44394EA91CAF25C900212467 /* aabbCollider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44394EA01CAF25C900212467 /* aabbCollider.cpp */; };
 		44394EAA1CAF25C900212467 /* collider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44394EA21CAF25C900212467 /* collider.cpp */; };
 		44394EAB1CAF25C900212467 /* physicsBody.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44394EA51CAF25C900212467 /* physicsBody.cpp */; };
@@ -59,13 +57,15 @@
 		444684921D397A4E00CC44FC /* timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 444684901D397A4E00CC44FC /* timer.cpp */; };
 		449D85F41BD6B6F300B72584 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 449D85F31BD6B6F300B72584 /* OpenGL.framework */; };
 		449D85F91BD6BB0900B72584 /* libGLEW.1.12.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 449D85F81BD6BB0900B72584 /* libGLEW.1.12.0.dylib */; };
-		44B01DAF1D5CD8F900638192 /* component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44B01DAD1D5CD8F900638192 /* component.cpp */; };
-		44B01DB51D5CFD2A00638192 /* renderableComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44B01DB31D5CFD2A00638192 /* renderableComponent.cpp */; };
 		44B01DB81D5CFF6000638192 /* transformComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44B01DB61D5CFF6000638192 /* transformComponent.cpp */; };
 		44B01DC01D5D6D9F00638192 /* inputComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44B01DBE1D5D6D9F00638192 /* inputComponent.cpp */; };
 		44B01DC91D5E299100638192 /* freeMoveComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44B01DC71D5E299100638192 /* freeMoveComponent.cpp */; };
-		44B01DCC1D5E299D00638192 /* freeLookComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44B01DCA1D5E299D00638192 /* freeLookComponent.cpp */; };
 		44B01DD01D5E326400638192 /* drawModeComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44B01DCE1D5E326400638192 /* drawModeComponent.cpp */; };
+		44B01DD61D5E454C00638192 /* cameraEntity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44B01DD11D5E454C00638192 /* cameraEntity.cpp */; };
+		44B01DD71D5E454C00638192 /* entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44B01DD31D5E454C00638192 /* entity.cpp */; };
+		44B01DDB1D5E45A200638192 /* component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44B01DD81D5E45A200638192 /* component.cpp */; };
+		44B01DDE1D5E45B300638192 /* renderableComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44B01DDC1D5E45B300638192 /* renderableComponent.cpp */; };
+		44B01DE11D5E45CD00638192 /* freeLookComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44B01DDF1D5E45CD00638192 /* freeLookComponent.cpp */; };
 		44B9C40D1D1F16A50043FF1D /* tileShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44B9C40B1D1F16A50043FF1D /* tileShader.cpp */; };
 		44B9C42E1D21D7400043FF1D /* mersenneTwister.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44B9C42C1D21D7400043FF1D /* mersenneTwister.cpp */; };
 		44C736CF1D3EDF9600253DF8 /* lineCollider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44C736CD1D3EDF9600253DF8 /* lineCollider.cpp */; };
@@ -144,10 +144,6 @@
 		44394E891CAF25AB00212467 /* stb_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = stb_image.h; path = Engine/Utility/stb_image.h; sourceTree = "<group>"; };
 		44394E8C1CAF25AB00212467 /* utility.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = utility.cpp; path = Engine/Utility/utility.cpp; sourceTree = "<group>"; };
 		44394E8D1CAF25AB00212467 /* utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = utility.h; path = Engine/Utility/utility.h; sourceTree = "<group>"; };
-		44394E941CAF25BE00212467 /* cameraEntity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = cameraEntity.cpp; path = Engine/Components/cameraEntity.cpp; sourceTree = "<group>"; };
-		44394E951CAF25BE00212467 /* cameraEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cameraEntity.h; path = Engine/Components/cameraEntity.h; sourceTree = "<group>"; };
-		44394E961CAF25BE00212467 /* entity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = entity.cpp; path = Engine/Components/entity.cpp; sourceTree = "<group>"; };
-		44394E971CAF25BE00212467 /* entity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = entity.h; path = Engine/Components/entity.h; sourceTree = "<group>"; };
 		44394EA01CAF25C900212467 /* aabbCollider.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = aabbCollider.cpp; path = Engine/Physics/aabbCollider.cpp; sourceTree = "<group>"; };
 		44394EA11CAF25C900212467 /* aabbCollider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = aabbCollider.h; path = Engine/Physics/aabbCollider.h; sourceTree = "<group>"; };
 		44394EA21CAF25C900212467 /* collider.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = collider.cpp; path = Engine/Physics/collider.cpp; sourceTree = "<group>"; };
@@ -201,22 +197,26 @@
 		449D85F31BD6B6F300B72584 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		449D85F61BD6BACB00B72584 /* libglfw.3.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw.3.1.dylib; path = ../../../../usr/local/lib/libglfw.3.1.dylib; sourceTree = "<group>"; };
 		449D85F81BD6BB0900B72584 /* libGLEW.1.12.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libGLEW.1.12.0.dylib; path = ../../../../usr/local/Cellar/glew/1.12.0/lib/libGLEW.1.12.0.dylib; sourceTree = "<group>"; };
-		44B01DAD1D5CD8F900638192 /* component.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = component.cpp; path = Engine/component.cpp; sourceTree = "<group>"; };
-		44B01DAE1D5CD8F900638192 /* component.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = component.h; path = Engine/component.h; sourceTree = "<group>"; };
-		44B01DB31D5CFD2A00638192 /* renderableComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = renderableComponent.cpp; sourceTree = "<group>"; };
-		44B01DB41D5CFD2A00638192 /* renderableComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = renderableComponent.h; sourceTree = "<group>"; };
 		44B01DB61D5CFF6000638192 /* transformComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = transformComponent.cpp; path = Engine/Components/transformComponent.cpp; sourceTree = "<group>"; };
 		44B01DB71D5CFF6000638192 /* transformComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = transformComponent.h; path = Engine/Components/transformComponent.h; sourceTree = "<group>"; };
-		44B01DB91D5D019200638192 /* componentTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = componentTypes.h; sourceTree = "<group>"; };
-		44B01DBA1D5D054300638192 /* entityTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = entityTypes.h; path = Engine/Components/entityTypes.h; sourceTree = "<group>"; };
 		44B01DBE1D5D6D9F00638192 /* inputComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = inputComponent.cpp; path = Engine/Components/inputComponent.cpp; sourceTree = "<group>"; };
 		44B01DBF1D5D6D9F00638192 /* inputComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = inputComponent.h; path = Engine/Components/inputComponent.h; sourceTree = "<group>"; };
 		44B01DC71D5E299100638192 /* freeMoveComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = freeMoveComponent.cpp; path = Engine/Components/freeMoveComponent.cpp; sourceTree = "<group>"; };
 		44B01DC81D5E299100638192 /* freeMoveComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = freeMoveComponent.h; path = Engine/Components/freeMoveComponent.h; sourceTree = "<group>"; };
-		44B01DCA1D5E299D00638192 /* freeLookComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = freeLookComponent.cpp; sourceTree = "<group>"; };
-		44B01DCB1D5E299D00638192 /* freeLookComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = freeLookComponent.h; sourceTree = "<group>"; };
 		44B01DCE1D5E326400638192 /* drawModeComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = drawModeComponent.cpp; path = Engine/Components/drawModeComponent.cpp; sourceTree = "<group>"; };
 		44B01DCF1D5E326400638192 /* drawModeComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = drawModeComponent.h; path = Engine/Components/drawModeComponent.h; sourceTree = "<group>"; };
+		44B01DD11D5E454C00638192 /* cameraEntity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = cameraEntity.cpp; path = Engine/Entities/cameraEntity.cpp; sourceTree = "<group>"; };
+		44B01DD21D5E454C00638192 /* cameraEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cameraEntity.h; path = Engine/Entities/cameraEntity.h; sourceTree = "<group>"; };
+		44B01DD31D5E454C00638192 /* entity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = entity.cpp; path = Engine/Entities/entity.cpp; sourceTree = "<group>"; };
+		44B01DD41D5E454C00638192 /* entity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = entity.h; path = Engine/Entities/entity.h; sourceTree = "<group>"; };
+		44B01DD51D5E454C00638192 /* entityTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = entityTypes.h; path = Engine/Entities/entityTypes.h; sourceTree = "<group>"; };
+		44B01DD81D5E45A200638192 /* component.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = component.cpp; path = Engine/Components/component.cpp; sourceTree = "<group>"; };
+		44B01DD91D5E45A200638192 /* component.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = component.h; path = Engine/Components/component.h; sourceTree = "<group>"; };
+		44B01DDA1D5E45A200638192 /* componentTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = componentTypes.h; path = Engine/Components/componentTypes.h; sourceTree = "<group>"; };
+		44B01DDC1D5E45B300638192 /* renderableComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = renderableComponent.cpp; path = Engine/Components/renderableComponent.cpp; sourceTree = "<group>"; };
+		44B01DDD1D5E45B300638192 /* renderableComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = renderableComponent.h; path = Engine/Components/renderableComponent.h; sourceTree = "<group>"; };
+		44B01DDF1D5E45CD00638192 /* freeLookComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = freeLookComponent.cpp; path = Engine/Components/freeLookComponent.cpp; sourceTree = "<group>"; };
+		44B01DE01D5E45CD00638192 /* freeLookComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = freeLookComponent.h; path = Engine/Components/freeLookComponent.h; sourceTree = "<group>"; };
 		44B9C3FD1D1B35A10043FF1D /* TileShader.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = TileShader.fs; path = Resources/shaders/TileShader.fs; sourceTree = "<group>"; };
 		44B9C3FE1D1B35A10043FF1D /* TileShader.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = TileShader.vs; path = Resources/shaders/TileShader.vs; sourceTree = "<group>"; };
 		44B9C40B1D1F16A50043FF1D /* tileShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = tileShader.cpp; path = Engine/Rendering/tileShader.cpp; sourceTree = "<group>"; };
@@ -388,19 +388,19 @@
 		44394E5E1CAC924600212467 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				44B01DB91D5D019200638192 /* componentTypes.h */,
-				44B01DAD1D5CD8F900638192 /* component.cpp */,
-				44B01DAE1D5CD8F900638192 /* component.h */,
+				44B01DDA1D5E45A200638192 /* componentTypes.h */,
+				44B01DD81D5E45A200638192 /* component.cpp */,
+				44B01DD91D5E45A200638192 /* component.h */,
 				44B01DB61D5CFF6000638192 /* transformComponent.cpp */,
 				44B01DB71D5CFF6000638192 /* transformComponent.h */,
-				44B01DB31D5CFD2A00638192 /* renderableComponent.cpp */,
-				44B01DB41D5CFD2A00638192 /* renderableComponent.h */,
+				44B01DDC1D5E45B300638192 /* renderableComponent.cpp */,
+				44B01DDD1D5E45B300638192 /* renderableComponent.h */,
 				44B01DBE1D5D6D9F00638192 /* inputComponent.cpp */,
 				44B01DBF1D5D6D9F00638192 /* inputComponent.h */,
 				44B01DC71D5E299100638192 /* freeMoveComponent.cpp */,
 				44B01DC81D5E299100638192 /* freeMoveComponent.h */,
-				44B01DCA1D5E299D00638192 /* freeLookComponent.cpp */,
-				44B01DCB1D5E299D00638192 /* freeLookComponent.h */,
+				44B01DDF1D5E45CD00638192 /* freeLookComponent.cpp */,
+				44B01DE01D5E45CD00638192 /* freeLookComponent.h */,
 				44B01DCE1D5E326400638192 /* drawModeComponent.cpp */,
 				44B01DCF1D5E326400638192 /* drawModeComponent.h */,
 			);
@@ -490,11 +490,11 @@
 		44B01DCD1D5E31EA00638192 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				44B01DBA1D5D054300638192 /* entityTypes.h */,
-				44394E961CAF25BE00212467 /* entity.cpp */,
-				44394E971CAF25BE00212467 /* entity.h */,
-				44394E941CAF25BE00212467 /* cameraEntity.cpp */,
-				44394E951CAF25BE00212467 /* cameraEntity.h */,
+				44B01DD51D5E454C00638192 /* entityTypes.h */,
+				44B01DD11D5E454C00638192 /* cameraEntity.cpp */,
+				44B01DD21D5E454C00638192 /* cameraEntity.h */,
+				44B01DD31D5E454C00638192 /* entity.cpp */,
+				44B01DD41D5E454C00638192 /* entity.h */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -623,17 +623,16 @@
 			files = (
 				443F744C1CB311AE00A0A939 /* planeCollider.cpp in Sources */,
 				44394EC71CAF261500212467 /* messenger.cpp in Sources */,
+				44B01DDB1D5E45A200638192 /* component.cpp in Sources */,
 				4434DB831D3DA91A00880C06 /* circleCollider.cpp in Sources */,
 				443F74581CB314D700A0A939 /* random.cpp in Sources */,
 				44394EA91CAF25C900212467 /* aabbCollider.cpp in Sources */,
 				440BD7101C88904F001DB584 /* cameraSystem.cpp in Sources */,
 				44394EC11CAF25DE00212467 /* texture.cpp in Sources */,
 				44D3CD701BCBFAED0074E300 /* main.cpp in Sources */,
-				44394E9C1CAF25BE00212467 /* cameraEntity.cpp in Sources */,
 				440BD7171C88904F001DB584 /* windowSystem.cpp in Sources */,
 				443C92FD1D274979009F1FDC /* logger.cpp in Sources */,
 				44394E931CAF25AB00212467 /* utility.cpp in Sources */,
-				44B01DAF1D5CD8F900638192 /* component.cpp in Sources */,
 				443C92FC1D274979009F1FDC /* configLoader.cpp in Sources */,
 				44C736CF1D3EDF9600253DF8 /* lineCollider.cpp in Sources */,
 				440BD7121C88904F001DB584 /* entitySystem.cpp in Sources */,
@@ -651,18 +650,18 @@
 				44394EBC1CAF25DE00212467 /* basicShader.cpp in Sources */,
 				44394EBE1CAF25DE00212467 /* phongShader.cpp in Sources */,
 				44394EC41CAF25F200212467 /* physicsEngineSystem.cpp in Sources */,
-				44B01DCC1D5E299D00638192 /* freeLookComponent.cpp in Sources */,
 				443F74511CB311EE00A0A939 /* math3d.cpp in Sources */,
+				44B01DE11D5E45CD00638192 /* freeLookComponent.cpp in Sources */,
+				44B01DD71D5E454C00638192 /* entity.cpp in Sources */,
 				44B01DD01D5E326400638192 /* drawModeComponent.cpp in Sources */,
 				440BD7111C88904F001DB584 /* coreEngineSystem.cpp in Sources */,
 				440BD6FD1C889027001DB584 /* messageBus.cpp in Sources */,
 				44394EAC1CAF25C900212467 /* sphereCollider.cpp in Sources */,
+				44B01DDE1D5E45B300638192 /* renderableComponent.cpp in Sources */,
 				44B01DB81D5CFF6000638192 /* transformComponent.cpp in Sources */,
 				444684921D397A4E00CC44FC /* timer.cpp in Sources */,
 				44B9C40D1D1F16A50043FF1D /* tileShader.cpp in Sources */,
 				44394E8E1CAF25AB00212467 /* config.cpp in Sources */,
-				44394E9D1CAF25BE00212467 /* entity.cpp in Sources */,
-				44B01DB51D5CFD2A00638192 /* renderableComponent.cpp in Sources */,
 				440BD7131C88904F001DB584 /* gameSystem.cpp in Sources */,
 				44394ED01CAF26B300212467 /* dateTime.cpp in Sources */,
 				440BD7441C88909D001DB584 /* windowFramework.cpp in Sources */,
@@ -670,6 +669,7 @@
 				440BD71F1C889057001DB584 /* renderFramework.cpp in Sources */,
 				44B01DC01D5D6D9F00638192 /* inputComponent.cpp in Sources */,
 				440BD71E1C889057001DB584 /* inputFramework.cpp in Sources */,
+				44B01DD61D5E454C00638192 /* cameraEntity.cpp in Sources */,
 				44394ED21CAF26B300212467 /* time.cpp in Sources */,
 				4402765B1C8A553800449791 /* game.cpp in Sources */,
 				44394EAA1CAF25C900212467 /* collider.cpp in Sources */,
