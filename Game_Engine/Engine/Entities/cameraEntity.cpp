@@ -9,7 +9,7 @@
 #include "cameraEntity.h"
 
 #include "drawModeComponent.h"
-#include "../../freeLookComponent.h"
+#include "freeLookComponent.h"
 #include "freeMoveComponent.h"
 
 CameraEntity::CameraEntity() : Entity( EntityType::ENTITY_CAMERA ) {
