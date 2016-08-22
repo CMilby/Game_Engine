@@ -28,7 +28,7 @@ Mesh::Mesh( const std::string &pFilename, bool pInstance ) : m_filename( pFilena
 	std::vector<Vector2<float>> myUVs;
 	std::vector<Vector3<float>> myNormals;
 	
-	LoadOBJ( Utility::DirectoryPath() + "models/" + pFilename, myIndices, myVertices, myUVs, myNormals );
+	LoadOBJ( Utility::DirectoryPath() + "Models/" + pFilename, myIndices, myVertices, myUVs, myNormals );
 	GenerateBuffers( myIndices, myVertices, myUVs, myNormals, pInstance );
 }
 

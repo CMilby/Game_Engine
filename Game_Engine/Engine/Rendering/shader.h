@@ -42,6 +42,7 @@ public:
     
     virtual void UpdateUniforms( const Matrix4<float> &world, const Matrix4<float> &projected, const CameraEntity &camera, const Material &material );
 	virtual void UpdateUniforms( const Matrix4<float> &pMVP, const Material &pMaterial );
+	virtual void UpdateUniforms( const Matrix4<float> &pModel, const Matrix4<float> &pView , const Matrix4<float> &pProjection, Texture *pTexture );
     
     void AddUniform( const std::string &name ) const;
     GLuint GetUniform( const std::string &name ) const;

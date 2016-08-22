@@ -57,7 +57,7 @@ Texture::Texture( int width, int height, unsigned char *data, GLenum textureTarg
     InitTexture( width, height, data, textureTarget, filter );
 }
 
-Texture::Texture( const std::string &file ) {
+/*Texture::Texture( const std::string &file ) {
     if ( s_textureAtlas->Contains( file ) ) {
         m_freeTexture = false;
         m_textureID = s_textureAtlas->Get( file );
@@ -65,7 +65,7 @@ Texture::Texture( const std::string &file ) {
         int x;
         int y;
         int numComponenets;
-        unsigned char *data = stbi_load( ( Utility::DirectoryPath() + "textures/" + file ).c_str(), &x, &y, &numComponenets, 4 );
+        unsigned char *data = stbi_load( ( Utility::DirectoryPath() + "Textures/" + file ).c_str(), &x, &y, &numComponenets, 4 );
         
         if ( data == NULL ) {
             fprintf( stderr, ( "Error loading image\n" ) );
@@ -77,25 +77,17 @@ Texture::Texture( const std::string &file ) {
         
         s_textureAtlas->Add( file, m_textureID );
     }
-}
+}*/
 
-Texture::Texture( int width, int height, float data[] ) {
-    glGenTextures( 1, &m_textureID );
-    glBindTexture( GL_TEXTURE_2D, m_textureID );
-    glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST );
-    glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST );
-    glTexImage2D( GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_FLOAT, data );
-}
-
-Texture::Texture( int pNumTextures, const std::string &pDirectory, int pWidth, int pHeight ) {
-	if ( s_textureAtlas->Contains( pDirectory ) ) {
+Texture::Texture( const std::string &pFile ) {
+	if ( s_textureAtlas->Contains( pFile ) ) {
 		m_freeTexture = false;
-		m_textureID = s_textureAtlas->Get( pDirectory );
+		m_textureID = s_textureAtlas->Get( pFile );
 		return;
 	}
 	
 	std::ifstream fin;
-	std::string dir = Utility::DirectoryPath() + "textures/" + pDirectory;
+	std::string dir = Utility::DirectoryPath() + "Textures/" + pFile;
 	std::string filepath;
 	
 	DIR *dp;
@@ -103,59 +95,107 @@ Texture::Texture( int pNumTextures, const std::string &pDirectory, int pWidth, i
 	struct dirent *dirp;
 	struct stat filestat;
 	
-	dp = opendir( dir.c_str() );
-	if ( dp == NULL ) {
-		std::cout << "Error: Could not open directory: " << dir << std::endl;
-		exit( 1 );
-	}
-	
-	// GLsizei width = 512;
-	// GLsizei height = 512;
-	
-	int x = 0;
-	int y = 0;
+	int x;
+	int y;
 	int numComponenets;
 	unsigned char *data;
 	
-	glGenTextures( 1, &m_textureID );
-	glBindTexture( GL_TEXTURE_2D_ARRAY, m_textureID );
-	glTexStorage3D( GL_TEXTURE_2D_ARRAY, 1, GL_RGBA8, pWidth, pHeight, pNumTextures );
-	
-	int i = 0;
-	while ( ( dirp = readdir( dp ) ) ) {
-		filepath = dir + "/" + dirp->d_name;
+	dp = opendir( dir.c_str() );
+	if ( dp == NULL ) {
+		data = stbi_load( ( Utility::DirectoryPath() + "Textures/" + pFile ).c_str(), &x, &y, &numComponenets, 4 );
 		
-		if ( stat( filepath.c_str(), &filestat ) ) {
-			continue;
+		if ( data == NULL ) {
+			fprintf( stderr, ( "Error loading image\n" ) );
+			return;
 		}
 		
-		if ( S_ISDIR( filestat.st_mode ) ) {
-			continue;
-		}
-		
-		if ( !Utility::EndsWith( filepath, ".png" ) ) {
-			continue;
-		}
-		
-		data = stbi_load( filepath.c_str(), &x, &y, &numComponenets, 4 );
-		glTexSubImage3D( GL_TEXTURE_2D_ARRAY, 0, 0, 0, i, pWidth, pHeight, 1, GL_RGBA, GL_UNSIGNED_BYTE, data );
+		InitTexture( x, y, data, GL_TEXTURE_2D, GL_LINEAR );
 		stbi_image_free( data );
 		
-		std::string myName = filepath.substr( Utility::LastIndexOf( filepath, '/' ) + 1 );
-		myName = Utility::ToUpper( myName.substr( 0, myName.length() - 4 ) );
-		// TileMap::AddTile( myName, i );
+		s_textureAtlas->Add( pFile, m_textureID );
+	} else {
+		int numTextures = 0;
 		
-		i++;
+		int width = 64;
+		int height = 64;
+		
+		bool read = true;
+		
+		while ( ( dirp = readdir( dp ) ) ) {
+			filepath = dir + "/" + dirp->d_name;
+			
+			if ( stat( filepath.c_str(), &filestat ) ) {
+				continue;
+			}
+			
+			if ( S_ISDIR( filestat.st_mode ) ) {
+				continue;
+			}
+			
+			if ( !Utility::EndsWith( filepath, ".png" ) ) {
+				continue;
+			}
+			
+			if ( read ) {
+				data = stbi_load( filepath.c_str(), &x, &y, &numComponenets, 4 );
+				stbi_image_free( data );
+				
+				width = x;
+				height = y;
+				
+				read = false;
+			}
+			
+			numTextures++;
+		}
+		
+		closedir( dp );
+		dp = opendir( dir.c_str() );
+		
+		glGenTextures( 1, &m_textureID );
+		glBindTexture( GL_TEXTURE_2D_ARRAY, m_textureID );
+		glTexStorage3D( GL_TEXTURE_2D_ARRAY, 1, GL_RGBA8, width, height, numTextures );
+		
+		int layer = 0;
+		while ( ( dirp = readdir( dp ) ) ) {
+			filepath = dir + "/" + dirp->d_name;
+			
+			if ( stat( filepath.c_str(), &filestat ) ) {
+				continue;
+			}
+			
+			if ( S_ISDIR( filestat.st_mode ) ) {
+				continue;
+			}
+			
+			if ( !Utility::EndsWith( filepath, ".png" ) ) {
+				continue;
+			}
+			
+			data = stbi_load( filepath.c_str(), &x, &y, &numComponenets, 4 );
+			glTexSubImage3D( GL_TEXTURE_2D_ARRAY, 0, 0, 0, layer, width, height, 1, GL_RGBA, GL_UNSIGNED_BYTE, data );
+			stbi_image_free( data );
+			
+			layer++;
+		}
+		
+		closedir( dp );
+		
+		glTexParameteri( GL_TEXTURE_2D_ARRAY, GL_TEXTURE_WRAP_S, GL_REPEAT );
+		glTexParameteri( GL_TEXTURE_2D_ARRAY, GL_TEXTURE_WRAP_T, GL_REPEAT );
+		glTexParameteri( GL_TEXTURE_2D_ARRAY, GL_TEXTURE_MIN_FILTER, GL_LINEAR );
+		glTexParameteri( GL_TEXTURE_2D_ARRAY, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
+		
+		s_textureAtlas->Add( pFile, m_textureID );
 	}
-	
-	closedir( dp );
-	
-	glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT );
-	glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT );
-	glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR );
-	glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
-	
-	s_textureAtlas->Add( pDirectory, m_textureID );
+}
+
+Texture::Texture( int width, int height, float data[] ) {
+	glGenTextures( 1, &m_textureID );
+	glBindTexture( GL_TEXTURE_2D, m_textureID );
+	glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST );
+	glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST );
+	glTexImage2D( GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_FLOAT, data );
 }
 
 void Texture::InitTexture( int width, int height, unsigned char *data, GLenum textureTarget, GLfloat filter ) {

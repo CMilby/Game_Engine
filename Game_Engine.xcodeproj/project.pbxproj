@@ -55,9 +55,11 @@
 		443F74521CB311EE00A0A939 /* simplexNoise.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 443F744F1CB311EE00A0A939 /* simplexNoise.cpp */; };
 		443F74581CB314D700A0A939 /* random.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 443F74561CB314D700A0A939 /* random.cpp */; };
 		444684921D397A4E00CC44FC /* timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 444684901D397A4E00CC44FC /* timer.cpp */; };
+		4484B1271D6A7D1A00C4DCF7 /* chunk.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4484B1251D6A7D1A00C4DCF7 /* chunk.cpp */; };
+		4484B12C1D6A86A100C4DCF7 /* voxelShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4484B12A1D6A86A100C4DCF7 /* voxelShader.cpp */; };
+		4484B1301D6A894B00C4DCF7 /* superChunk.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4484B12E1D6A894B00C4DCF7 /* superChunk.cpp */; };
 		449D85F41BD6B6F300B72584 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 449D85F31BD6B6F300B72584 /* OpenGL.framework */; };
 		449D85F91BD6BB0900B72584 /* libGLEW.1.12.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 449D85F81BD6BB0900B72584 /* libGLEW.1.12.0.dylib */; };
-		44B01DB81D5CFF6000638192 /* transformComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44B01DB61D5CFF6000638192 /* transformComponent.cpp */; };
 		44B01DC01D5D6D9F00638192 /* inputComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44B01DBE1D5D6D9F00638192 /* inputComponent.cpp */; };
 		44B01DC91D5E299100638192 /* freeMoveComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44B01DC71D5E299100638192 /* freeMoveComponent.cpp */; };
 		44B01DD01D5E326400638192 /* drawModeComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44B01DCE1D5E326400638192 /* drawModeComponent.cpp */; };
@@ -194,11 +196,17 @@
 		444684901D397A4E00CC44FC /* timer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = timer.cpp; path = Engine/Core/timer.cpp; sourceTree = "<group>"; };
 		444684911D397A4E00CC44FC /* timer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = timer.h; path = Engine/Core/timer.h; sourceTree = "<group>"; };
 		447B54141BF04A9600BB5977 /* libSDL2-2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libSDL2-2.0.0.dylib"; path = "../../../../usr/local/Cellar/sdl2/2.0.3/lib/libSDL2-2.0.0.dylib"; sourceTree = "<group>"; };
+		4484B1251D6A7D1A00C4DCF7 /* chunk.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = chunk.cpp; path = Game/chunk.cpp; sourceTree = "<group>"; };
+		4484B1261D6A7D1A00C4DCF7 /* chunk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = chunk.h; path = Game/chunk.h; sourceTree = "<group>"; };
+		4484B1281D6A856000C4DCF7 /* VoxelShader.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = VoxelShader.vs; path = Resources/Shaders/VoxelShader.vs; sourceTree = "<group>"; };
+		4484B12A1D6A86A100C4DCF7 /* voxelShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = voxelShader.cpp; path = Engine/Rendering/voxelShader.cpp; sourceTree = "<group>"; };
+		4484B12B1D6A86A100C4DCF7 /* voxelShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = voxelShader.h; path = Engine/Rendering/voxelShader.h; sourceTree = "<group>"; };
+		4484B12D1D6A883A00C4DCF7 /* VoxelShader.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = VoxelShader.fs; path = Resources/Shaders/VoxelShader.fs; sourceTree = "<group>"; };
+		4484B12E1D6A894B00C4DCF7 /* superChunk.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = superChunk.cpp; path = Game/superChunk.cpp; sourceTree = "<group>"; };
+		4484B12F1D6A894B00C4DCF7 /* superChunk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = superChunk.h; path = Game/superChunk.h; sourceTree = "<group>"; };
 		449D85F31BD6B6F300B72584 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		449D85F61BD6BACB00B72584 /* libglfw.3.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw.3.1.dylib; path = ../../../../usr/local/lib/libglfw.3.1.dylib; sourceTree = "<group>"; };
 		449D85F81BD6BB0900B72584 /* libGLEW.1.12.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libGLEW.1.12.0.dylib; path = ../../../../usr/local/Cellar/glew/1.12.0/lib/libGLEW.1.12.0.dylib; sourceTree = "<group>"; };
-		44B01DB61D5CFF6000638192 /* transformComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = transformComponent.cpp; path = Engine/Components/transformComponent.cpp; sourceTree = "<group>"; };
-		44B01DB71D5CFF6000638192 /* transformComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = transformComponent.h; path = Engine/Components/transformComponent.h; sourceTree = "<group>"; };
 		44B01DBE1D5D6D9F00638192 /* inputComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = inputComponent.cpp; path = Engine/Components/inputComponent.cpp; sourceTree = "<group>"; };
 		44B01DBF1D5D6D9F00638192 /* inputComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = inputComponent.h; path = Engine/Components/inputComponent.h; sourceTree = "<group>"; };
 		44B01DC71D5E299100638192 /* freeMoveComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = freeMoveComponent.cpp; path = Engine/Components/freeMoveComponent.cpp; sourceTree = "<group>"; };
@@ -250,11 +258,12 @@
 		440276551C8A550D00449791 /* Game */ = {
 			isa = PBXGroup;
 			children = (
-				44B9C4461D21DA700043FF1D /* Items */,
-				44B9C4451D21DA650043FF1D /* Entities */,
-				44B9C41A1D1F1B4B0043FF1D /* World */,
 				440276591C8A553800449791 /* game.cpp */,
 				4402765A1C8A553800449791 /* game.h */,
+				4484B1251D6A7D1A00C4DCF7 /* chunk.cpp */,
+				4484B1261D6A7D1A00C4DCF7 /* chunk.h */,
+				4484B12E1D6A894B00C4DCF7 /* superChunk.cpp */,
+				4484B12F1D6A894B00C4DCF7 /* superChunk.h */,
 			);
 			name = Game;
 			sourceTree = "<group>";
@@ -342,6 +351,8 @@
 				44394EAE1CAF25DE00212467 /* basicShader.h */,
 				44394EB31CAF25DE00212467 /* phongShader.cpp */,
 				44394EB41CAF25DE00212467 /* phongShader.h */,
+				4484B12A1D6A86A100C4DCF7 /* voxelShader.cpp */,
+				4484B12B1D6A86A100C4DCF7 /* voxelShader.h */,
 				44394EB51CAF25DE00212467 /* shader.cpp */,
 				44394EB61CAF25DE00212467 /* shader.h */,
 				44394EB71CAF25DE00212467 /* shaderType.h */,
@@ -391,8 +402,6 @@
 				44B01DDA1D5E45A200638192 /* componentTypes.h */,
 				44B01DD81D5E45A200638192 /* component.cpp */,
 				44B01DD91D5E45A200638192 /* component.h */,
-				44B01DB61D5CFF6000638192 /* transformComponent.cpp */,
-				44B01DB71D5CFF6000638192 /* transformComponent.h */,
 				44B01DDC1D5E45B300638192 /* renderableComponent.cpp */,
 				44B01DDD1D5E45B300638192 /* renderableComponent.h */,
 				44B01DBE1D5D6D9F00638192 /* inputComponent.cpp */,
@@ -454,6 +463,8 @@
 				44394E6B1CAC92F500212467 /* StandardShading.vs */,
 				44394E6C1CAC92F500212467 /* TextVertexShader.fs */,
 				44394E6D1CAC92F500212467 /* TextVertexShader.vs */,
+				4484B12D1D6A883A00C4DCF7 /* VoxelShader.fs */,
+				4484B1281D6A856000C4DCF7 /* VoxelShader.vs */,
 			);
 			name = Shaders;
 			sourceTree = "<group>";
@@ -497,27 +508,6 @@
 				44B01DD41D5E454C00638192 /* entity.h */,
 			);
 			name = Entities;
-			sourceTree = "<group>";
-		};
-		44B9C41A1D1F1B4B0043FF1D /* World */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = World;
-			sourceTree = "<group>";
-		};
-		44B9C4451D21DA650043FF1D /* Entities */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Entities;
-			sourceTree = "<group>";
-		};
-		44B9C4461D21DA700043FF1D /* Items */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Items;
 			sourceTree = "<group>";
 		};
 		44D3CD631BCBFAED0074E300 = {
@@ -626,6 +616,7 @@
 				44B01DDB1D5E45A200638192 /* component.cpp in Sources */,
 				4434DB831D3DA91A00880C06 /* circleCollider.cpp in Sources */,
 				443F74581CB314D700A0A939 /* random.cpp in Sources */,
+				4484B1271D6A7D1A00C4DCF7 /* chunk.cpp in Sources */,
 				44394EA91CAF25C900212467 /* aabbCollider.cpp in Sources */,
 				440BD7101C88904F001DB584 /* cameraSystem.cpp in Sources */,
 				44394EC11CAF25DE00212467 /* texture.cpp in Sources */,
@@ -649,6 +640,7 @@
 				44394EC01CAF25DE00212467 /* textShader.cpp in Sources */,
 				44394EBC1CAF25DE00212467 /* basicShader.cpp in Sources */,
 				44394EBE1CAF25DE00212467 /* phongShader.cpp in Sources */,
+				4484B12C1D6A86A100C4DCF7 /* voxelShader.cpp in Sources */,
 				44394EC41CAF25F200212467 /* physicsEngineSystem.cpp in Sources */,
 				443F74511CB311EE00A0A939 /* math3d.cpp in Sources */,
 				44B01DE11D5E45CD00638192 /* freeLookComponent.cpp in Sources */,
@@ -658,7 +650,6 @@
 				440BD6FD1C889027001DB584 /* messageBus.cpp in Sources */,
 				44394EAC1CAF25C900212467 /* sphereCollider.cpp in Sources */,
 				44B01DDE1D5E45B300638192 /* renderableComponent.cpp in Sources */,
-				44B01DB81D5CFF6000638192 /* transformComponent.cpp in Sources */,
 				444684921D397A4E00CC44FC /* timer.cpp in Sources */,
 				44B9C40D1D1F16A50043FF1D /* tileShader.cpp in Sources */,
 				44394E8E1CAF25AB00212467 /* config.cpp in Sources */,
@@ -677,6 +668,7 @@
 				44394E911CAF25AB00212467 /* stb_image.c in Sources */,
 				440BD7151C88904F001DB584 /* renderingSystem.cpp in Sources */,
 				44394ED31CAF26B300212467 /* transform.cpp in Sources */,
+				4484B1301D6A894B00C4DCF7 /* superChunk.cpp in Sources */,
 				4434DB801D3DA8EC00880C06 /* boxCollider.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

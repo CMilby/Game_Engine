@@ -4,13 +4,12 @@
 
 #include <vector>
 
-#include "cameraSystem.h"
-#include "entity.h"
+#include "cameraEntity.h"
 
 class World : public Entity {
 
 private:
-	Camera *m_mainCamera;
+	CameraEntity *m_mainCamera;
 	int m_drawDistance;
 	
 	std::vector<Vector3<int>> m_drawnPoints;

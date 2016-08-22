@@ -10,7 +10,8 @@
 #define __ITEM_H__
 
 #include "logger.h"
-#include "renderableEntity.h"
+#include "entity.h"
+#include "renderableComponent.h"
 
 #define ITEM_HEIGHT 1.0f
 
@@ -19,7 +20,7 @@ enum eHand {
 	HAND_RIGHT
 };
 
-class Item : public RenderableEntity {
+class Item : public Entity {
 	
 private:
 	std::string m_item;
@@ -35,6 +36,8 @@ private:
 protected:
 	Vector3<float> m_handLeftOffset;
 	Vector3<float> m_handRightOffset;
+	
+	RenderableComponent* GetRenderer() const;
 	
 	virtual void Update( float pDelta );
 
@@ -69,8 +72,6 @@ public:
 	
 	inline std::string GetItemName() const { return m_item; }
 	inline void SetItemName( const std::string &pItem ) { m_item = pItem; }
-	
-	virtual Vector3<float> GetWorldCoordinates() const { return GetModelMatrix().GetPosition(); }
 };
 
 #endif

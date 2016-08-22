@@ -104,6 +104,16 @@ public:
 		return myResult;
 	}
 	
+	inline bool Contains( const T &pValue ) const {
+		for ( unsigned int i = 0; i < D; i++ ) {
+			if ( m_values[ i ] == pValue ) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
     inline Vector<T, D> operator+( const Vector<T, D> &vect ) const {
         Vector<T, D> sum;
         for ( unsigned int i = 0; i < D; i++ ) {
@@ -433,6 +443,77 @@ public:
 	inline T GetY() const { return ( *this )[ 1 ]; }
 	inline T GetZ() const { return ( *this )[ 2 ]; }
 	inline T GetW() const { return ( *this )[ 3 ]; }
+};
+
+template<class T>
+class Vector6 : public Vector<T, 6> {
+	
+private:
+	
+public:
+	Vector6() {
+		( *this )[ 0 ] = T( 0 );
+		( *this )[ 1 ] = T( 0 );
+		( *this )[ 2 ] = T( 0 );
+		( *this )[ 3 ] = T( 0 );
+		( *this )[ 4 ] = T( 0 );
+		( *this )[ 5 ] = T( 0 );
+	}
+	
+	Vector6( const Vector<T, 6> &pVect ) {
+		( *this )[ 0 ] = pVect[ 0 ];
+		( *this )[ 1 ] = pVect[ 1 ];
+		( *this )[ 2 ] = pVect[ 2 ];
+		( *this )[ 3 ] = pVect[ 3 ];
+		( *this )[ 4 ] = pVect[ 4 ];
+		( *this )[ 5 ] = pVect[ 5 ];
+	}
+	
+	Vector6( const Vector6<T> &pVect ) {
+		( *this )[ 0 ] = pVect[ 0 ];
+		( *this )[ 1 ] = pVect[ 1 ];
+		( *this )[ 2 ] = pVect[ 2 ];
+		( *this )[ 3 ] = pVect[ 3 ];
+		( *this )[ 4 ] = pVect[ 4 ];
+		( *this )[ 5 ] = pVect[ 5 ];
+	}
+	
+	Vector6( const T &pX, const T &pY, const T &pZ, const T &pA, const T &pB, const T &pC ) {
+		( *this )[ 0 ] = pX;
+		( *this )[ 1 ] = pY;
+		( *this )[ 2 ] = pZ;
+		( *this )[ 3 ] = pA;
+		( *this )[ 4 ] = pB;
+		( *this )[ 5 ] = pC;
+	}
+	
+	inline void SetX( const T &pX ) { ( *this )[ 0 ] = pX; }
+	inline void SetY( const T &pY ) { ( *this )[ 1 ] = pY; }
+	inline void SetZ( const T &pZ ) { ( *this )[ 2 ] = pZ; }
+	inline void SetA( const T &pA ) { ( *this )[ 3 ] = pA; }
+	inline void SetB( const T &pB ) { ( *this )[ 4 ] = pB; }
+	inline void SetC( const T &pC ) { ( *this )[ 5 ] = pC; }
+	
+	inline void SetTop( const T &pTop ) { ( *this )[ 0 ] = pTop; }
+	inline void SetBottom( const T &pBottom ) { ( *this )[ 1 ] = pBottom; }
+	inline void SetLeft( const T &pLeft ) { ( *this )[ 2 ] = pLeft; }
+	inline void SetRight( const T &pRight ) { ( *this )[ 3 ] = pRight; }
+	inline void SetFront( const T &pFront ) { ( *this )[ 4 ] = pFront; }
+	inline void SetBack( const T &pBack ) { ( *this )[ 5 ] = pBack; }
+	
+	inline T GetX() const { return ( *this )[ 0 ]; }
+	inline T GetY() const { return ( *this )[ 1 ]; }
+	inline T GetZ() const { return ( *this )[ 2 ]; }
+	inline T GetA() const { return ( *this )[ 3 ]; }
+	inline T GetB() const { return ( *this )[ 4 ]; }
+	inline T GetC() const { return ( *this )[ 5 ]; }
+	
+	inline T GetTop() const { return ( *this )[ 0 ]; }
+	inline T GetBottom() const { return ( *this )[ 1 ]; }
+	inline T GetLeft() const { return ( *this )[ 2 ]; }
+	inline T GetRight() const { return ( *this )[ 3 ]; }
+	inline T GetFront() const { return ( *this )[ 4 ]; }
+	inline T GetBack() const { return ( *this )[ 5 ]; }
 };
 
 class Quaternion;
@@ -1308,6 +1389,29 @@ namespace Math3D {
 	
 	inline Vector3<float> Rotate( const Vector3<float> &vect, float angle, const Vector3<float> &axis ) {
 		return Math3D::Rotate( vect, Quaternion( axis, angle ) );
+	}
+	
+	inline void SetBit( uint64_t &number, uint64_t bit, uint64_t x ) {
+		number ^= ( -x ^ number ) & ( 1ULL << bit );
+	}
+	
+	inline unsigned int GetBit( uint64_t number, uint64_t bit ) {
+		return ( number >> bit ) & 1ULL;
+	}
+	
+	inline uint64_t GetBits( uint64_t number, unsigned int a, unsigned int b ) {
+		uint64_t r = 0;
+		
+		for ( unsigned i = a; i <= b; i++ ) {
+			Math3D::SetBit( r, i, Math3D::GetBit( number, i ) );
+		}
+		return r >> a;
+	}
+	
+	inline void SetBits( uint64_t &number, uint64_t mask, unsigned int a, unsigned int b ) {
+		for ( unsigned int i = a; i <= b; i++ ) {
+			SetBit( number, i, GetBit( mask, i - a ) );
+		}
 	}
 }
 

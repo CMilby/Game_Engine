@@ -13,8 +13,8 @@
 #include "inputSystem.h"
 #include "logger.h"
 
-#include "stabbingSwordItem.h"
-#include "swingingSword.h"
+// #include "stabbingSwordItem.h"
+// #include "swingingSword.h"
 
 Player::Player() {
 	
@@ -32,9 +32,9 @@ Player::Player( const Vector2<float> &pPosition ) : NPC( pPosition ) {
 	SetCurrentMana( GetMaxMana() );
 	SetCurrentStamina( GetCurrentStamina() );
 	
-	SetMaterial( new Material( new Texture( "character.png" ) ) );
+	// SetMaterial( new Material( new Texture( "character.png" ) ) );
 	
-	SetRightHandItem( new StabbingSwordItem( eHand::HAND_RIGHT ) );
+	// SetRightHandItem( new StabbingSwordItem( eHand::HAND_RIGHT ) );
 }
 
 Player::~Player() {
@@ -57,22 +57,22 @@ void Player::Input( float pDelta ) {
 	}
 	
 	if ( InputSystem::IsKeyDown( Config::GetKeyUp() ) ) {
-		SetVelocityY( moveAmt );
+		// SetVelocityY( moveAmt );
 	}
 	
 	if ( InputSystem::IsKeyDown( Config::GetKeyLeft() ) ) {
 		// Move( Vector3<float>( -1.0f, 0.0f, 0.0f ), moveAmt );
-		SetVelocityX( -moveAmt );
+		// SetVelocityX( -moveAmt );
 	}
 	
 	if ( InputSystem::IsKeyDown( Config::GetKeyDown() ) ) {
 		// Move( Vector3<float>( 0.0f, -1.0f, 0.0f ), moveAmt );
-		SetVelocityY( -moveAmt );
+		// SetVelocityY( -moveAmt );
 	}
 	
 	if ( InputSystem::IsKeyDown( Config::GetKeyRight() ) ) {
 		// Move( Vector3<float>( 1.0f, 0.0f, 0.0f ), moveAmt );
-		SetVelocityX( moveAmt );
+		// SetVelocityX( moveAmt );
 	}
 	
 	if ( InputSystem::IsKeyDown( Config::GetKeyNext() ) ) {
@@ -88,15 +88,15 @@ void Player::Input( float pDelta ) {
 	}
 	
 	if ( InputSystem::IsMouseDown( Config::GetButtonUseRight() ) ) {
-		if ( GetRightHandItem()->Use() ) {
+		// if ( GetRightHandItem()->Use() ) {
 			Logger::LogInfo( "Player - Input", "Use Right Hand" );
-		}
+		// }
 	}
 	
 	if ( InputSystem::IsMouseDown( Config::GetButtonUseLeft() ) ) {
-		if ( GetLeftHandItem()->Use() ) {
+		// if ( GetLeftHandItem()->Use() ) {
 			Logger::LogInfo( "Player - Input", "Use Left Hand" );
-		}
+		// }
 	}
 
 	CameraSystem::GetMainCamera()->SetPosition( Vector3<float>( GetPosition().GetXY(), CameraSystem::GetMainCamera()->GetPosition().GetZ() ) );

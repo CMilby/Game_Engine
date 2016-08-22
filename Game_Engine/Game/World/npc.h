@@ -9,12 +9,12 @@
 #ifndef __NPC_H__
 #define __NPC_H__
 
-#include "item.h"
-#include "renderableEntity.h"
+// #include "item.h"
+#include "entity.h"
 
 #define NPC_HEIGHT ITEM_HEIGHT
 
-class NPC : public RenderableEntity {
+class NPC : public Entity {
 
 private:
 	// Base Powers
@@ -31,8 +31,8 @@ private:
 	float m_moveSpeed;
 	float m_sprintSpeed;
 	
-	Item *m_leftHand;
-	Item *m_rightHand;
+	// Item *m_leftHand;
+	// Item *m_rightHand;
 	
 protected:
 	virtual void Update( float pDelta );
@@ -60,8 +60,8 @@ public:
 	inline int GetCurrentMana() const { return m_currentMana; }
 	inline int GetCurrentStamina() const { return m_currentStamina; }
 	
-	void SetLeftHandItem( Item *pItem );
-	void SetRightHandItem( Item *pItem );
+	// void SetLeftHandItem( Item *pItem );
+	// void SetRightHandItem( Item *pItem );
 	
 	inline float GetMoveSpeed() const { return m_moveSpeed; }
 	inline float GetSprintSpeed() const { return m_sprintSpeed; }
@@ -69,8 +69,8 @@ public:
 	inline void SetMoveSpeed( float pSpeed ) { m_moveSpeed = pSpeed; }
 	inline void SetSprintSpeed( float pSpeed ) { m_sprintSpeed = pSpeed; }
 	
-	inline Item* GetLeftHandItem() const { return m_leftHand; }
-	inline Item* GetRightHandItem() const { return m_rightHand; }
+	// inline Item* GetLeftHandItem() const { return m_leftHand; }
+	// inline Item* GetRightHandItem() const { return m_rightHand; }
 };
 
 #endif

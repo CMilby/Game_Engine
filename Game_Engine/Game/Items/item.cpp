@@ -8,7 +8,7 @@
 
 #include "item.h"
 
-Item::Item() : RenderableEntity( EntityType::ENTITY_ITEM ) {
+Item::Item() : Entity( EntityType::ENTITY_GAME_ITEM ) {
 	m_item = "BaseItem";
 	
 	m_useTime = 30;
@@ -19,7 +19,7 @@ Item::Item() : RenderableEntity( EntityType::ENTITY_ITEM ) {
 	m_isCoolingDown = false;
 }
 
-Item::Item( const std::string &pItem, eHand pHand ) : RenderableEntity( EntityType::ENTITY_ITEM ) {
+Item::Item( const std::string &pItem, eHand pHand ) : Entity( EntityType::ENTITY_GAME_ITEM ) {
 	m_item = pItem;
 	m_hand = pHand;
 	
@@ -32,8 +32,6 @@ Item::Item( const std::string &pItem, eHand pHand ) : RenderableEntity( EntityTy
 }
 
 void Item::Update( float pDelta ) {
-	RenderableEntity::Update( pDelta );
-	
 	if ( m_isCoolingDown ) {
 		m_currentCooldown--;
 		if ( m_currentCooldown == 0 ) {
@@ -60,15 +58,20 @@ void Item::Collided( Entity *pOther ) {
 
 void Item::SetPosition() {
 	if ( m_hand == eHand::HAND_LEFT ) {
-		RenderableEntity::SetPosition( Vector3<float>( m_handLeftOffset.GetXY(), ITEM_HEIGHT ) );
+		Entity::SetPosition( Vector3<float>( m_handLeftOffset.GetXY(), ITEM_HEIGHT ) );
 	} else if ( m_hand == eHand::HAND_RIGHT ) {
-		RenderableEntity::SetPosition( Vector3<float>( m_handRightOffset.GetXY(), ITEM_HEIGHT ) );
+		Entity::SetPosition( Vector3<float>( m_handRightOffset.GetXY(), ITEM_HEIGHT ) );
 	}
 }
 
 void Item::SetPosition( const Vector3<float> &pPosition ) {
-	RenderableEntity::SetPosition( Vector3<float>( pPosition.GetXY(), ITEM_HEIGHT ) );
+	Entity::SetPosition( Vector3<float>( pPosition.GetXY(), ITEM_HEIGHT ) );
 }
+
+RenderableComponent* Item::GetRenderer() const {
+	return ( RenderableComponent* ) GetComponent( ComponentType::RENDERABLE_COMPONENT );
+}
+
 
 
 

@@ -12,13 +12,13 @@
 #include <string>
 
 #include "chunk.h"
-#include "renderableEntity.h"
+#include "entity.h"
 
 #define NUM_TILES 9
 #define TILE_SIZE 64
 #define TILE_PATH "tiles"
 
-class RenderableChunk : public RenderableEntity {
+class RenderableChunk : public Entity {
 	
 private:
 	Chunk *m_chunk;

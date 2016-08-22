@@ -11,14 +11,21 @@
 #include "cameraSystem.h"
 #include "renderingSystem.h"
 
-RenderableComponent::RenderableComponent() : TransformComponent( ComponentType::RENDERABLE_COMPONENT ) {
+RenderableComponent::RenderableComponent() : Component( ComponentType::RENDERABLE_COMPONENT ) {
 	m_mesh = 0;
 	m_material = 0;
 	m_shaderType = ShaderType::SHADER_BASIC;
 	m_isVisible = false;
 }
 
-RenderableComponent::RenderableComponent( const std::string &pMesh, const std::string &pTexture ) : TransformComponent( ComponentType::RENDERABLE_COMPONENT ) {
+RenderableComponent::RenderableComponent( Mesh *pMesh ) : Component( ComponentType::RENDERABLE_COMPONENT ) {
+	m_mesh = pMesh;
+	m_material = 0;
+	m_shaderType = SHADER_VOXEL;
+	m_isVisible = true;
+}
+
+RenderableComponent::RenderableComponent( const std::string &pMesh, const std::string &pTexture ) : Component( ComponentType::RENDERABLE_COMPONENT ) {
 	m_mesh = new Mesh( pMesh );
 	m_material = new Material( pTexture );
 	m_shaderType = ShaderType::SHADER_BASIC;
@@ -42,21 +49,23 @@ void RenderableComponent::Render() {
 		Shader *shader = RenderingSystem::GetShaders()[ m_shaderType ];
 		shader->Bind();
 		
-		Matrix4<float> model = GetModelMatrix();
+		Matrix4<float> model = GetParent()->GetModelMatrix();
 		CameraEntity *camera = CameraSystem::GetMainCamera();
 		
 		shader->Enable();
 		
 		if ( m_shaderType == SHADER_BASIC ) {
-			shader->UpdateUniforms( Transform::GetProjection() * CameraSystem::GetMainCamera()->GetView() * model, *m_material );
+			shader->UpdateUniforms( Transform::GetProjection() * camera->GetView() * model, *m_material );
 		} else if ( m_shaderType == SHADER_PHONG ) {
-			shader->UpdateUniforms( model, Transform::GetProjection() * CameraSystem::GetMainCamera()->GetView() * model, *camera, *m_material );
+			shader->UpdateUniforms( model, Transform::GetProjection() * camera->GetView() * model, *camera, *m_material );
 		} else if ( m_shaderType == SHADER_SKYBOX ) {
 			
 		} else if ( m_shaderType == SHADER_TEXT ) {
 			
 		} else if ( m_shaderType == SHADER_TILE ) {
 			shader->UpdateUniforms( Transform::GetProjection() * camera->GetView() * model, *m_material );
+		} else if ( m_shaderType == SHADER_VOXEL ) {
+			shader->UpdateUniforms( model, camera->GetView(), Transform::GetProjection(), m_material->m_texture );
 		}
 		
 		shader->Disable();

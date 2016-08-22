@@ -10,6 +10,7 @@
 
 #include "circleCollider.h"
 #include "physicsBody.h"
+#include "renderableComponent.h"
 
 Monster::Monster() {
 	
@@ -27,9 +28,9 @@ Monster::Monster( const Vector2<float> &pPosition ) : NPC( pPosition ) {
 	SetCurrentMana( GetMaxMana() );
 	SetCurrentStamina( GetCurrentStamina() );
 	
-	SetPhysicsBody( new PhysicsBody( new CircleCollider( GetPosition().GetXY(), 0.875f ) ) );
+	// SetPhysicsBody( new PhysicsBody( new CircleCollider( GetPosition().GetXY(), 0.875f ) ) );
 	
-	SetMaterial( new Material( new Texture( "monster.png" ) ) );
+	( ( RenderableComponent* ) GetComponent( ComponentType::RENDERABLE_COMPONENT ) )->SetMaterial( new Material( "monster.png" ) );
 }
 
 Monster::~Monster() {

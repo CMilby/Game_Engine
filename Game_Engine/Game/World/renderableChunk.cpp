@@ -8,14 +8,18 @@
 
 #include "renderableChunk.h"
 
-RenderableChunk::RenderableChunk( int pX, int pY ) : RenderableEntity( EntityType::ENTITY_WORLD ) {
+#include "renderableComponent.h"
+
+RenderableChunk::RenderableChunk( int pX, int pY ) : Entity( EntityType::ENTITY_GAME_OBJECT ) {
 	m_chunk = new Chunk( pX, pY );
 	SetPosition( Vector3<float>( pX * CHUNK_X, pY * CHUNK_Y, 0 ) );
 	
-	SetShaderType( ShaderType::SHADER_TILE );
-	SetMesh( m_chunk );
-	SetMaterial( new Material( new Texture( NUM_TILES, TILE_PATH, TILE_SIZE, TILE_SIZE ) ) );
-	SetIsVisible( true );
+	RenderableComponent *component = new RenderableComponent();
+	component->SetShaderType( ShaderType::SHADER_TILE );
+	component->SetMesh( m_chunk );
+	component->SetMaterial( new Material( new Texture( NUM_TILES, TILE_PATH, TILE_SIZE, TILE_SIZE ) ) );
+	component->SetIsVisible( true );
+	AddComponent( component );
 }
 
 RenderableChunk::~RenderableChunk() {

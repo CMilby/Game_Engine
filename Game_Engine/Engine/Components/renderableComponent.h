@@ -9,13 +9,13 @@
 #ifndef __RENDERABLE_COMPONENT_H__
 #define __RENDERABLE_COMPONENT_H__
 
-#include "transformComponent.h"
+#include "component.h"
 
 #include "material.h"
 #include "mesh.h"
 #include "shaderType.h"
 
-class RenderableComponent : public TransformComponent {
+class RenderableComponent : public Component {
 	
 private:
 	Material *m_material;
@@ -26,10 +26,16 @@ private:
 	
 public:
 	RenderableComponent();
+	RenderableComponent( Mesh *pMesh );
 	RenderableComponent( const std::string &pMesh, const std::string &pTexture );
 	virtual ~RenderableComponent();
 	
 	virtual void Render();
+	
+	inline void SetMaterial( Material *pMaterial ) { m_material = pMaterial; }
+	inline void SetMesh( Mesh *pMesh ) { m_mesh = pMesh; }
+	inline void SetShaderType( ShaderType pType ) { m_shaderType = pType; }
+	inline void SetIsVisible( bool pVisible ) { m_isVisible = pVisible; }
 };
 
 #endif /* renderableComponent_h */

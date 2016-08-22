@@ -17,7 +17,7 @@
 #include "utility.h"
 
 void ConfigLoader::LoadConfigFile() {
-	LoadConfigFile( Utility::DirectoryPath() + "config/config.ini" );
+	LoadConfigFile( Utility::DirectoryPath() + "Config/config.ini" );
 }
 
 void ConfigLoader::LoadConfigFile( const std::string &pFilepath ) {

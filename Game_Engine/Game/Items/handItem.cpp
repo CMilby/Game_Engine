@@ -12,10 +12,10 @@ HandItem::HandItem( eHand pHand ) : Item( "Hand", pHand ) {
 	m_handLeftOffset = Vector3<float>( -0.25f, 0.25f, 0.0f );
 	m_handRightOffset = Vector3<float>( 0.25f, 0.25f, 0.0f );
 	
-	SetMesh( new Mesh( "player_plane.obj" ) );
-	SetMaterial( new Material( new Texture( "hand.png" ) ) );
-	SetShaderType( ShaderType::SHADER_BASIC );
-	SetIsVisible( true );
+	GetRenderer()->SetMesh( new Mesh( "player_plane.obj" ) );
+	GetRenderer()->SetMaterial( new Material( new Texture( "hand.png" ) ) );
+	GetRenderer()->SetShaderType( ShaderType::SHADER_BASIC );
+	GetRenderer()->SetIsVisible( true );
 	
 	SetPosition();
 	SetScale( Vector3<float>( 0.25f, 0.25f, 0.25f ) );

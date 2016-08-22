@@ -20,11 +20,11 @@ Shader::~Shader() {
 }
 
 void Shader::AddFragmentShader( const std::string &filename ) {
-    m_framework->AddFragmentShader( Utility::DirectoryPath() + "shaders/" + filename );
+    m_framework->AddFragmentShader( Utility::DirectoryPath() + "Shaders/" + filename );
 }
 
 void Shader::AddVertexShader( const std::string &filename ) {
-    m_framework->AddVertexShader( Utility::DirectoryPath() + "shaders/" + filename );
+    m_framework->AddVertexShader( Utility::DirectoryPath() + "Shaders/" + filename );
 }
 
 void Shader::AttachShader( int shaderID ) const {
@@ -52,6 +52,10 @@ void Shader::UpdateUniforms( const Matrix4<float> &world, const Matrix4<float> &
 }
 
 void Shader::UpdateUniforms( const Matrix4<float> &pMVP, const Material &pMaterial ) {
+	
+}
+
+void Shader::UpdateUniforms( const Matrix4<float> &pModel, const Matrix4<float> &pView , const Matrix4<float> &pProjection, Texture *pTexture ) {
 	
 }
 

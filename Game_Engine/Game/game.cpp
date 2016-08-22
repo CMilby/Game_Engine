@@ -8,29 +8,22 @@
 
 #include "game.h"
 
-// #include "monster.h"
-// #include "player.h"
-// #include "world.h"
-
 #include "entity.h"
 #include "renderableComponent.h"
+
+#include "superChunk.h"
 
 Game::Game() {
 	
 }
 
 void Game::LoadGame() {
-	/*World *world = new World();
-	AddToScene( world );
+	// AddToScene( ( new Entity( EntityType::ENTITY_GAME_OBJECT ) )->AddComponent( new RenderableComponent( "cube.obj", "test.png" ) ) );
 	
-	Player *player = new Player( Vector2<float>( 0, 0 ) );
-	AddToScene( player );
+	SuperChunk *chunk = new SuperChunk();
+	chunk->Set( 1, 1, 1, block_t( 0 ) );
 	
-	Monster *monster = new Monster( Vector2<float>( 5, 5 ) );
-	AddToScene( monster );
-	*/
-	
-	AddToScene( ( new Entity( EntityType::ENTITY_GAME_OBJECT ) )->AddComponent( new RenderableComponent( "cube.obj", "test.png" ) ) );
+	AddToScene( chunk );
 	
 	SendMessage( SYSTEM_ENTITY, Message( SYSTEM_GAME, MESSAGE_INIT ) );
 }
