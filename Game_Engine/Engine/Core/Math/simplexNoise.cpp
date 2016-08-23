@@ -11,7 +11,7 @@
 #include "math3d.h"
 
 SimplexNoise::SimplexNoise() {
-	m_random = new Random( 4357 );
+	m_random = new Random( rand() );
 }
 
 SimplexNoise::SimplexNoise( int pSeed ) {

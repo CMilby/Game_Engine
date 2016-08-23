@@ -30,10 +30,12 @@ void VoxelShader::Init() {
 
 void VoxelShader::Enable() const {
 	EnableVertexAttribArray( 0 );
+	EnableVertexAttribArray( 1 );
 }
 
 void VoxelShader::Disable() const {
 	DisableVertexAttribArray( 0 );
+	DisableVertexAttribArray( 1 );
 }
 
 void VoxelShader::UpdateUniforms( const Matrix4<float> &pModel, const Matrix4<float> &pView , const Matrix4<float> &pProjection, Texture *pTexture ) {

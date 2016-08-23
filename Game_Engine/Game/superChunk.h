@@ -13,9 +13,9 @@
 #include "entity.h"
 #include "voxelShader.h"
 
-#define S_CHUNK_X 1
+#define S_CHUNK_X 16
 #define S_CHUNK_Y 1
-#define S_CHUNK_Z 1
+#define S_CHUNK_Z 16
 
 class SuperChunk : public Entity {
 	

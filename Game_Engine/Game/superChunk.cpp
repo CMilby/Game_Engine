@@ -11,7 +11,12 @@
 #include "cameraSystem.h"
 #include "renderingSystem.h"
 
+#include "simplexNoise.h"
+
 SuperChunk::SuperChunk() : Entity( EntityType::ENTITY_GAME_OBJECT ) {
+	
+	SimplexNoise noise( 1234 );
+	
 	for ( unsigned int x = 0; x < S_CHUNK_X; x++ ) {
 		for ( unsigned int y = 0; y < S_CHUNK_Y; y++ ) {
 			for ( unsigned int z = 0; z < S_CHUNK_Z; z++ ) {
@@ -20,7 +25,21 @@ SuperChunk::SuperChunk() : Entity( EntityType::ENTITY_GAME_OBJECT ) {
 				for ( unsigned int a = 0; a < CHUNK_X; a++ ) {
 					for ( unsigned int b = 0; b < CHUNK_Y; b++ ) {
 						for ( unsigned int c = 0; c < CHUNK_Z; c++ ) {
-							m_chunk[ x ][ y ][ z ]->Set( a, b, c, block_t() );
+							int n = ( int ) noise.ScaledOctaveNoise2D( 4, 0.4f, 0.005f, 4.0f, 12.0f, x * S_CHUNK_X + a, z * S_CHUNK_Z + c );
+							
+							if ( b == n ) {
+							
+								m_chunk[ x ][ y ][ z ]->Set( a, b, c, block_t( 6, 3, 7, 7, 7, 7 ) );
+								
+							} else if ( b < n - 4 ) {
+								
+								m_chunk[ x ][ y ][ z ]->Set( a, b, c, block_t( 1 ) );
+								
+							} else if ( b < n ) {
+								
+								m_chunk[ x ][ y ][ z ]->Set( a, b, c, block_t( 3 ) );
+								
+							}
 						}
 					}
 				}

@@ -20,6 +20,20 @@
 #define CHUNK_Y 16
 #define CHUNK_Z 16
 
+#define TRANSPARENCY_BIT 48
+#define INITIALIZED_BIT 49
+
+// HOW IT WORKS
+// Block data is stored in a 64 bit integer
+// Bits:
+// 0 - 7: Top Texture
+// 8 -15: Bottom Texture
+// 16-23: Left Texture
+// 24-31: Right Texture
+// 32-39: Front Texture
+// 40-47: Back Texture
+// 48: Transparent Bit ( 0 = Opaque, 1 = Transparent )
+// 63: Initialized Bit ( 0 = Not Init, 1 = Init )
 struct block_t {
 	
 private:
@@ -36,7 +50,12 @@ public:
 	}
 	
 	block_t( uint64_t pValue, bool pInitialize = true ) {
-		m_block = pValue;
+		SetTop( pValue );
+		SetBottom( pValue );
+		SetLeft( pValue );
+		SetRight( pValue );
+		SetFront( pValue );
+		SetBack( pValue );
 		
 		if ( pInitialize ) {
 			Initialize();
@@ -79,7 +98,11 @@ public:
 	}
 	
 	inline void Initialize() {
-		Math3D::SetBits( m_block, 1, 56, 63 );
+		Math3D::SetBit( m_block, INITIALIZED_BIT, 1 );
+	}
+	
+	inline void SetTransparent( uint8_t pTransparent ) {
+		Math3D::SetBit( m_block, TRANSPARENCY_BIT, pTransparent );
 	}
 	
 	inline uint8_t GetTop() const {
@@ -107,7 +130,11 @@ public:
 	}
 	
 	inline bool Initialized() const {
-		return Math3D::GetBits( m_block, 56, 63 );
+		return Math3D::GetBit( m_block, INITIALIZED_BIT );
+	}
+	
+	inline bool Transparent() const {
+		return Math3D::GetBit( m_block, TRANSPARENCY_BIT );
 	}
 };
 
@@ -115,14 +142,22 @@ class Chunk : public Mesh {
 	
 private:
 	block_t m_chunk[ CHUNK_X ][ CHUNK_Y ][ CHUNK_Z ];
+	Chunk *m_left;
+	Chunk *m_right;
+	Chunk *m_above;
+	Chunk *m_below;
+	Chunk *m_front;
+	Chunk *m_back;
 	
-	GLuint m_vbo;
+	GLuint m_buffers[ 2 ];
 	GLuint m_vao;
 	
 	unsigned int m_elements;
+	unsigned int m_textures;
 	bool m_hasChanged;
 	
 	void Update();
+	bool IsBlocked( int pX1, int pY1, int pZ1, int pX2, int pY2, int pZ2 ) const;
 	
 public:
 	Chunk();
@@ -130,14 +165,17 @@ public:
 	
 	virtual void Render();
 	
-	inline void Set( int pX, int pY, int pZ, block_t pType ) {
-		m_chunk[ pX ][ pY ][ pZ ] = pType;
-		m_hasChanged = true;
-	}
-
-	inline block_t Get( int pX, int pY, int pZ ) const {
-		return m_chunk[ pX ][ pY ][ pZ ];
-	}
+	void Set( int pX, int pY, int pZ, block_t pType );
+	block_t Get( int pX, int pY, int pZ ) const;
+	
+	inline void SetChanged( bool pChanged ) { m_hasChanged = pChanged; }
+	
+	inline void SetLeft( Chunk *pLeft ) { m_left = pLeft; }
+	inline void SetRight( Chunk *pRight ) { m_right = pRight; }
+	inline void SetAbove( Chunk *pAbove ) { m_above = pAbove; }
+	inline void SetBelow( Chunk *pBelow ) { m_below = pBelow; }
+	inline void SetFront( Chunk *pFront ) { m_front = pFront; }
+	inline void SetBack( Chunk *pBack ) { m_back = pBack; }
 };
 
 #endif /* chunk_h */

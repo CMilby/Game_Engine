@@ -21,7 +21,10 @@ void Game::LoadGame() {
 	// AddToScene( ( new Entity( EntityType::ENTITY_GAME_OBJECT ) )->AddComponent( new RenderableComponent( "cube.obj", "test.png" ) ) );
 	
 	SuperChunk *chunk = new SuperChunk();
-	chunk->Set( 1, 1, 1, block_t( 0 ) );
+	
+	block_t block( 5 );
+	block.SetTransparent( 1 );
+	chunk->Set( 0, 0, 0, block );
 	
 	AddToScene( chunk );
 	
