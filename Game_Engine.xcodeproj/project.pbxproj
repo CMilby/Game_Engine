@@ -55,6 +55,7 @@
 		443F74521CB311EE00A0A939 /* simplexNoise.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 443F744F1CB311EE00A0A939 /* simplexNoise.cpp */; };
 		443F74581CB314D700A0A939 /* random.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 443F74561CB314D700A0A939 /* random.cpp */; };
 		444684921D397A4E00CC44FC /* timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 444684901D397A4E00CC44FC /* timer.cpp */; };
+		444B779D1D6CA2C400EAA0FF /* worldGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 444B779B1D6CA2C400EAA0FF /* worldGenerator.cpp */; };
 		4484B1271D6A7D1A00C4DCF7 /* chunk.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4484B1251D6A7D1A00C4DCF7 /* chunk.cpp */; };
 		4484B12C1D6A86A100C4DCF7 /* voxelShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4484B12A1D6A86A100C4DCF7 /* voxelShader.cpp */; };
 		4484B1301D6A894B00C4DCF7 /* superChunk.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4484B12E1D6A894B00C4DCF7 /* superChunk.cpp */; };
@@ -195,6 +196,8 @@
 		443F74571CB314D700A0A939 /* random.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = random.h; path = Engine/Core/Math/random.h; sourceTree = "<group>"; };
 		444684901D397A4E00CC44FC /* timer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = timer.cpp; path = Engine/Core/timer.cpp; sourceTree = "<group>"; };
 		444684911D397A4E00CC44FC /* timer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = timer.h; path = Engine/Core/timer.h; sourceTree = "<group>"; };
+		444B779B1D6CA2C400EAA0FF /* worldGenerator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = worldGenerator.cpp; path = Game/worldGenerator.cpp; sourceTree = "<group>"; };
+		444B779C1D6CA2C400EAA0FF /* worldGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = worldGenerator.h; path = Game/worldGenerator.h; sourceTree = "<group>"; };
 		447B54141BF04A9600BB5977 /* libSDL2-2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libSDL2-2.0.0.dylib"; path = "../../../../usr/local/Cellar/sdl2/2.0.3/lib/libSDL2-2.0.0.dylib"; sourceTree = "<group>"; };
 		4484B1251D6A7D1A00C4DCF7 /* chunk.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = chunk.cpp; path = Game/chunk.cpp; sourceTree = "<group>"; };
 		4484B1261D6A7D1A00C4DCF7 /* chunk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = chunk.h; path = Game/chunk.h; sourceTree = "<group>"; };
@@ -258,12 +261,9 @@
 		440276551C8A550D00449791 /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				448E32C01DA5D27300DB5AF4 /* Voxels */,
 				440276591C8A553800449791 /* game.cpp */,
 				4402765A1C8A553800449791 /* game.h */,
-				4484B1251D6A7D1A00C4DCF7 /* chunk.cpp */,
-				4484B1261D6A7D1A00C4DCF7 /* chunk.h */,
-				4484B12E1D6A894B00C4DCF7 /* superChunk.cpp */,
-				4484B12F1D6A894B00C4DCF7 /* superChunk.h */,
 			);
 			name = Game;
 			sourceTree = "<group>";
@@ -484,6 +484,19 @@
 			name = Math;
 			sourceTree = "<group>";
 		};
+		448E32C01DA5D27300DB5AF4 /* Voxels */ = {
+			isa = PBXGroup;
+			children = (
+				4484B1251D6A7D1A00C4DCF7 /* chunk.cpp */,
+				4484B1261D6A7D1A00C4DCF7 /* chunk.h */,
+				4484B12E1D6A894B00C4DCF7 /* superChunk.cpp */,
+				4484B12F1D6A894B00C4DCF7 /* superChunk.h */,
+				444B779B1D6CA2C400EAA0FF /* worldGenerator.cpp */,
+				444B779C1D6CA2C400EAA0FF /* worldGenerator.h */,
+			);
+			name = Voxels;
+			sourceTree = "<group>";
+		};
 		449D85F51BD6B6F600B72584 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -669,6 +682,7 @@
 				440BD7151C88904F001DB584 /* renderingSystem.cpp in Sources */,
 				44394ED31CAF26B300212467 /* transform.cpp in Sources */,
 				4484B1301D6A894B00C4DCF7 /* superChunk.cpp in Sources */,
+				444B779D1D6CA2C400EAA0FF /* worldGenerator.cpp in Sources */,
 				4434DB801D3DA8EC00880C06 /* boxCollider.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

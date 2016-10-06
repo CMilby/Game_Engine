@@ -46,278 +46,29 @@ void Chunk::Render() {
 void Chunk::Update() {
 	m_hasChanged = false;
 	
-	Vector4<GLbyte> vertex[ CHUNK_X * CHUNK_Y * CHUNK_Z * 6 * 6 ];
+	Vector4<GLbyte> vertex[ CHUNK_MEMORY_SIZE ];
 	Vector2<GLfloat> texture[ CHUNK_X * CHUNK_Y * CHUNK_Z * 6 * 6 ];
 	
 	int i = 0;
 	int j = 0;
 	
-	int merged = 0;
-	bool visible = false;
-	
 	// Negative X ( LEFT )
-	for ( unsigned int x = 0; x < CHUNK_X; x++ ) {
-		for ( unsigned int y = 0; y < CHUNK_Y; y++ ) {
-			for ( unsigned int z = 0; z < CHUNK_Z; z++ ) {
-				if ( IsBlocked( x, y, z, x - 1, y, z ) ) {
-					visible = false;
-					continue;
-				}
-				
-				uint8_t myLeft = m_chunk[ x ][ y ][ z ].GetLeft();
-				
-				if( visible && z != 0 && m_chunk[ x ][ y ][ z ].GetLeft() == m_chunk[ x ][ y ][ z - 1 ].GetLeft() ) {
-					vertex[ i - 5 ] = Vector4<GLbyte>( x,     y,     z + 1, myLeft );
-					vertex[ i - 2 ] = Vector4<GLbyte>( x,     y,     z + 1, myLeft );
-					vertex[ i - 1 ] = Vector4<GLbyte>( x,     y + 1, z + 1, myLeft );
-					
-					texture[ j - 5 ] = Vector2<GLfloat>( merged + 2, 1 );
-					texture[ j - 2 ] = Vector2<GLfloat>( merged + 2, 1 );
-					texture[ j - 1 ] = Vector2<GLfloat>( merged + 2, 0 );
-					
-					merged++;
-				} else {
-					vertex[ i++ ] = Vector4<GLbyte>( x,     y,     z,     myLeft );
-					vertex[ i++ ] = Vector4<GLbyte>( x,     y,     z + 1, myLeft );
-					vertex[ i++ ] = Vector4<GLbyte>( x,     y + 1, z,     myLeft );
-					vertex[ i++ ] = Vector4<GLbyte>( x,     y + 1, z,     myLeft );
-					vertex[ i++ ] = Vector4<GLbyte>( x,     y,     z + 1, myLeft );
-					vertex[ i++ ] = Vector4<GLbyte>( x,     y + 1, z + 1, myLeft );
-					
-					texture[ j++ ] = Vector2<GLfloat>( 0, 1 );
-					texture[ j++ ] = Vector2<GLfloat>( 1, 1 );
-					texture[ j++ ] = Vector2<GLfloat>( 0, 0 );
-					texture[ j++ ] = Vector2<GLfloat>( 0, 0 );
-					texture[ j++ ] = Vector2<GLfloat>( 1, 1 );
-					texture[ j++ ] = Vector2<GLfloat>( 1, 0 );
-					
-					merged = 0;
-				}
-				
-				visible = true;
-			}
-		}
-	}
+	NegativeXFace( vertex, texture, i, j );
 	
 	// Positive X ( RIGHT )
-	for ( unsigned int x = 0; x < CHUNK_X; x++ ) {
-		for ( unsigned int y = 0; y < CHUNK_Y; y++ ) {
-			for ( unsigned int z = 0; z < CHUNK_Z; z++ ) {
-				if ( IsBlocked( x, y, z, x + 1, y, z ) ) {
-					visible = false;
-					continue;
-				}
-				
-				uint8_t myRight = m_chunk[ x ][ y ][ z ].GetRight();
-				
-				if( visible && z != 0 && m_chunk[ x ][ y ][ z ].GetRight() == m_chunk[ x ][ y ][ z - 1 ].GetRight() ) {
-					vertex[ i - 4 ] = Vector4<GLbyte>( x + 1, y,     z + 1, myRight );
-					vertex[ i - 2 ] = Vector4<GLbyte>( x + 1, y + 1, z + 1, myRight );
-					vertex[ i - 1 ] = Vector4<GLbyte>( x + 1, y,     z + 1, myRight );
-					
-					texture[ j - 4 ] = Vector2<GLfloat>( merged + 2, 1 );
-					texture[ j - 2 ] = Vector2<GLfloat>( merged + 2, 0 );
-					texture[ j - 1 ] = Vector2<GLfloat>( merged + 2, 1 );
-					
-					merged++;
-				} else {
-					vertex[ i++ ] = Vector4<GLbyte>( x + 1, y,     z,     myRight );
-					vertex[ i++ ] = Vector4<GLbyte>( x + 1, y + 1, z,     myRight );
-					vertex[ i++ ] = Vector4<GLbyte>( x + 1, y,     z + 1, myRight );
-					vertex[ i++ ] = Vector4<GLbyte>( x + 1, y + 1, z,     myRight );
-					vertex[ i++ ] = Vector4<GLbyte>( x + 1, y + 1, z + 1, myRight );
-					vertex[ i++ ] = Vector4<GLbyte>( x + 1, y,     z + 1, myRight );
-					
-					texture[ j++ ] = Vector2<GLfloat>( 0, 1 );
-					texture[ j++ ] = Vector2<GLfloat>( 0, 0 );
-					texture[ j++ ] = Vector2<GLfloat>( 1, 1 );
-					texture[ j++ ] = Vector2<GLfloat>( 0, 0 );
-					texture[ j++ ] = Vector2<GLfloat>( 1, 0 );
-					texture[ j++ ] = Vector2<GLfloat>( 1, 1 );
-					
-					merged = 0;
-				}
-				
-				visible = true;
-			}
-		}
-	}
+	PositiveXFace( vertex, texture, i, j );
 	
 	// Negative Y ( BOTTOM )
-	for ( unsigned int x = 0; x < CHUNK_X; x++ ) {
-		for ( unsigned int y = 0; y < CHUNK_Y; y++ ) {
-			for ( unsigned int z = 0; z < CHUNK_Z; z++ ) {
-				if ( IsBlocked( x, y, z, x, y - 1, z ) ) {
-					visible = false;
-					continue;
-				}
-				
-				uint8_t myBottom = m_chunk[ x ][ y ][ z ].GetBottom();
-				
-				if ( visible && z != 0 && m_chunk[ x ][ y ][ z ].GetBottom() == m_chunk[ x ][ y ][ z - 1 ].GetBottom() ) {
-					vertex[ i - 4 ] = Vector4<GLbyte>( x,     y, z + 1, myBottom );
-					vertex[ i - 2 ] = Vector4<GLbyte>( x + 1, y, z + 1, myBottom );
-					vertex[ i - 1 ] = Vector4<GLbyte>( x,     y, z + 1, myBottom );
-					
-					texture[ j - 6 ] = Vector2<GLfloat>( 1, merged + 2 );
-					texture[ j - 5 ] = Vector2<GLfloat>( 0, merged + 2 );
-					texture[ j - 3 ] = Vector2<GLfloat>( 0, merged + 2 );
-					
-					merged++;
-				} else {
-					vertex[ i++ ] = Vector4<GLbyte>( x,     y,     z,     myBottom );
-					vertex[ i++ ] = Vector4<GLbyte>( x + 1, y,     z,     myBottom );
-					vertex[ i++ ] = Vector4<GLbyte>( x,     y,     z + 1, myBottom );
-					vertex[ i++ ] = Vector4<GLbyte>( x + 1, y,     z,     myBottom );
-					vertex[ i++ ] = Vector4<GLbyte>( x + 1, y,     z + 1, myBottom );
-					vertex[ i++ ] = Vector4<GLbyte>( x,     y,     z + 1, myBottom );
-					
-					texture[ j++ ] = Vector2<GLfloat>( 1, 1 );
-					texture[ j++ ] = Vector2<GLfloat>( 0, 1 );
-					texture[ j++ ] = Vector2<GLfloat>( 1, 0 );
-					texture[ j++ ] = Vector2<GLfloat>( 0, 1 );
-					texture[ j++ ] = Vector2<GLfloat>( 0, 0 );
-					texture[ j++ ] = Vector2<GLfloat>( 1, 0 );
-					
-					merged = 0;
-				}
-				
-				visible = true;
-			}
-		}
-	}
+	NegativeYFace( vertex, texture, i, j );
 	
 	// Positive Y ( TOP )
-	for ( unsigned int x = 0; x < CHUNK_X; x++ ) {
-		for ( unsigned int y = 0; y < CHUNK_Y; y++ ) {
-			for ( unsigned int z = 0; z < CHUNK_Z; z++ ) {
-				if ( IsBlocked( x, y, z, x, y + 1, z ) ) {
-					visible = false;
-					continue;
-				}
-				
-				uint8_t myTop = m_chunk[ x ][ y ][ z ].GetTop();
-				
-				if ( visible && z != 0 && m_chunk[ x ][ y ][ z ].GetTop() == m_chunk[ x ][ y ][ z - 1 ].GetTop() ) {
-					vertex[ i - 5 ] = Vector4<GLbyte>( x,     y + 1, z + 1, myTop );
-					vertex[ i - 2 ] = Vector4<GLbyte>( x,     y + 1, z + 1, myTop );
-					vertex[ i - 1 ] = Vector4<GLbyte>( x + 1, y + 1, z + 1, myTop );
-					
-					texture[ j - 6 ] = Vector2<GLfloat>( 1, merged + 2 );
-					texture[ j - 4 ] = Vector2<GLfloat>( 0, merged + 2 );
-					texture[ j - 3 ] = Vector2<GLfloat>( 0, merged + 2 );
-					
-					merged++;
-				} else {
-					vertex[ i++ ] = Vector4<GLbyte>( x,     y + 1, z,     myTop );
-					vertex[ i++ ] = Vector4<GLbyte>( x,     y + 1, z + 1, myTop );
-					vertex[ i++ ] = Vector4<GLbyte>( x + 1, y + 1, z,     myTop );
-					vertex[ i++ ] = Vector4<GLbyte>( x + 1, y + 1, z,     myTop );
-					vertex[ i++ ] = Vector4<GLbyte>( x,     y + 1, z + 1, myTop );
-					vertex[ i++ ] = Vector4<GLbyte>( x + 1, y + 1, z + 1, myTop );
-					
-					texture[ j++ ] = Vector2<GLfloat>( 1, 1 );
-					texture[ j++ ] = Vector2<GLfloat>( 1, 0 );
-					texture[ j++ ] = Vector2<GLfloat>( 0, 1 );
-					texture[ j++ ] = Vector2<GLfloat>( 0, 1 );
-					texture[ j++ ] = Vector2<GLfloat>( 1, 0 );
-					texture[ j++ ] = Vector2<GLfloat>( 0, 0 );
-					
-					merged = 0;
-				}
-				
-				visible = true;
-			}
-		}
-	}
+	PositiveYFace( vertex, texture, i, j );
 	
 	// Negative Z ( BACK )
-	for ( unsigned int x = 0; x < CHUNK_X; x++ ) {
-		for ( unsigned int z = 0; z < CHUNK_Z; z++ ) {
-			for ( unsigned int y = 0; y < CHUNK_Y; y++ ) {
-				if ( IsBlocked( x, y, z, x, y, z - 1 ) ) {
-					visible = false;
-					continue;
-				}
-
-				uint8_t myBack = m_chunk[ x ][ y ][ z ].GetBack();
-				
-				if( visible && y != 0 && m_chunk[ x ][ y ][ z ].GetBack() == m_chunk[ x ][ y - 1 ][ z ].GetBack() ) {
-					vertex[ i - 5 ] = Vector4<GLbyte>( x,     y + 1, z, myBack);
-					vertex[ i - 3 ] = Vector4<GLbyte>( x,     y + 1, z, myBack);
-					vertex[ i - 2 ] = Vector4<GLbyte>( x + 1, y + 1, z, myBack);
-					
-					texture[ j - 6 ] = Vector2<GLfloat>( 1, merged + 2 );
-					texture[ j - 4 ] = Vector2<GLfloat>( 0, merged + 2 );
-					texture[ j - 1 ] = Vector2<GLfloat>( 0, merged + 2 );
-					
-					merged++;
-				} else {
-					vertex[ i++ ] = Vector4<GLbyte>( x,     y,     z, myBack );
-					vertex[ i++ ] = Vector4<GLbyte>( x,     y + 1, z, myBack );
-					vertex[ i++ ] = Vector4<GLbyte>( x + 1, y,     z, myBack );
-					vertex[ i++ ] = Vector4<GLbyte>( x,     y + 1, z, myBack );
-					vertex[ i++ ] = Vector4<GLbyte>( x + 1, y + 1, z, myBack );
-					vertex[ i++ ] = Vector4<GLbyte>( x + 1, y,     z, myBack );
-					
-					texture[ j++ ] = Vector2<GLfloat>( 1, 1 );
-					texture[ j++ ] = Vector2<GLfloat>( 1, 0 );
-					texture[ j++ ] = Vector2<GLfloat>( 0, 1 );
-					texture[ j++ ] = Vector2<GLfloat>( 1, 0 );
-					texture[ j++ ] = Vector2<GLfloat>( 0, 0 );
-					texture[ j++ ] = Vector2<GLfloat>( 0, 1 );
-					
-					merged = 0;
-				}
-				
-				visible = true;
-			}
-		}
-	}
+	NegativeZFace( vertex, texture, i, j );
 	
 	// Positive Z ( FRONT )
-	for ( unsigned int x = 0; x < CHUNK_X; x++ ) {
-		for ( unsigned int z = 0; z < CHUNK_Z; z++ ) {
-			for ( unsigned int y = 0; y < CHUNK_Y; y++ ) {
-				if ( IsBlocked( x, y, z, x, y, z + 1 ) ) {
-					visible = false;
-					continue;
-				}
-				
-				uint8_t myFront = m_chunk[ x ][ y ][ z ].GetFront();
-				
-				if( visible && y != 0 && m_chunk[ x ][ y ][ z ].GetFront() == m_chunk[ x ][ y - 1 ][ z ].GetFront() ) {
-					vertex[ i - 4 ] = Vector4<GLbyte>( x,     y + 1, z + 1, myFront );
-					vertex[ i - 3 ] = Vector4<GLbyte>( x,     y + 1, z + 1, myFront );
-					vertex[ i - 1 ] = Vector4<GLbyte>( x + 1, y + 1, z + 1, myFront );
-					
-					texture[ j - 6 ] = Vector2<GLfloat>( 1, merged + 2 );
-					texture[ j - 5 ] = Vector2<GLfloat>( 0, merged + 2 );
-					texture[ j - 2 ] = Vector2<GLfloat>( 0, merged + 2 );
-					
-					merged++;
-				} else {
-					vertex[ i++ ] = Vector4<GLbyte>( x,     y,     z + 1, myFront );
-					vertex[ i++ ] = Vector4<GLbyte>( x + 1, y,     z + 1, myFront );
-					vertex[ i++ ] = Vector4<GLbyte>( x,     y + 1, z + 1, myFront );
-					vertex[ i++ ] = Vector4<GLbyte>( x,     y + 1, z + 1, myFront );
-					vertex[ i++ ] = Vector4<GLbyte>( x + 1, y,     z + 1, myFront );
-					vertex[ i++ ] = Vector4<GLbyte>( x + 1, y + 1, z + 1, myFront );
-					
-					texture[ j++ ] = Vector2<GLfloat>( 1, 1 );
-					texture[ j++ ] = Vector2<GLfloat>( 0, 1 );
-					texture[ j++ ] = Vector2<GLfloat>( 1, 0 );
-					texture[ j++ ] = Vector2<GLfloat>( 1, 0 );
-					texture[ j++ ] = Vector2<GLfloat>( 0, 1 );
-					texture[ j++ ] = Vector2<GLfloat>( 0, 0 );
-					
-					merged = 0;
-				}
-				
-				visible = true;
-			}
-		}
-	}
+	PositiveZFace( vertex, texture, i, j );
 	
 	m_elements = i;
 	m_textures = j;
@@ -340,6 +91,294 @@ void Chunk::Update() {
 	glEnableVertexAttribArray( 1 );
 	
 	glBindVertexArray( 0 );
+}
+
+void Chunk::PositiveXFace( Vector4<GLbyte> ( &pVertex )[ CHUNK_MEMORY_SIZE ], Vector2<float> ( &pTexture )[ CHUNK_MEMORY_SIZE ], int& i, int& j ) {
+	int merged = 0;
+	bool visible = false;
+	
+	for ( unsigned int x = 0; x < CHUNK_X; x++ ) {
+		for ( unsigned int y = 0; y < CHUNK_Y; y++ ) {
+			for ( unsigned int z = 0; z < CHUNK_Z; z++ ) {
+				if ( IsBlocked( x, y, z, x + 1, y, z ) ) {
+					visible = false;
+					continue;
+				}
+				
+				uint8_t myRight = m_chunk[ x ][ y ][ z ].GetRight();
+				
+				if( visible && z != 0 && m_chunk[ x ][ y ][ z ].GetRight() == m_chunk[ x ][ y ][ z - 1 ].GetRight() ) {
+					pVertex[ i - 4 ] = Vector4<GLbyte>( x + 1, y,     z + 1, myRight );
+					pVertex[ i - 2 ] = Vector4<GLbyte>( x + 1, y + 1, z + 1, myRight );
+					pVertex[ i - 1 ] = Vector4<GLbyte>( x + 1, y,     z + 1, myRight );
+					
+					pTexture[ j - 4 ] = Vector2<GLfloat>( merged + 2, 1 );
+					pTexture[ j - 2 ] = Vector2<GLfloat>( merged + 2, 0 );
+					pTexture[ j - 1 ] = Vector2<GLfloat>( merged + 2, 1 );
+					
+					merged++;
+				} else {
+					pVertex[ i++ ] = Vector4<GLbyte>( x + 1, y,     z,     myRight );
+					pVertex[ i++ ] = Vector4<GLbyte>( x + 1, y + 1, z,     myRight );
+					pVertex[ i++ ] = Vector4<GLbyte>( x + 1, y,     z + 1, myRight );
+					pVertex[ i++ ] = Vector4<GLbyte>( x + 1, y + 1, z,     myRight );
+					pVertex[ i++ ] = Vector4<GLbyte>( x + 1, y + 1, z + 1, myRight );
+					pVertex[ i++ ] = Vector4<GLbyte>( x + 1, y,     z + 1, myRight );
+					
+					pTexture[ j++ ] = Vector2<GLfloat>( 0, 1 );
+					pTexture[ j++ ] = Vector2<GLfloat>( 0, 0 );
+					pTexture[ j++ ] = Vector2<GLfloat>( 1, 1 );
+					pTexture[ j++ ] = Vector2<GLfloat>( 0, 0 );
+					pTexture[ j++ ] = Vector2<GLfloat>( 1, 0 );
+					pTexture[ j++ ] = Vector2<GLfloat>( 1, 1 );
+					
+					merged = 0;
+				}
+				
+				visible = true;
+			}
+		}
+	}
+}
+
+void Chunk::NegativeXFace( Vector4<GLbyte> ( &pVertex )[ CHUNK_MEMORY_SIZE ], Vector2<float> ( &pTexture )[ CHUNK_MEMORY_SIZE ], int& i, int& j ) {
+	int merged = 0;
+	bool visible = false;
+	
+	for ( unsigned int x = 0; x < CHUNK_X; x++ ) {
+		for ( unsigned int y = 0; y < CHUNK_Y; y++ ) {
+			for ( unsigned int z = 0; z < CHUNK_Z; z++ ) {
+				if ( IsBlocked( x, y, z, x - 1, y, z ) ) {
+					visible = false;
+					continue;
+				}
+				
+				uint8_t myLeft = m_chunk[ x ][ y ][ z ].GetLeft();
+				
+				if( visible && z != 0 && m_chunk[ x ][ y ][ z ].GetLeft() == m_chunk[ x ][ y ][ z - 1 ].GetLeft() ) {
+					pVertex[ i - 5 ] = Vector4<GLbyte>( x,     y,     z + 1, myLeft );
+					pVertex[ i - 2 ] = Vector4<GLbyte>( x,     y,     z + 1, myLeft );
+					pVertex[ i - 1 ] = Vector4<GLbyte>( x,     y + 1, z + 1, myLeft );
+					
+					pTexture[ j - 5 ] = Vector2<GLfloat>( merged + 2, 1 );
+					pTexture[ j - 2 ] = Vector2<GLfloat>( merged + 2, 1 );
+					pTexture[ j - 1 ] = Vector2<GLfloat>( merged + 2, 0 );
+					
+					merged++;
+				} else {
+					pVertex[ i++ ] = Vector4<GLbyte>( x,     y,     z,     myLeft );
+					pVertex[ i++ ] = Vector4<GLbyte>( x,     y,     z + 1, myLeft );
+					pVertex[ i++ ] = Vector4<GLbyte>( x,     y + 1, z,     myLeft );
+					pVertex[ i++ ] = Vector4<GLbyte>( x,     y + 1, z,     myLeft );
+					pVertex[ i++ ] = Vector4<GLbyte>( x,     y,     z + 1, myLeft );
+					pVertex[ i++ ] = Vector4<GLbyte>( x,     y + 1, z + 1, myLeft );
+					
+					pTexture[ j++ ] = Vector2<GLfloat>( 0, 1 );
+					pTexture[ j++ ] = Vector2<GLfloat>( 1, 1 );
+					pTexture[ j++ ] = Vector2<GLfloat>( 0, 0 );
+					pTexture[ j++ ] = Vector2<GLfloat>( 0, 0 );
+					pTexture[ j++ ] = Vector2<GLfloat>( 1, 1 );
+					pTexture[ j++ ] = Vector2<GLfloat>( 1, 0 );
+					
+					merged = 0;
+				}
+				
+				visible = true;
+			}
+		}
+	}
+}
+
+void Chunk::PositiveYFace( Vector4<GLbyte> ( &pVertex )[ CHUNK_MEMORY_SIZE ], Vector2<float> ( &pTexture )[ CHUNK_MEMORY_SIZE ], int& i, int& j ) {
+	int merged = 0;
+	bool visible = false;
+	
+	for ( unsigned int x = 0; x < CHUNK_X; x++ ) {
+		for ( unsigned int y = 0; y < CHUNK_Y; y++ ) {
+			for ( unsigned int z = 0; z < CHUNK_Z; z++ ) {
+				if ( IsBlocked( x, y, z, x, y + 1, z ) ) {
+					visible = false;
+					continue;
+				}
+				
+				uint8_t myTop = m_chunk[ x ][ y ][ z ].GetTop();
+				
+				if ( visible && z != 0 && m_chunk[ x ][ y ][ z ].GetTop() == m_chunk[ x ][ y ][ z - 1 ].GetTop() ) {
+					pVertex[ i - 5 ] = Vector4<GLbyte>( x,     y + 1, z + 1, myTop );
+					pVertex[ i - 2 ] = Vector4<GLbyte>( x,     y + 1, z + 1, myTop );
+					pVertex[ i - 1 ] = Vector4<GLbyte>( x + 1, y + 1, z + 1, myTop );
+					
+					pTexture[ j - 6 ] = Vector2<GLfloat>( 1, merged + 2 );
+					pTexture[ j - 4 ] = Vector2<GLfloat>( 0, merged + 2 );
+					pTexture[ j - 3 ] = Vector2<GLfloat>( 0, merged + 2 );
+					
+					merged++;
+				} else {
+					pVertex[ i++ ] = Vector4<GLbyte>( x,     y + 1, z,     myTop );
+					pVertex[ i++ ] = Vector4<GLbyte>( x,     y + 1, z + 1, myTop );
+					pVertex[ i++ ] = Vector4<GLbyte>( x + 1, y + 1, z,     myTop );
+					pVertex[ i++ ] = Vector4<GLbyte>( x + 1, y + 1, z,     myTop );
+					pVertex[ i++ ] = Vector4<GLbyte>( x,     y + 1, z + 1, myTop );
+					pVertex[ i++ ] = Vector4<GLbyte>( x + 1, y + 1, z + 1, myTop );
+					
+					pTexture[ j++ ] = Vector2<GLfloat>( 1, 1 );
+					pTexture[ j++ ] = Vector2<GLfloat>( 1, 0 );
+					pTexture[ j++ ] = Vector2<GLfloat>( 0, 1 );
+					pTexture[ j++ ] = Vector2<GLfloat>( 0, 1 );
+					pTexture[ j++ ] = Vector2<GLfloat>( 1, 0 );
+					pTexture[ j++ ] = Vector2<GLfloat>( 0, 0 );
+					
+					merged = 0;
+				}
+				
+				visible = true;
+			}
+		}
+	}
+}
+
+void Chunk::NegativeYFace( Vector4<GLbyte> ( &pVertex )[ CHUNK_MEMORY_SIZE ], Vector2<float> ( &pTexture )[ CHUNK_MEMORY_SIZE ], int& i, int& j ) {
+	int merged = 0;
+	bool visible = false;
+	
+	for ( unsigned int x = 0; x < CHUNK_X; x++ ) {
+		for ( unsigned int y = 0; y < CHUNK_Y; y++ ) {
+			for ( unsigned int z = 0; z < CHUNK_Z; z++ ) {
+				if ( IsBlocked( x, y, z, x, y - 1, z ) ) {
+					visible = false;
+					continue;
+				}
+				
+				uint8_t myBottom = m_chunk[ x ][ y ][ z ].GetBottom();
+				
+				if ( visible && z != 0 && m_chunk[ x ][ y ][ z ].GetBottom() == m_chunk[ x ][ y ][ z - 1 ].GetBottom() ) {
+					pVertex[ i - 4 ] = Vector4<GLbyte>( x,     y, z + 1, myBottom );
+					pVertex[ i - 2 ] = Vector4<GLbyte>( x + 1, y, z + 1, myBottom );
+					pVertex[ i - 1 ] = Vector4<GLbyte>( x,     y, z + 1, myBottom );
+					
+					pTexture[ j - 6 ] = Vector2<GLfloat>( 1, merged + 2 );
+					pTexture[ j - 5 ] = Vector2<GLfloat>( 0, merged + 2 );
+					pTexture[ j - 3 ] = Vector2<GLfloat>( 0, merged + 2 );
+					
+					merged++;
+				} else {
+					pVertex[ i++ ] = Vector4<GLbyte>( x,     y,     z,     myBottom );
+					pVertex[ i++ ] = Vector4<GLbyte>( x + 1, y,     z,     myBottom );
+					pVertex[ i++ ] = Vector4<GLbyte>( x,     y,     z + 1, myBottom );
+					pVertex[ i++ ] = Vector4<GLbyte>( x + 1, y,     z,     myBottom );
+					pVertex[ i++ ] = Vector4<GLbyte>( x + 1, y,     z + 1, myBottom );
+					pVertex[ i++ ] = Vector4<GLbyte>( x,     y,     z + 1, myBottom );
+					
+					pTexture[ j++ ] = Vector2<GLfloat>( 1, 1 );
+					pTexture[ j++ ] = Vector2<GLfloat>( 0, 1 );
+					pTexture[ j++ ] = Vector2<GLfloat>( 1, 0 );
+					pTexture[ j++ ] = Vector2<GLfloat>( 0, 1 );
+					pTexture[ j++ ] = Vector2<GLfloat>( 0, 0 );
+					pTexture[ j++ ] = Vector2<GLfloat>( 1, 0 );
+					
+					merged = 0;
+				}
+				
+				visible = true;
+			}
+		}
+	}
+}
+
+void Chunk::PositiveZFace( Vector4<GLbyte> ( &pVertex )[ CHUNK_MEMORY_SIZE ], Vector2<float> ( &pTexture )[ CHUNK_MEMORY_SIZE ], int& i, int& j ) {
+	int merged = 0;
+	bool visible = false;
+	
+	for ( unsigned int x = 0; x < CHUNK_X; x++ ) {
+		for ( unsigned int z = 0; z < CHUNK_Z; z++ ) {
+			for ( unsigned int y = 0; y < CHUNK_Y; y++ ) {
+				if ( IsBlocked( x, y, z, x, y, z + 1 ) ) {
+					visible = false;
+					continue;
+				}
+				
+				uint8_t myFront = m_chunk[ x ][ y ][ z ].GetFront();
+				
+				if( visible && y != 0 && m_chunk[ x ][ y ][ z ].GetFront() == m_chunk[ x ][ y - 1 ][ z ].GetFront() ) {
+					pVertex[ i - 4 ] = Vector4<GLbyte>( x,     y + 1, z + 1, myFront );
+					pVertex[ i - 3 ] = Vector4<GLbyte>( x,     y + 1, z + 1, myFront );
+					pVertex[ i - 1 ] = Vector4<GLbyte>( x + 1, y + 1, z + 1, myFront );
+					
+					pTexture[ j - 6 ] = Vector2<GLfloat>( 1, merged + 2 );
+					pTexture[ j - 5 ] = Vector2<GLfloat>( 0, merged + 2 );
+					pTexture[ j - 2 ] = Vector2<GLfloat>( 0, merged + 2 );
+					
+					merged++;
+				} else {
+					pVertex[ i++ ] = Vector4<GLbyte>( x,     y,     z + 1, myFront );
+					pVertex[ i++ ] = Vector4<GLbyte>( x + 1, y,     z + 1, myFront );
+					pVertex[ i++ ] = Vector4<GLbyte>( x,     y + 1, z + 1, myFront );
+					pVertex[ i++ ] = Vector4<GLbyte>( x,     y + 1, z + 1, myFront );
+					pVertex[ i++ ] = Vector4<GLbyte>( x + 1, y,     z + 1, myFront );
+					pVertex[ i++ ] = Vector4<GLbyte>( x + 1, y + 1, z + 1, myFront );
+					
+					pTexture[ j++ ] = Vector2<GLfloat>( 1, 1 );
+					pTexture[ j++ ] = Vector2<GLfloat>( 0, 1 );
+					pTexture[ j++ ] = Vector2<GLfloat>( 1, 0 );
+					pTexture[ j++ ] = Vector2<GLfloat>( 1, 0 );
+					pTexture[ j++ ] = Vector2<GLfloat>( 0, 1 );
+					pTexture[ j++ ] = Vector2<GLfloat>( 0, 0 );
+					
+					merged = 0;
+				}
+				
+				visible = true;
+			}
+		}
+	}
+}
+
+void Chunk::NegativeZFace( Vector4<GLbyte> ( &pVertex )[ CHUNK_MEMORY_SIZE ], Vector2<float> ( &pTexture )[ CHUNK_MEMORY_SIZE ], int &i, int &j ) {
+	int merged = 0;
+	bool visible = false;
+	
+	for ( unsigned int x = 0; x < CHUNK_X; x++ ) {
+		for ( unsigned int z = 0; z < CHUNK_Z; z++ ) {
+			for ( unsigned int y = 0; y < CHUNK_Y; y++ ) {
+				if ( IsBlocked( x, y, z, x, y, z - 1 ) ) {
+					visible = false;
+					continue;
+				}
+				
+				uint8_t myBack = m_chunk[ x ][ y ][ z ].GetBack();
+				
+				if( visible && y != 0 && m_chunk[ x ][ y ][ z ].GetBack() == m_chunk[ x ][ y - 1 ][ z ].GetBack() ) {
+					pVertex[ i - 5 ] = Vector4<GLbyte>( x,     y + 1, z, myBack);
+					pVertex[ i - 3 ] = Vector4<GLbyte>( x,     y + 1, z, myBack);
+					pVertex[ i - 2 ] = Vector4<GLbyte>( x + 1, y + 1, z, myBack);
+					
+					pTexture[ j - 6 ] = Vector2<GLfloat>( 1, merged + 2 );
+					pTexture[ j - 4 ] = Vector2<GLfloat>( 0, merged + 2 );
+					pTexture[ j - 1 ] = Vector2<GLfloat>( 0, merged + 2 );
+					
+					merged++;
+				} else {
+					pVertex[ i++ ] = Vector4<GLbyte>( x,     y,     z, myBack );
+					pVertex[ i++ ] = Vector4<GLbyte>( x,     y + 1, z, myBack );
+					pVertex[ i++ ] = Vector4<GLbyte>( x + 1, y,     z, myBack );
+					pVertex[ i++ ] = Vector4<GLbyte>( x,     y + 1, z, myBack );
+					pVertex[ i++ ] = Vector4<GLbyte>( x + 1, y + 1, z, myBack );
+					pVertex[ i++ ] = Vector4<GLbyte>( x + 1, y,     z, myBack );
+					
+					pTexture[ j++ ] = Vector2<GLfloat>( 1, 1 );
+					pTexture[ j++ ] = Vector2<GLfloat>( 1, 0 );
+					pTexture[ j++ ] = Vector2<GLfloat>( 0, 1 );
+					pTexture[ j++ ] = Vector2<GLfloat>( 1, 0 );
+					pTexture[ j++ ] = Vector2<GLfloat>( 0, 0 );
+					pTexture[ j++ ] = Vector2<GLfloat>( 0, 1 );
+					
+					merged = 0;
+				}
+				
+				visible = true;
+			}
+		}
+	}
 }
 
 void Chunk::Set( int pX, int pY, int pZ, block_t pType ) {

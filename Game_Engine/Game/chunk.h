@@ -20,6 +20,8 @@
 #define CHUNK_Y 16
 #define CHUNK_Z 16
 
+#define CHUNK_MEMORY_SIZE ( CHUNK_X * CHUNK_Y * CHUNK_Z * 6 * 6 )
+
 #define TRANSPARENCY_BIT 48
 #define INITIALIZED_BIT 49
 
@@ -158,6 +160,13 @@ private:
 	
 	void Update();
 	bool IsBlocked( int pX1, int pY1, int pZ1, int pX2, int pY2, int pZ2 ) const;
+	
+	void PositiveXFace( Vector4<GLbyte> ( &pVertex )[ CHUNK_MEMORY_SIZE ], Vector2<float> ( &pTexture )[ CHUNK_MEMORY_SIZE ], int& i, int& j );
+	void NegativeXFace( Vector4<GLbyte> ( &pVertex )[ CHUNK_MEMORY_SIZE ], Vector2<float> ( &pTexture )[ CHUNK_MEMORY_SIZE ], int& i, int& j );
+	void PositiveYFace( Vector4<GLbyte> ( &pVertex )[ CHUNK_MEMORY_SIZE ], Vector2<float> ( &pTexture )[ CHUNK_MEMORY_SIZE ], int& i, int& j );
+	void NegativeYFace( Vector4<GLbyte> ( &pVertex )[ CHUNK_MEMORY_SIZE ], Vector2<float> ( &pTexture )[ CHUNK_MEMORY_SIZE ], int& i, int& j );
+	void PositiveZFace( Vector4<GLbyte> ( &pVertex )[ CHUNK_MEMORY_SIZE ], Vector2<float> ( &pTexture )[ CHUNK_MEMORY_SIZE ], int& i, int& j );
+	void NegativeZFace( Vector4<GLbyte> ( &pVertex )[ CHUNK_MEMORY_SIZE ], Vector2<float> ( &pTexture )[ CHUNK_MEMORY_SIZE ], int& i, int& j );
 	
 public:
 	Chunk();

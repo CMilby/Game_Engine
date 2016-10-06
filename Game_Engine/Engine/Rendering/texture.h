@@ -43,6 +43,17 @@ public:
     void Remove( const std::string &name );
 };
 
+class ArrayTextureAtlas {
+	
+private:
+	static std::map<std::string, unsigned int> s_textures;
+	
+public:
+	static unsigned int GetTexture( const std::string &pName );
+	
+	static void AddTexture( const std::string &pTextureName, unsigned int pLayer );
+};
+
 class Texture {
     
 private:

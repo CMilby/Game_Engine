@@ -29,6 +29,8 @@ std::map<std::string, GLuint> TextureAtlas::s_textureAtlas = std::map<std::strin
 GLuint Texture::s_lastBind = 0;
 TextureAtlas* Texture::s_textureAtlas = new TextureAtlas();
 
+std::map<std::string, unsigned int> ArrayTextureAtlas::s_textures = std::map<std::string, unsigned int>();
+
 TextureAtlas::TextureAtlas() {
     
 }
@@ -53,31 +55,17 @@ void TextureAtlas::Remove( const std::string &name ) {
     s_textureAtlas.erase( name );
 }
 
+void ArrayTextureAtlas::AddTexture( const std::string &pTextureName, unsigned int pLayer ) {
+	s_textures.insert( std::pair<std::string, unsigned int>( pTextureName, pLayer ) );
+}
+
+unsigned int ArrayTextureAtlas::GetTexture( const std::string &pName ) {
+	return s_textures[ pName ];
+}
+
 Texture::Texture( int width, int height, unsigned char *data, GLenum textureTarget, GLfloat filter ) {
     InitTexture( width, height, data, textureTarget, filter );
 }
-
-/*Texture::Texture( const std::string &file ) {
-    if ( s_textureAtlas->Contains( file ) ) {
-        m_freeTexture = false;
-        m_textureID = s_textureAtlas->Get( file );
-    } else {
-        int x;
-        int y;
-        int numComponenets;
-        unsigned char *data = stbi_load( ( Utility::DirectoryPath() + "Textures/" + file ).c_str(), &x, &y, &numComponenets, 4 );
-        
-        if ( data == NULL ) {
-            fprintf( stderr, ( "Error loading image\n" ) );
-            return;
-        }
-        
-        InitTexture( x, y, data, GL_TEXTURE_2D, GL_LINEAR );
-        stbi_image_free( data );
-        
-        s_textureAtlas->Add( file, m_textureID );
-    }
-}*/
 
 Texture::Texture( const std::string &pFile ) {
 	if ( s_textureAtlas->Contains( pFile ) ) {
@@ -175,6 +163,10 @@ Texture::Texture( const std::string &pFile ) {
 			data = stbi_load( filepath.c_str(), &x, &y, &numComponenets, 4 );
 			glTexSubImage3D( GL_TEXTURE_2D_ARRAY, 0, 0, 0, layer, width, height, 1, GL_RGBA, GL_UNSIGNED_BYTE, data );
 			stbi_image_free( data );
+			
+			std::string myName = filepath.substr( Utility::LastIndexOf( filepath, '/' ) + 1 );
+			myName = Utility::ToUpper( myName.substr( 0, myName.length() - 4 ) );
+			ArrayTextureAtlas::AddTexture( myName, layer );
 			
 			layer++;
 		}

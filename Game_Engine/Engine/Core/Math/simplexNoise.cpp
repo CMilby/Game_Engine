@@ -12,10 +12,12 @@
 
 SimplexNoise::SimplexNoise() {
 	m_random = new Random( rand() );
+	SetSeed();
 }
 
 SimplexNoise::SimplexNoise( int pSeed ) {
 	m_random = new Random( pSeed );
+	SetSeed();
 }
 
 SimplexNoise::~SimplexNoise() {
