@@ -37,7 +37,7 @@ int main( int argc, const char *argv[] ) {
 	WindowSystem *window = new WindowSystem( "Game" );
     InputSystem *input = InputSystem::GetInstance();
     EntitySystem *entity = new EntitySystem();
-	CameraSystem *camera = new CameraSystem( new CameraEntity( Vector3<float>( 0, 5, 5 ) ) );
+	CameraSystem *camera = new CameraSystem( new CameraEntity( Vector3<float>( 1000, 5, 1000 ) ) );
 	GameSystem *game = new Game();
     
     bus->AddSystem( coreEngine );
