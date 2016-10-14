@@ -27,6 +27,7 @@ private:
 public:
 	RenderableComponent();
 	RenderableComponent( Mesh *pMesh );
+	RenderableComponent( Mesh *p_mesh, const std::string &p_texture );
 	RenderableComponent( const std::string &pMesh, const std::string &pTexture );
 	virtual ~RenderableComponent();
 	

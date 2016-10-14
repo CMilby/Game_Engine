@@ -30,8 +30,8 @@ private:
 
 protected:
 	virtual void Init() {}
-	virtual void Input( float pDelta ) {}
-	virtual void Update( float pDelta ) {}
+	virtual void Input( float p_delta ) {}
+	virtual void Update( float p_delta ) {}
 	virtual void Render() {}
 	
 public:
@@ -39,8 +39,8 @@ public:
 	virtual ~Entity();
 	
 	void InitAll();
-	void InputAll( float pDelta );
-	void UpdateAll( float pDelta );
+	void InputAll( float p_delta );
+	void UpdateAll( float p_delta );
 	void RenderAll();
 	
 	Entity* AddChild( Entity *pChild );
@@ -68,6 +68,8 @@ public:
 	void RemoveComponent( ComponentType pType );
 	
 	inline std::vector<Entity*> GetChildren() const { return m_children; }
+	
+	Entity* GetChild( const EntityType &p_type ) const;
 };
 
 #endif /* entity_h */

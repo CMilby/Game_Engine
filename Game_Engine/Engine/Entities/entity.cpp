@@ -123,4 +123,13 @@ void Entity::RemoveComponent( ComponentType pType ) {
 	}
 }
 
+Entity* Entity::GetChild( const EntityType &p_type ) const {
+	for ( unsigned int i = 0; i < m_children.size(); i++ ) {
+		if ( m_children[ i ]->GetType() == p_type ) {
+			return m_children[ i ];
+		}
+	}
+	
+	return 0;
+}
 

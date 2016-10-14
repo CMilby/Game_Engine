@@ -28,7 +28,7 @@ Mesh::Mesh( const std::string &pFilename, bool pInstance ) : m_filename( pFilena
 	std::vector<Vector2<float>> myUVs;
 	std::vector<Vector3<float>> myNormals;
 	
-	LoadOBJ( Utility::DirectoryPath() + "Models/" + pFilename, myIndices, myVertices, myUVs, myNormals );
+	LoadOBJ( pFilename, myIndices, myVertices, myUVs, myNormals );
 	GenerateBuffers( myIndices, myVertices, myUVs, myNormals, pInstance );
 }
 
@@ -65,7 +65,7 @@ void Mesh::Render( int pInstances, const Matrix4<float>* pWVPMats, const Matrix4
 
 void Mesh::LoadOBJ( const std::string &pFilename, std::vector<unsigned short> &pIndices, std::vector<Vector3<float>> &pVertices, std::vector<Vector2<float>> &pUVs, std::vector<Vector3<float>> &pNormals ) {
 	Assimp::Importer importer;
-	const aiScene *scene = importer.ReadFile( pFilename.c_str(), aiProcess_Triangulate | aiProcess_GenSmoothNormals | aiProcess_FlipUVs | aiProcess_CalcTangentSpace );
+	const aiScene *scene = importer.ReadFile( ( Utility::DirectoryPath() + "Models/" + pFilename ).c_str(), aiProcess_Triangulate | aiProcess_GenSmoothNormals | aiProcess_FlipUVs | aiProcess_CalcTangentSpace );
 	
 	if ( !scene ) {
 		fprintf( stderr, "Cannot find mesh %s\n", pFilename.c_str() );

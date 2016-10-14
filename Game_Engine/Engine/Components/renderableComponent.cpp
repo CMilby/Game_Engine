@@ -25,6 +25,13 @@ RenderableComponent::RenderableComponent( Mesh *pMesh ) : Component( ComponentTy
 	m_isVisible = true;
 }
 
+RenderableComponent::RenderableComponent( Mesh *p_mesh, const std::string &p_texture ) : Component( ComponentType::RENDERABLE_COMPONENT ) {
+	m_mesh = p_mesh;
+	m_material = new Material( p_texture );;
+	m_shaderType = SHADER_BASIC;
+	m_isVisible = true;
+}
+
 RenderableComponent::RenderableComponent( const std::string &pMesh, const std::string &pTexture ) : Component( ComponentType::RENDERABLE_COMPONENT ) {
 	m_mesh = new Mesh( pMesh );
 	m_material = new Material( pTexture );

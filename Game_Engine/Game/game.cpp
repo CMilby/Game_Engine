@@ -11,26 +11,20 @@
 #include "entity.h"
 #include "renderableComponent.h"
 
-#include "superChunk.h"
+#include "plane.h"
+#include "world.h"
 
 Game::Game() {
 	
 }
 
 void Game::LoadGame() {
-	// AddToScene( ( new Entity( EntityType::ENTITY_GAME_OBJECT ) )->AddComponent( new RenderableComponent( "cube.obj", "test.png" ) ) );
+	// AddToScene( ( new Entity( EntityType::ENTITY_GAME_OBJECT ) )->AddComponent( new RenderableComponent( new Plane(), "test.png" ) ) );
+	// AddToScene( new Plane() );
+	// AddToScene( new Plane( 2, 2 ) );
 	
-	/*SuperChunk *chunk = new SuperChunk();
-	
-	block_t block( 5 );
-	block.SetTransparent( 1 );
-	
-	chunk->Set( 1, 1, 3, block );
-	chunk->Set( 1, 1, 2, block );
-	chunk->Set( 1, 1, 1, block );
-	chunk->Set( 1, 1, 0, block );
-	
-	AddToScene( chunk );*/
+	World *myWorld = new World();
+	AddToScene( myWorld );
 	
 	SendMessage( SYSTEM_ENTITY, Message( SYSTEM_GAME, MESSAGE_INIT ) );
 }
