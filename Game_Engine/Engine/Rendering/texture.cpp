@@ -1,16 +1,14 @@
 //
 //  texture.cpp
-//  Game_Engine
+//  Game_Engine_New
 //
-//  Created by Craig Milby on 10/21/15.
-//  Copyright © 2015 Craig Milby. All rights reserved.
+//  Created by Craig Milby on 10/15/16.
+//  Copyright © 2016 Craig Milby. All rights reserved.
 //
 
 #include "texture.h"
 
 #include <fstream>
-#include <iostream>
-#include <vector>
 
 #include <dirent.h>
 #include <unistd.h>
@@ -18,217 +16,161 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 
-#include <GLFW/glfw3.h>
-
+#include "file_utility.h"
 #include "stb_image.h"
-// #include "tileMap.h"
-#include "utility.h"
-
-std::map<std::string, GLuint> TextureAtlas::s_textureAtlas = std::map<std::string, GLuint>();
+#include "string_utility.h"
+#include "texture_resource.h"
 
 GLuint Texture::s_lastBind = 0;
-TextureAtlas* Texture::s_textureAtlas = new TextureAtlas();
 
-std::map<std::string, unsigned int> ArrayTextureAtlas::s_textures = std::map<std::string, unsigned int>();
-
-TextureAtlas::TextureAtlas() {
-    
-}
-
-TextureAtlas::~TextureAtlas() {
-	
-}
-
-void TextureAtlas::Add( const std::string &name, GLuint value ) {
-    s_textureAtlas.insert( std::pair<std::string, GLuint>( name, value ) );
-}
-
-bool TextureAtlas::Contains( const std::string &name ) const {
-    return s_textureAtlas.count( name ) == 1;
-}
-
-GLuint TextureAtlas::Get( const std::string &name ) const {
-    return s_textureAtlas[ name ];
-}
-
-void TextureAtlas::Remove( const std::string &name ) {
-    s_textureAtlas.erase( name );
-}
-
-void ArrayTextureAtlas::AddTexture( const std::string &pTextureName, unsigned int pLayer ) {
-	s_textures.insert( std::pair<std::string, unsigned int>( pTextureName, pLayer ) );
-}
-
-unsigned int ArrayTextureAtlas::GetTexture( const std::string &pName ) {
-	return s_textures[ pName ];
-}
-
-Texture::Texture( int width, int height, unsigned char *data, GLenum textureTarget, GLfloat filter ) {
-    InitTexture( width, height, data, textureTarget, filter );
-}
-
-Texture::Texture( const std::string &pFile ) {
-	if ( s_textureAtlas->Contains( pFile ) ) {
-		m_freeTexture = false;
-		m_textureID = s_textureAtlas->Get( pFile );
-		return;
-	}
-	
-	std::ifstream fin;
-	std::string dir = Utility::DirectoryPath() + "Textures/" + pFile;
-	std::string filepath;
-	
-	DIR *dp;
-	
-	struct dirent *dirp;
-	struct stat filestat;
-	
-	int x;
-	int y;
-	int numComponenets;
-	unsigned char *data;
-	
-	dp = opendir( dir.c_str() );
-	if ( dp == NULL ) {
-		data = stbi_load( ( Utility::DirectoryPath() + "Textures/" + pFile ).c_str(), &x, &y, &numComponenets, 4 );
-		
-		if ( data == NULL ) {
-			fprintf( stderr, ( "Error loading image\n" ) );
-			return;
-		}
-		
-		InitTexture( x, y, data, GL_TEXTURE_2D, GL_LINEAR );
-		stbi_image_free( data );
-		
-		s_textureAtlas->Add( pFile, m_textureID );
-	} else {
-		int numTextures = 0;
-		
-		int width = 64;
-		int height = 64;
-		
-		bool read = true;
-		
-		while ( ( dirp = readdir( dp ) ) ) {
-			filepath = dir + "/" + dirp->d_name;
-			
-			if ( stat( filepath.c_str(), &filestat ) ) {
-				continue;
-			}
-			
-			if ( S_ISDIR( filestat.st_mode ) ) {
-				continue;
-			}
-			
-			if ( !Utility::EndsWith( filepath, ".png" ) ) {
-				continue;
-			}
-			
-			if ( read ) {
-				data = stbi_load( filepath.c_str(), &x, &y, &numComponenets, 4 );
-				stbi_image_free( data );
-				
-				width = x;
-				height = y;
-				
-				read = false;
-			}
-			
-			numTextures++;
-		}
-		
-		closedir( dp );
-		dp = opendir( dir.c_str() );
-		
-		glGenTextures( 1, &m_textureID );
-		glBindTexture( GL_TEXTURE_2D_ARRAY, m_textureID );
-		glTexStorage3D( GL_TEXTURE_2D_ARRAY, 1, GL_RGBA8, width, height, numTextures );
-		
-		int layer = 0;
-		while ( ( dirp = readdir( dp ) ) ) {
-			filepath = dir + "/" + dirp->d_name;
-			
-			if ( stat( filepath.c_str(), &filestat ) ) {
-				continue;
-			}
-			
-			if ( S_ISDIR( filestat.st_mode ) ) {
-				continue;
-			}
-			
-			if ( !Utility::EndsWith( filepath, ".png" ) ) {
-				continue;
-			}
-			
-			data = stbi_load( filepath.c_str(), &x, &y, &numComponenets, 4 );
-			glTexSubImage3D( GL_TEXTURE_2D_ARRAY, 0, 0, 0, layer, width, height, 1, GL_RGBA, GL_UNSIGNED_BYTE, data );
-			stbi_image_free( data );
-			
-			std::string myName = filepath.substr( Utility::LastIndexOf( filepath, '/' ) + 1 );
-			myName = Utility::ToUpper( myName.substr( 0, myName.length() - 4 ) );
-			ArrayTextureAtlas::AddTexture( myName, layer );
-			
-			layer++;
-		}
-		
-		closedir( dp );
-		
-		glTexParameteri( GL_TEXTURE_2D_ARRAY, GL_TEXTURE_WRAP_S, GL_REPEAT );
-		glTexParameteri( GL_TEXTURE_2D_ARRAY, GL_TEXTURE_WRAP_T, GL_REPEAT );
-		glTexParameteri( GL_TEXTURE_2D_ARRAY, GL_TEXTURE_MIN_FILTER, GL_NEAREST );
-		glTexParameteri( GL_TEXTURE_2D_ARRAY, GL_TEXTURE_MAG_FILTER, GL_NEAREST );
-		
-		s_textureAtlas->Add( pFile, m_textureID );
-	}
-}
-
-Texture::Texture( int width, int height, float data[] ) {
-	glGenTextures( 1, &m_textureID );
-	glBindTexture( GL_TEXTURE_2D, m_textureID );
-	glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST );
-	glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST );
-	glTexImage2D( GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_FLOAT, data );
-}
-
-void Texture::InitTexture( int width, int height, unsigned char *data, GLenum textureTarget, GLfloat filter ) {
-    m_freeTexture = true;
-    
-    if ( width > 0 && height > 0 ) {
-        glGenTextures( 1, &m_textureID );
-        glBindTexture( textureTarget, m_textureID );
-        glTexParameterf( textureTarget, GL_TEXTURE_MIN_FILTER, filter );
-        glTexParameterf( textureTarget, GL_TEXTURE_MAG_FILTER, filter );
-        glTexImage2D( textureTarget, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data );
-    } else {
-        m_textureID = 0;
+Texture::Texture( const std::string &p_file ) {
+    if ( TextureResource::ContainsTexture( p_file ) ) {
+        m_id = TextureResource::GetTexture( p_file );
+        return;
     }
+    
+    std::ifstream fin;
+    std::string dir = FileUtility::GetTextureDirectory() + p_file;
+    std::string filepath;
+    
+    DIR *dp;
+    
+    struct dirent *dirp;
+    struct stat filestat;
+    
+    int x;
+    int y;
+    int numComponenets;
+    unsigned char *data;
+    
+    dp = opendir( dir.c_str() );
+    if ( dp == NULL ) {
+        data = stbi_load( ( FileUtility::GetTextureDirectory() + p_file ).c_str(), &x, &y, &numComponenets, 4 );
+        
+        if ( data == NULL ) {
+            fprintf( stderr, ( "Error loading image\n" ) );
+            return;
+        }
+        
+        InitTexture( x, y, data, GL_TEXTURE_2D, GL_LINEAR );
+        stbi_image_free( data );
+        
+        TextureResource::AddTexture( p_file, m_id );
+    } else {
+        int numTextures = 0;
+        
+        int width = 64;
+        int height = 64;
+        
+        bool read = true;
+        
+        while ( ( dirp = readdir( dp ) ) ) {
+            filepath = dir + "/" + dirp->d_name;
+            
+            if ( stat( filepath.c_str(), &filestat ) ) {
+                continue;
+            }
+            
+            if ( S_ISDIR( filestat.st_mode ) ) {
+                continue;
+            }
+            
+            if ( !StringUtility::EndsWith( filepath, ".png" ) ) {
+                continue;
+            }
+            
+            if ( read ) {
+                data = stbi_load( filepath.c_str(), &x, &y, &numComponenets, 4 );
+                stbi_image_free( data );
+                
+                width = x;
+                height = y;
+                
+                read = false;
+            }
+            
+            numTextures++;
+        }
+        
+        closedir( dp );
+        dp = opendir( dir.c_str() );
+        
+        glGenTextures( 1, &m_id );
+        glBindTexture( GL_TEXTURE_2D_ARRAY, m_id );
+        glTexStorage3D( GL_TEXTURE_2D_ARRAY, 1, GL_RGBA8, width, height, numTextures );
+        
+        int layer = 0;
+        while ( ( dirp = readdir( dp ) ) ) {
+            filepath = dir + "/" + dirp->d_name;
+            
+            if ( stat( filepath.c_str(), &filestat ) ) {
+                continue;
+            }
+            
+            if ( S_ISDIR( filestat.st_mode ) ) {
+                continue;
+            }
+            
+            if ( !StringUtility::EndsWith( filepath, ".png" ) ) {
+                continue;
+            }
+            
+            data = stbi_load( filepath.c_str(), &x, &y, &numComponenets, 4 );
+            glTexSubImage3D( GL_TEXTURE_2D_ARRAY, 0, 0, 0, layer, width, height, 1, GL_RGBA, GL_UNSIGNED_BYTE, data );
+            stbi_image_free( data );
+            
+            std::string myName = filepath.substr( StringUtility::LastIndexOf( filepath, '/' ) + 1 );
+            myName = StringUtility::ToUpper( myName.substr( 0, myName.length() - 4 ) );
+            ArrayTextureResource::AddTexture( myName, layer );
+            
+            layer++;
+        }
+        
+        closedir( dp );
+        
+        glTexParameteri( GL_TEXTURE_2D_ARRAY, GL_TEXTURE_WRAP_S, GL_REPEAT );
+        glTexParameteri( GL_TEXTURE_2D_ARRAY, GL_TEXTURE_WRAP_T, GL_REPEAT );
+        glTexParameteri( GL_TEXTURE_2D_ARRAY, GL_TEXTURE_MIN_FILTER, GL_NEAREST );
+        glTexParameteri( GL_TEXTURE_2D_ARRAY, GL_TEXTURE_MAG_FILTER, GL_NEAREST );
+        
+        TextureResource::AddTexture( p_file, m_id );
+    }
+}
+
+Texture::Texture( unsigned int p_width, unsigned int p_height, float p_data[] ) {
+    glGenTextures( 1, &m_id );
+    glBindTexture( GL_TEXTURE_2D, m_id );
+    glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST );
+    glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST );
+    glTexImage2D( GL_TEXTURE_2D, 0, GL_RGBA, p_width, p_height, 0, GL_RGBA, GL_FLOAT, p_data );
 }
 
 Texture::~Texture() {
-    if ( m_freeTexture ) {
-        glDeleteTextures( 1, &m_textureID );
+    if ( m_id != 0 ) {
+        glDeleteTextures( 1, &m_id );
     }
 }
 
-void Texture::Bind( GLenum pTextureUnit, GLenum pTextureType ) const {
-    if ( s_lastBind != m_textureID ) {
-        glActiveTexture( pTextureUnit );
-        glBindTexture( pTextureType, m_textureID );
-        s_lastBind = m_textureID;
+void Texture::Bind( GLenum p_textureUint, GLenum p_textureType ) const {
+    if ( s_lastBind != m_id ) {
+        glActiveTexture( p_textureUint );
+        glBindTexture( p_textureType, m_id );
+        s_lastBind = m_id;
     }
 }
 
-Texture::Texture( Texture &texture ) {
-    m_textureID = texture.m_textureID;
-    m_freeTexture = true;
-    texture.m_freeTexture = false;
+void Texture::InitTexture( int p_width, int p_height, unsigned char *p_data, GLenum p_textureTarget, GLfloat p_filter ) {
+    if ( p_width > 0 && p_height > 0 ) {
+        glGenTextures( 1, &m_id );
+        glBindTexture( p_textureTarget, m_id );
+        glTexParameterf( p_textureTarget, GL_TEXTURE_MIN_FILTER, p_filter );
+        glTexParameterf( p_textureTarget, GL_TEXTURE_MAG_FILTER, p_filter );
+        glTexImage2D( p_textureTarget, 0, GL_RGBA, p_width, p_height, 0, GL_RGBA, GL_UNSIGNED_BYTE, p_data );
+    } else {
+        m_id = 0;
+    }
 }
 
-void Texture::operator=( Texture &texture ) {
-    m_textureID = texture.m_textureID;
-    m_freeTexture = true;
-    texture.m_freeTexture = false;
-}
 
 
 

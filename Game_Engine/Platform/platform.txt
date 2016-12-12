@@ -1,0 +1,16 @@
+Platform Independant Layer
+======
+This will seperate operating systems and allow us
+to add functionality for new systems
+
+Contains:
+====
+Platform Detection - Done
+Atomic Data Types
+Collections & Algorithms
+File Systems - Done
+Networking Layer
+Hi-Res Timer - Done
+Threading - C++ Implemented
+Graphics Wrappers
+Physics Wrappers

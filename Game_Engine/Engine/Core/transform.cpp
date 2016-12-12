@@ -1,8 +1,8 @@
 //
 //  transform.cpp
-//  Game_Engine_Test
+//  Game_Engine_New
 //
-//  Created by Craig Milby on 3/3/16.
+//  Created by Craig Milby on 10/15/16.
 //  Copyright © 2016 Craig Milby. All rights reserved.
 //
 
@@ -10,32 +10,21 @@
 
 #include "config.h"
 
-Matrix4<float> Transform::s_projection = Matrix4<float>().Perspective( Config::GetFOV(), Config::GetAspectRatio(), Config::GetZNear(), Config::GetZFar() );
-Matrix4<float> Transform::s_ortho = Matrix4<float>().Ortho( 0.0f, Config::GetScreenWidth(), Config::GetScreenHeight(), 0.0f, Config::GetZNear(), Config::GetZFar() );
+Matrix4f Transform::s_projection = Matrix4<float>().Perspective( Config::GetFOV(), Config::GetAspectRatio(), Config::GetZNear(), Config::GetZFar() );
+Matrix4f Transform::s_ortho = Matrix4<float>().Ortho( 0.0f, Config::GetScreenWidth(), Config::GetScreenHeight(), 0.0f, Config::GetZNear(), Config::GetZFar() );
 
-Transform::Transform( const Vector3<float> &position, const Vector3<float> &scale, const Quaternion &rotation ) {
-	m_position = position;
-	m_scale = scale;
-	m_rotation = rotation;
+Matrix4f Transform::GetModelMatrix() const {
+    return Matrix4f().Transform( m_position ) * m_rotation.ToRotationMatrix() * Matrix4f().InitScale( m_scale );
 }
 
-Matrix4<float> Transform::GetModelMatrix() const {
-	return Matrix4<float>().Transform( m_position ) * m_rotation.ToRotationMatrix() * Matrix4<float>().InitScale( m_scale );
+void Transform::Move( const Vector3f &p_direction, float p_amount ) {
+    SetPosition( GetPosition() + ( p_direction * p_amount ) );
 }
 
-void Transform::Move( const Vector3<float> &direction, float amount ) {
-	SetPosition( GetPosition() + ( direction * amount ) );
+void Transform::Rotate( const Quaternion &p_quat ) {
+    m_rotation = Quaternion( ( m_rotation * p_quat ).Normalized() );
 }
 
-void Transform::Rotate( const Quaternion &quat ) {
-	m_rotation = Quaternion( ( m_rotation * quat ).Normalized() );
+void Transform::Rotate( const Vector3f &p_axis, float p_angle ) {
+    Rotate( Quaternion( p_axis, p_angle ) );
 }
-
-void Transform::Rotate( const Vector3<float> &axis, float angle ) {
-	Rotate( Quaternion( axis, angle ) );
-}
-
-
-
-
-

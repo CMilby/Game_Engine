@@ -1,9 +1,9 @@
 //
 //  lighting.h
-//  Game_Engine
+//  Game_Engine_New
 //
-//  Created by Craig Milby on 11/26/15.
-//  Copyright © 2015 Craig Milby. All rights reserved.
+//  Created by Craig Milby on 10/15/16.
+//  Copyright © 2016 Craig Milby. All rights reserved.
 //
 
 #ifndef __LIGHTING_H__
@@ -12,22 +12,22 @@
 #include "math3d.h"
 
 struct BaseLight {
-    Vector3<float> m_color;
+    Vector3f m_color;
     float m_intensity;
     
-    BaseLight( const Vector3<float> &color = Vector3<float>( 0.0f, 0.0f, 0.0f ), float intensity = 0.5f ) {
-        m_color = color;
-        m_intensity = intensity;
+    BaseLight( const Vector3f &p_color = Vector3f( 0.0f, 0.0f, 0.0f ), float p_intensity = 0.5f ) {
+        m_color = p_color;
+        m_intensity = p_intensity;
     }
 };
 
 struct DirectionalLight {
     BaseLight m_baseLight;
-    Vector3<float> m_direction;
+    Vector3f m_direction;
     
-    DirectionalLight( const BaseLight &baseLight = BaseLight(), const Vector3<float> &direction = Vector3<float>( 0.0f, 0.0f, -1.0f ) ) {
-        m_baseLight = baseLight;
-        m_direction = direction;
+    DirectionalLight( const BaseLight &p_baseLight = BaseLight(), const Vector3f &p_direction = Vector3f( 0.0f, 0.0f, -1.0f ) ) {
+        m_baseLight = p_baseLight;
+        m_direction = p_direction;
     }
 };
 
@@ -36,36 +36,36 @@ struct Attenuation {
     float m_linear;
     float m_exponent;
     
-    Attenuation( float constant = 0.0f, float linear = 0.0f, float exponent = 1.0f ) {
-        m_constant = constant;
-        m_linear = linear;
-        m_exponent = exponent;
+    Attenuation( float p_constant = 0.0f, float p_linear = 0.0f, float p_exponent = 1.0f ) {
+        m_constant = p_constant;
+        m_linear = p_linear;
+        m_exponent = p_exponent;
     }
 };
 
 struct PointLight {
     BaseLight m_baseLight;
     Attenuation m_atten;
-    Vector3<float> m_position;
+    Vector3f m_position;
     float m_range;
     
-    PointLight( const BaseLight &baseLight = BaseLight(), const Attenuation &atten = Attenuation(), const Vector3<float> &position = Vector3<float>( 0.0f, 0.0f, 0.0f ), float range = 10.0f ) {
-        m_baseLight = baseLight;
-        m_atten = atten;
-        m_position = position;
-        m_range = range;
+    PointLight( const BaseLight &p_baseLight = BaseLight(), const Attenuation &p_atten = Attenuation(), const Vector3f &p_position = Vector3f( 0.0f, 0.0f, 0.0f ), float p_range = 10.0f ) {
+        m_baseLight = p_baseLight;
+        m_atten = p_atten;
+        m_position = p_position;
+        m_range = p_range;
     }
 };
 
 struct SpotLight {
     PointLight m_pointLight;
-    Vector3<float> m_direction;
+    Vector3f m_direction;
     float m_cutoff;
     
-    SpotLight( const PointLight &pointLight = PointLight(), const Vector3<float> &direction = Vector3<float>( 0.0, 0.0, -1.0f ), float cutoff = 10.0f ) {
-        m_pointLight = pointLight;
-        m_direction = direction;
-        m_cutoff = cutoff;
+    SpotLight( const PointLight &p_pointLight = PointLight(), const Vector3f &p_direction = Vector3f( 0.0, 0.0, -1.0f ), float p_cutoff = 10.0f ) {
+        m_pointLight = p_pointLight;
+        m_direction = p_direction;
+        m_cutoff = p_cutoff;
     }
 };
 

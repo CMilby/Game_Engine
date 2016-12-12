@@ -1,24 +1,33 @@
 //
-//  game.h
-//  Game_Engine
+//  game.hpp
+//  Game_Engine_New
 //
-//  Created by Craig Milby on 3/4/16.
+//  Created by Craig Milby on 10/16/16.
 //  Copyright © 2016 Craig Milby. All rights reserved.
 //
 
-#ifndef __TEST_GAME_H__
-#define __TEST_GAME_H__
+#ifndef __GAME_H__
+#define __GAME_H__
 
-#include "gameSystem.h"
+#include "entity.h"
 
-class Game : public GameSystem {
-	
+class Game {
+    
 private:
-	
+    Entity *m_root;
+    Entity *m_camera;
+    
+protected:
+    void AddToScene( Entity *p_entity );
+    void SetCamera( Entity *p_camera );
+    
 public:
-	Game();
-	
-	virtual void LoadGame();
+    Game();
+    virtual ~Game();
+
+    virtual void Init();
+    
+    inline Entity* GetCamera() const { return m_camera; }
 };
 
-#endif /* game_h */
+#endif /* game_hpp */

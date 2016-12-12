@@ -1,57 +1,70 @@
 //
 //  main.cpp
-//  Game_Engine
+//  Game_Engine_New
 //
-//  Created by Craig Milby on 10/12/15.
-//  Copyright © 2015 Craig Milby. All rights reserved.
+//  Created by Craig Milby on 10/14/16.
+//  Copyright © 2016 Craig Milby. All rights reserved.
 //
 
-#include <cstdio>
+#include <iostream>
+#include <map>
 
-// Systems
-#include "cameraSystem.h"
-#include "coreEngineSystem.h"
-#include "entitySystem.h"
-#include "gameSystem.h"
-#include "inputSystem.h"
-#include "messageBus.h"
-#include "physicsEngineSystem.h"
-#include "renderingSystem.h"
-#include "windowSystem.h"
+// Architecture Reference
+// http://i.stack.imgur.com/jaKUP.png
 
-// Load Systems
-#include "config.h"
-#include "configLoader.h"
+#include "core_engine.h"
 
-// Game
-#include "cameraEntity.h"
-#include "game.h"
+#include "fl_fm_component.h"
+#include "render_component.h"
+
+#include "planet.h"
+
+class TestGame : public Game {
+    
+private:
+    
+public:
+    TestGame();
+    
+    virtual void Init();
+    
+private:
+    
+};
+
+TestGame::TestGame() {
+    
+}
+
+void TestGame::Init() {
+    Entity *camera = new Entity( Vector3f( 0, 5, 15 ) );
+    camera->AddComponent( new FreeLookFreeMoveComponent() );
+    SetCamera( camera );
+    
+    Planet *planet = new Planet( 1238, 4, 10.0f, 30 );
+    
+    Entity *entity = new Entity();
+    RenderComponent* render = new RenderComponent( planet->CreateMesh() );
+    render->SetShaderType( ShaderType::SHADER_COLORIZED );
+    entity->AddComponent( render );
+    AddToScene( entity );
+    
+    // Entity* cube = new Entity();
+    // cube->AddComponent( new RenderComponent( "cube.obj", "test.png" ) );
+    // AddToScene( cube );
+}
 
 int main( int argc, const char *argv[] ) {
-	ConfigLoader::GetInstance().LoadConfigFile();
-	MessageBus *bus = MessageBus::GetInstance();
+    Window *window = new Window( "Test" );
+    CoreEngine *engine = new CoreEngine( window, new TestGame() );
     
-    CoreEngineSystem *coreEngine = new CoreEngineSystem();
-    RenderingSystem *renderingEngine = new RenderingSystem();
-	PhysicsEngineSystem *physicsEngine = new PhysicsEngineSystem();
-	WindowSystem *window = new WindowSystem( "Game" );
-    InputSystem *input = InputSystem::GetInstance();
-    EntitySystem *entity = new EntitySystem();
-	CameraSystem *camera = new CameraSystem( new CameraEntity( Vector3<float>( 1000, 5, 1000 ) ) );
-	GameSystem *game = new Game();
+    engine->Init();
+    engine->Start();
     
-    bus->AddSystem( coreEngine );
-    bus->AddSystem( renderingEngine );
-	bus->AddSystem( physicsEngine );
-    bus->AddSystem( window );
-    bus->AddSystem( input );
-    bus->AddSystem( entity );
-    bus->AddSystem( camera );
-	bus->AddSystem( game );
-	
-    bus->Init();
-    bus->PostMessage( SYSTEM_CORE_ENGINE, Message( SYSTEM_MESSAGE_BUS, MESSAGE_CORE_ENGINE_START ) );
+    return 0;
 }
+
+
 
 
 

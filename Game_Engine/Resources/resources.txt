@@ -1,0 +1,16 @@
+Resources
+======
+This is where all resource management code
+is done and handled
+
+Contains
+===
+Mesh Resources
+Texture Resources
+Material Resources
+Font Resources
+Collision Resources
+Physics Parameters
+Game Resources
+System Resources
+Shader Resources

@@ -1,30 +1,33 @@
 //
 //  game.cpp
-//  Game_Engine
+//  Game_Engine_New
 //
-//  Created by Craig Milby on 3/4/16.
+//  Created by Craig Milby on 10/16/16.
 //  Copyright © 2016 Craig Milby. All rights reserved.
 //
 
 #include "game.h"
 
-#include "entity.h"
-#include "renderableComponent.h"
-
-#include "plane.h"
-#include "world.h"
-
 Game::Game() {
-	
+    m_root = new Entity();
 }
 
-void Game::LoadGame() {
-	// AddToScene( ( new Entity( EntityType::ENTITY_GAME_OBJECT ) )->AddComponent( new RenderableComponent( new Plane(), "test.png" ) ) );
-	// AddToScene( new Plane() );
-	// AddToScene( new Plane( 2, 2 ) );
-	
-	World *myWorld = new World();
-	AddToScene( myWorld );
-	
-	SendMessage( SYSTEM_ENTITY, Message( SYSTEM_GAME, MESSAGE_INIT ) );
+Game::~Game() {
+    if ( m_root != 0 ) {
+        delete m_root;
+        m_root = 0;
+    }
+}
+
+void Game::Init() {
+    
+}
+
+void Game::AddToScene( Entity *p_entity ) {
+    m_root->AddChild( p_entity );
+}
+
+void Game::SetCamera( Entity *p_camera ) {
+    m_root->AddChild( p_camera );
+    m_camera = p_camera;
 }

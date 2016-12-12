@@ -1,0 +1,21 @@
+Core Systems
+======
+This is all the core systems that do not
+relate to one specific game but all systems
+
+Contains
+===
+Module Startup and Shutdown
+Assertions
+Unit Testing
+Memory Allocation
+Math Library - Done
+Strings and Hashing - Done
+Debug and Logging - Done
+Localization
+Parsers
+Profilers
+Config - Done
+Random Numbers - Done
+Object Handles & Unique IDs
+File IO

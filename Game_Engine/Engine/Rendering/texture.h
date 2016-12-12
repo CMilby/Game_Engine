@@ -1,82 +1,38 @@
 //
 //  texture.h
-//  Game_Engine
+//  Game_Engine_New
 //
-//  Created by Craig Milby on 10/21/15.
-//  Copyright © 2015 Craig Milby. All rights reserved.
+//  Created by Craig Milby on 10/15/16.
+//  Copyright © 2016 Craig Milby. All rights reserved.
 //
 
 #ifndef __TEXTURE_H__
 #define __TEXTURE_H__
 
-#include <map>
 #include <string>
 
 #include <GL/glew.h>
-
-/*
- 
- 
- 
- I need to convert this to use a framework
- so there is no OpenGL calls here
- 
- 
- */
-
-#define MAX_TEXTURES 256
-
-class TextureAtlas {
-    
-private:
-    static std::map<std::string, GLuint> s_textureAtlas;
-    
-public:
-    TextureAtlas();
-    virtual ~TextureAtlas();
-    
-    void Add( const std::string &name, GLuint value );
-    
-    bool Contains( const std::string &name ) const;
-    GLuint Get( const std::string &name ) const;
-    
-    void Remove( const std::string &name );
-};
-
-class ArrayTextureAtlas {
-	
-private:
-	static std::map<std::string, unsigned int> s_textures;
-	
-public:
-	static unsigned int GetTexture( const std::string &pName );
-	
-	static void AddTexture( const std::string &pTextureName, unsigned int pLayer );
-};
 
 class Texture {
     
 private:
     static GLuint s_lastBind;
-    static TextureAtlas *s_textureAtlas;
     
-    GLuint m_textureID;
-    bool m_freeTexture;
-    
-    Texture( int width = 0, int height = 0, unsigned char *data = 0, GLenum textureTarget = GL_TEXTURE_2D, GLfloat filter = GL_LINEAR );
-    void InitTexture( int width, int height, unsigned char *data, GLenum textureTarget, GLfloat filter );
+    GLuint m_id;
     
 public:
-	Texture();
-    Texture( const std::string &pFile );
-    Texture( int width, int height, float data[] );
+    Texture( const std::string &p_file );
+    Texture( unsigned int p_width, unsigned int p_height, float p_data[] );
     virtual ~Texture();
     
-    void Bind( GLenum textureUint = GL_TEXTURE0, GLenum pTextureType = GL_TEXTURE_2D ) const;
-    Texture( Texture &texture );
-    void operator=( Texture &texture );
+    void Bind( GLenum p_textureUint = GL_TEXTURE0, GLenum p_textureType = GL_TEXTURE_2D ) const;
     
-    inline GLuint GetID() const { return m_textureID; }
+    void operator=( const Texture &p_texture ) {
+        m_id = p_texture.m_id;
+    }
+
+private:
+    void InitTexture( int p_width, int p_height, unsigned char *p_data, GLenum p_textureTarget, GLfloat p_filter );
 };
 
 #endif /* texture_h */

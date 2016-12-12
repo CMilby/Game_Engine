@@ -1,0 +1,5 @@
+Framework is all 3rd party SDKs
+======
+We split these into their own files so that we can
+easily switch out libraries without having to
+change high-level code

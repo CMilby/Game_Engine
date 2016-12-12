@@ -1,8 +1,8 @@
 //
 //  transform.h
-//  Game_Engine_Test
+//  Game_Engine_New
 //
-//  Created by Craig Milby on 3/3/16.
+//  Created by Craig Milby on 10/15/16.
 //  Copyright © 2016 Craig Milby. All rights reserved.
 //
 
@@ -12,51 +12,42 @@
 #include "math3d.h"
 
 class Transform {
-	
+    
 private:
-	static Matrix4<float> s_projection;
-	static Matrix4<float> s_ortho;
-	
-	Vector3<float> m_position;
-	Vector3<float> m_scale;
-	Quaternion m_rotation;
-	
+    static Matrix4f s_projection;
+    static Matrix4f s_ortho;
+    
+    Vector3f m_position;
+    Vector3f m_scale;
+    Quaternion m_rotation;
+    
 public:
-	Transform( const Vector3<float> &position = Vector3<float>( 0.0f, 0.0f, 0.0f ), const Vector3<float> &scale = Vector3<float>( 1.0f, 1.0f, 1.0f ), const Quaternion &rotation = Quaternion() );
-	
-	inline Vector3<float> GetPosition() const { return m_position; }
-	inline Vector3<float> GetScale() const { return m_scale; }
-	inline Quaternion GetRotation() const { return m_rotation; }
-	
-	inline void SetPosition( const Vector3<float> &position ) { m_position = position; }
-	inline void SetScale ( const Vector3<float> &scale ) { m_scale = scale; }
-	inline void SetRotation( const Quaternion &rotation ) { m_rotation = rotation; }
-	
-	Matrix4<float> GetModelMatrix() const;
-	
-	void Move( const Vector3<float> &direction, float amount );
-	void Rotate( const Quaternion &quat );
-	void Rotate( const Vector3<float> &axis, float angle );
-	
-	static void SetPerspectiveProjection( const Matrix4<float> &projection ) { s_projection = projection; }
-	static void SetPerspectiveProjection( float fov, float aspectRatio, float zNear, float zFar ) { SetPerspectiveProjection( Matrix4<float>().Perspective( fov, aspectRatio, zNear, zFar ) );
-	}
-	
-	static void SetOrthographicProjection( const Matrix4<float> &pOrtho ) { s_ortho = pOrtho; }
-	static void SetOrthographicProjection( const float pLeft, const float pRight, const float pTop, const float pBottom, const float pZNear, const float pZFar ) {
-		SetOrthographicProjection( Matrix4<float>().Ortho( pLeft, pRight, pTop, pBottom, pZNear, pZFar ) );
-	}
-	
-	static Matrix4<float> GetProjection() { return s_projection; }
+    Transform( const Vector3f &p_position = Vector3f( 0.0f, 0.0f, 0.0f ), const Vector3f &p_scale = Vector3f( 1.0f, 1.0f, 1.0f ), const Quaternion &p_rotation = Quaternion() ) : m_position( p_position ), m_scale( p_scale ), m_rotation( p_rotation ) {}
+    
+    inline Vector3<float> GetPosition() const { return m_position; }
+    inline Vector3<float> GetScale() const { return m_scale; }
+    inline Quaternion GetRotation() const { return m_rotation; }
+    
+    inline void SetPosition( const Vector3f &p_position ) { m_position = p_position; }
+    inline void SetScale ( const Vector3f &p_scale ) { m_scale = p_scale; }
+    inline void SetRotation( const Quaternion &p_rotation ) { m_rotation = p_rotation; }
+    
+    Matrix4<float> GetModelMatrix() const;
+    
+    void Move( const Vector3f &p_direction, float p_amount );
+    void Rotate( const Quaternion &p_quat );
+    void Rotate( const Vector3f &p_axis, float p_angle );
+    
+    static void SetPerspectiveProjection( const Matrix4f &p_projection ) { s_projection = p_projection; }
+    static void SetPerspectiveProjection( const float p_fov, const float p_aspectRatio, const float p_zNear, const float p_zFar ) { SetPerspectiveProjection( Matrix4f().Perspective( p_fov, p_aspectRatio, p_zNear, p_zFar ) );
+    }
+    
+    static void SetOrthographicProjection( const Matrix4f &p_ortho ) { s_ortho = p_ortho; }
+    static void SetOrthographicProjection( const float p_left, const float p_right, const float p_top, const float p_bottom, const float p_zNear, const float p_zFar ) {
+        SetOrthographicProjection( Matrix4f().Ortho( p_left, p_right, p_top, p_bottom, p_zNear, p_zFar ) );
+    }
+    
+    static Matrix4f GetProjection() { return s_projection; }
 };
 
 #endif /* transform_h */
-
-
-
-
-
-
-
-
-
