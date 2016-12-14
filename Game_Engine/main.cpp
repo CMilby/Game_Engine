@@ -15,6 +15,7 @@
 #include "core_engine.h"
 
 #include "fl_fm_component.h"
+#include "planet_color_component.h"
 #include "render_component.h"
 
 #include "planet.h"
@@ -47,6 +48,7 @@ void TestGame::Init() {
     RenderComponent* render = new RenderComponent( planet->CreateMesh() );
     render->SetShaderType( ShaderType::SHADER_COLORIZED );
     entity->AddComponent( render );
+	entity->AddComponent( new PlanetColorComponent( planet ) );
     AddToScene( entity );
     
     // Entity* cube = new Entity();

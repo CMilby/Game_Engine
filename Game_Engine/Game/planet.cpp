@@ -580,6 +580,12 @@ void Planet::CreatePlates( unsigned int p_numPlates, const std::vector<Hex*> &p_
             } while ( true );
         }
     } while ( !unusedHexes.empty() );
+	
+	for ( unsigned int i = 0; i < plates.size(); i++ ) {
+		p_plates.push_back( plates[ i ] );
+	}
+	
+	std::cout << "here";
 }
 
 void Planet::CalculateStress( std::vector<Plate*> &p_plates ) {
@@ -643,17 +649,56 @@ void Planet::ColorizePlateTypes( std::vector<Vector3f> &p_colors, const std::vec
 }
 
 void Planet::ColorizeStressVector( std::vector<Vector3f> &p_colors, const std::vector<Hex *> &p_hexes ) {
+	float max = ( p_hexes[ 0 ]->m_stress.GetX() + p_hexes[ 0 ]->m_stress.GetY() + p_hexes[ 0 ]->m_stress.GetZ() );
+	float min = ( p_hexes[ 0 ]->m_stress.GetX() + p_hexes[ 0 ]->m_stress.GetY() + p_hexes[ 0 ]->m_stress.GetZ() );;
+	for ( unsigned int i = 1; i < p_hexes.size(); i++ ) {
+		float value = ( p_hexes[ i ]->m_stress.GetX() + p_hexes[ i ]->m_stress.GetY() + p_hexes[ i ]->m_stress.GetZ() );
+		if ( value > max ) {
+			max = value;
+		}
+		
+		if ( value < min ) {
+			min = value;
+		}
+	}
+	
 	for ( unsigned int i = 0; i < p_hexes.size(); i++ ) {
 		if ( p_hexes[ i ]->m_stress.GetX() != 0 && p_hexes[ i ]->m_stress.GetY() != 0 && p_hexes[ i ]->m_stress.GetZ() != 0 ) {
 			float x = p_hexes[ i ]->m_stress.GetX();
 			float y = p_hexes[ i ]->m_stress.GetY();
 			float z = p_hexes[ i ]->m_stress.GetZ();
 	
-			p_hexes[ i ]->m_color = Vector3f( Math3D::Scale( ( x + y + z ), 0.4f, 1.0, -3, 3 ), 0, 0 );
+			p_hexes[ i ]->m_color = Vector3f( Math3D::Scale( ( x + y + z ), 0.4f, 1.0, min, max ), 0.0f, 0.0f );
+		} else {
+			p_hexes[ i ]->m_color = Vector3f( 0.5f, 0.5f, 0.5f );
 		}
 	}
 	
 	Colorize( p_colors, p_hexes );
+}
+
+std::vector<Vector3f> Planet::ColorizeRandom() {
+	std::vector<Vector3f> colors;
+	ColorizeRandom( colors, m_hexes );
+	return colors;
+}
+
+std::vector<Vector3f> Planet::ColorizePlates() {
+	std::vector<Vector3f> colors;
+	ColorizePlates( colors, m_hexes );
+	return colors;
+}
+
+std::vector<Vector3f> Planet::ColorizePlateTypes() {
+	std::vector<Vector3f> colors;
+	ColorizePlateTypes( colors, m_hexes );
+	return colors;
+}
+
+std::vector<Vector3f> Planet::ColorizeStressVector() {
+	std::vector<Vector3f> colors;
+	ColorizeStressVector( colors, m_hexes );
+	return colors;
 }
 
 std::vector<Tri*> Planet::BFS( Tri* p_start, Tri* p_end, Tri* p_exclude ) {

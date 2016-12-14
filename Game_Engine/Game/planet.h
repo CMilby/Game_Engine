@@ -240,14 +240,19 @@ public:
     ColorizedMesh* CreateMesh() {
         return new ColorizedMesh( m_indices, m_vertices, m_normals, m_colors );
     }
-    
+	
+	void ColorizeNeighbors( std::vector<Vector3f> &p_colors, int p_index, const std::vector<Hex*> &p_hexes );
+	void ColorizeRandom( std::vector<Vector3f> &p_colors, const std::vector<Hex*> &p_hexes );
+	void ColorizePlates( std::vector<Vector3f> &p_colors, const std::vector<Hex*> &p_hexes );
+	void ColorizePlateTypes( std::vector<Vector3f> &p_colors, const std::vector<Hex*> &p_hexes );
+	void ColorizeStressVector(  std::vector<Vector3f> &p_colors, const std::vector<Hex*> &p_hexes );
+	
+	std::vector<Vector3f> ColorizeRandom();
+	std::vector<Vector3f> ColorizePlates();
+	std::vector<Vector3f> ColorizePlateTypes();
+	std::vector<Vector3f> ColorizeStressVector();
 private:
     void Colorize( std::vector<Vector3f> &p_colors, const std::vector<Hex*> &p_hexes );
-    void ColorizeNeighbors( std::vector<Vector3f> &p_colors, int p_index, const std::vector<Hex*> &p_hexes );
-    void ColorizeRandom( std::vector<Vector3f> &p_colors, const std::vector<Hex*> &p_hexes );
-    void ColorizePlates( std::vector<Vector3f> &p_colors, const std::vector<Hex*> &p_hexes );
-    void ColorizePlateTypes( std::vector<Vector3f> &p_colors, const std::vector<Hex*> &p_hexes );
-	void ColorizeStressVector(  std::vector<Vector3f> &p_colors, const std::vector<Hex*> &p_hexes );
 	
     std::vector<Tri*> BFS( Tri* p_start, Tri* p_end, Tri* p_exclude );
 };

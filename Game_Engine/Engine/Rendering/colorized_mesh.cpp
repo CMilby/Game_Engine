@@ -44,7 +44,7 @@ void ColorizedMesh::GenerateBuffers( const std::vector<unsigned int> &pIndices, 
     glEnableVertexAttribArray( 2 );
     
     glBindBuffer( GL_ARRAY_BUFFER, m_colorBuffer );
-    glBufferData( GL_ARRAY_BUFFER, m_colors.size() * sizeof( Vector3f ), &m_colors[ 0 ], GL_STATIC_DRAW );
+    glBufferData( GL_ARRAY_BUFFER, m_colors.size() * sizeof( Vector3f ), &m_colors[ 0 ], GL_DYNAMIC_DRAW );
     glVertexAttribPointer( 3, 3, GL_FLOAT, GL_FALSE, 0, 0 );
     glEnableVertexAttribArray( 3 );
     
@@ -52,6 +52,17 @@ void ColorizedMesh::GenerateBuffers( const std::vector<unsigned int> &pIndices, 
     glBufferData( GL_ELEMENT_ARRAY_BUFFER, pIndices.size() * sizeof( unsigned int ), &pIndices[ 0 ], GL_STATIC_DRAW );
     
     glBindVertexArray( 0 );
+}
+
+void ColorizedMesh::Update( const std::vector<Vector3f> &p_colors ) {
+	m_colors = p_colors;
+	
+	glBindVertexArray( m_vao );
+	
+	glBindBuffer( GL_ARRAY_BUFFER, m_colorBuffer );
+	glBufferSubData( GL_ARRAY_BUFFER, NULL, m_colors.size() * sizeof( Vector3f ), &m_colors[ 0 ] );
+
+	glBindVertexArray( 0 );
 }
 
 void ColorizedMesh::Render() {

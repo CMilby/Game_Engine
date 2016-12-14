@@ -32,6 +32,10 @@ public:
     virtual void Execute( Entity *p_entity );
     
     void SetShaderType( ShaderType::ShaderType p_type );
+	
+	void UpdateColors( const std::vector<Vector3f> &p_vect ) {
+		m_mesh->Update( p_vect );
+	}
 };
 
 #endif /* render_component_h */

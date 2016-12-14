@@ -68,7 +68,11 @@ public:
     
     virtual void Render( int p_instances, const Matrix4f* p_WVPMats, const Matrix4f* p_worldMats );
     virtual void Render();
-    
+	
+	virtual void Update( const std::vector<Vector3f> &p_position ) {}
+	virtual void Update( const std::vector<Vector2f> &p_position ) {}
+	virtual void Update( const std::vector<unsigned int> &p_position ) {}
+	
     Mesh& operator=( const Mesh &p_mesh );
 };
 

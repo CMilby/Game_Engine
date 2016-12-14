@@ -24,7 +24,9 @@ protected:
 public:
     ColorizedMesh( const std::vector<unsigned int> &p_indices, const std::vector<Vector3f> &p_vertices, const std::vector<Vector3f> &p_normals, const std::vector<Vector3f> &p_colors );
     virtual ~ColorizedMesh();
-    
+	
+	virtual void Update( const std::vector<Vector3f> &p_position );
+	
     virtual void Render();
 };
 

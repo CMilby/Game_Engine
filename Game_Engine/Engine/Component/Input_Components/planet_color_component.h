@@ -10,13 +10,16 @@
 #define __PLANET_COLOR_COMPONENT_H__
 
 #include "input_component.h"
+#include "planet.h"
 
 class PlanetColorComponent : public InputComponent {
 	
 private:
+	Planet* m_planet;
+	int m_lastPressed;
 	
 public:
-	PlanetColorComponent();
+	PlanetColorComponent( Planet *p_planet );
 	virtual ~PlanetColorComponent();
 	
 	virtual void Execute( float p_delta );

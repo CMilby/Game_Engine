@@ -106,6 +106,16 @@ public:
         
         return false;
     }
+	
+	inline bool IsZero() const {
+		for ( unsigned int i = 0; i < D; i++ ) {
+			if ( m_values[ i ] != T( 0 ) ) {
+				return false;
+			}
+		}
+		
+		return true;
+	}
     
     inline Vector<T, D> operator+( const Vector<T, D> &vect ) const {
         Vector<T, D> sum;
