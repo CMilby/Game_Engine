@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4402CE001C28C95A00F11AA8 /* libSDL2-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 447B54141BF04A9600BB5977 /* libSDL2-2.0.0.dylib */; };
 		44040E461C18E3410058A84B /* libassimp.3.1.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 44040E451C18E3410058A84B /* libassimp.3.1.1.dylib */; };
+		440536D31E01F85600D05404 /* planet_color_component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 440536D11E01F85600D05404 /* planet_color_component.cpp */; };
 		4415CD891BDD70CC00E91770 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4415CD881BDD70CC00E91770 /* CoreFoundation.framework */; };
 		4421D5CC1C2C731600180432 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4421D5CB1C2C731600180432 /* CoreGraphics.framework */; };
 		447FDCFA1DFF604900C6822B /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 447FDCF91DFF604900C6822B /* main.cpp */; };
@@ -80,6 +81,8 @@
 
 /* Begin PBXFileReference section */
 		44040E451C18E3410058A84B /* libassimp.3.1.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libassimp.3.1.1.dylib; path = ../../../../usr/local/Cellar/assimp/3.1.1/lib/libassimp.3.1.1.dylib; sourceTree = "<group>"; };
+		440536D11E01F85600D05404 /* planet_color_component.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = planet_color_component.cpp; path = Engine/Component/Input_Components/planet_color_component.cpp; sourceTree = "<group>"; };
+		440536D21E01F85600D05404 /* planet_color_component.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = planet_color_component.h; path = Engine/Component/Input_Components/planet_color_component.h; sourceTree = "<group>"; };
 		4415CD881BDD70CC00E91770 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		4421D5CB1C2C731600180432 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		447B54141BF04A9600BB5977 /* libSDL2-2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libSDL2-2.0.0.dylib"; path = "../../../../usr/local/Cellar/sdl2/2.0.3/lib/libSDL2-2.0.0.dylib"; sourceTree = "<group>"; };
@@ -441,6 +444,8 @@
 				447FDD681DFF610600C6822B /* free_look_component.h */,
 				447FDD691DFF610600C6822B /* free_move_component.cpp */,
 				447FDD6A1DFF610600C6822B /* free_move_component.h */,
+				440536D11E01F85600D05404 /* planet_color_component.cpp */,
+				440536D21E01F85600D05404 /* planet_color_component.h */,
 			);
 			name = InputComponents;
 			sourceTree = "<group>";
@@ -594,6 +599,7 @@
 				447FDD1E1DFF608400C6822B /* config.cpp in Sources */,
 				447FDD631DFF60EF00C6822B /* update_component.cpp in Sources */,
 				447FDD441DFF60BF00C6822B /* colorized_mesh.cpp in Sources */,
+				440536D31E01F85600D05404 /* planet_color_component.cpp in Sources */,
 				447FDD621DFF60EF00C6822B /* render_component.cpp in Sources */,
 				447FDD481DFF60BF00C6822B /* texture.cpp in Sources */,
 				447FDD471DFF60BF00C6822B /* mesh.cpp in Sources */,

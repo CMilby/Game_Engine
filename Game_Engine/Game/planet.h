@@ -32,7 +32,8 @@ struct Hex {
     bool m_pentagon;
     
     Plate* m_plate;
-    float m_elevation;
+	Vector3f m_stress;
+	float m_elevation;
     
     std::vector<Tri*> m_tris;
     std::vector<Hex*> m_neighbors;
@@ -194,12 +195,13 @@ struct Plate {
     
     Vector3f m_color;
     
-    Vector3f m_rotationAxis;
-    float m_rotationAmount;
+    // Vector3f m_rotationAxis;
+    // float m_rotationAmount;
     
-    Vector3f m_driftDirection;
-    float m_driftAmount;
-    
+    // Vector3f m_driftDirection;
+    // float m_driftAmount;
+	Vector3f m_drift;
+	
     PlateType::PlateType m_plateType;
     
     Plate() {}
@@ -245,7 +247,8 @@ private:
     void ColorizeRandom( std::vector<Vector3f> &p_colors, const std::vector<Hex*> &p_hexes );
     void ColorizePlates( std::vector<Vector3f> &p_colors, const std::vector<Hex*> &p_hexes );
     void ColorizePlateTypes( std::vector<Vector3f> &p_colors, const std::vector<Hex*> &p_hexes );
-    
+	void ColorizeStressVector(  std::vector<Vector3f> &p_colors, const std::vector<Hex*> &p_hexes );
+	
     std::vector<Tri*> BFS( Tri* p_start, Tri* p_end, Tri* p_exclude );
 };
 

@@ -138,7 +138,7 @@ void Shader::LoadShader( const std::string &p_filename, int p_type ) {
         }
         shaderStream.close();
     } else {
-        fprintf( stderr, "Error loading shader." );
+        fprintf( stderr, "Error loading shader\n" );
         return;
     }
     

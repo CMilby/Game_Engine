@@ -12,9 +12,9 @@
 
 std::string FileUtility::FileDirectory() {
 #ifdef WINDOWS
-    return "C:\\Users\\Craig\\Development\\Game_Engine_New\\Game_Engine_New\\Assets\\";
+    return "C:\\Users\\Craig\\Development\\Game_Engine\\Game_Engine\\Assets\\";
 #elif MAC
-    return "/Users/Craig/Xcode/Game_Engine_New/Game_Engine_New/Assets/";
+    return "/Users/Craig/Xcode/Game_Engine/Game_Engine/Assets/";
 #endif
     return "";
 }
@@ -63,6 +63,6 @@ std::string FileUtility::GetShaderDirectory() {
 #elif MAC
     myDirect += "Shaders/";
 #endif
-    
+    // /Users/Craig/Xcode/Game_Engine/Game_Engine/Assets/Shaders
     return myDirect;
 }

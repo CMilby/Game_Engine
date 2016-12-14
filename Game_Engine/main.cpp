@@ -41,7 +41,7 @@ void TestGame::Init() {
     camera->AddComponent( new FreeLookFreeMoveComponent() );
     SetCamera( camera );
     
-    Planet *planet = new Planet( 1238, 4, 10.0f, 30 );
+    Planet *planet = new Planet( 12310, 4, 10.0f, 30 );
     
     Entity *entity = new Entity();
     RenderComponent* render = new RenderComponent( planet->CreateMesh() );

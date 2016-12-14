@@ -76,7 +76,15 @@ public:
         }
         return min;
     }
-    
+	
+	inline Vector<T, D> Abs() const {
+		Vector<T, D> myResult;
+		for ( unsigned int i = 0; i < D; i++ ) {
+			myResult[ i ] = ( m_values[ i ] < 0 ) ? -m_values[ i ] : m_values[ i ];
+		}
+		return myResult;
+	}
+	
     inline Vector<T, D> Reflect( const Vector<T, D> &pNormal ) const {
         return *this - ( pNormal * ( this->Dot( pNormal ) * 2 ) );
     }
