@@ -194,12 +194,6 @@ struct Plate {
     std::vector<Hex*> m_neighbors;
     
     Vector3f m_color;
-    
-    // Vector3f m_rotationAxis;
-    // float m_rotationAmount;
-    
-    // Vector3f m_driftDirection;
-    // float m_driftAmount;
 	Vector3f m_drift;
 	
     PlateType::PlateType m_plateType;
@@ -246,11 +240,13 @@ public:
 	void ColorizePlates( std::vector<Vector3f> &p_colors, const std::vector<Hex*> &p_hexes );
 	void ColorizePlateTypes( std::vector<Vector3f> &p_colors, const std::vector<Hex*> &p_hexes );
 	void ColorizeStressVector(  std::vector<Vector3f> &p_colors, const std::vector<Hex*> &p_hexes );
+	void ColorizeHeight( std::vector<Vector3f> &p_colors, const std::vector<Hex*> &p_hexes );
 	
 	std::vector<Vector3f> ColorizeRandom();
 	std::vector<Vector3f> ColorizePlates();
 	std::vector<Vector3f> ColorizePlateTypes();
 	std::vector<Vector3f> ColorizeStressVector();
+	std::vector<Vector3f> ColorizeHeight();
 private:
     void Colorize( std::vector<Vector3f> &p_colors, const std::vector<Hex*> &p_hexes );
 	

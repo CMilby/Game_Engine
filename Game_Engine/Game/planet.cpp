@@ -546,8 +546,9 @@ void Planet::CreatePlates( unsigned int p_numPlates, const std::vector<Hex*> &p_
         // plate->m_rotationAmount = 0.0f; // small random num
         // plate->m_driftDirection = Vector3f(); // Random unit vector
         // plate->m_driftAmount = 0.0f; // small random num
-		plate->m_drift = Vector3f( m_random->InRange( 0.0f, 1.0f ), m_random->InRange( 0.0f, 1.0f ), m_random->InRange( 0.0f, 1.0f ) ).Normalized();
-        plate->m_color = Vector3f( m_random->InRange( 0.2f, 1.0f ), m_random->InRange( 0.2f, 1.0f ), m_random->InRange( 0.2f, 1.0f ) );
+		plate->m_drift = Vector3f( m_random->InRange( -1.0f, 1.0f ), m_random->InRange( -1.0f, 1.0f ), m_random->InRange( -1.0f, 1.0f ) );
+		// plate->m_drift = Vector3f( m_random->InRange( -1.0f, 1.0f ), 0.0f, 0.0f );
+		plate->m_color = Vector3f( m_random->InRange( 0.2f, 1.0f ), m_random->InRange( 0.2f, 1.0f ), m_random->InRange( 0.2f, 1.0f ) );
         plate->m_hexes.push_back( unusedHexes[ nums[ i ] ] );
         plate->m_neighbors.insert( plate->m_neighbors.begin(), unusedHexes[ nums[ i ] ]->m_neighbors.begin(), unusedHexes[ nums[ i ] ]->m_neighbors.end() );
         
@@ -584,8 +585,6 @@ void Planet::CreatePlates( unsigned int p_numPlates, const std::vector<Hex*> &p_
 	for ( unsigned int i = 0; i < plates.size(); i++ ) {
 		p_plates.push_back( plates[ i ] );
 	}
-	
-	std::cout << "here";
 }
 
 void Planet::CalculateStress( std::vector<Plate*> &p_plates ) {
@@ -595,7 +594,7 @@ void Planet::CalculateStress( std::vector<Plate*> &p_plates ) {
 			Hex* hex = plate->m_hexes[ j ];
 			for ( unsigned int k = 0; k < hex->m_neighbors.size(); k++ ) {
 				if ( hex->m_plate != hex->m_neighbors[ k ]->m_plate ) {
-					Vector3f stressVector = ( hex->m_plate->m_drift - hex->m_neighbors[ k ]->m_plate->m_drift ).Normalized();
+					Vector3f stressVector( hex->m_neighbors[ k ]->m_plate->m_drift + hex->m_plate->m_drift );
 					hex->m_stress += stressVector;
 				}
 			}
@@ -663,15 +662,30 @@ void Planet::ColorizeStressVector( std::vector<Vector3f> &p_colors, const std::v
 	}
 	
 	for ( unsigned int i = 0; i < p_hexes.size(); i++ ) {
-		if ( p_hexes[ i ]->m_stress.GetX() != 0 && p_hexes[ i ]->m_stress.GetY() != 0 && p_hexes[ i ]->m_stress.GetZ() != 0 ) {
+		if ( p_hexes[ i ]->m_stress.GetX() != 0.0f || p_hexes[ i ]->m_stress.GetY() != 0.0f || p_hexes[ i ]->m_stress.GetZ() != 0.0f ) {
 			float x = p_hexes[ i ]->m_stress.GetX();
 			float y = p_hexes[ i ]->m_stress.GetY();
 			float z = p_hexes[ i ]->m_stress.GetZ();
-	
-			p_hexes[ i ]->m_color = Vector3f( Math3D::Scale( ( x + y + z ), 0.4f, 1.0, min, max ), 0.0f, 0.0f );
+			float total = x + y + z;
+			if ( total > 0.0f ) {
+				p_hexes[ i ]->m_color = Vector3f( Math3D::Scale( total, 0.4f, 1.0f, 0.0f, max ), 0.0f, 0.0f );
+			} else if ( total < 0.0f ) {
+				p_hexes[ i ]->m_color = Vector3f( 0.0f, Math3D::Scale( total, 0.4f, 1.0f, min, 0.0f ), 0.0f );
+			} else {
+				p_hexes[ i ]->m_color = Vector3f( 0.0f, 0.0f, 1.0f );
+			}
 		} else {
 			p_hexes[ i ]->m_color = Vector3f( 0.5f, 0.5f, 0.5f );
 		}
+	}
+	
+	Colorize( p_colors, p_hexes );
+}
+
+void Planet::ColorizeHeight( std::vector<Vector3f> &p_colors, const std::vector<Hex*> &p_hexes ) {
+	for ( unsigned int i = 0; i < p_hexes.size(); i++ ) {
+		float ele = p_hexes[ i ]->m_elevation;
+		p_hexes[ i ]->m_color = Vector3f( ele, 0.0f, 0.0f );
 	}
 	
 	Colorize( p_colors, p_hexes );
@@ -698,6 +712,12 @@ std::vector<Vector3f> Planet::ColorizePlateTypes() {
 std::vector<Vector3f> Planet::ColorizeStressVector() {
 	std::vector<Vector3f> colors;
 	ColorizeStressVector( colors, m_hexes );
+	return colors;
+}
+
+std::vector<Vector3f> Planet::ColorizeHeight() {
+	std::vector<Vector3f> colors;
+	ColorizeHeight( colors, m_hexes );
 	return colors;
 }
 

@@ -54,4 +54,11 @@ void PlanetColorComponent::Execute( float p_delta ) {
 		}
 		m_lastPressed = Key::KEY_4;
 	}
+	
+	if ( Input::IsKeyDown( Key::KEY_5 ) ) {
+		if ( m_lastPressed != Key::KEY_5 ) {
+			RenderComponent* render = ( RenderComponent* ) GetParent()->GetComponent( ComponentType::RENDER_COMPONENT );
+			render->UpdateColors( m_planet->ColorizeHeight() );
+		}
+	}
 }
